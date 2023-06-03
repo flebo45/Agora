@@ -19,13 +19,36 @@ class FPersistentManager{
         // if exist 'UPDATE' else 'CREATE'
     }
 
-    public function selectPost($userID, $postID){
+    public function selectPost($postID){
         //perform query and return all data
     }
 
-    public function deletePost($userID, $postID){
+    public function deletePost($postID){
         //perform query via FPost and delete from the table
     }
+
+    public function search($keyword){
+        //perform query via FUser and FPost and take result
+        // result is am array of item
+    }
+
+    public function selectUser($userID){
+        //perform query via FUser and take result
+    }
+
+    public function loadReport($reportID){
+        //call to FReport that update report table
+    }
+
+    public function reportTable(){
+        //perform a query via FReport 
+    }
+
+    public function unsetReport(){
+        //update Report Table via FReport
+    }
+
+
 
 
 }

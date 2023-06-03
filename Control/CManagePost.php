@@ -82,16 +82,11 @@ class CManagePost{
 
     public function modifyPost($postID){
         //check if the user is logged
-        //take userID from __SESSION
-
-        //test data
-        $userID = 'userId';
-
         //call to PM
         $pm = FPersistentManager::getInstance();
 
         //PM call to FPost tho perform query and return Post info
-        $post = $pm->selectPost($userID, $postID);
+        $post = $pm->selectPost($postID);
         //probably we need to serialize and unserialize
 
         //save the data in the __SESSION
@@ -100,15 +95,10 @@ class CManagePost{
 
     public function deletePost($postID){
         //check if the user is logged
-        //take userID from __SESSION
-
-        //test data
-        $userID = 'userId';
-
         //call to PM
         $pm = FPersistentManager::getInstance();
 
-        $pm->deletePost($userID, $postID);
+        $pm->deletePost($postID);
     }
 
 }
