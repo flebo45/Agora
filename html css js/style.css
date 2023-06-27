@@ -776,17 +776,24 @@ main .container .left .profile{
 
 /*----------------------CREATION POST-------------------*/
 
+.main .container .center{
+    grid-column: 2/3;
+}
+
  .form-creation{
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding:var(--card-padding);
     margin: 10rem auto;
     font-size: 0.85rem;
-    line-height: 1.5;
+    line-height: 3;
      align-items: center;
 }
 
- .creation-post{
+.main .container .center .creation-title{
+    position: absolute;
+}
+ .main .container .center .creation-post{
      align-items: center;
      --card-padding: var(--card-padding);
      display: flex;
@@ -794,8 +801,15 @@ main .container .left .profile{
  }
 
  .creation-post .input-group{
-     display: flex;
+    margin-bottom: 16px;
  }
+
+.creation-post .input-group label{
+    display: block;
+    margin-bottom: 8px;
+
+}
+
 .md-box{
     padding: 32px 10px;
     width: 75%;
