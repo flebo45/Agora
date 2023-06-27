@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
@@ -34,30 +34,112 @@
 <!---------------------------------MAIN------------------------------------>
 <main>
   <div class="container">
-    <div class="box">
-      <form>
-        <div>
-          <h3 class="tex-bold">Title</h3>
-          <label>
-            <input type="text" class="input-description" required>
-          </label>
+    <!-----------------------left-------------------->
+    <div class="left">
+      <a class="profile">
+        <div class="profile-photo">
+          <img src="Img/A.png" alt=" log in">
         </div>
-        <div>
-          <h3 class="tex-bold">Description</h3>
-          <label>
-          </label>
+        <div class ="handle">
+          <h4> Agora </h4>
+          <p class="text-muted">{$user->getUsername()}
+          </p>
         </div>
-        <label>
-          <input type="image" class="input-image" placeholder="Image" required alt="">
-        </label>
-        <label>
-          <button type="submit" class="submit-btn" onclick="location.href='index.html'"></button>
-        </label>
+      </a>
+      <!-----------------------SIDE BAR-------------------->
+      <div class="sidebar">
+        <a class="menu-items active">
+          <span> <i class="uil uil-home"></i></span> <h3> Home</h3>
+        </a>
+        <a class="menu-items ">
+          <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> Explore</h3>
+        </a>
+        <a class="menu-items" id="notification">
+          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> Notification</h3>
+          <!----------------NOTIFICATION POPUP------------------------>
+          <div class="notification-popup">
+            <div>
+              <div class="profile-photo">
+                <img src="Img/A.png" alt="photo">
+              </div>
+              <div class="notification-body">
+                <b> user name for notification</b> <-Action made by him
+                <small class="text-muted"> time</small>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!------------------------END OF NOTIFICATION POP UP------------------->
+        <a class="menu-items">
+          <button class="btn-transparent" onclick="location.href='bookmark.html'"><i class="uil uil-bookmark"></i></button> <h3> Bookmark</h3>
+        </a>
+        <a class="menu-items">
+          <button class="btn-transparent" onclick="location.href='profile.html'"> <i class="uil uil-user-circle"></i></button><h3>Profile</h3>
+
+        </a>
+        <a class="menu-items " id="theme">
+          <span> <i class="uil uil-palette"></i></span> <h3> Theme</h3>
+        </a>
+        <a class="menu-items " >
+          <span> <i class="uil uil-setting"></i></span> <h3> Setting</h3>
+        </a>
+      </div>
+    </div>
+
+
+    <!-----------------------END OF LEFT-------------------->
+
+    <!---------------------CREATION POST------------------------>
+
+    <div class="middle creation-post ">
+      <form action="#" method="post" class="form-creation md-box" enctype="multipart/form-data">
+        <h1 class="title"> Create Post</h1>
+
+        <ul class="form-error">
+          <li>Username required</li>
+          <li>Email required</li>
+        </ul>
+
+        <div class="input-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" id="title" class="input-control">
+        </div>
+
+        <div class="input-group">
+          <label for="post-editor">Body</label>
+          <textarea name="body" id="post-editor"></textarea>
+        </div>
+
+        <div class="post-details">
+          <div class="select-topic-wrapper">
+            <div class="input-group">
+              <label for="topic"></label>
+              <select name="topic_id" id="topic">
+                <option></option>
+                <option value="Cucina">Cucina</option>
+                <option value="Sport">Sport</option>
+                <option value="Viaggi">Viaggi</option>
+                <option value="Cinema">Cinema</option>
+                <option value="Casa">Casa</option>
+              </select>
+            </div>
+          </div>
+          <div class="image-wrapper">
+            <input type="file" name="image" id="" class="hide image-input">
+            <button type="button" class="bg-image">
+              <span>
+                <i class="uil uil-image image-outline"></i>
+                <span>Choose Image</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="input-group">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
       </form>
     </div>
   </div>
-
-
 </main>
 </body>
 </html>
