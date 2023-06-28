@@ -34,10 +34,10 @@ class FDataBase{
      * check if exist an entity in the table($entity)
      * checking the value ($field, $id)
      */
-    public function existInDb($entity, $field, $id){
+    public function existInDb($table, $field, $id){
 
         try{
-            $query = "SELECT * FROM" . $entity . "WHERE" . $field . "=" . $id . ";";
+            $query = "SELECT * FROM" . $table . "WHERE" . $field . "=" . $id . ";";
             $statement = $this->connection->prepare($query);
             $statement->execute();
 
@@ -53,5 +53,22 @@ class FDataBase{
             echo "ERROR" . $e->getMessage();
             return false;
         }
+    }
+
+    /** 
+     * update the raw in the table ($table)
+     * using the $entity class to update value
+     */
+    public function updateRaw($table, $entity){
+
+
+    }
+
+    /** 
+     * create a new raw in the table ($table)
+     * using the $entity value
+     */
+    public function createRaw(){
+
     }
 }

@@ -19,11 +19,12 @@ class FPost{
         $db = FDataBase::getInstance();
 
         //perform a query via Fdatabase That check if the post already exist
-        $db->existInDb(self::getTable(), $field, $id);
+        $query_result = $db->existInDb(self::getTable(), $field, $id);
 
         //if exist = true Perform query via Fdatabase to Update the table
+        if($query_result) $db->updateRaw();
 
         //else perform a query via Fdatabse to create post in the table
-
+        else {$db->createRaw();}
     }
 }
