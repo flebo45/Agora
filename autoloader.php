@@ -8,7 +8,8 @@ spl_autoload_register(function ($className) {
         'Control' => 'Control/',
         'Foundation' => 'Foundation/',
         'Entity' => 'Entity/',
-        'View' => 'View/'
+        'View' => 'View/',
+        'config'=>'config/'
     ];
 
     // Iterate through the package directories to find the class file
