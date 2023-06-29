@@ -25,10 +25,10 @@ function getEntityManager() : \Doctrine\ORM\EntityManager
         # Make sure you have installed the php7.0-sqlite package.
         $connectionParams = array(
             'driver' => 'pdo_mysql',
-            'host' => '127.0.0.1',
-            'dbname' => 'provaorm',
-            'user' => 'root',
-            'password' => 'pippo'
+            'host' => DB_HOST,
+            'dbname' => DB_NAME,
+            'user' => DB_USER,
+            'password' => DB_PASS
         );
 
         $entityManager = \Doctrine\ORM\EntityManager::create($connectionParams, $config);
