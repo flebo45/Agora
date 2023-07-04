@@ -1,21 +1,31 @@
 <?php
-//singleton class
+
 class FPersistentManager{
-    private static $instance;
 
-    private function __construct(){}
+    /**
+     * Singleton Class
+     */
 
-    public static function getInstance(){
-        if(self::$instance == null){
-            self::$instance = new FPersistentManager();
+     private static $instance;
+
+     public static function getInstance()
+    {
+        if (!self::$instance) {
+            self::$instance = new self();
         }
 
         return self::$instance;
     }
 
-    public function loadPost($post){
-        //call to Fpost to do a query to update the db
-        //Fpost need to check if the post already exist or notù
+    /**
+     * call to FPost to update Post table
+     */
+
+    public function loadPost(Post $post){
+        $result = Fpost::loadPostInDb($post);
+
+        return $result;
+        
         // if exist 'UPDATE' else 'CREATE'
     }
 
@@ -48,10 +58,6 @@ class FPersistentManager{
         //update Report Table via FReport
     }
 
-
-
+    
 
 }
-
-
-?>
