@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
@@ -38,7 +38,7 @@
     <div class="left">
       <a class="profile">
         <div class="profile-photo">
-          <img src="Img/A.png" alt=" log in">
+          <img src="Img/A.png" alt="log in">
         </div>
         <div class ="handle">
           <h4> Agora </h4>
@@ -48,10 +48,10 @@
       </a>
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
-        <a class="menu-items active">
-          <span> <i class="uil uil-home"></i></span> <h3> Home</h3>
+        <a class="menu-items">
+          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button> <h3> Home</h3>
         </a>
-        <a class="menu-items ">
+        <a class="menu-items">
           <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> Explore</h3>
         </a>
         <a class="menu-items" id="notification">
@@ -83,6 +83,7 @@
         <a class="menu-items " >
           <span> <i class="uil uil-setting"></i></span> <h3> Setting</h3>
         </a>
+
       </div>
     </div>
 
@@ -90,54 +91,51 @@
     <!-----------------------END OF LEFT-------------------->
 
     <!---------------------CREATION POST------------------------>
-
-    <div class="middle creation-post ">
-      <form action="#" method="post" class="form-creation md-box" enctype="multipart/form-data">
-        <h1 class="title"> Create Post</h1>
-
-        <ul class="form-error">
-          <li>Username required</li>
-          <li>Email required</li>
-        </ul>
-
-        <div class="input-group">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" class="input-control">
+    <div class="creation">
+      <div class="form-box">
+        <div class="tex-bold">
+          <h3>Creation Post</h3>
         </div>
-
-        <div class="input-group">
-          <label for="post-editor">Body</label>
-          <textarea name="body" id="post-editor"></textarea>
-        </div>
-
-        <div class="post-details">
-          <div class="select-topic-wrapper">
-            <div class="input-group">
+        <form enctype="multipart/form-data" id="creation-post" >
+          <h4 class="tex-bold left-transition" >Title</h4>
+          <label>
+            <input type="text" class="text" required>
+          </label>
+          <h4 class="tex-bold left-transition">Body</h4>
+          <label>
+            <textarea class="text-area" required></textarea>
+          </label>
+          <div>
+            <label class="custom-btn">
+          <input type="file" name="image" id="" class="image-input" accept="image/*">
+              Select Img
+            </label>
+          </div>
+          <div>
+            <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">select topic</h4>
+            <label>
               <label for="topic"></label>
-              <select name="topic_id" id="topic">
+              <select name="topic_id" id="topic" required>
                 <option></option>
-                <option value="Cucina">Cucina</option>
+                <option value="Cocking">Cocking</option>
                 <option value="Sport">Sport</option>
-                <option value="Viaggi">Viaggi</option>
+                <option value="Travel">Travel</option>
                 <option value="Cinema">Cinema</option>
                 <option value="Casa">Casa</option>
               </select>
-            </div>
+            </label>
           </div>
-          <div class="image-wrapper">
-            <input type="file" name="image" id="" class="hide image-input">
-            <button type="button" class="bg-image">
-              <span>
-                <i class="uil uil-image image-outline"></i>
-                <span>Choose Image</span>
-              </span>
-            </button>
+          <div>
+            <label class=" btn btn-primary">Save
+                <button type="submit" class="btn-transparent"></button>
+            </label>
           </div>
+        </form>
+
+        <div>
+        <button class="btn btn-primary" onclick="location.href='index.html'">Cancel</button>
         </div>
-        <div class="input-group">
-          <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </main>

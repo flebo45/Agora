@@ -46,27 +46,19 @@ body {
 /*LOG IN STYLE*/
 
 
-.box{
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-size: cover;
-    position: absolute;
-}
-
-.form-box{
-    width: 380px;
-    height: 480px;
+.box .form-box{
+    width:25rem;
+    height: 30rem;
     position: relative;
-    margin: 30% auto;
+    margin: 5% auto;
     background:  var(--color-white);
     padding:5px;
     overflow: hidden;
 }
-.box .form-box h3{
-   margin-left:9rem;
+ .box .form-box h3{
+   margin-left:40%;
 }
-.button-box{
+.box .button-box{
     width: 220px;
     margin: 35px auto;
     position: relative;
@@ -776,48 +768,123 @@ main .container .left .profile{
 
 /*----------------------CREATION POST-------------------*/
 
-.main .container .center{
-    grid-column: 2/3;
+
+.creation .form-box{
+    margin-left: 30%;
+    height: 90%;
+    width:40rem;
+    position: relative;
+    background:  var(--color-white);
+    padding:5px;
+    overflow: hidden;
+}
+.creation .form-box h3{
+    margin-left:40%;
 }
 
- .form-creation{
-    background: var(--color-white);
-    border-radius: var(--card-border-radius);
-    padding:var(--card-padding);
-    margin: 10rem auto;
-    font-size: 0.85rem;
-    line-height: 3;
-     align-items: center;
+.left-transition{
+    margin-left: 13%;
+}
+.text{
+
+    margin-left:2rem;
+    padding: 1em;
+    border-radius: 10px;
+    border:2px solid black;
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 2rem;
+    transition: all 0.2s;
 }
 
-.main .container .center .creation-title{
-    position: absolute;
+.text:hover{
+    cursor: pointer;
 }
- .main .container .center .creation-post{
-     align-items: center;
-     --card-padding: var(--card-padding);
-     display: flex;
-     gap: 1rem;
- }
 
- .creation-post .input-group{
-    margin-bottom: 16px;
- }
+.text:focus{
+    cursor: text;
+    color: black;
+    background-color: white;
+    border-color:black;
+}
 
-.creation-post .input-group label{
+.text-area{
+    margin-left:2rem;
+    resize: none;
+    padding: 1em;
+    border-radius: 10px;
+    border:2px solid black;
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 9rem;
+    transition: all 0.2s;
+}
+
+.text-area:hover{
+    cursor: pointer;
+}
+
+.text-area:focus{
+    cursor: text;
+    color: black;
+    background-color: white;
+    border-color:black;
+}
+
+ .form-box #topic{
+    margin-top: 1rem;
+    margin-left: 5%;
+    width:13%;
+    padding: 5px 12px;
+    cursor: pointer;
     display: block;
-    margin-bottom: 8px;
-
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+.form-box .btn{
+    padding: 5px 12px;
+    margin-top: 1rem;
+    margin-left: 88%;
 }
 
-.md-box{
-    padding: 32px 10px;
-    width: 75%;
+
+.form-box .image-input{
+    margin-left: 5%;
+    margin-top: 1rem;
 }
 
-.lg-box{
-    padding: 32px 10px;
-    width: 95%;
+input[type="file"]{
+    display: none;
+}
+
+ .form-box .custom-btn {
+    margin-top: 1rem;
+    margin-left: 5%;
+    width:20%;
+    padding: 5px 12px;
+    cursor: pointer;
+    display: block;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.form-box:first-child{
+    border-bottom-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
+}
+
+
+.form-box:last-child{
+    border-bottom-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
 }
 
 
