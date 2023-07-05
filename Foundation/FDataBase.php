@@ -37,7 +37,7 @@ class FDataBase{
     public function existInDb($table, $field, $id){
 
         try{
-            $query = "SELECT * FROM" . $table . "WHERE" . $field . "=" . $id . ";";
+            $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
             $statement = $this->connection->prepare($query);
             $statement->execute();
 
@@ -50,25 +50,56 @@ class FDataBase{
         }
 
         catch(PDOException $e){
-            echo "ERROR" . $e->getMessage();
+            echo "ERROR: " . $e->getMessage();
             return false;
         }
     }
 
     /** 
-     * update the raw in the table ($table)
-     * using the $entity class to update value
+     * update the raw in the table 
+     * using the $obj with the entity manager
      */
-    public function updateRaw($table, $entity){
+    public function updateRaw($obj){
+        $em = getEntityManager();
+
+        try{
+            //mutual exclusion when we add or update obj in db
+            $this->connection->beginTransaction();
+
+            $em->persist($obj);
+            $em->flush();
+
+            self::closeConnection();
+        }catch (PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+            $this->connection->rollBack();
+            return false;
+        }
 
 
     }
 
     /** 
-     * create a new raw in the table ($table)
-     * using the $entity value
+     * create a new raw in the table
+     * using the $obj  with entity manager
      */
-    public function createRaw(){
+    public function createRaw($obj){
+        $em = getEntityManager();
+
+        try{
+            //mutual exclusion when we add or update obj in db
+            $this->connection->beginTransaction();
+
+            $em->persist($obj);
+            $em->flush();
+
+            self::closeConnection();
+        }catch (PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+            $this->connection->rollBack();
+            return false;
+        }
+
 
     }
 }
