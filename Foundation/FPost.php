@@ -54,9 +54,9 @@ class FPost{
 
         $db = FDataBase::getInstance();
 
-        $db->objectList(self::getTable(), $field, $id);
+        $result = $db->objectList(self::getTable(), $field, $id);
 
-
+        return $result;
 
     }
 }
