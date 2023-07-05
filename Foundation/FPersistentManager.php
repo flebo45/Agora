@@ -53,6 +53,9 @@ class FPersistentManager{
      */
     public function userPostList(User $user){
 
+        $result = FPost::PostList($user);
+
+        return $result;
     }
 
     public function selectPost($postID){

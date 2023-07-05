@@ -138,8 +138,25 @@ class FDataBase{
             $statement = $this->connection->prepare($query);
             $statement->execute();
 
-            //TODO : last thing, before do commnets and like 
+            $n = $statement->rowCount();
+
+            if($n == 0){
+                $result = null;
+            }elseif($n == 1){
+                $result = $statement->fetch(PDO::FETCH_ASSOC);
+            }else{
+                $result=array();
+                $statement->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $statement->fetch())
+                    $result[] = $row;
+            }
+            $this->closeConnection();
+            return $result;
+            }catch(PDOException $e){
+                echo "ERROR " . $e->getMessage();
+                return null;
+            }
         }
 
-    }
+    
 }
