@@ -4,6 +4,8 @@ class FPost{
 
     private $table_name = "post";
 
+    private $table_field = "post_id";
+
     # methods
 
     public static function getTable(){
