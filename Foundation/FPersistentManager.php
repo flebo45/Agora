@@ -8,6 +8,10 @@ class FPersistentManager{
 
      private static $instance;
 
+     private function __construct(){
+
+     }
+
      public static function getInstance()
     {
         if (!self::$instance) {
@@ -21,8 +25,8 @@ class FPersistentManager{
      * call to FPost to update Post table
      */
 
-    public function loadPost(Post $post){
-        $result = FPost::loadPostInDb($post);
+    public function createPost(Post $post, User $user){
+        $result = FPost::createPostInDb($post, $user);
 
         return $result;
     }
