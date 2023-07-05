@@ -1,2 +1,7 @@
 /config/config.php
 Todo.txt
+vendor/
+autoloader.php
+bootstrap.php
+composer.json
+composer.lock

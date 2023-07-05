@@ -108,3 +108,17 @@ $em->persist($commentReport);
 
 $em->flush();
 
+
+//crea un nuovo oggeto ma nel db non viene salvato, quindi non c'è bisogno di fare check al livello foudation
+$like2prova = new ELike($user2, $post);
+
+$em->persist($like);
+
+$user2->addLike($like);
+$post->addLike($like);
+
+
+$em->persist($post);
+$em->persist($user2);
+$em->persist($like);
+$em->flush();
