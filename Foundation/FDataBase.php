@@ -130,4 +130,16 @@ class FDataBase{
 
         return $result;
     }
+
+
+    public function objectList($table, $field, $id){
+        try{
+            $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
+            $statement = $this->connection->prepare($query);
+            $statement->execute();
+
+            //TODO : last thing, before do commnets and like 
+        }
+
+    }
 }

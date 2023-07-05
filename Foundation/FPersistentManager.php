@@ -38,6 +38,23 @@ class FPersistentManager{
         
     }
 
+    /**
+     * call to FUser to create or update an user
+     */
+    public function createOrUpdateUser(User $user){
+
+        $result = FUser::createUserInDb($user);
+
+        return $result;
+    }
+
+    /**
+     * return a list of all the post created by the user
+     */
+    public function userPostList(User $user){
+
+    }
+
     public function selectPost($postID){
         //perform query and return all data
     }

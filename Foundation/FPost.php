@@ -4,7 +4,7 @@ class FPost{
 
     private $table_name = "post";
 
-    private $table_field = "post_id";
+    private $table_field = "id";
 
     # methods
 
@@ -45,5 +45,18 @@ class FPost{
         $result = $db->deleteObjInDb(self::getTable(), self::getField(), $id);
 
         return $result;
+    }
+
+    public static function PostList(User $user){
+
+        $id = $user->getId();
+        $field = "cretor_id";
+
+        $db = FDataBase::getInstance();
+
+        $db->objectList(self::getTable(), $field, $id);
+
+
+
     }
 }
