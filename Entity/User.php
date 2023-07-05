@@ -113,7 +113,7 @@ class User
 
 
     # Accessors
-    public function getId() : int { return $this->id; }
+    public function getId() : mixed { return $this->id; }
     public function getName() : string { return $this->name; }
     public function getSurname() : string { return $this->surname; }
     public function getAge() : int { return $this->age; }

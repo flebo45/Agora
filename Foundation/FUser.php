@@ -1,6 +1,6 @@
 <?php
 
-class FUser{
+class FUser extends FDataBase{
 
     private $table_name = "user";
 
@@ -23,13 +23,14 @@ class FUser{
 
         $db = FDataBase::getInstance();
 
-        //perform a query via Fdatabase That check if the post already exist
-        $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
-
-        //if exist = true Perform query via Fdatabase to Update the table
-        if($query_result) $db->updateRaw($user);
-
-        //else perform a query via Fdatabse to create post in the table
-        else {$db->createRaw($user);}
+        if($id == null){
+            $db->createRaw($user);
+        }else{
+            //perform a query via Fdatabase That check if the post already exist
+            $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
+            
+            //if exist = true Perform query via Fdatabase to Update the table
+            if($query_result) $db->updateRaw($user);
+        }
     }
 }

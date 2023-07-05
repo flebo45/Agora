@@ -9,6 +9,9 @@ require_once(__DIR__ . '\config\config.php');
 $classDirs = array(
     __DIR__,
     __DIR__ . '\Entity',
+    __DIR__ . '\Foundation',
+    __DIR__ . '\Control',
+    __DIR__ . '\View',
 );
 
 new \iRAP\Autoloader\Autoloader($classDirs);

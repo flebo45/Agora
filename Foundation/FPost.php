@@ -1,10 +1,10 @@
 <?php
 
-class FPost{
+class FPost extends FDataBase{
 
-    private $table_name = "post";
+    private static $table_name = "post";
 
-    private $table_field = "id";
+    private static $table_field = "id";
 
     # methods
 
@@ -20,20 +20,14 @@ class FPost{
 
 
 
-    public static function loadPostInDb(Post $post)
+    public static function createPostInDb(Post $post, User $user)
     {
         $id = $post->getId();
 
         $db = FDataBase::getInstance();
 
-        //perform a query via Fdatabase That check if the post already exist
-        $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
+        if($id == null) $db->createRawInRelation($post, $user);
 
-        //if exist = true Perform query via Fdatabase to Update the table
-        if($query_result) $db->updateRaw($post);
-
-        //else perform a query via Fdatabse to create post in the table
-        else {$db->createRaw($post);}
     }
 
     public static function deletePostInDb(Post $post){

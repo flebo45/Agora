@@ -103,6 +103,26 @@ class FDataBase{
 
     }
 
+    public function createRawInRelation($obj1, $obj2){
+        $em = getEntityManager();
+
+        try{
+            //mutual exclusion when we add or update obj in db
+            $this->connection->beginTransaction();
+
+            $em->persist($obj1);
+            $em->persist($obj2);
+            $em->flush();
+
+            self::closeConnection();
+        }catch (PDOException $e){
+            echo "ERROR: " . $e->getMessage();
+            $this->connection->rollBack();
+            return false;
+        }
+
+    }
+
     public function deleteObjInDb($table, $field, $id){
 
         try{

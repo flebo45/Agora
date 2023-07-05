@@ -1,6 +1,6 @@
 <?php 
 
-class FComment{
+class FComment extends FDataBase{
 
     private $table_name = "comment";
 

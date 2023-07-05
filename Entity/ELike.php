@@ -34,5 +34,12 @@ class ELike{
         $this->creator = $creator;
         $this->related_post = $related_post;
     }
+
+    #methods
+
+    public function getId(){
+
+        return $this->id;
+    }
      
 }
