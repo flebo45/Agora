@@ -22,20 +22,26 @@ class FPersistentManager{
      */
 
     public function loadPost(Post $post){
-        $result = Fpost::loadPostInDb($post);
+        $result = FPost::loadPostInDb($post);
+
+        return $result;
+    }
+
+    /**
+     *  call to FPost to delete obj in the db
+     */
+    public function deletePost(Post $post){
+
+        $result = FPost::deletePostInDb($post);
 
         return $result;
         
-        // if exist 'UPDATE' else 'CREATE'
     }
 
     public function selectPost($postID){
         //perform query and return all data
     }
 
-    public function deletePost($postID){
-        //perform query via FPost and delete from the table
-    }
 
     public function search($keyword){
         //perform query via FUser and FPost and take result

@@ -102,4 +102,32 @@ class FDataBase{
 
 
     }
+
+    public function deleteObjInDb($table, $field, $id){
+
+        try{
+            //mutual exclusion when we add or update obj in db
+            $this->connection->beginTransaction();
+
+            $exist = $this->existInDb($table, $field, $id);
+            if($exist){
+
+                $query = "DELETE  FROM " . $table . " WHERE " . $field . " = " . $id . ";";
+                $statement = $this->connection->prepare($query);
+                $statement->execute();
+                $this->connection->commit();
+                $this->closeConnection();
+                $result = true;
+            }else{
+                $this->closeConnection();
+                $result = false;
+            }
+        }catch(PDOException $e){
+            echo "ERROR " . $e->getMessage();
+            $this->connection->rollBack();
+            $result =  false;
+        }
+
+        return $result;
+    }
 }

@@ -35,4 +35,15 @@ class FPost{
         //else perform a query via Fdatabse to create post in the table
         else {$db->createRaw($post);}
     }
+
+    public static function deletePostInDb(Post $post){
+
+        $id = $post->getId();
+        
+        $db = FDataBase::getInstance();
+
+        $result = $db->deleteObjInDb(self::getTable(), self::getField(), $id);
+
+        return $result;
+    }
 }
