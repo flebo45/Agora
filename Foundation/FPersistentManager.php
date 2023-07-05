@@ -22,20 +22,66 @@ class FPersistentManager{
      */
 
     public function loadPost(Post $post){
-        $result = Fpost::loadPostInDb($post);
+        $result = FPost::loadPostInDb($post);
+
+        return $result;
+    }
+
+    /**
+     *  call to FPost to delete obj in the db
+     */
+    public function deletePost(Post $post){
+
+        $result = FPost::deletePostInDb($post);
 
         return $result;
         
-        // if exist 'UPDATE' else 'CREATE'
+    }
+
+    /**
+     * call to FUser to create or update an user in db
+     */
+    public function createOrUpdateUser(User $user){
+
+        $result = FUser::createUserInDb($user);
+
+        return $result;
+    }
+
+    /**
+     * call to FComment to create comment in db
+     */
+    public function createComment(Comment $comment){
+
+        $result = FComment::createCommentInDb($comment);
+
+        return $result;
+    }
+
+    /**
+     * return a list of all the post created by the user
+     */
+    public function userPostList(User $user){
+
+        $result = FPost::PostList($user);
+
+        return $result;
+    }
+
+    /**
+     * return a list of all comments related by a post
+     */
+    public function postCommentList(Post $post){
+
+        $result = FComment::commentList($post);
+
+        return $result;
     }
 
     public function selectPost($postID){
         //perform query and return all data
     }
 
-    public function deletePost($postID){
-        //perform query via FPost and delete from the table
-    }
 
     public function search($keyword){
         //perform query via FUser and FPost and take result
