@@ -903,7 +903,80 @@ input[type="file"]{
     overflow: hidden;
 }
 
+/*--------------------------------------------
+VISUALIZATION POST
+-----------------------------------------------
+ */
+.middle .comments .head-comment{
+    display:flex;
+    align-items: center;
+}
+.middle .comments {
+    align-items: center;
+    margin-top: 1%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+}
 
+.middle .comments .comment{
+    display: flex;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+}
+
+.middle .comments .comment .body-comment{
+    margin-left: 10%;
+
+}
+
+/*--------------------------------------------
+                SETTINGS
+-----------------------------------------------
+ */
+
+.setting .form-box{
+    margin-top: 10%;
+    margin-left: 20%;
+    height: 100%;
+    width:60rem;
+    position: relative;
+    background:  var(--color-white);
+    padding:5px;
+    overflow: hidden;
+}
+
+.box-setting .profile-photo{
+    margin-left: 47%;
+    position: relative;
+    width: 6rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.box-setting .custom-btn{
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-left: 45%;
+    width:10%;
+    padding: 5px 12px;
+    cursor: pointer;
+    display: block;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+
+
+.box-setting .info-profile h4{
+    position: relative;
+    margin-left: 4%;
+    margin-top: 1.5%;
+}
+
+.box-setting .info-profile{
+    margin-left: 30%;
+}
 
 /*--------------------------------------------
 MEDIA QUERIES FOR SMALL LAPTOPS AND BIG TABLETS
@@ -982,7 +1055,8 @@ MEDIA QUERIES FOR SMALL TABLETS AND PHONES
         position: absolute;
         top:1.3rem;
         left: calc(20rem - 0.6rem);
-        display: block;}
+        display: block;
+    }
 
     main .container .middle{
         grid-column: 1/3;
