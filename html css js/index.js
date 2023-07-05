@@ -27,6 +27,10 @@ const changeActiveItem = () => {
         item.classList.remove('active');
     })
 }
+
+
+
+
 //NOTIFICATION POPUP AND HIGHLIGHTS SIDEBAR
 menuItems.forEach(item=> {
     item.addEventListener('click',()=> {
@@ -200,4 +204,6 @@ bg3.addEventListener('click', ()=> {
     bg2.classList.remove('active');
     changeBG();
 })
+
+
 

@@ -408,10 +408,26 @@ main .container .left .profile{
     gap: 1rem;
 }
 
+body { overflow-x: hidden }
+
+.middle .feed .photo img{
+    min-width: 60%;
+    width:calc(100%/var(--n));
+    margin-left: 20%;
+    margin-right: 20%;
+    pointer-events: none;
+    user-select: none;
+
+}
 .middle .feed .photo{
-    border-radius:var(--card-border-radius);
-    overflow: hidden;
-    margin: 0.7rem 0;
+    display: flex;
+    align-items: center;
+    --n:1;
+    overflow-y: hidden;
+    height: 30vw;
+    max-height: 50vh;
+    width: calc(var(--n)*100%);
+
 }
 
 .middle .feed .action-buttons{
