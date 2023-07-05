@@ -18,7 +18,7 @@ class FComment{
         return self::$table_field;
     }
 
-    public static function createUserInDb(Comment $comment){
+    public static function createCommentInDb(Comment $comment){
         $id = $comment->getId();
 
         $db = FDataBase::getInstance();

@@ -39,11 +39,21 @@ class FPersistentManager{
     }
 
     /**
-     * call to FUser to create or update an user
+     * call to FUser to create or update an user in db
      */
     public function createOrUpdateUser(User $user){
 
         $result = FUser::createUserInDb($user);
+
+        return $result;
+    }
+
+    /**
+     * call to FComment to create comment in db
+     */
+    public function createComment(Comment $comment){
+
+        $result = FComment::createCommentInDb($comment);
 
         return $result;
     }
