@@ -47,7 +47,7 @@ class FPost{
         return $result;
     }
 
-    public static function PostList(User $user){
+    public static function postList(User $user){
 
         $id = $user->getId();
         $field = "cretor_id";

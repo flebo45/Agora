@@ -32,4 +32,15 @@ class FComment{
         //else perform a query via Fdatabse to create post in the table
         else {$db->createRaw($comment);}
     }
+
+    public static function commentList(Post $post){
+        $id = $post->getId();
+        $field = "post_id";
+
+        $db = FDataBase::getInstance();
+
+        $result = $db->objectList(self::getTable(), $field, $id);
+
+        return $result;
+    }
 }

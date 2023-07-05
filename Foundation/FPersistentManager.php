@@ -68,6 +68,16 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of all comments related by a post
+     */
+    public function postCommentList(Post $post){
+
+        $result = FComment::commentList($post);
+
+        return $result;
+    }
+
     public function selectPost($postID){
         //perform query and return all data
     }
