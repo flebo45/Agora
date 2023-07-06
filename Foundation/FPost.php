@@ -1,10 +1,12 @@
 <?php
 
-class FPost extends FDataBase{
+class FPost extends FEntityManager{
 
     private static $table_name = "post";
 
     private static $table_field = "id";
+
+    private static $entity_class = Post::class;
 
     # methods
 
@@ -18,15 +20,20 @@ class FPost extends FDataBase{
         return self::$table_field;
     }
 
+    public static function getEntityClass(){
+
+        return self::$entity_class;
+    }
 
 
-    public static function createPostInDb(Post $post, User $user)
+
+    public static function savePostInDb(Post $post, User $user)
     {
-        $id = $post->getId();
+        $fem = FEntityManager::getInstance();
 
-        $db = FDataBase::getInstance();
+        $objects = [$post, $user];
 
-        if($id == null) $db->createRawInRelation($post, $user);
+        $fem->saveObjects($objects);
 
     }
 
@@ -34,9 +41,9 @@ class FPost extends FDataBase{
 
         $id = $post->getId();
         
-        $db = FDataBase::getInstance();
+        $fem = FEntityManager::getInstance();
 
-        $result = $db->deleteObjInDb(self::getTable(), self::getField(), $id);
+        $result = $fem->deleteObjInDb(self::getEntityClass(), $id);
 
         return $result;
     }
@@ -44,11 +51,11 @@ class FPost extends FDataBase{
     public static function postList(User $user){
 
         $id = $user->getId();
-        $field = "cretor_id";
+        $field = "creator_id";
 
-        $db = FDataBase::getInstance();
+        $fem = FEntityManager::getInstance();
 
-        $result = $db->objectList(self::getTable(), $field, $id);
+        $result = $fem->objectList(self::getTable(), $field, $id);
 
         return $result;
 

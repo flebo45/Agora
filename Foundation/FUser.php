@@ -1,6 +1,6 @@
 <?php
 
-class FUser extends FDataBase{
+class FUser extends FEntityManager{
 
     private $table_name = "user";
 
@@ -18,19 +18,10 @@ class FUser extends FDataBase{
         return self::$table_field;
     }
 
-    public static function createUserInDb(User $user){
-        $id = $user->getId();
-
-        $db = FDataBase::getInstance();
-
-        if($id == null){
-            $db->createRaw($user);
-        }else{
-            //perform a query via Fdatabase That check if the post already exist
-            $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
-            
-            //if exist = true Perform query via Fdatabase to Update the table
-            if($query_result) $db->updateRaw($user);
-        }
+    public static function  saveUserInDb(User $user){
+        $fem = FEntityManager::getInstance();
+        $fem->saveObject($user);
     }
+
+    
 }

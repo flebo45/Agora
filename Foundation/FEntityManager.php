@@ -1,14 +1,15 @@
 <?php
+//NOTA IMPORTANTE : SE UTILIZZIAMO IL beginTransaction(), L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
 
-class FDataBase{
 
+class FEntityManager{
     private static $instance;
+    private $entityManager;
     private $connection;
 
-    private function __construct()
-    {
-        // Private constructor to prevent direct instantiation
-        // Initialize your database connection here
+
+    private function __construct() {
+        $this->entityManager = getEntityManager();
         $this->connection = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
     }
 
@@ -30,12 +31,7 @@ class FDataBase{
         static::$instance = null;
     }
 
-    /**
-     * check if exist an entity in the table($entity)
-     * checking the value ($field, $id)
-     */
     public function existInDb($table, $field, $id){
-
         try{
             $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
             $statement = $this->connection->prepare($query);
@@ -55,91 +51,37 @@ class FDataBase{
         }
     }
 
-    /** 
-     * update the raw in the table 
-     * using the $obj with the entity manager
-     */
-    public function updateRaw($obj){
-        $em = getEntityManager();
-
+    public function saveObject($obj){
         try{
-            //mutual exclusion when we add or update obj in db
-            $this->connection->beginTransaction();
-
-            $em->persist($obj);
-            $em->flush();
-
-            self::closeConnection();
-        }catch (PDOException $e){
+            $this->entityManager->persist($obj);
+            $this->entityManager->flush();
+        }catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
-            $this->connection->rollBack();
             return false;
         }
-
-
     }
 
-    /** 
-     * create a new raw in the table
-     * using the $obj  with entity manager
-     */
-    public function createRaw($obj){
-        $em = getEntityManager();
-
+    public function saveObjects(array $objects){
         try{
-            //mutual exclusion when we add or update obj in db
-            $this->connection->beginTransaction();
-
-            $em->persist($obj);
-            $em->flush();
-
-            self::closeConnection();
-        }catch (PDOException $e){
+            foreach($objects as $obj){
+                $this->entityManager->persist($obj);
+            }
+            $this->entityManager->flush();
+        }catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
-            $this->connection->rollBack();
             return false;
         }
-
-
     }
 
-    public function createRawInRelation($obj1, $obj2){
-        $em = getEntityManager();
+    public function deleteObjInDb($entityClass, $id){
 
         try{
-            //mutual exclusion when we add or update obj in db
-            $this->connection->beginTransaction();
-
-            $em->persist($obj1);
-            $em->persist($obj2);
-            $em->flush();
-
-            self::closeConnection();
-        }catch (PDOException $e){
-            echo "ERROR: " . $e->getMessage();
-            $this->connection->rollBack();
-            return false;
-        }
-
-    }
-
-    public function deleteObjInDb($table, $field, $id){
-
-        try{
-            //mutual exclusion when we add or update obj in db
-            $this->connection->beginTransaction();
-
-            $exist = $this->existInDb($table, $field, $id);
-            if($exist){
-
-                $query = "DELETE  FROM " . $table . " WHERE " . $field . " = " . $id . ";";
-                $statement = $this->connection->prepare($query);
-                $statement->execute();
-                $this->connection->commit();
-                $this->closeConnection();
+            $entity = $this->entityManager->find($entityClass, $id);
+            if($entity !== null){
+                $this->entityManager->remove($entity);
+                $this->entityManager->flush();
                 $result = true;
             }else{
-                $this->closeConnection();
                 $result = false;
             }
         }catch(PDOException $e){
@@ -150,8 +92,7 @@ class FDataBase{
 
         return $result;
     }
-
-
+//todo
     public function objectList($table, $field, $id){
         try{
             $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
@@ -176,7 +117,8 @@ class FDataBase{
                 echo "ERROR " . $e->getMessage();
                 return null;
             }
-        }
+    }
+    
 
     
 }

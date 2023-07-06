@@ -119,6 +119,10 @@ class Post{
         $this->creator = $creator;
     }
 
+    public function removeCreator(){
+        $this->creator = null;
+    }
+
     public function addLike(ELike $like){
         $this->elike[] = $like;
     }

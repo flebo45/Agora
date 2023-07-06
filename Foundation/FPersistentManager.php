@@ -8,7 +8,9 @@ class FPersistentManager{
 
      private static $instance;
 
+
      private function __construct(){
+
 
      }
 
@@ -26,7 +28,7 @@ class FPersistentManager{
      */
 
     public function createPost(Post $post, User $user){
-        $result = FPost::createPostInDb($post, $user);
+        $result = FPost::savePostInDb($post, $user);
 
         return $result;
     }
@@ -47,7 +49,7 @@ class FPersistentManager{
      */
     public function createOrUpdateUser(User $user){
 
-        $result = FUser::createUserInDb($user);
+        $result = FUser::saveUserInDb($user);
 
         return $result;
     }
@@ -55,9 +57,9 @@ class FPersistentManager{
     /**
      * call to FComment to create comment in db
      */
-    public function createComment(Comment $comment){
+    public function createComment(Comment $comment, Post $post, User $user){
 
-        $result = FComment::createCommentInDb($comment);
+        $result = FComment::createCommentInDb($comment, $post, $user);
 
         return $result;
     }
@@ -67,11 +69,11 @@ class FPersistentManager{
      */
     public function userPostList(User $user){
 
-        $result = FPost::PostList($user);
+        $result = FPost::postList($user);
 
         return $result;
     }
-
+//change
     /**
      * return a list of all comments related by a post
      */
