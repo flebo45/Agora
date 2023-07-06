@@ -25,6 +25,7 @@ class FPersistentManager{
 
     /**
      * call to FPost to update Post table
+     * @return boolean
      */
 
     public function createPost(Post $post, User $user){
@@ -35,6 +36,7 @@ class FPersistentManager{
 
     /**
      *  call to FPost to delete obj in the db
+     * @return boolean
      */
     public function deletePost(Post $post){
 
@@ -46,6 +48,7 @@ class FPersistentManager{
 
     /**
      * call to FUser to create or update an user in db
+     * @return boolean
      */
     public function createOrUpdateUser(User $user){
 
@@ -56,10 +59,44 @@ class FPersistentManager{
 
     /**
      * call to FComment to create comment in db
+     * @return boolean
      */
     public function createComment(Comment $comment, Post $post, User $user){
 
-        $result = FComment::createCommentInDb($comment, $post, $user);
+        $result = FComment::saveCommentInDb($comment, $post, $user);
+
+        return $result;
+    }
+
+    /**
+     * call to FLike to save like in db
+     * @return boolean
+     */
+    public function createLike(ELike $like, Post $post, User $user){
+
+        $result = FLike::saveLikeInDb($like, $post, $user);
+
+        return $result;
+    }
+
+    /**
+     * call to FComment to delete comment in the db
+     * @return boolean
+     */
+    public function deleteComment(Comment $commnet){
+
+        $result = FComment::deleteCommentInDb($commnet);
+
+        return $result;
+    }
+
+    /**
+     * call to FLike to delete like from db
+     * @return boolean
+     */
+    public function deleteLike(ELike $like){
+
+        $result = FLike::deleteLikeInDb($like);
 
         return $result;
     }
@@ -73,7 +110,7 @@ class FPersistentManager{
 
         return $result;
     }
-//change
+
     /**
      * return a list of all comments related by a post
      */
@@ -84,6 +121,18 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * retun an array off the like of a post
+     * @return array || null
+     */
+    public function postLikeList(Post $post){
+
+        $result = FLike::likeList($post);
+
+        return $result;
+    }
+
+//change
     public function selectPost($postID){
         //perform query and return all data
     }
