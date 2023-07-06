@@ -15,6 +15,16 @@ const bg1 = document.querySelector('.bg-1');
 const bg2 = document.querySelector('.bg-2');
 const bg3 = document.querySelector('.bg-3');
 
+
+
+//REMOVE ACTIVE CLASS FROM ALL MENU ITEMS
+
+const changeActiveItem = () => {
+    menuItems.forEach(item=> {
+        item.classList.remove('active');
+    })
+}
+
 //NOTIFICATION POPUP AND HIGHLIGHTS SIDEBAR
 menuItems.forEach(item=> {
     item.addEventListener('click',()=> {
