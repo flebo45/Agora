@@ -165,7 +165,7 @@ img{
 }
 .btn{
     display: inline-block;
-    padding :var(--btn-padding);
+    padding :0.2rem;
     font-weight:500;
     border-radius: var(--border-radius);
     cursor: pointer;
@@ -976,6 +976,41 @@ VISUALIZATION POST
 
 .box-setting .info-profile{
     margin-left: 30%;
+}
+
+.box-setting .btn{
+    display: inline-block;
+    padding :0.2rem;
+    font-weight:500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-size:0.9rem;
+}
+
+.box-setting .btn-primary{
+    margin-left: 3%;
+    display: inline-block;
+    margin-top: 1%;
+}
+
+/*--------------------------------------------
+REPORT CARD
+-----------------------------------------------
+ */
+
+
+
+.report .card {
+    background: var(--color-white);
+    padding: 1rem;
+    border-radius: var(--card-border-radius);
+    width: 100%;
+    box-shadow: 0 0 1rem var(--color-primary);
+    align-items: center;
+}
+.report .card:hover{
+    opacity: 0.8;
 }
 
 /*--------------------------------------------
