@@ -103,6 +103,7 @@ class FPersistentManager{
 
     /**
      * return a list of all the post created by the user
+     * @return array || null
      */
     public function userPostList(User $user){
 
@@ -113,6 +114,7 @@ class FPersistentManager{
 
     /**
      * return a list of all comments related by a post
+     * @return array || null
      */
     public function postCommentList(Post $post){
 
