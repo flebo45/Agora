@@ -53,6 +53,7 @@ class FPost extends FEntityManager{
     public static function postList(User $user){
 
         $id = $user->getId();
+        echo $id;
         $field = "creator_id";
 
         $fem = FEntityManager::getInstance();

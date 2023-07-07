@@ -31,5 +31,12 @@ class FUser extends FEntityManager{
         return $result;
     }
 
+
+    public static function retriveUser($id){
+        $fem = FEntityManager::getInstance();
+        $result = $fem->retriveObj(self::getEntityClass(), $id);
+        return $result;
+    }
+
     
 }

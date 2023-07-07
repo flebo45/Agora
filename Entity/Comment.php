@@ -18,35 +18,35 @@ class Comment{
     private DateTime $creation_time; 
 
     //If is reported and the admin remove it
-    //** @ORM\Column(type="boolean", nullable=false, name ="is_deleted"}) */
-    private bool $removed ;
+    //** @ORM\Column(type="boolean", nullable=false, name ="is_deleted"}, cascade={"persist", "remove" }) */
+    private bool $is_delated;
 
     /** 
      * Many comments belong to a User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
     */
-    private User|null $creator = null;
+    private User|null $creator_id = null;
 
     /** 
      * Many comments belong to a Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
     */
-    private Post|null $related_post = null;
+    private Post|null $post_id = null;
 
      /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="comment")
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="comment", cascade={"persist", "remove" })
      */
     private $reports;
 
     #constructor
     public function __construct(string $body, User $creator, Post $related_post){
         $this->body = $body;
-        $this->creator = $creator;
-        $this->related_post = $related_post;
+        $this->creator_id = $creator;
+        $this->post_id = $related_post;
         $this->setTime();
-        $this->removed = 0;
+        $this->is_delated = 0;
         $this->reports = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -64,11 +64,11 @@ class Comment{
     }
 
     public function isRemoved(){
-        return $this->removed;
+        return $this->is_delated;
     }
 
     public function remove(){
-        $this->removed = 1;
+        $this->is_delated = 1;
     }
 
     public function addReport(Report $report){

@@ -34,15 +34,15 @@ class User
       /** @ORM\Column(type="string", nullable="true") */
     private $bio;
 
-    /** @ORM\OneToOne(targetEntity="Image")
+    /** @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      */
-    private $pro_pic;
+    private $image_id;
 
     /** @ORM\Column(type="integer") **/
     private $vip;
 
-    /**@ORM\ManyToMany(targetEntity="User", mappedBy="followed")
+    /**@ORM\ManyToMany(targetEntity="User", mappedBy="followed", cascade={"persist", "remove" })
      * @var Collection<int, User>
      */
     private Collection $follower;
@@ -58,26 +58,26 @@ class User
     /**
      * One User has many Posts
      * @var Collection<int, Post>
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="creator")
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="creator", cascade={"persist", "remove" })
      */
     private Collection $post;
 
     /**
      * One User like many post (One User have many like)
      * @var Collection<int, ELike>
-     * @ORM\OneToMany(targetEntity="ELike", mappedBy="creator")
+     * @ORM\OneToMany(targetEntity="ELike", mappedBy="creator", cascade={"persist", "remove" })
      */
     private Collection $elike;
 
       /**
      * One User comments many post (One User have many comments)
      * @var Collection<int, Comment>
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="creator")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="creator", cascade={"persist", "remove" })
      */
     private Collection $comment;
 
     /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="user", cascade={"persist", "remove" })
      */
     private $reports;
 
@@ -144,7 +144,7 @@ class User
     }
 
     public function setProPic(Image $pic){
-      $this->pro_pic = $pic;
+      $this->image_id = $pic;
     }
 
     public function isBanned(){

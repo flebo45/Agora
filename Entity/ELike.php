@@ -16,14 +16,14 @@ class ELike{
      * @ORM\ManyToOne(targetEntity="User", inversedBy="elike")
      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
     */
-    private User|null $creator = null;
+    private User|null $creator_id = null;
 
     /** 
      * Many likes belong to a Post
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="elike")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
     */
-    private Post|null $related_post = null;
+    private Post|null $post_id = null;
 
 
 
@@ -31,8 +31,8 @@ class ELike{
     #constructor
     public function __construct(User $creator, Post $related_post)
     {   
-        $this->creator = $creator;
-        $this->related_post = $related_post;
+        $this->creator_id = $creator;
+        $this->post_id = $related_post;
     }
 
     #methods

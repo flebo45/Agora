@@ -1,6 +1,6 @@
 <?php
 //NOTA IMPORTANTE : SE UTILIZZIAMO IL beginTransaction(), L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
-
+use Doctrine\ORM\Query as DQL;
 
 class FEntityManager{
     private static $instance;
@@ -29,6 +29,11 @@ class FEntityManager{
 
     public function closeConnection(){
         static::$instance = null;
+    }
+
+    public function retriveObj($class, $id){
+        $obj = $this->entityManager->find($class, $id);
+        return $obj;
     }
 
     public function existInDb($table, $field, $id){
@@ -97,23 +102,10 @@ class FEntityManager{
 
     public function objectList($table, $field, $id){
         try{
-            $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
-            $statement = $this->connection->prepare($query);
-            $statement->execute();
-
-            $n = $statement->rowCount();
-
-            if($n == 0){
-                $result = null;
-            }elseif($n == 1){
-                $result = $statement->fetch(PDO::FETCH_ASSOC);
-            }else{
-                $result=array();
-                $statement->setFetchMode(PDO::FETCH_ASSOC);
-                while ($row = $statement->fetch())
-                    $result[] = $row;
-            }
-            $this->closeConnection();
+            $dql = "SELECT e FROM " . $table . " e WHERE e." . $field . " = :creatorId";
+            $query = $this->entityManager->createQuery($dql);
+            $query->setParameter('creatorId', $id);
+            $result = $query->getResult(DQL::HYDRATE_ARRAY);
             return $result;
             }catch(PDOException $e){
                 echo "ERROR " . $e->getMessage();

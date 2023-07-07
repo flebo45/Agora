@@ -67,4 +67,19 @@ $postOfUser = $pm->userPostList($user);
 
 print_r($postOfUser);  //work
 
+$newBio = "newBio";
+$user->setBio($newBio);
 
+$pm->createOrUpdateUser($user);
+
+$bio3 = "bio3";
+$user->setBio($bio3);
+
+$pm->createOrUpdateUser($user);
+
+
+/**$pro_pic_user = new Image("nome", "size", ".jpeg", "ddjoddoijdijodsijodijo");
+$pro_pic_user->setUser($user);
+$user->setProPic($pro_pic_user);
+
+$pm->updateUserProPic($pro_pic_user, $user);*/

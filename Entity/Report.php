@@ -23,22 +23,22 @@ class Report{
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Post")
+     * @ORM\ManyToOne(targetEntity="Post", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
-    private $post = null;
+    private $post_id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Comment")
+     * @ORM\ManyToOne(targetEntity="Comment", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="comment_id", referencedColumnName="id")
      */
-    private $comment = null;
+    private $comment_id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+    private $user_id;
 
     #constructor
 
@@ -46,17 +46,17 @@ class Report{
     {
         $this->description = $description;
         $this->type = $type;
-        $this->user = $user;
+        $this->user_id = $user;
     }
 
     #methods
 
     public function setPost(Post $post){
-        $this->post = $post;
+        $this->post_id = $post;
     }
 
     public function setComment(Comment $comment){
-        $this->comment = $comment;
+        $this->comment_id = $comment;
     }
 
     public function getId(){
@@ -72,15 +72,15 @@ class Report{
     }
 
     public function getPost(){
-        return $this->post;
+        return $this->post_id;
     }
 
     public function getComment(){
-        return $this->comment;
+        return $this->comment_id;
     }
 
     public function getUser(){
-        return $this->user;
+        return $this->user_id;
     }
 
 }
