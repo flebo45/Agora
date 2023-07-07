@@ -1,16 +1,15 @@
 <?php
 //NOTA IMPORTANTE : SE UTILIZZIAMO IL beginTransaction(), L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
 use Doctrine\ORM\Query as DQL;
+use Doctrine\ORM\Query\Expr;
 
 class FEntityManager{
     private static $instance;
     private $entityManager;
-    private $connection;
 
 
     private function __construct() {
         $this->entityManager = getEntityManager();
-        $this->connection = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
     }
 
     public static function getInstance()
@@ -22,51 +21,58 @@ class FEntityManager{
         return self::$instance;
     }
 
-    public function getConnection()
-    {
-        return $this->connection;
-    }
-
-    public function closeConnection(){
-        static::$instance = null;
-    }
-
+    /**
+     * retrive one obj
+     * @return obj || null
+     */
     public function retriveObj($class, $id){
-        $obj = $this->entityManager->find($class, $id);
-        return $obj;
+        try{
+            $obj = $this->entityManager->find($class, $id);
+            return $obj;
+        }catch(Exception $e){
+            echo "ERROR: ". $e->getMessage();
+            return null;
+        }
     }
 
-    public function existInDb($table, $field, $id){
+    /**
+     * check if an object is in the db
+     * @return boolean
+     */
+    public function existInDb($class, $id){
         try{
-            $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
-            $statement = $this->connection->prepare($query);
-            $statement->execute();
+            $obj = $this->entityManager->find($class, $id);
 
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $this->closeConnection();
-
-            if(count($result) >= 1) return true;
-            
-            else{return false;}
+            if($obj){
+                return true;
+            }else return false;
         }
-
-        catch(PDOException $e){
+        catch(Exception $e){
             echo "ERROR: " . $e->getMessage();
             return false;
         }
     }
 
+    /**
+     * save one object in the db (persistance of Entity)
+     * @return boolean
+     */
     public function saveObject($obj){
         try{
             $this->entityManager->persist($obj);
             $this->entityManager->flush();
             return true;
-        }catch(PDOException $e){
+        }catch(Exception $e){
             echo "ERROR: " . $e->getMessage();
             return false;
         }
     }
 
+    /**
+     * save multiple objects in the db (persistance for multiple Entity)
+     * for ex. User-Post, Comment-Post-User etc.
+     * @return boolean
+     */
     public function saveObjects(array $objects){
         try{
             foreach($objects as $obj){
@@ -74,14 +80,18 @@ class FEntityManager{
             }
             $this->entityManager->flush();
             return true;
-        }catch(PDOException $e){
+        }catch(Exception $e){
             echo "ERROR: " . $e->getMessage();
             return false;
         }
     }
 
-    public function deleteObjInDb($entityClass, $id){
 
+    /**
+     * delete objects in the db (watch out to relationship between entities)
+     * @return boolean
+     */
+    public function deleteObjInDb($entityClass, $id){
         try{
             $entity = $this->entityManager->find($entityClass, $id);
             if($entity !== null){
@@ -91,15 +101,18 @@ class FEntityManager{
             }else{
                 $result = false;
             }
-        }catch(PDOException $e){
+        }catch(Exception $e){
             echo "ERROR " . $e->getMessage();
-            $this->connection->rollBack();
             $result =  false;
         }
 
         return $result;
     }
 
+    /**
+     * retrive a list of objects 
+     * for ex. a list of Post belong to a User
+     */
     public function objectList($table, $field, $id){
         try{
             $dql = "SELECT e FROM " . $table . " e WHERE e." . $field . " = :creatorId";
@@ -107,12 +120,11 @@ class FEntityManager{
             $query->setParameter('creatorId', $id);
             $result = $query->getResult(DQL::HYDRATE_ARRAY);
             return $result;
-            }catch(PDOException $e){
+            }catch(Exception $e){
                 echo "ERROR " . $e->getMessage();
                 return null;
             }
     }
     
-
     
 }
