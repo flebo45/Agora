@@ -629,6 +629,114 @@ body { overflow-x: hidden }
     margin-bottom:0.1rem;
 }
 
+/*--------------------------------------------
+EDIT CARD
+-----------------------------------------------
+*/
+
+.edit{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    font-size: 0.9rem;
+    display: none;
+
+
+}
+
+.edit .card {
+    background: var(--color-white);
+    padding: 1rem;
+    margin-left: 53%;
+    margin-top: 5%;
+    border-radius: var(--card-border-radius);
+    width: 10%;
+    box-shadow: 0 0 1rem var(--color-primary);
+    position: absolute;
+}
+
+
+
+/*--------------------------------------------
+DELETE CARD
+-----------------------------------------------
+*/
+
+
+.delete{
+    background: rgba(255,255,255,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    place-items: center;
+    font-size: 0.9rem;
+    display: none;
+}
+
+
+.delete .card{
+    background: var(--color-white);
+    padding:3rem;
+    border-radius: var(--card-border-radius);
+    width: 50%;
+    box-shadow: 0 0 1rem var(--color-primary);
+
+}
+
+/*--------------------------------------------
+REPORT CARD
+-----------------------------------------------
+*/
+
+.report{
+    background: rgba(255,255,255,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    place-items: center;
+    font-size: 0.9rem;
+    display: none;
+
+}
+
+.report .card{
+    background: var(--color-white);
+    padding:3rem;
+    border-radius: var(--card-border-radius);
+    width: 50%;
+    box-shadow: 0 0 1rem var(--color-primary);
+
+}
+
+.report .card .report-checkbox{
+    display: flex;
+    margin-left: 40%;
+    margin-top: 1%;
+}
+
+.report .text-area {
+    resize: none;
+    padding: 1em;
+    border-radius: 10px;
+    border-color: var(--color-primary);
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 9rem;
+}
 
 /*-----------------------THEME CUSTOMIZATION-----------------------*/
 
@@ -641,7 +749,6 @@ body { overflow-x: hidden }
     left: 0;
     z-index: 100;
     text-align: center;
-
     place-items: center;
     font-size: 0.9rem;
     display: none;
@@ -994,24 +1101,8 @@ VISUALIZATION POST
     margin-top: 1%;
 }
 
-/*--------------------------------------------
-REPORT CARD
------------------------------------------------
- */
 
 
-
-.report .card {
-    background: var(--color-white);
-    padding: 1rem;
-    border-radius: var(--card-border-radius);
-    width: 100%;
-    box-shadow: 0 0 1rem var(--color-primary);
-    align-items: center;
-}
-.report .card:hover{
-    opacity: 0.8;
-}
 
 /*--------------------------------------------
 MEDIA QUERIES FOR SMALL LAPTOPS AND BIG TABLETS
@@ -1051,10 +1142,13 @@ MEDIA QUERIES FOR SMALL LAPTOPS AND BIG TABLETS
     .lg-box .md-box{
     width: 100%;
     }
-/*--------------------------------------------
-MEDIA QUERIES FOR SMALL TABLETS AND PHONES
------------------------------------------------
-*/
+
+
+
+    /*--------------------------------------------
+    MEDIA QUERIES FOR SMALL TABLETS AND PHONES
+    -----------------------------------------------
+    */
 @media screen and (max-width: 992px) {
 
     .search-bar {
