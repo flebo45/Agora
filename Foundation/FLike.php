@@ -30,7 +30,9 @@ class FLike extends FEntityManager{
 
         $objects = [$like, $post, $user];
 
-        $fem->saveObjects($objects);
+        $result = $fem->saveObjects($objects);
+
+        return $result;
     }
 
     public static function deleteLikeInDb(ELike $like){

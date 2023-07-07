@@ -33,7 +33,9 @@ class FPost extends FEntityManager{
 
         $objects = [$post, $user];
 
-        $fem->saveObjects($objects);
+        $result = $fem->saveObjects($objects);
+
+        return $result;
 
     }
 

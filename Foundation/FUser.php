@@ -27,7 +27,8 @@ class FUser extends FEntityManager{
 
     public static function  saveUserInDb(User $user){
         $fem = FEntityManager::getInstance();
-        $fem->saveObject($user);
+        $result = $fem->saveObject($user);
+        return $result;
     }
 
     

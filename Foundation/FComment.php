@@ -30,7 +30,9 @@ class FComment extends FEntityManager{
 
         $objects = [$comment, $post, $user];
 
-        $fem->saveObjects($objects);
+        $result = $fem->saveObjects($objects);
+
+        return $result;
     }
 
     public static function deleteCommentInDb(Comment $comment){

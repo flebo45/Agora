@@ -55,6 +55,7 @@ class FEntityManager{
         try{
             $this->entityManager->persist($obj);
             $this->entityManager->flush();
+            return true;
         }catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
             return false;
@@ -67,6 +68,7 @@ class FEntityManager{
                 $this->entityManager->persist($obj);
             }
             $this->entityManager->flush();
+            return true;
         }catch(PDOException $e){
             echo "ERROR: " . $e->getMessage();
             return false;
@@ -92,7 +94,7 @@ class FEntityManager{
 
         return $result;
     }
-//todo
+
     public function objectList($table, $field, $id){
         try{
             $query = "SELECT * FROM " . $table . " WHERE " . $field . " = " . $id . ";";
