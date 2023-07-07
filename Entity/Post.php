@@ -29,36 +29,36 @@ class Post{
     
     /**
       * Many Post have one User 
-      * @ORM\ManyToOne(targetEntity="User", inversedBy="post")
+      * @ORM\ManyToOne(targetEntity="User", inversedBy="post", cascade={"persist", "remove" })
       * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
     */
-    private User|null $creator = null;
+    private User|null $creator_id = null;
 
     /**
      * One Post have Many like 
      * @var Collection<int, ELike>
-     * @ORM\OneToMany(targetEntity="ELike", mappedBy="related_post")
+     * @ORM\OneToMany(targetEntity="ELike", mappedBy="related_post", cascade={"persist", "remove" })
      */
     private Collection $elike;
 
     /**
      * One Post have Many comments 
      * @var Collection<int, Comment>
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="related_post")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="related_post", cascade={"persist", "remove" })
      */
     private Collection $comment;
 
     /**
      * One Post has many foto
      * @var Collection<int, Image>
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="related_post")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="related_post", cascade={"persist", "remove" })
      */
-    private Collection $foto;
+    private Collection $image;
 
      /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="post", cascade={"persist", "remove" })
      */
-    private $reports;
+    private $report;
 
     #constructor
     public function __construct(string $title, string $description, string $category)
@@ -70,8 +70,8 @@ class Post{
         $this->removed = 0;
         $this->elike = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->foto = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->reports = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->report = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     #methods
@@ -116,7 +116,11 @@ class Post{
     }
 
     public function setCreator(User $creator){
-        $this->creator = $creator;
+        $this->creator_id = $creator;
+    }
+
+    public function removeCreator(){
+        $this->creator_id = null;
     }
 
     public function addLike(ELike $like){
@@ -132,19 +136,19 @@ class Post{
     }
 
     public function addImage(Image $image){
-        $this->foto[] = $image;
+        $this->image[] = $image;
     }
 
     public function removeImage(Image $image){
-        $this->foto->removeElement($image);
+        $this->image->removeElement($image);
     }
 
     public function addReport(Report $report){
-        $this->reports[] = $report;
+        $this->report[] = $report;
     }
 
     public function removeReport(Report $report){
-        $this->reports->removeElement($report);
+        $this->report->removeElement($report);
     }
 
 }

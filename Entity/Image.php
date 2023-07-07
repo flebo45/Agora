@@ -22,16 +22,16 @@ class Image{
     /** @ORM\Column(type="blob") */
     private $imageData;
 
-    /** @ORM\OneToOne(targetEntity="User")
+    /** @ORM\OneToOne(targetEntity="User", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user;
+    private $user_id;
 
     /**Many Image Belong to a Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="foto")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="foto", cascade={"persist", "remove" })
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
-    private $related_post;
+    private $post_id;
 
     #constructor
     public function __construct($name, $size, $type, $imageData){
@@ -42,21 +42,19 @@ class Image{
     }
 
     public function setUser(User $user){
-        $this->user = $user;
+        $this->user_id = $user;
     }
 
     public function getUser(){
-        return $this->user;
+        return $this->user_id;
     }
 
     public function setPost(Post $post){
-        $this->related_post = $post;
+        $this->post_id = $post;
     }
 
     public function getPost(){
-        return $this->related_post;
+        return $this->post_id;
     }
 
 }
-
-//constructor and methods to add user and try it 

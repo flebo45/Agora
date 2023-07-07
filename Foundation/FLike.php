@@ -1,10 +1,12 @@
 <?php
 
-class FLike extends FDataBase{
+class FLike extends FEntityManager{
 
     private $table_name = "elike";
 
     private $table_field = "id";
+
+    private $entity_class = ELike::class;
 
      # methods
 
@@ -18,28 +20,39 @@ class FLike extends FDataBase{
         return self::$table_field;
     }
 
-    public static function createLikeInDB(ELike $like){
+    public static function getEntityClass(){
+
+        return self::$entity_class;
+    }
+
+    public static function saveLikeInDb(ELike $like, Post $post, User $user){
+        $fem = FEntityManager::getInstance();
+
+        $objects = [$like, $post, $user];
+
+        $result = $fem->saveObjects($objects);
+
+        return $result;
+    }
+
+    public static function deleteLikeInDb(ELike $like){
         $id = $like->getId();
-        $db = FDataBase::getInstance();
+        
+        $fem = FEntityManager::getInstance();
 
-        //perform a query via Fdatabase That check if the post already exist
-        $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
+        $result = $fem->deleteObjInDb(self::getEntityClass(), $id);
 
-        //if exist = true Perform query via Fdatabase to Update the table
-        if($query_result) return true;
-
-        //else perform a query via Fdatabse to create post in the table
-        else {$db->createRaw($like);}
+        return $result;
     }
 
     public static function likeList(Post $post){
         $id = $post->getId();
         $field = "post_id";
 
-        $db = FDataBase::getInstance();
-        $result = $db->objectList(self::getTable(), $field, $id);
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem->objectList(self::getTable(), $field, $id);
 
         return $result;
     }
-
 }

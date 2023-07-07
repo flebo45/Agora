@@ -1,10 +1,12 @@
 <?php
 
-class FUser extends FDataBase{
+class FUser extends FEntityManager{
 
     private $table_name = "user";
 
     private $table_field = "id";
+
+    private $entity_class = User::class;
 
     # methods
 
@@ -18,19 +20,23 @@ class FUser extends FDataBase{
         return self::$table_field;
     }
 
-    public static function createUserInDb(User $user){
-        $id = $user->getId();
+    public static function getEntityClass(){
 
-        $db = FDataBase::getInstance();
-
-        if($id == null){
-            $db->createRaw($user);
-        }else{
-            //perform a query via Fdatabase That check if the post already exist
-            $query_result = $db->existInDb(self::getTable(),self::getField(), $id);
-            
-            //if exist = true Perform query via Fdatabase to Update the table
-            if($query_result) $db->updateRaw($user);
-        }
+        return self::$entity_class;
     }
+
+    public static function  saveUserInDb(User $user){
+        $fem = FEntityManager::getInstance();
+        $result = $fem->saveObject($user);
+        return $result;
+    }
+
+
+    public static function retriveUser($id){
+        $fem = FEntityManager::getInstance();
+        $result = $fem->retriveObj(self::getEntityClass(), $id);
+        return $result;
+    }
+
+    
 }
