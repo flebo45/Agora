@@ -104,9 +104,6 @@
                                 <small>time</small>
                             </div>
                         </div>
-                        <span class="edit">
-                                <i class="uil uil-ellipsis-h"></i>
-                        </span>
                     </div>
                     <div class="caption ">
                         <p><b>username</b> test <span class="harsh-tag">
@@ -138,8 +135,8 @@
 
                         </div>
 
-                        <div class="bookmark" >
-                            <span><i class="uil uil-bookmark-full"></i></span>
+                        <div class= "interaction-buttons " id="report">
+                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
                         </div>
                     </div>
 
@@ -281,6 +278,55 @@
         </div>
     </div>
 </main>
+
+
+
+
+    <!-----------------REPORT MODAL----------------------------------->
+
+
+    <div class="report">
+        <div class="card">
+            <h2>Report</h2>
+            <h3 class="text-muted">Why are you reporting this post?</h3>
+            <form>
+
+                <div class="report-checkbox">
+                    <input type="checkbox" id="violence" value="violence">
+                    <label for="violence">violence</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="gambling" value="gambling">
+                    <label for="gambling">gambling</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="inappropriate or offending" value="inappropriate or offending">
+                    <label for="inappropriate or offending">inappropriate or offensive</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="suspicious activities" value="suspicious activities">
+                    <label for="suspicious activities">suspicious activities</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="pornography" value="pornography">
+                    <label for="pornography">pornography</label>
+                </div>
+                <div>
+                    <h3 class="text-muted">Write a small description why you're reporting this post</h3>
+                    <label>
+                        <textarea class="text-area"></textarea>
+                    </label>
+                </div>
+                <label>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
+                </label>
+            </form>
+        </div>
+    </div>
+
+
+
+
     <!----------------- THEME CUSTOMIZATION---------------------------->
 <div class="customize-theme">
     <div class="card">
@@ -336,12 +382,9 @@
     </div>
 </div>
 <script src="Sidebar.js"></script>
+<script src="report.js"></script>
 </body>
 </html>
-
-
-
-
 
 
 

@@ -180,3 +180,8 @@ bg3.addEventListener('click', ()=> {
     bg2.classList.remove('active');
     changeBG();
 })
+
+
+
+
+
