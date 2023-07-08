@@ -1129,7 +1129,13 @@ SEARCH PAGE
 }
 
 .list-profile{
-    display: inline-block;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.search-prof{
+    margin-top: 2%;
+    
 }
 /*--------------------------------------------
 ADMIN PAGE
