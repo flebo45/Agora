@@ -190,6 +190,14 @@
           </div>
         </div>
 
+        <button class="btn-primary btn" onclick="toggle(this)">Follow</button>
+        <script>
+          function toggle(e) {
+            let txt = e.innerText;
+            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
+          }
+        </script>
+
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">

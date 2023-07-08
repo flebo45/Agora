@@ -385,9 +385,6 @@ main .container .left .profile{
 }
 /*-------------------------FEEDS---------------------*/
 
-.middle .feeds{
-    
-}
 
 .middle .feeds .feed{
     background: var(--color-white);
@@ -1101,8 +1098,63 @@ VISUALIZATION POST
     margin-top: 1%;
 }
 
+/*--------------------------------------------
+SEARCH PAGE
+-----------------------------------------------
+ */
+.result {
+    width: 70%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    margin: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    display:flex;
+    justify-content: space-between;
+}
+.result .profile{
+    display: flex;
+}
+.result .left{
+    width: 50%;
+}
+.result .right{
+    width: 30%;
+}
+.search{
+    overflow-y: scroll;
+    height: 100px;
+    text-align: justify;
+}
 
+.list-profile{
+    display: inline-block;
+}
+/*--------------------------------------------
+ADMIN PAGE
+-----------------------------------------------
+ */
 
+.admin{
+    width: 70%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding:var(--card-padding);
+    margin:auto;
+    font-size:1rem;
+    line-height: 1.5;
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.admin .middle .body-report{
+    overflow-y: scroll;
+    width: 200px;
+    height: 200px;
+    text-align: justify;
+}
 
 /*--------------------------------------------
 MEDIA QUERIES FOR SMALL LAPTOPS AND BIG TABLETS
