@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title> Agora profile</title>
+  <title>{$pageTitle}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -15,9 +15,7 @@
 <body>
 <nav>
   <div class="container">
-    <h2 class="log">
-      Agora
-    </h2>
+    <h2 class="log">{$siteName}</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -39,10 +37,8 @@
           <img src="Img/A.png" alt=" log in">
         </div>
         <div class ="handle">
-          <h4> Agora </h4>
-          <p class="text-muted">
-            @Agora
-          </p>
+          <h4>{$profileName}</h4>
+          <p class="text-muted">@{$profileHandle}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
@@ -101,8 +97,8 @@
                 <img src="Img/A.png" alt="img">
               </div>
               <div class="ingo">
-                <h3>TITLE</h3>
-                <small>time</small>
+                <h3>{$feedTitle}</h3>
+                <small>{$feedTime}</small>
               </div>
             </div>
             <span id="edit">
@@ -114,26 +110,12 @@
 
 
           <div class="caption">
-            <p><b>username</b> test <span class="harsh-tag">
-                        freestar
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum eros vel sapien vulputate tempus. Vestibulum malesuada fermentum dolor non ultrices. Etiam tincidunt porttitor laoreet. Pellentesque commodo ultricies massa, sed pulvinar odio vulputate vitae. Nullam at diam eget ex gravida sagittis. Phasellus id faucibus ex. Praesent id est leo. Sed tincidunt tristique blandit. Quisque faucibus tellus non venenatis luctus. Suspendisse laoreet ligula est, rutrum lacinia orci vestibulum sit amet. Duis id dapibus sem. Curabitur luctus tellus a orci tincidunt pellentesque. Curabitur vulputate tellus sapien, suscipit ultrices dolor commodo ut. Sed facilisis malesuada maximus.
-
-                        Aenean nec eleifend justo, eu posuere quam. Suspendisse potenti. Ut consequat, neque vitae mollis iaculis, sapien neque imperdiet purus, eget finibus lectus libero a felis. Quisque at nunc pharetra, venenatis dui eu, tincidunt ex. Aenean mattis tempor dui, nec egestas neque commodo ac. Sed viverra sollicitudin feugiat. Nam vitae ante nec massa commodo dignissim.
-
-                        Vivamus faucibus nunc eu quam vestibulum, id tempor purus finibus. Nam accumsan mauris quam, quis aliquet nisl consequat sed. Curabitur euismod accumsan ex commodo varius. Duis pulvinar luctus aliquet. Nullam sollicitudin orci nisl, id gravida mauris dignissim sit amet. Donec ac enim vel ante vulputate sagittis sit amet vitae felis. Maecenas non felis at eros sagittis lobortis sed eu erat. Maecenas malesuada diam metus, vitae aliquam dolor congue sed. Nulla maximus nunc viverra bibendum vestibulum. Duis tellus magna, elementum quis mauris a, euismod pretium elit. Nunc sodales nunc eu odio laoreet dictum nec eget velit. Curabitur scelerisque egestas diam, sit amet venenatis leo condimentum eu. Proin turpis nulla, ornare nec sapien in, tempus vulputate nibh. Vestibulum at enim odio. Nulla et tincidunt lacus. Nulla facilisi.
-
-                        Cras quis facilisis nulla, in rutrum sem. Fusce vestibulum porta leo sed egestas. Donec erat dui, rhoncus at arcu ac, aliquam aliquam erat. Suspendisse et lacus risus. Nulla facilisi. Vestibulum a quam auctor, tincidunt mauris eget, scelerisque tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus nisl nulla, lacinia eu augue sed, tincidunt gravida ex. Praesent nec purus lobortis, congue turpis eget, consectetur ante. Ut eget bibendum nisl, vitae vulputate purus. Vivamus sollicitudin, justo id tempus rutrum, lectus sapien hendrerit nisl, a porta purus nibh eget purus. Curabitur volutpat vestibulum odio, a pellentesque orci venenatis sit amet. Aenean in ligula vel mi ultrices aliquam. Quisque eu lacus non ex egestas consequat eu at dui. Phasellus fermentum rhoncus tincidunt. In sed massa vulputate, cursus metus quis, placerat nulla.
-
-                        Mauris nec euismod mauris. Sed ante lorem, suscipit at mauris non, congue tincidunt metus. Proin urna purus, accumsan vel faucibus quis, dictum a augue. In eleifend non nunc sit amet mattis. Donec sagittis odio quis libero eleifend varius sit amet gravida nulla. Integer mattis bibendum ipsum eget mattis. Cras at ex vestibulum, auctor mi suscipit, vulputate nisi. Aliquam laoreet mauris eget sapien mollis, non pulvinar justo consectetur. Curabitur malesuada erat et lectus semper, id dapibus purus ornare. Curabitur elit enim, laoreet nec nisi eu, tristique egestas ipsum. Nam cursus maximus urna eu sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus eget ligula sit amet tellus molestie commodo. Mauris ac diam dui. Cras elit erat, sollicitudin et quam a, pharetra iaculis est.
-                        Generati 5 paragrafi, 533 parole, 3620 byte di Lorem Ipsum
-</span></p>
+            <p><b>{$username}</b> {$feedText}</p>
           </div>
           <div class="photo">
-            <img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img">
-            <img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img">
+            {foreach $feedPhotos as $photo}
+            <img src="{$photo}" alt="img">
+            {/foreach}
           </div>
 
           <div class="action-buttons">
@@ -148,10 +130,10 @@
           </div>
 
           <div class="liked-by">
-            <span><img src="Img/A.png" alt=""></span>
-            <span><img src="Img/A.png" alt=""></span>
-            <span><img src="Img/A.png" alt=""></span>
-            <p> liked by <b> username</b> and <b> n user </b></p>
+            {foreach $likedBy as $user}
+            <span><img src="{$user.profilePhoto}" alt=""></span>
+            {/foreach}
+            <p> liked by {$likedByCount} users</p>
           </div>
 
           <div class=" comments text-muted">view all the comment</div>
@@ -173,24 +155,22 @@
             <img src="Img/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> Agora </h4>
+            <h4> {$profileName} </h4>
+            <p class="text-muted">@{$profileHandle}</p>
+          </div>
+          <div>
+            <h4>{$followersCount}</h4>
             <p class="text-muted">
-              @Agora
+              followers
             </p>
           </div>
           <div>
-            <h4> number</h4>
-            <p class="text-muted">
-              follower
-            </p>
-          </div>
-          <div>
-            <h4>number</h4>
-            <p class="text-muted">follow</p>
+            <h4>{$followingCount}</h4>
+            <p class="text-muted">following</p>
           </div>
         </div>
 
-        <button class="btn-primary btn" onclick="toggle(this)">Follow</button>
+        <button class="btn-primary btn" onclick="toggle(this)">{$followButtonText}</button>
         <script>
           function toggle(e) {
             let txt = e.innerText;
@@ -209,7 +189,7 @@
           <div class="bio-body">
             <h5 class="text-bold">Bio</h5>
             <div class="text-muted">
-              <h5>one long big huge very boring description that I need to see how long is it</h5>
+              <h5>{$profileBio}</h5>
             </div>
           </div>
         </div>
@@ -219,7 +199,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Working </h5>
             <div class="text-muted">
-              <h5>at University of L'Aquila</h5>
+              <h5>{$profileWork}</h5>
             </div>
           </div>
         </div>
@@ -229,7 +209,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Studied at</h5>
             <div class="text-muted">
-              <h5>university of L'Aquila</h5>
+              <h5>{$profileEducation}</h5>
             </div>
           </div>
         </div>
@@ -239,7 +219,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Hobby</h5>
             <div class="text-muted">
-              <h5>i like to write html pages</h5>
+              <h5>{$profileHobby}</h5>
           </div>
           </div>
         </div>
@@ -249,7 +229,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Living in </h5>
             <div class="text-muted">
-              <h5>L'Aquila</h5>
+              <h5>{$profileLocation}</h5>
             </div>
           </div>
         </div>
@@ -263,41 +243,19 @@
             <i class="uil uil-award"> </i>
           </div>
 
+          {foreach $topPosts as $post}
           <div class="post">
             <div class="info">
                 <div class="first-photo">
                   <img src="Img/A.png" alt="img">
                 </div>
               <div>
-                <h5>Title</h5>
-                <p class="text-muted">lik</p>
+                <h5>{$post.title}</h5>
+                <p class="text-muted">{$post.likesCount}</p>
               </div>
             </div>
           </div>
-
-          <div class="post">
-            <div class="info">
-              <div class="first-photo">
-                <img src="Img/A.png" alt="img">
-              </div>
-              <div>
-                <h5>Title</h5>
-                <p class="text-muted">lik</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="post">
-            <div class="info">
-              <div class="first-photo">
-                <img src="Img/A.png" alt="img">
-              </div>
-              <div>
-                <h5>Title</h5>
-              <p class="text-muted">lik</p>
-              </div>
-            </div>
-          </div>
+          {/foreach}
         </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
@@ -345,27 +303,12 @@
     <h2>Report</h2>
     <h3 class="text-muted">Why are you reporting this post?</h3>
     <form>
-
+        {foreach $reportReasons as $reason}
         <div class="report-checkbox">
         <input type="checkbox" id="violence" value="violence">
-        <label for="violence">violence</label>
+        <label for="violence">{$reasonName}</label>
         </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="gambling" value="gambling">
-        <label for="gambling">gambling</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="inappropriate or offending" value="inappropriate or offending">
-        <label for="inappropriate or offending">inappropriate or offensive</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="suspicious activities" value="suspicious activities">
-        <label for="suspicious activities">suspicious activities</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="pornography" value="pornography">
-        <label for="pornography">pornography</label>
-      </div>
+        {/foreach}
       <div>
       <h3 class="text-muted">Write a small description why you're reporting this post</h3>
       <label>
@@ -407,11 +350,9 @@
     <div class="color">
       <h4>Color</h4>
       <div class="choose-color">
-        <span class="color-1 active"></span>
-        <span class="color-2"></span>
-        <span class="color-3"></span>
-        <span class="color-4"></span>
-        <span class="color-5"></span>
+        {foreach $themeColors as$color}
+        <span class="color-{ $color.id } {if $color.active}active{/if}"></span>
+        {/foreach}
       </div>
     </div>
 
@@ -419,18 +360,12 @@
     <div class="background">
       <h4>Background</h4>
       <div class="choose-bg">
-        <div class="bg-1 active">
+        {foreach $background as $bg}
+        <div class="bg-{ $bg.id } {if $bg.active}active{/if}">
           <span></span>
-          <h5>Light</h5>
+          <h5>{ $bg.name }</h5>
         </div>
-        <div class="bg-2">
-          <span></span>
-          <h5>Dim</h5>
-        </div>
-        <div class="bg-3">
-          <span></span>
-          <h5> Lights Out</h5>
-        </div>
+        {/foreach}
       </div>
     </div>
   </div>

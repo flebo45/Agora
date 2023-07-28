@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title> Agora home-page</title>
+  <title>{$pageTitle}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -17,9 +17,7 @@
 
 <nav>
   <div class="container">
-    <h2 class="log">
-      Agora
-    </h2>
+    <h2 class="log">{$siteName}</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -39,7 +37,7 @@
 <main>
 
   <div class="result">
-    <h3 class="text-muted">Result for : name result</h3>
+    <h3 class="text-muted">Result for : {$searchQuery}</h3>
   </div>
   <div class="result" style="margin-top: 2%">
     <div class="left">
@@ -49,26 +47,16 @@
             <img src="Img/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> Agora </h4>
+            <h4> {$postAuthorName} </h4>
             <p class="text-muted">
-              @Agora
+              @{$postAuthorName}
             </p>
           </div>
         </div>
       <div>
       <h3>Title</h3>
-        <h5 class="search"> freestar
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum eros vel sapien vulputate tempus. Vestibulum malesuada fermentum dolor non ultrices. Etiam tincidunt porttitor laoreet. Pellentesque commodo ultricies massa, sed pulvinar odio vulputate vitae. Nullam at diam eget ex gravida sagittis. Phasellus id faucibus ex. Praesent id est leo. Sed tincidunt tristique blandit. Quisque faucibus tellus non venenatis luctus. Suspendisse laoreet ligula est, rutrum lacinia orci vestibulum sit amet. Duis id dapibus sem. Curabitur luctus tellus a orci tincidunt pellentesque. Curabitur vulputate tellus sapien, suscipit ultrices dolor commodo ut. Sed facilisis malesuada maximus.
-
-          Aenean nec eleifend justo, eu posuere quam. Suspendisse potenti. Ut consequat, neque vitae mollis iaculis, sapien neque imperdiet purus, eget finibus lectus libero a felis. Quisque at nunc pharetra, venenatis dui eu, tincidunt ex. Aenean mattis tempor dui, nec egestas neque commodo ac. Sed viverra sollicitudin feugiat. Nam vitae ante nec massa commodo dignissim.
-
-          Vivamus faucibus nunc eu quam vestibulum, id tempor purus finibus. Nam accumsan mauris quam, quis aliquet nisl consequat sed. Curabitur euismod accumsan ex commodo varius. Duis pulvinar luctus aliquet. Nullam sollicitudin orci nisl, id gravida mauris dignissim sit amet. Donec ac enim vel ante vulputate sagittis sit amet vitae felis. Maecenas non felis at eros sagittis lobortis sed eu erat. Maecenas malesuada diam metus, vitae aliquam dolor congue sed. Nulla maximus nunc viverra bibendum vestibulum. Duis tellus magna, elementum quis mauris a, euismod pretium elit. Nunc sodales nunc eu odio laoreet dictum nec eget velit. Curabitur scelerisque egestas diam, sit amet venenatis leo condimentum eu. Proin turpis nulla, ornare nec sapien in, tempus vulputate nibh. Vestibulum at enim odio. Nulla et tincidunt lacus. Nulla facilisi.
-
-          Cras quis facilisis nulla, in rutrum sem. Fusce vestibulum porta leo sed egestas. Donec erat dui, rhoncus at arcu ac, aliquam aliquam erat. Suspendisse et lacus risus. Nulla facilisi. Vestibulum a quam auctor, tincidunt mauris eget, scelerisque tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus nisl nulla, lacinia eu augue sed, tincidunt gravida ex. Praesent nec purus lobortis, congue turpis eget, consectetur ante. Ut eget bibendum nisl, vitae vulputate purus. Vivamus sollicitudin, justo id tempus rutrum, lectus sapien hendrerit nisl, a porta purus nibh eget purus. Curabitur volutpat vestibulum odio, a pellentesque orci venenatis sit amet. Aenean in ligula vel mi ultrices aliquam. Quisque eu lacus non ex egestas consequat eu at dui. Phasellus fermentum rhoncus tincidunt. In sed massa vulputate, cursus metus quis, placerat nulla.
-
-          Mauris nec euismod mauris. Sed ante lorem, suscipit at mauris non, congue tincidunt metus. Proin urna purus, accumsan vel faucibus quis, dictum a augue. In eleifend non nunc sit amet mattis. Donec sagittis odio quis libero eleifend varius sit amet gravida nulla. Integer mattis bibendum ipsum eget mattis. Cras at ex vestibulum, auctor mi suscipit, vulputate nisi. Aliquam laoreet mauris eget sapien mollis, non pulvinar justo consectetur. Curabitur malesuada erat et lectus semper, id dapibus purus ornare. Curabitur elit enim, laoreet nec nisi eu, tristique egestas ipsum. Nam cursus maximus urna eu sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus eget ligula sit amet tellus molestie commodo. Mauris ac diam dui. Cras elit erat, sollicitudin et quam a, pharetra iaculis est.
-          Generati 5 paragrafi, 533 parole, 3620 byte di Lorem Ipsum</h5>
+        <h5 class="search"> {$postTitle}</h5>
+        {$postContent}
       </div>
         <div>
       </div>
@@ -87,9 +75,9 @@
             <img src="Img/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> Agora </h4>
+            <h4> {$userProfileName} </h4>
             <p class="text-muted">
-              @Agora
+              @{$userProfileHandle}
             </p>
           </div>
         </div>
@@ -103,9 +91,9 @@
                 <img src="Img/A.png" alt=" log in">
               </div>
               <div class ="handle">
-                <h4> Agora </h4>
+                <h4> {$userProfileName} </h4>
                 <p class="text-muted">
-                  @Agora
+                  @{$userProfileHandle}
                 </p>
               </div>
             </div>

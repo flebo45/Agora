@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title> Agora Explore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$pageTitle}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -17,9 +17,7 @@
 
 <nav>
   <div class="container">
-    <h2 class="log">
-      Agora
-    </h2>
+    <h2 class="log">{$siteName}</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -41,10 +39,8 @@
           <img src="Img/A.png" alt=" log in">
         </div>
         <div class ="handle">
-          <h4> Agora </h4>
-          <p class="text-muted">
-            @Agora
-          </p>
+          <h4> {$title} </h4>
+          <p class="text-muted">{$user->getUsername()}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
@@ -64,7 +60,7 @@
                 <img src="Img/A.png" alt="photo">
               </div>
               <div class="notification-body">
-                <b> user name for notification</b> <-Action made by him
+                <b>{$notificationUsername}</b> <-Action made by him
                 <small class="text-muted"> time</small>
               </div>
             </div>
@@ -84,7 +80,7 @@
       </div>
       <!--------------------END OF SIDE BAR----------------->
       <label
-              class="btn btn-primary">create post
+              class="btn btn-primary">Create post
         <button class="btn-transparent" onclick="location.href='creation-post.html'"></button>
       </label>
     </div>
@@ -107,14 +103,14 @@
               <div class="profile-photo">
                 <img src="Img/A.png" alt="img">
               </div>
-              <div class="ingo">
-                <h3>TITLE</h3>
-                <small>time</small>
+              <div class="info">
+                <h3>{$feedTitle}</h3>
+                <small>{$feedTime}</small>
               </div>
             </div>
           </div>
           <div class="caption ">
-            <p><b>username</b> test <span class="harsh-tag">
+            <p><b>{$feedUsername}</b> {$feedContent} <span class="harsh-tag">
                         freestar
 
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum eros vel sapien vulputate tempus. Vestibulum malesuada fermentum dolor non ultrices. Etiam tincidunt porttitor laoreet. Pellentesque commodo ultricies massa, sed pulvinar odio vulputate vitae. Nullam at diam eget ex gravida sagittis. Phasellus id faucibus ex. Praesent id est leo. Sed tincidunt tristique blandit. Quisque faucibus tellus non venenatis luctus. Suspendisse laoreet ligula est, rutrum lacinia orci vestibulum sit amet. Duis id dapibus sem. Curabitur luctus tellus a orci tincidunt pellentesque. Curabitur vulputate tellus sapien, suscipit ultrices dolor commodo ut. Sed facilisis malesuada maximus.
@@ -130,10 +126,9 @@
 </span></p>
           </div>
           <div class="photo">
-            <img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img">
-            <img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img">
+            {foreach $feedPhotos as $photo}
+            <img src="{$photo}" alt="img">
+            {/foreach}
           </div>
 
           <div class="action-buttons">
@@ -144,15 +139,14 @@
             </div>
 
             <div class= "interaction-buttons " id="report">
-              <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
+              <button type="button" class="btn btn-transparent"><i class="uil uil-exclamation-triangle"></i></button>
             </div>
           </div>
 
           <div class="liked-by">
-            <span><img src="Img/A.png" alt=""></span>
-            <span><img src="Img/A.png" alt=""></span>
-            <span><img src="Img/A.png" alt=""></span>
-            <p> liked by <b> username</b> and <b> n user </b></p>
+            <span><img src="{$likedUser['photo']} alt="></span>
+            {/foreach}
+            <p> liked by <b>{$feedLikeByUser}</b> and <b>{$feedOtherLikes}</b></p>
           </div>
 
           <div class=" comments text-muted">view all the comment</div>
@@ -179,10 +173,11 @@
           <h6> All category</h6>
         </div>
         <!----------------------TYPE OF CATEGORIES-------------------->
+        {foreach $categories as $category}
         <div class="category">
           <i class="uil uil-plane"></i>
           <div class="category-body">
-            <h5>Trip</h5>
+            <h5>{$category.name}</h5>
             <div class="action">
               <button class="btn btn-primary">
                 Select
@@ -238,6 +233,7 @@
             </div>
           </div>
         </div>
+        {/foreach}
       </div>
       <!----------------------END OF CATEGORY--------------------->
 
@@ -249,34 +245,17 @@
           <i class="uil uil-award"> </i>
         </div>
         <div class="writer">
+          {foreach $topWriters as $writer}
           <div class="info">
             <div class="profile-photo">
               <img src="Img/A.png" alt="img">
             </div>
             <div>
-              <h5>User</h5>
-              <p class="text-muted">like</p>
+              <h5>{$writer.name}</h5>
+              <p class="text-muted">{$writer.like}</p>
             </div>
           </div>
-
-          <div class="info">
-            <div class="profile-photo">
-              <img src="Img/A.png" alt="img">
-            </div>
-            <div>
-              <h5>User</h5>
-              <p class="text-muted">like</p>
-            </div>
-          </div>
-          <div class="info">
-            <div class="profile-photo">
-              <img src="Img/A.png" alt="img">
-            </div>
-            <div>
-              <h5>User</h5>
-              <p class="text-muted">like</p>
-            </div>
-          </div>
+          {/foreach}
         </div>
       </div>
     </div>
@@ -293,27 +272,12 @@
     <h2>Report</h2>
     <h3 class="text-muted">Why are you reporting this post?</h3>
     <form>
-
+      {foreach $reportReasons as $reason}
       <div class="report-checkbox">
         <input type="checkbox" id="violence" value="violence">
-        <label for="violence">violence</label>
+        <label for="{$reason.id}">{$reason.name}</label>
       </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="gambling" value="gambling">
-        <label for="gambling">gambling</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="inappropriate or offending" value="inappropriate or offending">
-        <label for="inappropriate or offending">inappropriate or offensive</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="suspicious activities" value="suspicious activities">
-        <label for="suspicious activities">suspicious activities</label>
-      </div>
-      <div class="report-checkbox">
-        <input type="checkbox" id="pornography" value="pornography">
-        <label for="pornography">pornography</label>
-      </div>
+      {/foreach}
       <div>
         <h3 class="text-muted">Write a small description why you're reporting this post</h3>
         <label>
@@ -387,6 +351,6 @@
   </div>
 </div>
 <script src="Sidebar.js"></script>
-<script> src='report.js'</script>
+<script src="report.js"></script>
 </body>
 </html>

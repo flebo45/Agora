@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title> Agora creation-post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$title}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -17,9 +17,7 @@
 
 <nav>
   <div class="container">
-    <h2 class="log">
-      Agora
-    </h2>
+    <h2 class="log">{$siteName}</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -41,9 +39,8 @@
           <img src="Img/A.png" alt="log in">
         </div>
         <div class ="handle">
-          <h4> Agora </h4>
-          <p class="text-muted">{$user->getUsername()}
-          </p>
+          <h4>{$title}</h4>
+          <p class="text-muted">{$user->getUsername()}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
@@ -63,8 +60,8 @@
                 <img src="Img/A.png" alt="photo">
               </div>
               <div class="notification-body">
-                <b> user name for notification</b> <-Action made by him
-                <small class="text-muted"> time</small>
+                <b> {$notificationUsername}</b> <-Action made by him
+                <small class="text-muted"> {$notificationTime}</small>
               </div>
             </div>
           </div>
@@ -94,34 +91,31 @@
     <div class="creation">
       <div class="form-box">
         <div class="tex-bold">
-          <h3>Creation Post</h3>
+          <h3>{$pageTitle}</h3>
         </div>
-        <form enctype="multipart/form-data" id="creation-post" >
-          <h4 class="tex-bold left-transition" >Title</h4>
-          <label>
-            <input type="text" class="text" required>
+        <form id="creation-post" >
+          <h4 class="tex-bold left-transition" >{$titleField}</h4>
+          <label for="post-title">
+            <input type="text" id="post-title" class="text" required>
           </label>
-          <h4 class="tex-bold left-transition">Body</h4>
-          <label>
-            <textarea class="text-area" required></textarea>
+          <h4 class="tex-bold left-transition">{$bodyField}</h4>
+          <label for="post-body">
+            <textarea id="post-body" class="text-area" required></textarea>
           </label>
           <div>
             <label class="custom-btn">
-          <input type="file" name="image" id="" class="image-input" accept="image/*">
-              Select Img
-            </label>
+          <input type="file" name="image" id="image-input" class="image-input" accept="image/*">{$selectImgText}</label>
           </div>
           <div>
-            <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">select topic</h4>
-            <label>
-              <label for="topic"></label>
+            <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">{$selectTopicText}</h4>
+              <label for="topic">
               <select name="topic_id" id="topic" required>
                 <option></option>
                 <option value="Cooking">Cooking</option>
                 <option value="Sport">Sport</option>
                 <option value="Travel">Travel</option>
                 <option value="Cinema">Cinema</option>
-                <option value="home">home</option>
+                <option value="Home">home</option>
               </select>
             </label>
           </div>

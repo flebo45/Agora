@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title> Agora login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$pageTitle}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -22,40 +22,40 @@
           <button type="button" class="toggle-btn" onclick="register()">Register</button>
       </div>
       <div class="tex-bold">
-        <h3>Agora'</h3>
+        <h3>{$siteName}</h3>
       </div>
-      <!------------FROM PER IL LOG IN------------------------------>
-      <form id="login" class="input-group">
+      <!------------FORM PER IL LOG IN------------------------------>
+      <form id="login" class="input-group" action="/login" method="post">
         <label>
-          <input type="text" class="input-field" placeholder="User ID" required>
+          <input type="text" class="input-field" placeholder="User ID" name="username" required>
         </label>
         <label>
-          <input type="password" class="input-field" placeholder="Enter Password" required>
+          <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
         </label>
-        <button type="submit" class="submit-btn" onclick="location.href='index.html'">Log in</button>
+        <button type="submit" class="submit-btn">Log in</button>
       </form>
-      <!------------FINE FROM PER IL LOG IN------------------------------>
+      <!------------FINE FORM PER IL LOG IN------------------------------>
 
-      <!------------FROM PER IL SING UP------------------------------>
-      <form id="register" class="input-group">
+      <!------------FORM PER IL SING UP------------------------------>
+      <form id="register" class="input-group" action="/register" method="post">
         <label>
-          <input type="text" class="input-field" placeholder="Full Name" required>
+          <input type="text" class="input-field" placeholder="Full Name" name="full_namea" required>
         </label>
         <label>
-          <input type="text" class="input-field" placeholder="User ID" required>
+          <input type="text" class="input-field" placeholder="User ID" name="username" required>
         </label>
         <label>
-          <input type="email" class="input-field" placeholder="Email" required>
+          <input type="email" class="input-field" placeholder="Email" name="email" required>
         </label>
         <label>
-          <input type="tel" class="input-field" placeholder="Phone" required>
+          <input type="tel" class="input-field" placeholder="Phone" name="phone" required>
         </label>
         <label>
-          <input type="password" class="input-field" placeholder="Enter Password" required>
+          <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
         </label>
-        <button type="submit" class="submit-btn" onclick="location.href='index.html'">Register</button>
+        <button type="submit" class="submit-btn" >Register</button>
       </form>
-      <!------------FINE FROM PER IL SING UP------------------------------>
+      <!------------FINE FORM PER IL SING UP------------------------------>
     </div>
 
   </div>
