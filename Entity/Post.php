@@ -1,154 +1,190 @@
 <?php
-
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
- *@ORM\Entity @ORM\Table(name="post")
- **/
-
-class Post{
-
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
+ * @ORM\Entity
+ * @ORM\Table(name="posts")
+ */
+class Post
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(100) NOT NULL") **/
+     /**
+     * @ORM\Column(type="string")
+     */
     private $title;
 
-    /**  @ORM\Column(type="string", columnDefinition="MEDIUMTEXT NOT NULL") **/
+    /**
+     * @ORM\Column(type="text")
+     */
     private $description;
 
-     /**  @ORM\Column(type="string", columnDefinition="VARCHAR(20) NOT NULL") **/
+    /**
+     * @ORM\Column(type="string")
+     */
     private $category;
 
     /** @ORM\Column(type="datetime") */
     private DateTime $creation_time; 
 
-    /** @ORM\Column(type="integer") **/
-    private $removed;
-    
     /**
-      * Many Post have one User 
-      * @ORM\ManyToOne(targetEntity="User", inversedBy="post", cascade={"persist", "remove" })
-      * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
+    * @ORM\Column(type="boolean")
     */
-    private User|null $creator_id = null;
+    private $removed = false;
+
 
     /**
-     * One Post have Many like 
-     * @var Collection<int, ELike>
-     * @ORM\OneToMany(targetEntity="ELike", mappedBy="related_post", cascade={"persist", "remove" })
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
      */
-    private Collection $elike;
+    private $user;
 
     /**
-     * One Post have Many comments 
-     * @var Collection<int, Comment>
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="related_post", cascade={"persist", "remove" })
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"remove"})
      */
-    private Collection $comment;
+    private $comments;
 
     /**
-     * One Post has many foto
-     * @var Collection<int, Image>
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="related_post", cascade={"persist", "remove" })
+     * @ORM\OneToMany(targetEntity="ELike", mappedBy="post", cascade={"remove"})
      */
-    private Collection $image;
+    private $likes;
 
-     /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="post", cascade={"persist", "remove" })
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="post", cascade={"remove"})
      */
-    private $report;
+    private $images;
 
-    #constructor
-    public function __construct(string $title, string $description, string $category)
-    {   
+    /**
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="post", cascade={"remove"})
+     */
+    private $reports;
+
+
+    public function __construct($title, $description, $category)
+    {
         $this->title = $title;
         $this->description = $description;
         $this->category = $category;
         $this->setTime();
-        $this->removed = 0;
-        $this->elike = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->image = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->report = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->reports = new ArrayCollection();
     }
 
-    #methods
-    public function getId(){
-        return $this->id;
+    public function getId(): ?int
+{
+    return $this->id;
+}
+
+public function setTime(){
+    $this->creation_time = new DateTime("now");
+}
+
+public function getUser()
+{
+    return $this->user;
+}
+
+public function setUser(User $user): void
+{
+    $this->user = $user;
+}
+
+public function getComments()
+{
+    return $this->comments;
+}
+
+public function addComment(Comment $comment): void
+{
+    $this->comments[] = $comment;
+}
+
+public function getTitle()
+{
+    return $this->title;
+}
+
+public function setTitle($title): void
+{
+    $this->title = $title;
+}
+
+public function getDescription()
+{
+    return $this->description;
+}
+
+public function setDescription($description): void
+{
+    $this->description = $description;
+}
+
+public function getCategory()
+{
+    return $this->category;
+}
+
+public function setCategory($category): void
+{
+    $this->category = $category;
+}
+
+public function isRemoved(): bool
+{
+    return $this->removed;
+}
+
+public function setRemoved(bool $removed): void
+{
+    $this->removed = $removed;
+}
+
+public function addLike(ELike $like): void
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
     }
 
-    public function getTitle(){
-        return $this->title;
+    /**
+     * @return Collection|ELike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
     }
 
-    public function setTitle(string $title){
-        $this->title = $title;
+    public function getImages(): Collection
+    {
+        return $this->images;
     }
 
-    public function getDescription(){
-        return $this->description;
-    }
-
-    public function setDescription(string $description){
-        $this->description = $description;
-    }
-
-    public function getCategory(){
-        return $this->category;
-    }
-
-    public function setCategory(string $category){
-        $this->category = $category;
-    }
-
-    public function setTime(){
-        $this->creation_time = new DateTime("now");
-    }
-
-    public function isRemoved(){
-        return $this->removed;
-    }
-
-    public function setRemove(){
-        $this->removed = 1;
-    }
-
-    public function setCreator(User $creator){
-        $this->creator_id = $creator;
-    }
-
-    public function removeCreator(){
-        $this->creator_id = null;
-    }
-
-    public function addLike(ELike $like){
-        $this->elike[] = $like;
-    }
-
-    public function removeLike(ELike $like){
-        $this->elike->removeElement($like);
-      }
-
-    public function addComment(Comment $comment){
-        $this->comment[] = $comment;
-    }
-
-    public function addImage(Image $image){
-        $this->image[] = $image;
-    }
-
-    public function removeImage(Image $image){
-        $this->image->removeElement($image);
+    public function addImage(Image $image): void
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setPost($this);
+        }
     }
 
     public function addReport(Report $report){
-        $this->report[] = $report;
+        $this->reports[] = $report;
     }
 
-    public function removeReport(Report $report){
-        $this->report->removeElement($report);
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
     }
 
 }

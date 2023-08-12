@@ -2,9 +2,14 @@
 
 require_once "bootstrap.php";
 require_once "autoloader.php";
-require_once "StartSmarty.php"; // richiama la classe Startsmarty.php dove sono specificate le posizioni delle cartelle che servono a smarty
+//require_once "StartSmarty.php"; // richiama la classe Startsmarty.php dove sono specificate le posizioni delle cartelle che servono a smarty
 
 $em = getEntityManager();
+$fem = FEntityManager::getInstance($em);
+
+$pm = FPersistentManager::getInstance();
+
+//-----------------USERS---------------------------------------------
 
 $newUserName = "Alessio";
 $newUserSurname = "Torrieri";
@@ -15,20 +20,18 @@ $newPassword ="cazzoInCuloNonfaFigli";
 
 $user = new User($newUserName, $newUserSurname, $newUserAge, $newUserEmail, $newUserUsername, $newPassword);
 
-$em->persist($user);
+$pm::uploadUser($user);
 
 $user2 = new User("Silvia", "Mastracci", 22, "silvia.mastracci@gmail.com", "silvia.mastracci12", "Silvia123");
 
-$em->persist($user2);
+$pm::uploadUser($user2);
 
-$em->flush();
+$user->follow($user2);
 
-$user->addFollowedUser($user2);
+$pm::uploadUser($user);
+$pm::uploadUser($user2);
 
-$em->persist($user2);
-
-$em->flush();
-
+//----------------------------POST-------------------------------------------------
 
 $titoloPost = "Una vacanza da sogno in quel di Catanzaro";
 $descrizionePost = "bla bla bla bla bla bla bla bla catanzaro esplosa";
@@ -36,76 +39,76 @@ $categoriaPost = "travelling";
 
 $post = new Post($titoloPost, $descrizionePost, $categoriaPost);
 
-$post->setCreator($user);
+$post->setUser($user);
 $user->addPost($post);
 
-$em->persist($post);
-$em->persist($user);
+$pm::uploadPost($post, $user);
 
-$em->flush();
-
-$like = new ELike($user2, $post);
-$em->persist($like);
-
-$user2->addLike($like);
-$post->addLike($like);
-
-
-$em->persist($post);
-$em->persist($user2);
-$em->persist($like);
-$em->flush();
+//-------------------------------COMMENTS----------------------------------------------------
 
 $body = "GG vacanza troppo divertente";
 
 $comment = new Comment($body, $user2, $post);
-$user2->addComment($comment);
 $post->addComment($comment);
 
-$em->persist($comment);
-$em->persist($post);
-$em->persist($user2);
+$pm::createComment($comment,$post,$user2);
 
-$em->flush();
+$comment2 = new Comment($body, $user2, $post);
+$post->addComment($comment2);
 
-$pro_pic_user = new Image("nome", "size", ".jpeg", "ddjoddoijdijodsijodijo");
-$pro_pic_user->setUser($user);
-$user->setProPic($pro_pic_user);
-$em->persist($pro_pic_user);
-$em->persist($user);
+$pm::createComment($comment2,$post,$user2);
 
-$em->flush();
+$comment3 = new Comment($body, $user2, $post);
+$post->addComment($comment3);
 
-$postPic = new Image("name", "size", ".jpeg", "uhsfhuidsfsefhufhu");
-$postPic->setPost($post);
-$post->addImage($postPic);
+$pm::createComment($comment3,$post,$user2);
 
-$em->persist($postPic);
-$em->persist($post);
+$comment4 = new Comment($body, $user2, $post);
+$post->addComment($comment4);
 
-$em->flush();
+$pm::createComment($comment4,$post,$user2);
 
-$postReport = new Report("descrizione del report", "tipo ad esempio SPAM", $user2);
-$postReport->setPost($post);
-$user2->addReports($postReport);
+//-------------------------------LIKE-----------------------------------------------------------
 
-$post->addReport($postReport);
+$like = new ELike($user2, $post);
 
-$em->persist($post);
-$em->persist($user2);
-$em->persist($postReport);
+$user2->addLike($like);
+$post->addLike($like);
 
-$em->flush();
+$pm::createLike($like, $post, $user2);
 
-$commentReport = new Report("descrizione del report", "tipo ad esempio SPAM", $user);
-$commentReport->setComment($comment);
-$user->addReports($commentReport);
+//------------------------------IMAGES---------------------------------------------------------
 
-$comment->addReport($commentReport);
+$imagePost = new Image("name","size","type","imagedata");
 
-$em->persist($comment);
-$em->persist($user);
-$em->persist($commentReport);
+$imagePost->setPost($post);
+$post->addImage($imagePost);
 
-$em->flush();
+$pm::uploadImagePost($imagePost, $post);
 
+$imageUser = new Image("name","size","type","dati");
+
+$imageUser->setUser($user);
+$user->setProfileImage($imageUser);
+
+$pm::uploadImageUser($imageUser, $user);
+
+//----------------------------REPORTS---------------------------------------------
+
+$reportPOst = new Report("description", "type", $user2);
+
+$user2->addReport($reportPOst);
+$reportPOst->setPost($post);
+$post->addReport($reportPOst);
+
+$pm::uploadReportPost($reportPOst, $user2, $post);
+
+$reportComment = new Report("description", "type", $user);
+
+$user->addReport($reportComment);
+$reportComment->setComment($comment);
+$comment->addReport($reportComment);
+
+$pm::uploadReportComment($reportComment, $user, $comment);
+
+//TODO code ReportList(for the moderator, divided in comments report and post report), UploadMultipleFoto, followerList (e viceversa se si deve fare), UserList (per la ricerca), PostList(per la ricerca)

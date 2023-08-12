@@ -1,28 +1,22 @@
-<?php 
+<?php
 
 class FComment extends FEntityManager{
 
-    private $table_name = "comment";
-
-    private $table_field = "id";
-
-    private $entity_class = Comment::class;
+    private static $entity_class = Comment::class;
 
     # methods
-
-    public static function getTable(){
-
-        return self::$table_name;
-    }
-
-    public static function getField(){
-
-        return self::$table_field;
-    }
 
     public static function getEntityClass(){
 
         return self::$entity_class;
+    }
+
+    public static function retriveComment($id){
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::retriveObj(self::getEntityClass(), $id);
+
+        return $result;
     }
 
     public static function saveCommentInDb(Comment $comment, Post $post, User $user){
@@ -30,31 +24,32 @@ class FComment extends FEntityManager{
 
         $objects = [$comment, $post, $user];
 
-        $result = $fem->saveObjects($objects);
+        $result = $fem::saveObjects($objects);
 
         return $result;
     }
 
-    public static function deleteCommentInDb(Comment $comment){
-        $id = $comment->getId();
-        
+    
+
+    public static function deleteCommentInDb(Comment $obj){
+  
         $fem = FEntityManager::getInstance();
 
-        $result = $fem->deleteObjInDb(self::getEntityClass(), $id);
+        $result = $fem::deleteObjInDb($obj);
 
         return $result;
     }
 
     public static function commentList(Post $post){
-        $id = $post->getId();
-        $field = "post_id";
 
         $fem = FEntityManager::getInstance();
 
-        $result = $fem->objectList(self::getTable(), $field, $id);
+        $id = $post->getID();
+
+        $field = "post";
+
+        $result = $fem::objectList(self::getEntityClass(), $field, $id);
 
         return $result;
     }
-
-   
 }

@@ -1,203 +1,273 @@
 <?php
-
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-/**
- *@ORM\Entity @ORM\Table(name="user")
- **/
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="users")
+ */
 class User
 {
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
-    protected $id;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(30) NOT NULL") **/
-    protected $name;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
 
-     /** @ORM\Column(type="string", columnDefinition="VARCHAR(30) NOT NULL") **/
-     protected $surname;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $surname;
 
-      /** @ORM\Column(type="integer") **/
-    protected $age;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
 
-      /** @ORM\Column(type="string", columnDefinition="VARCHAR(50) NOT NULL") **/
-    protected $email;
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $email;
 
-      /** @ORM\Column(type="string", columnDefinition="CHAR(64) NOT NULL") */
-    protected $hashedPassword;
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    private $username;
 
-      /** @ORM\Column(type="string", columnDefinition="VARCHAR(30) NOT NULL") */
-    protected $username;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $hashedPassword;
 
-    //attributes after creation of Object
-
-      /** @ORM\Column(type="string", nullable="true") */
+    /**
+    * @ORM\Column(type="text", nullable=true)
+    */
     private $bio;
 
-    /** @ORM\OneToOne(targetEntity="Image", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
-     */
-    private $image_id;
-
-    /** @ORM\Column(type="integer") **/
-    private $vip;
-
-    /**@ORM\ManyToMany(targetEntity="User", mappedBy="followed", cascade={"persist", "remove" })
-     * @var Collection<int, User>
-     */
-    private Collection $follower;
-
-    /** 
-     *  @var Collection<int, User>
-     *  @ORM\JoinTable(name="follow")
-     *  @ORM\JoinColumn(name="user_id", referencedColumnName="Id")
-     * @ORM\ManyToMany(targetEntity="User", inversedBy="follower")
-     */
-    private Collection $followed;
+    /**
+    * @ORM\Column(type="boolean")
+    */
+    private $banned = false;
 
     /**
-     * One User has many Posts
-     * @var Collection<int, Post>
-     * @ORM\OneToMany(targetEntity="Post", mappedBy="creator", cascade={"persist", "remove" })
-     */
-    private Collection $post;
+    * @ORM\Column(type="boolean")
+    */
+    private $vip = false;
+
 
     /**
-     * One User like many post (One User have many like)
-     * @var Collection<int, ELike>
-     * @ORM\OneToMany(targetEntity="ELike", mappedBy="creator", cascade={"persist", "remove" })
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="followers")
+     * @ORM\JoinTable(name="user_follows")
      */
-    private Collection $elike;
-
-      /**
-     * One User comments many post (One User have many comments)
-     * @var Collection<int, Comment>
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="creator", cascade={"persist", "remove" })
-     */
-    private Collection $comment;
+    private $followedUsers;
 
     /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="user", cascade={"persist", "remove" })
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="followedUsers")
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="user")
+     */
+    private $posts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ELike", mappedBy="user", cascade={"remove"})
+     */
+    private $likes;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Image", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $profileImage;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="user")
      */
     private $reports;
 
 
-    /** @ORM\Column(type="integer") **/
-    private $reported;
 
-    /** @ORM\Column(type="integer") **/
-    private $banned;
-
-    #constructor
     public function __construct(string $name, string $surname, int $age,  string $email, string $username, string $password)
     {
         $hashedPassword = hash('sha256', $password);
 
+        $this->profileImage = null;
         $this->name = $name;
         $this->surname = $surname;
         $this->age = $age;
         $this->email = $email;
         $this->username = $username;
         $this->hashedPassword = $hashedPassword;
-        $this->reported = 0;
-        $this->vip = 0; 
-        $this->banned = 0;
-        $this->follower = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->followed = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->post = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->elike = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->reports = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->bio = null;
+        $this->followers = new ArrayCollection();
+        $this->followedUsers = new ArrayCollection();
+        $this->posts = new ArrayCollection();
+        $this->likes = new ArrayCollection();
+        $this->reports = new ArrayCollection();
+
+    }
+
+    public function getId(): ?int
+{
+    return $this->id;
+}
+
+public function getFollowedUsers()
+{
+    return $this->followedUsers;
+}
+
+private function addFollowedUser(User $followedUser): void
+{
+    if (!$this->followedUsers->contains($followedUser)) {
+        $this->followedUsers[] = $followedUser;
+    }
+}
+private function addFollower(User $follower): void
+{
+    if (!$this->followers->contains($follower)) {
+        $this->followers[] = $follower;
+    }
+}
+
+public function follow(User $userToFollow): void
+{
+    $userToFollow->addFollower($this);
+    $this->addFollowedUser($userToFollow);
+}
+
+public function getFollower()
+{
+    return $this->followers;
+}
+
+
+public function getPosts()
+{
+    return $this->posts;
+}
+
+public function addPost(Post $post): void
+{
+    $this->posts[] = $post;
+}
+
+public function getName()
+{
+    return $this->name;
+}
+
+public function getSurname()
+{
+    return $this->surname;
+}
+
+public function getAge()
+{
+    return $this->age;
+}
+
+public function getEmail()
+{
+    return $this->email;
+}
+
+public function getUsername()
+{
+    return $this->username;
+}
+
+public function setUsername($username): void
+{
+    $this->username = $username;
+}
+
+public function getHashedPassword()
+{
+    return $this->hashedPassword;
+}
+
+public function setPassword($password)
+{
+    $hashedPassword = hash('sha256', $password);
+    $this->hashedPassword = $hashedPassword;
+
+}
+
+public function getBio(): ?string
+{
+    return $this->bio;
+}
+
+public function setBio(?string $bio): void
+{
+    $this->bio = $bio;
+}
+
+public function isBanned(): bool
+{
+    return $this->banned;
+}
+
+public function setBanned(bool $banned): void
+{
+    $this->banned = $banned;
+}
+
+public function isVip(): bool
+{
+    return $this->vip;
+}
+
+public function setVip(bool $vip): void
+{
+    $this->vip = $vip;
+}
+
+public function addLike(ELike $like): void
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
     }
 
 
-
-    # Accessors
-    public function getId() : mixed { return $this->id; }
-    public function getName() : string { return $this->name; }
-    public function getSurname() : string { return $this->surname; }
-    public function getAge() : int { return $this->age; }
-    public function getEmail() : string { return $this->email; }
-    public function addFollowedUser(User $user){
-
-        $this->followed[] = $user;
+    /**
+     * @return Collection|ELike[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
     }
 
-    public function getHashedPassword() : string { return $this->hashedPassword; }
-
-    public function setPassword($password){
-      $hashedPassword = hash('sha256', $password);
-      $this->hashedPassword = $hashedPassword;
+    public function setProfileImage(Image $profileImage = null): void
+    {
+        $this->profileImage = $profileImage;
     }
 
-    public function getUsername() : string { return $this->username; } 
-
-    public function setUsername($username){
-      $this->username = $username;
+    public function getProfileImage(): ?Image
+    {
+        return $this->profileImage;
     }
 
-    public function getBio() : string { return $this->bio; }
-
+    public function addReport(Report $report){
+        $this->reports[] = $report;
+    }
     
-    public function setBio($bio){
-        $this->bio = $bio;
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
     }
-
-    public function setProPic(Image $pic){
-      $this->image_id = $pic;
-    }
-
-    public function isBanned(){
-      return $this->banned;
-    }
-
-    public function setBanned(){
-      $this->banned = 1;
-    }
-
-    public function isVIP(){
-        return $this->vip;
-    }
-
-    public function setVIP(){
-        $this->vip = 1;
-    }
-
-    public function getReport(){
-      return $this->reported;
-    }
-
-    public function addReport(){
-      $this->reported += 1;
-    }
-
-    public function addPost(Post $post){
-        $this->post[] = $post;
-    }
-
-    public function removePost(Post $post){
-        $this->post->removeElement($post);
-    }
-
-    public function addLike(ELike $like){
-        $this->elike[] = $like;
-  }
-
-    public function removeLike(ELike $like){
-      $this->elike->removeElement($like);
-    }
-
-    public function addComment(Comment $comment){
-      $this->comment[] = $comment;
-}
-
-public function addReports(Report $report){
-  $this->reports[] = $report;
-}
-public function removeReported(Report $report){
-  $this->reports->removeElement($report);
-}
-
-
 
 }

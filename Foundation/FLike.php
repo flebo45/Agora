@@ -2,27 +2,21 @@
 
 class FLike extends FEntityManager{
 
-    private $table_name = "elike";
+    private static $entity_class = ELike::class;
 
-    private $table_field = "id";
-
-    private $entity_class = ELike::class;
-
-     # methods
-
-     public static function getTable(){
-
-        return self::$table_name;
-    }
-
-    public static function getField(){
-
-        return self::$table_field;
-    }
+    #methods
 
     public static function getEntityClass(){
 
         return self::$entity_class;
+    }
+
+    public static function retriveLike($id){
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::retriveObj(self::getEntityClass(), $id);
+
+        return $result;
     }
 
     public static function saveLikeInDb(ELike $like, Post $post, User $user){
@@ -30,28 +24,29 @@ class FLike extends FEntityManager{
 
         $objects = [$like, $post, $user];
 
-        $result = $fem->saveObjects($objects);
+        $result = $fem::saveObjects($objects);
 
         return $result;
     }
 
     public static function deleteLikeInDb(ELike $like){
-        $id = $like->getId();
-        
+
         $fem = FEntityManager::getInstance();
 
-        $result = $fem->deleteObjInDb(self::getEntityClass(), $id);
+        $result = $fem::deleteObjInDb($like);
 
         return $result;
     }
 
     public static function likeList(Post $post){
-        $id = $post->getId();
-        $field = "post_id";
-
+        
         $fem = FEntityManager::getInstance();
 
-        $result = $fem->objectList(self::getTable(), $field, $id);
+        $id = $post->getID();
+
+        $field = "post";
+
+        $result = $fem::objectList(self::getEntityClass(), $field, $id);
 
         return $result;
     }

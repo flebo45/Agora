@@ -7,10 +7,9 @@ $em = getEntityManager();
 $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
-$id = 1;
-$bio = "new Bio";
 
-$user = $pm::retriveUser($id);
-$user->setBio($bio);
+$idComment = 4;
 
-$pm::uploadUser($user);
+$comment = $pm::retriveComment($idComment);
+
+$pm::deleteComment($comment);

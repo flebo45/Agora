@@ -23,10 +23,32 @@ class FPersistentManager{
         return self::$instance;
     }
 
-    public static function selectUser($id){
+    /**
+     * call to FUser to find User obj in the db and return it
+     */
+    public static function retriveUser($id){
         $result = FUser::retriveUser($id);
-        return $result;
 
+        return $result;
+    }
+
+    /**
+     * call to FUser to create or update an user in db
+     * @return boolean
+     */
+    public static function uploadUser(User $user){
+        $result = FUser::saveUserInDb($user);
+
+        return $result;
+    }
+
+    /**
+     * call to FPost to find Post obj in the db and return it
+     */
+    public static function retrivePost($id){
+        $result = FPost::retrivePost($id);
+
+        return $result;
     }
 
     /**
@@ -34,14 +56,14 @@ class FPersistentManager{
      * @return boolean
      */
 
-    public static function createPost(Post $post, User $user){
+     public static function uploadPost(Post $post, User $user){
         $result = FPost::savePostInDb($post, $user);
 
         return $result;
     }
 
     /**
-     *  call to FPost to delete obj in the db
+     *  call to FPost to delete Post in the db (delete post and all comments, image, like and report related to it)
      * @return boolean
      */
     public static function deletePost(Post $post){
@@ -53,12 +75,10 @@ class FPersistentManager{
     }
 
     /**
-     * call to FUser to create or update an user in db
-     * @return boolean
+     * call to FComment to find Comment obj in the db and return it
      */
-    public static function createOrUpdateUser(User $user){
-
-        $result = FUser::saveUserInDb($user);
+    public static function retriveComment($id){
+        $result = FComment::retriveComment($id);
 
         return $result;
     }
@@ -75,17 +95,6 @@ class FPersistentManager{
     }
 
     /**
-     * call to FLike to save like in db
-     * @return boolean
-     */
-    public static function createLike(ELike $like, Post $post, User $user){
-
-        $result = FLike::saveLikeInDb($like, $post, $user);
-
-        return $result;
-    }
-
-    /**
      * call to FComment to delete comment in the db
      * @return boolean
      */
@@ -97,7 +106,28 @@ class FPersistentManager{
     }
 
     /**
-     * call to FLike to delete like from db
+     * call to FLike to find ELike obj in the db and return it
+     */
+    public static function retriveLike($id){
+
+        $result = FLike::retriveLike($id);
+
+        return $result;
+    }
+
+    /**
+     * call to FLike to save like in db
+     * @return boolean
+     */
+    public static function createLike(ELike $like, Post $post, User $user){
+
+        $result = FLike::saveLikeInDb($like, $post, $user);
+
+        return $result;
+    }
+
+    /**
+     * call to FLike to delete like in the db
      * @return boolean
      */
     public static function deleteLike(ELike $like){
@@ -108,10 +138,98 @@ class FPersistentManager{
     }
 
     /**
-     * return a list of all the post created by the user
-     * @return array || null
+     * call to FImage to find Image obj in the db and return it
      */
-    public static function userPostList(User $user){
+    public static function retriveImage($id){
+
+        $result = FImage::retriveImage($id);
+
+        return $result;
+    }
+
+    /**
+     * call to FImage to save image of a post in db
+     * @return boolean
+     */
+    public static function uploadImagePost(Image $image, Post $post){
+
+        $result = FImage::saveImagePostIndb($image, $post);
+
+        return $result;
+    }
+
+    /**
+     * call to FImage to save image of a user in db
+     * @return boolean
+     */
+    public static function uploadImageUser(Image $image, User $user){
+
+        $result = FImage::savePicUSerinDb($image, $user);
+
+        return $result;
+    }
+
+    /**
+     * call to FImage to delete an image from the db
+     * @return boolean
+     */
+    public static function deleteImage(Image $image){
+
+        $result = FImage::deleteImageInDb($image);
+
+        return $result;
+    }
+
+    /**
+     * call to FReport to find Report object in the db and return it
+     */
+    public static function retriveReport($id){
+
+        $result = FReport::retriveReport($id);
+
+        return $result;
+    }
+
+    /**
+     * call to FReport to save a report for a post in db
+     * @return boolean
+     */
+    public static function uploadReportPost(Report $report, User $user, Post $post){
+
+        $result = FReport::saveReportPostInDb($report, $user, $post);
+
+        return $result;
+    }
+
+    /**
+     * call to FReport to save a report for a comment in db
+     * @return boolean
+     */
+    public static function uploadReportComment(Report $report, User $user, Comment $comment){
+
+        $result = FReport::saveReportCommentInDb($report, $user, $comment);
+
+        return $result;
+    }
+
+    /**
+     * call to FReport to delete a report from the db
+     * @return boolean
+     */
+    public static function deleteReport(Report $report){
+
+        $result = FReport::deleteReportInDb($report);
+
+        return $result;
+    }
+
+    //TODO metodi che possono subire variazioni-------------------------------------------
+    /**
+     * return a list of all posts belong to an user
+     * @return array
+     */
+    //TODO verificare se va bene User o mettere solo id
+    public static function userPostsList(User $user){
 
         $result = FPost::postList($user);
 
@@ -119,21 +237,10 @@ class FPersistentManager{
     }
 
     /**
-     * create the Image in the db 
-     * @return boolean
+     * return a list of all comments belong to a post
+     * @return array
      */
-    public static function updateUserProPic(Image $image, User $user){
-
-        $result = FImage::saveUserPic($image, $user);
-
-        return $result;
-    }
-
-    /**
-     * return a list of all comments related by a post
-     * @return array || null
-     */
-    public static function postCommentList(Post $post){
+    public static function postCommentsList(Post $post){
 
         $result = FComment::commentList($post);
 
@@ -141,8 +248,8 @@ class FPersistentManager{
     }
 
     /**
-     * retun an array off the like of a post
-     * @return array || null
+     * return a list of all likes of a post
+     * @return array
      */
     public static function postLikeList(Post $post){
 
@@ -151,33 +258,26 @@ class FPersistentManager{
         return $result;
     }
 
-//change
-    public function selectPost($postID){
-        //perform query and return all data
+     /**
+     * return a list of all images of a post
+     * @return array
+     */
+    public static function postImageList(Post $post){
+
+        $result = FImage::imageList($post);
+
+        return $result;
     }
 
+    /**
+     * return a list of all the report (for moderator page)
+     * @return array 
+     */
+    public static function reportedPostList(){
 
-    public function search($keyword){
-        //perform query via FUser and FPost and take result
-        // result is am array of item
+        $result = FReport::reportPostList();
+
+        return $result;
     }
-
-    public function selessctUser($userID){
-        //perform query via FUser and take result
-    }
-
-    public function loadReport($reportID){
-        //call to FReport that update report table
-    }
-
-    public function reportTable(){
-        //perform a query via FReport 
-    }
-
-    public function unsetReport(){
-        //update Report Table via FReport
-    }
-
-    
 
 }

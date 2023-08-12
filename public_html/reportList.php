@@ -7,10 +7,9 @@ $em = getEntityManager();
 $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
-$id = 1;
-$bio = "new Bio";
 
-$user = $pm::retriveUser($id);
-$user->setBio($bio);
+$reportedPost = $pm::reportedPostList();
 
-$pm::uploadUser($user);
+foreach($reportedPost as &$report){
+    echo $report->getId();
+}

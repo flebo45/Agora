@@ -1,4 +1,5 @@
 <?php
+
 require_once "bootstrap.php";
 require_once "autoloader.php";
 
@@ -7,10 +8,8 @@ $em = getEntityManager();
 $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
-$id = 1;
-$bio = "new Bio";
 
-$user = $pm::retriveUser($id);
-$user->setBio($bio);
+$idPost = 1;
+$post = $pm::retrivePost($idPost);
 
-$pm::uploadUser($user);
+$pm::deletePost($post);

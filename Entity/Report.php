@@ -1,86 +1,84 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="reports")
  */
-
-class Report{
-
+class Report
+{
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
 
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(255) NOT NULL") **/
+    /**
+     * @ORM\Column(type="text")
+     */
     private $description;
 
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(255) NOT NULL") **/
+    /**
+     * @ORM\Column(type="string")
+     */
     private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Post", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="reports")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $post_id = null;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Comment", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="comment_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Post")
      */
-    private $comment_id = null;
+    private $post;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Comment")
      */
-    private $user_id;
+    private $comment;
 
-    #constructor
-
-    public function __construct(string $description, string $type, User $user)
-    {
+    public function __construct($description, $type, User $user)
+    {   
         $this->description = $description;
         $this->type = $type;
-        $this->user_id = $user;
-    }
-
-    #methods
-
-    public function setPost(Post $post){
-        $this->post_id = $post;
-    }
-
-    public function setComment(Comment $comment){
-        $this->comment_id = $comment;
+        $this->user = $user;
     }
 
     public function getId(){
         return $this->id;
     }
 
-    public function getDescription(){
-        return $this->description;
-    }
-
-    public function getType(){
-        return $this->type;
-    }
-
     public function getPost(){
-        return $this->post_id;
+        return $this->post;
+    }
+
+    public function setPost(Post $post){
+        $this->post = $post;
     }
 
     public function getComment(){
-        return $this->comment_id;
+        return $this->comment;
     }
 
-    public function getUser(){
-        return $this->user_id;
+    public function setComment(Comment $comment){
+        $this->comment = $comment;
     }
 
+    public function onPreRemove(): void
+    {
+        if ($this->user) {
+            $this->user->getReports()->removeElement($this);
+        }
+
+        if ($this->post) {
+            $this->post->getReports()->removeElement($this);
+        }
+
+        if ($this->comment) {
+            $this->comment->getReports()->removeElement($this);
+        }
+    }
 }

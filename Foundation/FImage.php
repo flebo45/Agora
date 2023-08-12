@@ -2,46 +2,65 @@
 
 class FImage extends FEntityManager{
 
-    private $table_name  = "image";
+    private static $entity_class = Image::class;
 
-    private $table_field = "id";
-
-    private $entity_class = Image::class;
-
-    public static function getTable(){
-
-        return self::$table_name;
-    }
-
-    public static function getField(){
-
-        return self::$table_field;
-    }
+    #methods
 
     public static function getEntityClass(){
 
         return self::$entity_class;
     }
 
-    public static function saveUserPic(Image $image, User $user){
+    public static function retriveImage($id){
+
         $fem = FEntityManager::getInstance();
 
-        $objects = [$image, $user];
-
-        $result = $fem->saveObjects($objects);
+        $result = $fem::retriveObj(self::getEntityClass(), $id);
 
         return $result;
     }
 
-    public static function savePostPics(array $images, Post $post){
+    public static function saveImagePostIndb(Image $image, Post $post){
+
         $fem = FEntityManager::getInstance();
 
-        $objects = [$post];
-        foreach($images as $img){
-            $objects[] = $img;
-        }
-        $result = $fem->saveObjects($objects);
-    
+        $objects = [$image, $post];
+
+        $result = $fem::saveObjects($objects);
+
+        return $result;
+    }
+
+    public static function savePicUSerinDb(Image $image, User $user){
+
+        $fem = FEntityManager::getInstance();
+
+        $objects = [$image, $user];
+
+        $result = $fem::saveObjects($objects);
+
+        return $result;
+    }
+
+    public static function deleteImageInDb(Image $image){
+        
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::deleteObjInDb($image);
+
+        return $result;
+    }
+
+    public static function imageList(Post $post){
+        
+        $fem = FEntityManager::getInstance();
+
+        $id = $post->getID();
+
+        $field = "post";
+
+        $result = $fem::objectList(self::getEntityClass(), $field, $id);
+
         return $result;
     }
 }

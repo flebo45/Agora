@@ -7,10 +7,9 @@ $em = getEntityManager();
 $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
-$id = 1;
-$bio = "new Bio";
 
-$user = $pm::retriveUser($id);
-$user->setBio($bio);
+$idLike = 1;
 
-$pm::uploadUser($user);
+$like = $pm::retriveLike($idLike);
+
+$pm::deleteLike($like);

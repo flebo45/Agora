@@ -1,39 +1,49 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
+
 /**
- *@ORM\Entity @ORM\Table(name="image")
- **/
+ * @ORM\Entity
+ * @ORM\Table(name="images")
+ */
+class Image
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-
-class Image{
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
-    protected $id;
-
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(50) NOT NULL") */
+    /**
+     * @ORM\Column(type="string")
+     */
     private $name;
 
-    /** @ORM\Column(type="string", columnDefinition="VARCHAR(25) NOT NULL") */
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $size;
 
-    /** @ORM\Column(type="string", columnDefinition="VARCHAR(25) NOT NULL") */
+    /**
+     * @ORM\Column(type="string")
+     */
     private $type;
 
-    /** @ORM\Column(type="blob") */
+    /**
+     * @ORM\Column(type="blob")
+     */
     private $imageData;
 
-    /** @ORM\OneToOne(targetEntity="User", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="images")
      */
-    private $user_id;
+    private $user;
 
-    /**Many Image Belong to a Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="foto", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="images")
      */
-    private $post_id;
+    private $post;
 
-    #constructor
     public function __construct($name, $size, $type, $imageData){
         $this->name = $name;
         $this->size = $size;
@@ -41,20 +51,37 @@ class Image{
         $this->imageData = $imageData;
     }
 
-    public function setUser(User $user){
-        $this->user_id = $user;
+    public function getId(){
+        return $this->id;
     }
 
-    public function getUser(){
-        return $this->user_id;
+    public function setUser(User $user = null): void
+    {
+        $this->user = $user;
     }
 
-    public function setPost(Post $post){
-        $this->post_id = $post;
+    public function setPost(Post $post = null): void
+    {
+        $this->post = $post;
     }
 
-    public function getPost(){
-        return $this->post_id;
+    public function getName()
+    {
+        return $this->name;
     }
 
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getimageData()
+    {
+        return $this->imageData;
+    }
 }

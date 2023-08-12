@@ -1,83 +1,116 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
- *@ORM\Entity @ORM\Table(name="comments")
- **/
+ * @ORM\Entity
+ * @ORM\Table(name="comments")
+ */
+class Comment
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-class Comment{
-
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
-    protected $id;
-
-    /**  @ORM\Column(type="string", columnDefinition="VARCHAR(255) NOT NULL") **/
+    /**
+     * @ORM\Column(type="text")
+     */
     private $body;
 
     /** @ORM\Column(type="datetime") */
-    private DateTime $creation_time; 
+    private DateTime $creation_time;
 
-    //If is reported and the admin remove it
-    //** @ORM\Column(type="boolean", nullable=false, name ="is_deleted"}, cascade={"persist", "remove" }) */
-    private bool $is_delated;
-
-    /** 
-     * Many comments belong to a User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="comment", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
+    /**
+    * @ORM\Column(type="boolean")
     */
-    private User|null $creator_id = null;
+    private $removed = false;
 
-    /** 
-     * Many comments belong to a Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment", cascade={"persist", "remove" })
-     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
-    */
-    private Post|null $post_id = null;
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $user;
 
-     /**
-     * @ORM\OneToMany(targetEntity="Report", mappedBy="comment", cascade={"persist", "remove" })
+    /**
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
+     */
+    private $post;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Report", mappedBy="comment", cascade={"remove"})
      */
     private $reports;
 
-    #constructor
-    public function __construct(string $body, User $creator, Post $related_post){
-        $this->body = $body;
-        $this->creator_id = $creator;
-        $this->post_id = $related_post;
-        $this->setTime();
-        $this->is_delated = 0;
-        $this->reports = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    public function __construct($body, User $user, Post $post)
+{
+    $this->body = $body;
+    $this->user = $user;
+    $this->post = $post;
+    $this->setTime();
+    $this->reports = new ArrayCollection();
+}
 
-    #methods
-    public function getId(){
-        return $this->id;
-    }
+    public function getId(): ?int
+{
+    return $this->id;
+}
 
-    public function getBody(){
-        return $this->body;
-    }
+public function setTime(){
+    $this->creation_time = new DateTime("now");
+}
 
-    public function setTime(){
-        $this->creation_time = new DateTime("now");
-    }
+public function getUser()
+{
+    return $this->user;
+}
 
-    public function isRemoved(){
-        return $this->is_delated;
-    }
+public function setUser(User $user): void
+{
+    $this->user = $user;
+}
 
-    public function remove(){
-        $this->is_delated = 1;
-    }
+public function getPost()
+{
+    return $this->post;
+}
 
-    public function addReport(Report $report){
-        $this->reports[] = $report;
-    }
+public function setPost(Post $post): void
+{
+    $this->post = $post;
+}
 
-    public function removeReport(Report $report){
-        $this->reports->removeElement($report);
-    }
-    
+public function getBody()
+{
+    return $this->body;
+}
 
+public function setBody($body): void
+{
+    $this->body = $body;
+}
+
+public function isRemoved(): bool
+{
+    return $this->removed;
+}
+
+public function setRemoved(bool $removed): void
+{
+    $this->removed = $removed;
+}
+
+public function addReport(Report $report){
+    $this->reports[] = $report;
+}
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
 }

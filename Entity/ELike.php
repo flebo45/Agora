@@ -1,45 +1,49 @@
 <?php
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- *@ORM\Entity @ORM\Table(name="Elike")
- **/
+ * @ORM\Entity
+ * @ORM\Table(name="likes")
+ */
+class ELike
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
 
-class ELike{
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
-    protected $id;
-
-    /** 
-     * Many likes belong to a User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="elike")
-     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
-    */
-    private User|null $creator_id = null;
-
-    /** 
-     * Many likes belong to a Post
-     * @ORM\ManyToOne(targetEntity="Post", inversedBy="elike")
+    /**
+     * @ORM\ManyToOne(targetEntity="Post")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
-    */
-    private Post|null $post_id = null;
+     */
+    private $post;
 
-
-
-
-    #constructor
-    public function __construct(User $creator, Post $related_post)
-    {   
-        $this->creator_id = $creator;
-        $this->post_id = $related_post;
+    public function __construct(User $user, Post $post)
+    {
+        $this->user = $user;
+        $this->post = $post;
     }
 
-    #methods
-
-    public function getId(){
-
+    public function getId()
+    {
         return $this->id;
     }
-     
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function getPost(): ?Post
+    {
+        return $this->post;
+    }
 }
