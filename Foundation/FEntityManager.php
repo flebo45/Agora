@@ -1,7 +1,4 @@
 <?php
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
-
 //NOTA IMPORTANTE : SE UTILIZZIAMO SQL, L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
 use Doctrine\ORM\Query as DQL;
 
