@@ -113,6 +113,24 @@ class FEntityManager{
     }
 
     /**
+     * return a list of object that are not banned (for ex. posts and comments not banned)
+     * @return array
+     */
+    public static function objectListNotRemoved($table, $field, $id){
+        try{
+            $dql = "SELECT e FROM " . $table . " e WHERE e." . $field . " = :creatorId AND e.removed = 0";
+            $query = self::$entityManager->createQuery($dql);
+            $query->setParameter('creatorId', $id);
+            $result = $query->getResult();
+            return $result;
+            }catch(Exception $e){
+                echo "ERROR " . $e->getMessage();
+                return null;
+            }
+
+    }
+
+    /**
      * return all the object of a specifyc table (ex. all the report)
      * @return array
      */

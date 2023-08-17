@@ -50,4 +50,20 @@ class FPost extends FEntityManager{
 
         return $result;
     }
+
+    public static function postListNotBanned(User $user){
+
+        $fem = FEntityManager::getInstance();
+
+        $id = $user->getId();
+
+        $field = "user";
+
+        $result = $fem::objectListNotRemoved(self::getEntityClass(), $field, $id);
+
+        return $result;
+    }
+        
+    
+
 }

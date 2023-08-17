@@ -236,6 +236,13 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function userPostsListNotBanned(User $user){
+
+        $result = FPost::postListNotBanned($user);
+
+        return $result;
+    }
+
     /**
      * return a list of all comments belong to a post
      * @return array
