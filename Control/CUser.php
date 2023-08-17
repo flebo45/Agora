@@ -2,15 +2,25 @@
 
 class CUser{
 
-    //Verify if the user is logged
+    /**
+     * check if the user is logged (using session)
+     * @return boolean
+     */
     public static function isLogged(){
-        $identified = false;
-        if (isset($_SESSION['userID'])){
-            $identified = true;
+        $logged = false;
+
+        if(session_status() == PHP_SESSION_NONE){
+            USession::getInstance();
         }
-        return $identified;
+        //user element is for set the session
+        if(USession::isSetSessionElement('user')){
+            $logged = true;
+            //check if banned
+        }
+        return $logged;
+
     }
+
+
+
 }
-
-
-?>
