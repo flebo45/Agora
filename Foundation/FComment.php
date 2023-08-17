@@ -52,4 +52,17 @@ class FComment extends FEntityManager{
 
         return $result;
     }
+
+    public static function commentListNotBanned(Post $post){
+        
+        $fem = FEntityManager::getInstance();
+
+        $id = $post->getID();
+
+        $field = "post";
+
+        $result = $fem::objectListNotRemoved(self::getEntityClass(), $field, $id);
+
+        return $result;
+    }
 }

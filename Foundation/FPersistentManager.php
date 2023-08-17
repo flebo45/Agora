@@ -236,6 +236,10 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of posts belong to an user without banned posts
+     * @return array
+     */
     public static function userPostsListNotBanned(User $user){
 
         $result = FPost::postListNotBanned($user);
@@ -250,6 +254,17 @@ class FPersistentManager{
     public static function postCommentsList(Post $post){
 
         $result = FComment::commentList($post);
+
+        return $result;
+    }
+
+    /**
+     * return a list of comments belong to a post, without banned comments
+     * @return array 
+     */
+    public static function postCommentsListNotBanned(Post $post){
+
+        $result = FComment::commentListNotBanned($post);
 
         return $result;
     }
