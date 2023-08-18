@@ -9,8 +9,11 @@ class CUser{
     public static function isLogged(){
         $logged = false;
 
-        if(session_status() == PHP_SESSION_NONE){
-            USession::getInstance();
+        if(UCookie::isSet('PHPSESSID')){
+            if(session_status() == PHP_SESSION_NONE){
+                USession::getInstance();
+            }
+
         }
         //user element is for set the session
         if(USession::isSetSessionElement('user')){
