@@ -12,6 +12,7 @@ $classDirs = array(
     __DIR__ . '\Foundation',
     __DIR__ . '\Control',
     __DIR__ . '\View',
+    __DIR__ . '\Utility'
 );
 
 new \iRAP\Autoloader\Autoloader($classDirs);
