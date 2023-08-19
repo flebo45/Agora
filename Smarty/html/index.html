@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale-1.0">
-    <title>{literal}{$title}{/literal}</title>
+    <title>{$title}</title>
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="Img/A.png">
@@ -18,7 +18,7 @@
     <nav>
         <div class="container">
             <h2 class="log">
-                {literal}{$siteName}{/literal}
+                {$siteName}
             </h2>
             <div class="search-bar">
                 <i class ="uil uil-search"></i>
@@ -41,8 +41,8 @@
                     <img src="Img/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4> {literal}{$user->getUsername()}{/literal} </h4>
-                    <p class="text-muted">{literal}{$user->getUserDescripition()}{/literal}
+                    <h4> {$user->getUsername()} </h4>
+                    <p class="text-muted">{$user->getUserDescripition()}
                     </p>
                 </div>
             </a>
@@ -55,7 +55,7 @@
                     <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> Explore
                 </label>
                 <a class="menu-items tex-bold" id="notification">
-                    <span> <i class="uil uil-bell"><small class="notification-count">{literal}{$notificationCount}{/literal}</small></i></span> Notification
+                    <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> Notification
                     <!----------------NOTIFICATION POPUP------------------------>
                     <div class="notification-popup">
                         <div>
@@ -63,8 +63,8 @@
                                 <img src="Img/A.png" alt="photo">
                             </div>
                             <div class="notification-body">
-                                <b>{literal}{$notificationUser}{/literal}</b> <-Action made by him
-                                <small class="text-muted">{literal}{$notificationTime}{/literal}</small>
+                                <b>{$notificationUser}</b> <-Action made by him
+                                <small class="text-muted">{$notificationTime}</small>
                             </div>
                         </div>
                     </div>
@@ -102,15 +102,15 @@
                                 <img src="Img/A.png" alt="img">
                             </div>
                             <div class="ingo">
-                                <h3>{literal}{$postTitle}{/literal}</h3>
-                                <small>{literal}{$postTime}{/literal}</small>
+                                <h3>{$postTitle}</h3>
+                                <small>{$postTime}</small>
                             </div>
                         </div>
                     </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
                         <p><b>{$user->getUdername()}</b> test <span class="harsh-tag">freestar
-                        {literal}{$postContent}{/literal}</span></p>
+                        {$postContent}</span></p>
                     </div>
                     <div class="photo">
                         <img src="Img/A.png" alt="img">
