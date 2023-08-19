@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">
-    <meta name="viewport" content="width-device-width, initial-scale-1.0">
-    <title> Agora home-page</title>
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>{$title}</title>
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="Img/A.png">
 
     <!-- stylesheet -->
+    {literal}
     <link rel="stylesheet" href="style.css">
+    {/literal}
 </head>
 <body>
     <nav>
         <div class="container">
             <h2 class="log">
-                Agora
+                {$siteName}
             </h2>
             <div class="search-bar">
                 <i class ="uil uil-search"></i>
@@ -39,21 +41,21 @@
                     <img src="Img/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4> Agora </h4>
-                    <p class="text-muted">{$user->getUsername()}
+                    <h4> {$user->getUsername()} </h4>
+                    <p class="text-muted">{$user->getUserDescripition()}
                     </p>
                 </div>
             </a>
             <!-----------------------SIDE BAR-------------------->
             <div class="sidebar">
-                <a class="menu-items active">
-                    <span> <i class="uil uil-home"></i></span> <h3> Home</h3>
-                </a>
-                <a class="menu-items ">
-                    <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> Explore</h3>
-                </a>
-                <a class="menu-items" id="notification">
-                    <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> Notification</h3>
+                <label class="menu-items active tex-bold">
+                    <span> <i class="uil uil-home"></i></span> Home
+                </label>
+                <label class="menu-items tex-bold">
+                    <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> Explore
+                </label>
+                <a class="menu-items tex-bold" id="notification">
+                    <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> Notification
                     <!----------------NOTIFICATION POPUP------------------------>
                     <div class="notification-popup">
                         <div>
@@ -61,26 +63,23 @@
                                 <img src="Img/A.png" alt="photo">
                             </div>
                             <div class="notification-body">
-                                <b> user name for notification</b> <-Action made by him
-                                <small class="text-muted"> time</small>
+                                <b>{$notificationUser}</b> <-Action made by him
+                                <small class="text-muted">{$notificationTime}</small>
                             </div>
                         </div>
                     </div>
                 </a>
                 <!------------------------END OF NOTIFICATION POP UP------------------->
-                <a class="menu-items">
-                    <button class="btn-transparent" onclick="location.href='bookmark.html'"><i class="uil uil-bookmark"></i></button> <h3> Bookmark</h3>
-                </a>
-                <a class="menu-items">
-                    <button class="btn-transparent" onclick="location.href='profile.html'"> <i class="uil uil-user-circle"></i></button><h3>Profile</h3>
+                <label class="menu-items tex-bold">
+                    <button class="btn-transparent" onclick="location.href='profile.html'"> <i class="uil uil-user-circle"></i></button>Profile
 
-                </a>
-                <a class="menu-items " id="theme">
-                    <span> <i class="uil uil-palette"></i></span> <h3> Theme</h3>
-                </a>
-                <a class="menu-items " >
-                    <span> <i class="uil uil-setting"></i></span> <h3> Setting</h3>
-                </a>
+                </label>
+                <label class="menu-items  tex-bold" id="theme">
+                    <span> <i class="uil uil-palette"></i></span>Theme
+                </label>
+                <label class="menu-items tex-bold " >
+                    <button class="btn-transparent" onclick="location.href='setting.html'"><i class="uil uil-setting"></i> </button>Setting
+                </label>
             </div>
             <!--------------------END OF SIDE BAR----------------->
             <label class="btn btn-primary">create post
@@ -103,29 +102,15 @@
                                 <img src="Img/A.png" alt="img">
                             </div>
                             <div class="ingo">
-                                <h3>TITLE</h3>
-                                <small>time</small>
+                                <h3>{$postTitle}</h3>
+                                <small>{$postTime}</small>
                             </div>
                         </div>
-                        <span class="edit">
-                                <i class="uil uil-ellipsis-h"></i>
-                        </span>
                     </div>
                     <div class="caption ">
-                        <p><b>username</b> test <span class="harsh-tag">
-                        freestar
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla fermentum eros vel sapien vulputate tempus. Vestibulum malesuada fermentum dolor non ultrices. Etiam tincidunt porttitor laoreet. Pellentesque commodo ultricies massa, sed pulvinar odio vulputate vitae. Nullam at diam eget ex gravida sagittis. Phasellus id faucibus ex. Praesent id est leo. Sed tincidunt tristique blandit. Quisque faucibus tellus non venenatis luctus. Suspendisse laoreet ligula est, rutrum lacinia orci vestibulum sit amet. Duis id dapibus sem. Curabitur luctus tellus a orci tincidunt pellentesque. Curabitur vulputate tellus sapien, suscipit ultrices dolor commodo ut. Sed facilisis malesuada maximus.
-
-                        Aenean nec eleifend justo, eu posuere quam. Suspendisse potenti. Ut consequat, neque vitae mollis iaculis, sapien neque imperdiet purus, eget finibus lectus libero a felis. Quisque at nunc pharetra, venenatis dui eu, tincidunt ex. Aenean mattis tempor dui, nec egestas neque commodo ac. Sed viverra sollicitudin feugiat. Nam vitae ante nec massa commodo dignissim.
-
-                        Vivamus faucibus nunc eu quam vestibulum, id tempor purus finibus. Nam accumsan mauris quam, quis aliquet nisl consequat sed. Curabitur euismod accumsan ex commodo varius. Duis pulvinar luctus aliquet. Nullam sollicitudin orci nisl, id gravida mauris dignissim sit amet. Donec ac enim vel ante vulputate sagittis sit amet vitae felis. Maecenas non felis at eros sagittis lobortis sed eu erat. Maecenas malesuada diam metus, vitae aliquam dolor congue sed. Nulla maximus nunc viverra bibendum vestibulum. Duis tellus magna, elementum quis mauris a, euismod pretium elit. Nunc sodales nunc eu odio laoreet dictum nec eget velit. Curabitur scelerisque egestas diam, sit amet venenatis leo condimentum eu. Proin turpis nulla, ornare nec sapien in, tempus vulputate nibh. Vestibulum at enim odio. Nulla et tincidunt lacus. Nulla facilisi.
-
-                        Cras quis facilisis nulla, in rutrum sem. Fusce vestibulum porta leo sed egestas. Donec erat dui, rhoncus at arcu ac, aliquam aliquam erat. Suspendisse et lacus risus. Nulla facilisi. Vestibulum a quam auctor, tincidunt mauris eget, scelerisque tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus nisl nulla, lacinia eu augue sed, tincidunt gravida ex. Praesent nec purus lobortis, congue turpis eget, consectetur ante. Ut eget bibendum nisl, vitae vulputate purus. Vivamus sollicitudin, justo id tempus rutrum, lectus sapien hendrerit nisl, a porta purus nibh eget purus. Curabitur volutpat vestibulum odio, a pellentesque orci venenatis sit amet. Aenean in ligula vel mi ultrices aliquam. Quisque eu lacus non ex egestas consequat eu at dui. Phasellus fermentum rhoncus tincidunt. In sed massa vulputate, cursus metus quis, placerat nulla.
-
-                        Mauris nec euismod mauris. Sed ante lorem, suscipit at mauris non, congue tincidunt metus. Proin urna purus, accumsan vel faucibus quis, dictum a augue. In eleifend non nunc sit amet mattis. Donec sagittis odio quis libero eleifend varius sit amet gravida nulla. Integer mattis bibendum ipsum eget mattis. Cras at ex vestibulum, auctor mi suscipit, vulputate nisi. Aliquam laoreet mauris eget sapien mollis, non pulvinar justo consectetur. Curabitur malesuada erat et lectus semper, id dapibus purus ornare. Curabitur elit enim, laoreet nec nisi eu, tristique egestas ipsum. Nam cursus maximus urna eu sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus eget ligula sit amet tellus molestie commodo. Mauris ac diam dui. Cras elit erat, sollicitudin et quam a, pharetra iaculis est.
-                        Generati 5 paragrafi, 533 parole, 3620 byte di Lorem Ipsum
-</span></p>
+                        <!-- Smarty tag for username -->
+                        <p><b>{$user->getUdername()}</b> test <span class="harsh-tag">freestar
+                        {$postContent}</span></p>
                     </div>
                     <div class="photo">
                         <img src="Img/A.png" alt="img">
@@ -141,8 +126,8 @@
 
                         </div>
 
-                        <div class="bookmark" >
-                            <span><i class="uil uil-bookmark-full"></i></span>
+                        <div class= "interaction-buttons " id="report">
+                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
                         </div>
                     </div>
 
@@ -150,7 +135,8 @@
                         <span><img src="Img/A.png" alt=""></span>
                         <span><img src="Img/A.png" alt=""></span>
                         <span><img src="Img/A.png" alt=""></span>
-                        <p> liked by <b> username</b> and <b> n user </b></p>
+                        <!-- Smarty tag for username -->
+                        <p> liked by <b>{$user->getUsername()}</b> and <b> n user </b></p>
                     </div>
 
                     <div class=" comments text-muted">view all the comment</div>
@@ -251,39 +237,71 @@
                    <i class="uil uil-award"> </i>
                    </div>
                    <div class="writer">
+                        {foreach $topWriters as $writer}
                         <div class="info">
                             <div class="profile-photo">
                                 <img src="Img/A.png" alt="img">
                             </div>
                             <div>
-                                <h5>User</h5>
-                                <p class="text-muted">like</p>
+                                <h5>{$writer.name}</h5>
+                                <p class="text-muted">{$writer.likes}</p>
                             </div>
                         </div>
-
-                       <div class="info">
-                           <div class="profile-photo">
-                               <img src="Img/A.png" alt="img">
-                           </div>
-                           <div>
-                               <h5>User</h5>
-                               <p class="text-muted">like</p>
-                           </div>
-                       </div>
-                       <div class="info">
-                           <div class="profile-photo">
-                               <img src="Img/A.png" alt="img">
-                           </div>
-                           <div>
-                               <h5>User</h5>
-                               <p class="text-muted">like</p>
-                           </div>
-                       </div>
+                        {/foreach}
                    </div>
-               </div>
+                </div>
         </div>
     </div>
 </main>
+
+
+
+
+    <!-----------------REPORT MODAL----------------------------------->
+
+
+    <div class="report">
+        <div class="card">
+            <h2>Report</h2>
+            <h3 class="text-muted">Why are you reporting this post?</h3>
+            <form>
+
+                <div class="report-checkbox">
+                    <input type="checkbox" id="violence" value="violence">
+                    <label for="violence">violence</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="gambling" value="gambling">
+                    <label for="gambling">gambling</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="inappropriate or offending" value="inappropriate or offending">
+                    <label for="inappropriate or offending">inappropriate or offensive</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="suspicious activities" value="suspicious activities">
+                    <label for="suspicious activities">suspicious activities</label>
+                </div>
+                <div class="report-checkbox">
+                    <input type="checkbox" id="pornography" value="pornography">
+                    <label for="pornography">pornography</label>
+                </div>
+                <div>
+                    <h3 class="text-muted">Write a small description why you're reporting this post</h3>
+                    <label>
+                        <textarea class="text-area"></textarea>
+                    </label>
+                </div>
+                <label>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
+                </label>
+            </form>
+        </div>
+    </div>
+
+
+
+
     <!----------------- THEME CUSTOMIZATION---------------------------->
 <div class="customize-theme">
     <div class="card">
@@ -339,29 +357,6 @@
     </div>
 </div>
 <script src="Sidebar.js"></script>
+<script src="report.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
