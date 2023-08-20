@@ -144,17 +144,6 @@ class FEntityManager{
 
     }
 
-    public static function getHomePage(User $user){
-        try{
-
-
-        }catch(Exception $e){
-            echo "ERROR " . $e->getMessage();
-            return null;
-        }
-    
-    }
-
 }
 
 //prendere id da follower, prendere post da ogni follower, metterli in un array, ordinarli per data, farli vedere 

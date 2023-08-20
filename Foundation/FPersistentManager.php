@@ -303,10 +303,20 @@ class FPersistentManager{
     }
 
     public static function loadHomePage(User $user){
-
-        $result = FPost::homePage($user);
-
-        return $result;
+        try{
+            $followedUsers = $user->getFollowedUsers();
+            $allPosts = array();
+            foreach($followedUsers as $u){
+                $posts = FPost::postListNotBanned($u);
+                foreach($posts as $p){
+                    array_push($allPosts, $p);
+                }
+            }
+            return $allPosts;
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return null;
+        }
     }
 
 }

@@ -87,6 +87,10 @@ public function setTime(){
     $this->creation_time = new DateTime("now");
 }
 
+public function getTime(){
+    return $this->creation_time;
+}
+
 public function getUser()
 {
     return $this->user;

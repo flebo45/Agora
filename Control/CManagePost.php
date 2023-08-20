@@ -1,8 +1,5 @@
 <?php
-define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'\Agora\Control\CUser.php');
-require_once(__ROOT__.'\Agora\Entity\EPost.php');
-require_once(__ROOT__.'\Agora\Foundation\FPersistentManager.php');
+;
 /*class CManagePost{
 
     //constructor
@@ -107,7 +104,19 @@ require_once(__ROOT__.'\Agora\Foundation\FPersistentManager.php');
 
 class CManagePost{
 
-    public static function creaPost(){
+    public static function comparePostsByCreationTime($post1, $post2) {
+        $time1 = $post1->getTime();
+        $time2 = $post2->getTime();
+
+        if ($time1 == $time2) {
+            return 0;
+        }
+
+        return ($time1 > $time2) ? -1 : 1;
+    }
+ 
+
+   /* public static function creaPost(){
         if (CUser::isLogged()){
             //crea un nuovo oggetto in VManagePost
             $view = new VManagePost();
@@ -230,7 +239,7 @@ class CManagePost{
     }
 
     static function like()
-    
+    */
 
 
 }
