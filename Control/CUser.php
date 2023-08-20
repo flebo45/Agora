@@ -1,5 +1,5 @@
 <?php
-
+//TODO login, sign, change attributes, logout, profile, home, follow, 
 class CUser{
 
     /**
@@ -13,17 +13,40 @@ class CUser{
             if(session_status() == PHP_SESSION_NONE){
                 USession::getInstance();
             }
-
         }
-        //user element is for set the session
         if(USession::isSetSessionElement('user')){
             $logged = true;
-            //check if banned
+            self::isBanned();
         }
         return $logged;
-
     }
 
 
+    /**
+     * check if the user is banned
+     * @return void
+     */
+    public static function isBanned(){
+        $userId = USession::getSessionElement('user');
+        $pm = FPersistentManager::getInstance();
+            
+        $user = $pm::retriveUser($userId);
+        //$view = new VUser();
 
+        if($user->isBanned()){
+            USession::unsetSession();
+            USession::destroySession();
+            //$view->banPage();
+        }
+        
+    }
+
+    public static function home(){
+        if(CUser::isLogged()){
+            $pm = FPersistentManager::getInstance();
+            //$view = new VUser();
+            
+        }
+
+    }
 }

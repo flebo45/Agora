@@ -302,4 +302,11 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function loadHomePage(User $user){
+
+        $result = FPost::homePage($user);
+
+        return $result;
+    }
+
 }

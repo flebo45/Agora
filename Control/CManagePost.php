@@ -101,6 +101,12 @@ class CManagePost{
         $pm->deletePost($postID);
     }
 
+
+    $pm = FPersistentManager::getInstance();
+
+    $userId = USession::getSessionElement('user');
+
+    $user = $pm::retriveUser($id);
 }
 
 ?>

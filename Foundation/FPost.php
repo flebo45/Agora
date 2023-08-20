@@ -63,6 +63,13 @@ class FPost extends FEntityManager{
 
         return $result;
     }
+
+    public static function homePage(User $user){
+        
+        $fem = FEntityManager::getInstance();
+
+        $id = $user->getId();
+    }
         
     
 
