@@ -28,8 +28,10 @@ class VManagePost{
     public function modify_post($post, $postID, $images){
 
         $this->smarty->assign('post',$post);
+        $this->smarty->assign('postID',$postID);
+        $imageArray=[]
 
     }
 
-    
+
 }

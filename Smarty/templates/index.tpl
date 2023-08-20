@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="eng">
 <head>
     <meta charset="UTF-8">
@@ -109,14 +110,16 @@
                     </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b>{$user->getUdername()}</b> test <span class="harsh-tag">freestar
+                        <p><b>{$user->getUsername()}</b> test <span class="harsh-tag">freestar
                         {$postContent}</span></p>
                     </div>
                     <div class="photo">
-                        <img src="Img/A.png" alt="img">
+                        {foreach $imageArray as $image}
+                        <img src="{$image}" alt="img">
+                        <!--img src="Img/A.png" alt="img">
                         <img src="Img/1.png" alt="img">
                         <img src="Img/A.png" alt="img">
-                        <img src="Img/1.png" alt="img">
+                        <img src="Img/1.png" alt="img"-->
                     </div>
 
                     <div class="action-buttons">
