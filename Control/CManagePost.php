@@ -1,5 +1,5 @@
 <?php
-;
+//TODO 
 /*class CManagePost{
 
     //constructor

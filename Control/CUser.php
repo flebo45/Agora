@@ -1,5 +1,5 @@
 <?php
-//TODO  change attributes, logout, profile, follow, foto profilo, 
+//TODO  change attributes, follow, foto profilo, 
 class CUser{
 
     /**

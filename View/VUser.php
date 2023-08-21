@@ -14,12 +14,12 @@ class VUser{
      * @throws SmartyException
      */
     public function home($image, $result){
-      $pm = FPersistentManager::getInstance();
       if(CUser::isLogged()){
-          $this->smarty->assign('userlogged',"loggato");
-          $u=USession::getSessionElement('user');
-          $user=unserialize($u);
-          $this->smarty->assign('username',$user->getUsername());
+        $pm = FPersistentManager::getInstance();
+        $this->smarty->assign('userlogged',"loggato");
+        $userId = USession::getSessionElement('user');
+        $user = $pm::retriveUser($userId);
+        $this->smarty->assign('username',$user->getUsername());
       }
       else{
           $this->smarty->assign('userlogged','nouser');
@@ -48,7 +48,7 @@ class VUser{
         $this->smarty->assign('array_post_home',$result);
         $this->smarty->display('index.tpl');
 
-}
+    }
 
     /**
      * Funzione che indirizza alla pagina con il form di login.
@@ -90,6 +90,9 @@ class VUser{
                         $typeImg[] = $im[0]->getType();
                         $pic64Img[] =  $im[0]->getImageFile();
                     }
+                }
+            }
+        }
     }
 
     /**
