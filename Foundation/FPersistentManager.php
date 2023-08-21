@@ -302,4 +302,33 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function loadHomePage(User $user){
+        try{
+            $followedUsers = $user->getFollowedUsers();
+            $allPosts = array();
+            foreach($followedUsers as $u){
+                $posts = FPost::postListNotBanned($u);
+                foreach($posts as $p){
+                    array_push($allPosts, $p);
+                }
+            }
+            return $allPosts;
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public static function verifyEmail($email){
+        $result = FUser::verifyEmail('email', $email);
+
+        return $result;
+    }
+
+    public static function verifyUsername($username){
+        $result = FUser::verifyUsername('username', $username);
+
+        return $result;
+    }
+
 }

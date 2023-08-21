@@ -7,21 +7,19 @@ class USession{
      * class for the session, if you want to manipulate the _SESSION superglobal ypu need to use this class
      */
 
-    private static $instance;
+     private static $instance;
 
-    public static function getInstance()
-    {
-        if(Usession::$instance == null){
-            if(isset($_SESSION['instance'])){
-                USession::$instance = $_SESSION['instance'];
-            }
-        }else{
-            session_start();
-            USession::$instance = new USession();
-            $_SESSION['instance'] = USession::$instance;
-        }
-        return USession::$instance;
-    }
+     private function __construct() {
+         session_start();
+     }
+ 
+     public static function getInstance() {
+         if (self::$instance == null) {
+             self::$instance = new USession();
+         }
+ 
+         return self::$instance;
+     }
 
     /**
      * return session status. If you want to check if the session is staretd you can use this

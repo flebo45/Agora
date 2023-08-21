@@ -63,7 +63,4 @@ class FPost extends FEntityManager{
 
         return $result;
     }
-        
-    
-
 }

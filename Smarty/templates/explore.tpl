@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
   <meta charset="UTF-8">

@@ -26,9 +26,16 @@ $user2 = new User("Silvia", "Mastracci", 22, "silvia.mastracci@gmail.com", "silv
 
 $pm::uploadUser($user2);
 
-$user->follow($user2);
+$user2->follow($user);
 
 $pm::uploadUser($user);
+$pm::uploadUser($user2);
+
+$user3 = new User("Emanuele", "Chiodi", 26, "emanuele.chiodi@gmail.com", "chiodo666", "paguroDuroXD");
+$pm::uploadUser($user3);
+$user2->follow($user3);
+
+$pm::uploadUser($user3);
 $pm::uploadUser($user2);
 
 //----------------------------POST-------------------------------------------------
@@ -43,7 +50,18 @@ $post->setUser($user);
 $user->addPost($post);
 
 $pm::uploadPost($post, $user);
+sleep(5);
 
+$postTitle = "Concerto pazzo sgravato";
+$postDescription = "concerto metal saltellante";
+$categoryPost = "Music";
+
+$post2 = new Post($postTitle, $postDescription, $categoryPost);
+
+$post2->setUser($user3);
+$user3->addPost($post2);
+
+$pm::uploadPost($post2, $user3);
 //-------------------------------COMMENTS----------------------------------------------------
 
 $body = "GG vacanza troppo divertente";
