@@ -1,5 +1,5 @@
 <?php
-//TODO  change attributes, logout, profile, follow 
+//TODO  change attributes, logout, profile, follow, foto profilo, 
 class CUser{
 
     /**
@@ -147,6 +147,33 @@ class CUser{
         }
         else{
             header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function logout(){
+        USession::getInstance();
+        USession::unsetSession();
+        USession::destroySession();
+        header('Location: /Agora/User/login');
+    }
+
+    public static function profile(){
+        $view = new VUser();
+        $pm = FPersistentManager::getInstance();
+        if(UServer::getRequestMethod() == "GET") {
+            if(CUser::isLogged()){
+                USession::getInstance();
+
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+                //prendere i dati da user per le view
+                $view->uploadUserInfo($user->getName(), $user->getSurname(),);
+                //caricare imm profilo
+                //caricare i post(caricare anbche immagini post)
+            }
+            else{
+                header('Location: /Agora/User/login');
+            }
         }
     }
 }

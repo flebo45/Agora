@@ -52,6 +52,21 @@ class User
     private $bio;
 
     /**
+    * @ORM\Column(type="text", nullable=true)
+    */
+    private $working;
+
+    /**
+    * @ORM\Column(type="text", nullable=true)
+    */
+    private $studiedAt;
+
+    /**
+    * @ORM\Column(type="text", nullable=true)
+    */
+    private $hobby;
+
+    /**
     * @ORM\Column(type="boolean")
     */
     private $banned = false;
@@ -210,6 +225,33 @@ public function getBio(): ?string
 public function setBio(?string $bio): void
 {
     $this->bio = $bio;
+}
+
+public function setWorking(?string $working): void
+{
+    $this->working = $working;
+}
+
+public function getWorking(){
+    return $this->working;
+}
+
+public function setStudiedAt(?string $studiedAt): void
+{
+    $this->studiedAt = $studiedAt;
+}
+
+public function getStudiedAt(){
+    return $this->studiedAt;
+}
+
+public function setHobby(?string $hobby): void
+{
+    $this->hobby = $hobby;
+}
+
+public function getHobby(){
+    return $this->hobby;
 }
 
 public function isBanned(): bool
