@@ -144,6 +144,19 @@ class FEntityManager{
 
     }
 
+    public static function verifyAttributes($table, $field, $id){
+        try{
+            $dql = "SELECT u.id FROM " . $table . " u WHERE u." . $field . " = :attribute";
+            $query = self::$entityManager->createQuery($dql);
+            $query->setParameter('attribute', $id);
+
+            $result = $query->getResult();
+            return $result;
+        }catch(Exception $e){
+                echo "ERROR " . $e->getMessage();
+                return null;
+            }
+    }
+
 }
 
-//prendere id da follower, prendere post da ogni follower, metterli in un array, ordinarli per data, farli vedere 

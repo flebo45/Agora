@@ -30,6 +30,29 @@ class FUser extends FEntityManager{
         return $result;
     }
 
+    public static function verifyEmail($field, $email){
+
+        $fem = FEntityManager::getInstance();
+        $result = $fem::verifyAttributes(self::getEntityClass(), $field, $email);
+
+        return $result;
+    }
+
+    public static function verifyPassword($field, $hashedPassword){
+
+        $fem = FEntityManager::getInstance();
+        $result = $fem::verifyAttributes(self::getEntityClass(), $field, $hashedPassword);
+
+        return $result;
+    }
+
+    public static function verifyUsername($field, $username){
+        $fem = FEntityManager::getInstance();
+        $result = $fem::verifyAttributes(self::getEntityClass(), $field, $username);
+
+        return $result;
+    }
+    
 
 
 }

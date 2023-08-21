@@ -319,4 +319,16 @@ class FPersistentManager{
         }
     }
 
+    public static function verifyEmail($email){
+        $result = FUser::verifyEmail('email', $email);
+
+        return $result;
+    }
+
+    public static function verifyUsername($username){
+        $result = FUser::verifyUsername('username', $username);
+
+        return $result;
+    }
+
 }
