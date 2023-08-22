@@ -57,6 +57,7 @@ class CUser{
             $postsInHome = $pm::loadHomePage($user);
             if($postsInHome == null){
                 //view della pagina vuota
+                $view->home();
             }else{
                 usort($postsInHome, ['CManagePost', 'comparePostsBycreationTime']);
                 //now $postInHome is modified
@@ -164,17 +165,48 @@ class CUser{
         header('Location: /Agora/User/login');
     }
 
-    public static function profile(){
+    public static function personalProfile(){
         $view = new VUser();
         $pm = FPersistentManager::getInstance();
         if(UServer::getRequestMethod() == "GET") {
             if(CUser::isLogged()){
                 USession::getInstance();
 
-                $userId = USession::getSessionElement('user');
-                $user = $pm::retriveUser($userId);
+                $personalUserId = USession::getSessionElement('user');
+                $personalUser = $pm::retriveUser($personalUserId);
+
+                //post
+                $post= $pm::userPostsList($personalUserId);
                 //prendere i dati da user per le view
-                $view->uploadUserInfo($user->getName(), $user->getSurname(),);
+
+                $view->uploadPersonalUserInfo($personalUser,$post);
+
+                //caricare imm profilo
+                //caricare i post(caricare anbche immagini post)
+            }
+            else{
+                header('Location: /Agora/User/login');
+            }
+        }
+    }
+
+    public static function profile($userId){
+        $view = new VUser();
+        $pm = FPersistentManager::getInstance();
+        if(UServer::getRequestMethod() == "GET") {
+            if(CUser::isLogged()){
+                USession::getInstance();
+
+                $personalUserId = USession::getSessionElement('user');
+                $personalUser = $pm::retriveUser($personalUserId);
+
+                $user = $pm::retriveUser($userId);
+
+                //post
+                $post= $pm::userPostsList($userId);
+                //prendere i dati da user per le view
+
+                $view->uploadUserInfo($user,$personalUser,$post);
                 //caricare imm profilo
                 //caricare i post(caricare anbche immagini post)
             }

@@ -11,7 +11,7 @@
   <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <nav>
@@ -38,14 +38,14 @@
           <img src="Img/A.png" alt=" log in">
         </div>
         <div class ="handle">
-          <h4>{$personalUser->getUsername()}</h4>
+          <h4>{$profileName}</h4>
           <p class="text-muted">@{$profileHandle}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='home.html'"> <i class="uil uil-home"></i></button>Home
+          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button>Home
         </label>
         <label class="menu-items tex-bold">
           <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> Explore
@@ -134,7 +134,7 @@
 
           <div class="liked-by">
             {foreach $likedBy as $user}
-            <span><img src="{$user->profilePhoto()}" alt=""></span>
+            <span><img src="{$user->profilePhoto}" alt=""></span>
             {/foreach}
             <p> liked by {$likedByCount} users</p>
           </div>
@@ -154,35 +154,6 @@
     <!-----------------------right-------------------->
     <div class="right">
       <div class="side-profile">
-        <div class="heading">
-          <div class="profile-photo">
-            <img src="Img/A.png" alt=" log in">
-          </div>
-          <div class ="handle">
-            <h4> {$user->getUsername()} </h4>
-            <p class="text-muted">@{$profileHandle}</p>
-          </div>
-          <div>
-            <h4>{$user->getFollowedUsers()}</h4>
-            <p class="text-muted">
-              followers
-            </p>
-          </div>
-          <div>
-            <h4>{$user->getFollower()}</h4>
-            <p class="text-muted">following</p>
-          </div>
-        </div>
-
-        <button class="btn-primary btn" onclick="toggle(this)">{$followButtonText}</button>
-        <script>
-          function toggle(e) {
-            let txt = e.innerText;
-            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
-          }
-        </script>
-
-
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -239,28 +210,6 @@
         </div>
       </div>
 
-
-        <!--------------------------TOP POST---------------------------->
-        <div class="top-post">
-          <div class="heading">
-            <h4>Top Post</h4>
-            <i class="uil uil-award"> </i>
-          </div>
-
-          {foreach $topPosts as $post}
-          <div class="post">
-            <div class="info">
-                <div class="first-photo">
-                  <img src="Img/A.png" alt="img">
-                </div>
-              <div>
-                <h5>{$post.title}</h5>
-                <p class="text-muted">{$post.likesCount}</p>
-              </div>
-            </div>
-          </div>
-          {/foreach}
-        </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
       </div>
@@ -374,7 +323,7 @@
     </div>
   </div>
 </div>
-<script src="../js/Sidebar.js"></script>
-<script src="../js/report.js"></script>
+<script src="Sidebar.js"></script>
+<script src="report.js"></script>
 </body>
 </html>

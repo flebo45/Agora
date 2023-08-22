@@ -60,8 +60,8 @@ class VUser{
     }
 
 
-    public function profile($image,$user,$bio,$working,$studiedat,$hobby,$arrayPost,$arrayImg){
-        if(isset($image[0])){
+    public function uploadPersonalUserInfo($personalUser,$array_p){
+        /*if(isset($image[0])){
             $this->smarty->assign('type',$image[0]->getType());
             $this->smarty->assign('pic64', base64_decode($image[0]->getimageData()));
         }
@@ -71,19 +71,10 @@ class VUser{
             $type = "image/jpg";
             $this->smarty->assign('type',$type);
             $this->smarty->assign('pic64',$pic64);
-        }
-        $this->smarty->assign('user',$user);
-        $this->smarty->assign('email',$user->getEmail());
-        $this->smarty->assign('work',$user->getWorking());
-        $this->smarty->assign('hobby',$user->getHobby());
-        $this->smarty->assign('bio',$user->getBio());
-        $this->smarty->assign('studiedat',$user->geStudiedAt());
-        if(!is_array($arrayPost)){
-            $array_p = array();
-            $array_p[]= $arrayPost;
-        }
-        else $array_p = $arrayPost;
-        $typeImg=array();
+        }*/
+        $this->smarty->assign('user',$personalUser);
+        
+        /*$typeImg=array();
         $pic64Img=array();
         if(count($arrayImg)!=0) {
             foreach ($arrayImg as $im) {
@@ -108,11 +99,55 @@ class VUser{
             $typeImg[] = "image/png";
         }
         $this->smarty->assign('typeImg',$typeImg);
-        $this->smarty->assign('pic64Img',$pic64Img);
+        $this->smarty->assign('pic64Img',$pic64Img);*/
+        $this->smarty->assign('postList',$array_p);
+        $this->smarty->display('personalProfile.tpl');
+    }
+
+    public function uploadUserInfo($user,$personalUser,$array_p){
+         /*if(isset($image[0])){
+            $this->smarty->assign('type',$image[0]->getType());
+            $this->smarty->assign('pic64', base64_decode($image[0]->getimageData()));
+        }
+        else{
+            $data = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/Agora/smarty/immagine/1.png');
+            $pic64 = base64_encode($data);
+            $type = "image/jpg";
+            $this->smarty->assign('type',$type);
+            $this->smarty->assign('pic64',$pic64);
+        }*/
+        $this->smarty->assign('personalUser',$personalUser);
+        $this->smarty->assign('user',$user);
+        
+        /*$typeImg=array();
+        $pic64Img=array();
+        if(count($arrayImg)!=0) {
+            foreach ($arrayImg as $im) {
+                if($im!=null) {
+                    if(count($im)==1){
+                        $typeImg[] = $im[0]->getType();
+                        $pic64Img[] =  base64_encode($im[0]->getImageFile());
+                    }else{
+                        $typeImg[] = $im[0]->getType();
+                        $pic64Img[] =  $im[0]->getImageFile();
+                    }
+                }else{
+                    $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/Agora/Smarty/immagini/1.png');
+                    $pic64Img[]= base64_encode($data);
+                    $typeImg[] = "image/png";
+                }
+            }
+        }
+        else{
+            $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/Agora/Smarty/immagini/1.png');
+            $pic64Img[] = base64_encode($data);
+            $typeImg[] = "image/png";
+        }
+        $this->smarty->assign('typeImg',$typeImg);
+        $this->smarty->assign('pic64Img',$pic64Img);*/
         $this->smarty->assign('postList',$array_p);
         $this->smarty->display('profile.tpl');
     }
-
 
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login

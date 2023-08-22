@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="eng">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
+  <meta http-equiv="X-UA-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{$pageTitle}</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
@@ -49,13 +49,13 @@
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <a class="menu-items">
-          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
+          <button class="btn-transparent" onclick="location.href='home.html'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
         </a>
         <a class="menu-items ">
           <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
         </a>
         <a class="menu-items" id="notification">
-          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> {$notificationLabel}</h3>
+          <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> <h3> {$notificationLabel}</h3>
           <!----------------NOTIFICATION POPUP------------------------>
           <div class="notification-popup">
             <div>
@@ -348,6 +348,6 @@
     </div>
   </div>
 </div>
-<script src="Sidebar.js"></script>
+<script src="../js/Sidebar.js"></script>
 </body>
 </html>

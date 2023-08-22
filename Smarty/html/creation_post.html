@@ -46,13 +46,13 @@
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <a class="menu-items">
-          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button> <h3> Home</h3>
+          <button class="btn-transparent" onclick="location.href='home.html'"> <i class="uil uil-home"></i></button> <h3> Home</h3>
         </a>
         <a class="menu-items">
           <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> Explore</h3>
         </a>
         <a class="menu-items" id="notification">
-          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> Notification</h3>
+          <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> <h3> Notification</h3>
           <!----------------NOTIFICATION POPUP------------------------>
           <div class="notification-popup">
             <div>
@@ -115,7 +115,7 @@
                 <option value="Sport">Sport</option>
                 <option value="Travel">Travel</option>
                 <option value="Cinema">Cinema</option>
-                <option value="Home">home</option>
+                <option value="Home">Home</option>
               </select>
             </label>
           </div>
@@ -127,7 +127,7 @@
         </form>
 
         <div>
-        <button class="btn btn-primary" onclick="location.href='index.html'">Cancel</button>
+        <button class="btn btn-primary" onclick="location.href='home.html'">Cancel</button>
         </div>
       </div>
     </div>
