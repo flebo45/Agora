@@ -59,7 +59,7 @@ class VUser{
     }
 
 
-    public function profile($image,$user,$bio,$working,$arrayPost,$arrayImg){
+    public function profile($image,$user,$bio,$working,$studiedat,$hobby,$arrayPost,$arrayImg){
         if(isset($image[0])){
             $this->smarty->assign('type',$image[0]->getType());
             $this->smarty->assign('pic64', base64_decode($image[0]->getimageData()));
@@ -73,6 +73,10 @@ class VUser{
         }
         $this->smarty->assign('user',$user);
         $this->smarty->assign('email',$user->getEmail());
+        $this->smarty->assign('work',$user->getWorking());
+        $this->smarty->assign('hobby',$user->getHobby());
+        $this->smarty->assign('bio',$user->getBio());
+        $this->smarty->assign('studiedat',$user->geStudiedAt());
         if(!is_array($arrayPost)){
             $array_p = array();
             $array_p[]= $arrayPost;
