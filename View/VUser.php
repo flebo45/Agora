@@ -54,7 +54,7 @@ class VUser{
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
-    public function showFormLogin(){
+    public function showLoginForm(){
         $this->smarty->display('login.tpl');
     }
 

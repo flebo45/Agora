@@ -36,7 +36,7 @@ class CUser{
         if($user->isBanned()){
             USession::unsetSession();
             USession::destroySession();
-            $view->banPage();
+            $view->loginBan();
         }
         
     }
@@ -60,6 +60,9 @@ class CUser{
                 //now $postInHome is modified
             }
             //pass attributes of the post to the view to show it in the homepage 
+        }
+        else{
+
         }
 
     }
@@ -129,6 +132,7 @@ class CUser{
         if(UServer::getRequestMethod() != 'GET'){
             $pm = FPersistentManager::getInstance();
             $email = $pm::verifyEmail($_POST['email']);
+            $view = new VUser();
             if($email == null){
                 $username = $pm::verifyUsername($_POST['username']);
                 if($username == null){
