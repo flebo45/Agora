@@ -331,4 +331,8 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function verifyPassword($password){
+        $result = FUser::verifyPassword('password', $password);
+    }
+
 }

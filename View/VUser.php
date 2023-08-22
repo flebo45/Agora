@@ -55,6 +55,7 @@ class VUser{
      * @throws SmartyException
      */
     public function showLoginForm(){
+        $this->smarty->assign('siteName', 'Agorà');
         $this->smarty->display('login.tpl');
     }
 

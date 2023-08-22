@@ -11,7 +11,7 @@ class CFrontController{
         array_shift($result);
 
         $controller = "C" . $result[0];
-        $directory = "../Control";
+        $directory = "Control";
         $scanDir = scandir($directory);
 
         if(in_array($controller . ".php", $scanDir)){

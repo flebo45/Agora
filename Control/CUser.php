@@ -1,5 +1,7 @@
 <?php
 //TODO  change attributes, follow, foto profilo, 
+
+//TODO change $_POST[] param in changeCredential() 
 class CUser{
 
     /**
@@ -62,7 +64,8 @@ class CUser{
             //pass attributes of the post to the view to show it in the homepage 
         }
         else{
-
+            header('Content-Type: text/css');
+            header('Location: /Agora/User/login');
         }
 
     }
@@ -88,10 +91,10 @@ class CUser{
         if(UServer::getRequestMethod() != 'GET'){
             $pm = FPersistentManager::getInstance();
             $view = new VUser();
-            $email = $pm::verifyEmail($_POST['email']);
-            if($email != null){
+            $userArr = $pm::verifyUsername($_POST['username']);
+            if($userArr != null){
                 $hashedPassword = hash('sha256', $_POST['password'] );
-                $user = $pm::retriveUser($email);
+                $user = $pm::retriveUser($userArr[0]);
                 if($hashedPassword == $user->getHashedPassword()){
                     if($user->isBanned()){
                         $view->loginBan();
@@ -136,7 +139,7 @@ class CUser{
             if($email == null){
                 $username = $pm::verifyUsername($_POST['username']);
                 if($username == null){
-                    $user = new User($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'], $_POST[-'username'],$_POST['password']);
+                    $user = new User($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'], $_POST['username'],$_POST['password']);
                     $pm::uploadUser($user);
                     header('Location: /Agora/User/login');
                 }
@@ -177,6 +180,70 @@ class CUser{
             }
             else{
                 header('Location: /Agora/User/login');
+            }
+        }
+    }
+
+    public static function changeCredentials(){
+        $pm = FPersistentManager::getInstance();
+        if(UServer::getRequestMethod() == 'POST'){
+            if(CUser::isLogged()){
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+
+                if($_POST['bio'] != null){
+                    $user->setBio($_POST['bio']);
+                }
+
+                if($_POST['work'] != null){
+                    $user->setWorking($_POST['work']);
+                }
+
+                if($_POST['study'] != null){
+                    $user->setStudiedAt($_POST['study']);
+                } 
+
+                if($_POST['hobby'] != null){
+                    $user->setHobby($_POST['hobby']);
+                }
+
+                $pm::uploadUser($user);
+            }
+            else{
+                header ('Location: /Agora/User/login');
+            }
+        }
+    }
+
+    public static function changeUsername(){
+        $pm = FPersistentManager::getInstance();
+        
+        if(UServer::getRequestMethod() == 'POST'){
+            if(CUser::isLogged()){
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+                $probUser = $pm::verifyUsername($_POST['username']);
+                if($probUser == null){
+                    $user->setUsername($_POST['username']);
+                    $pm::uploadUser($user);
+                    header('Location: /Agora/User/home');
+                }
+                else{
+                    $view = new VUser();
+                    $view->errorUsername();
+                }
+            }
+        }
+    }
+
+    public static function changePassword(){
+        $pm = FPersistentManager::getInstance();
+
+        if(UServer::getRequestMethod() == 'POST'){
+            if(CUser::isLogged()){
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+                
             }
         }
     }

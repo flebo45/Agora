@@ -15,7 +15,7 @@
   <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" type="text/css" href="/Agora/Smarty/css/style.css">
 </head>
 <body>
 
@@ -30,9 +30,9 @@
         <h3>{$siteName}</h3>
       </div>
       <!------------FORM PER IL LOG IN------------------------------>
-      <form id="login" class="input-group" action="/login" method="post">
+      <form id="login" class="input-group" action="/Agora/User/login" method="post">
         <label>
-          <input type="text" class="input-field" placeholder="User ID" name="username" required>
+          <input type="text" class="input-field" placeholder="Enter Username" name="username" required>
         </label>
         <label>
           <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
@@ -42,7 +42,7 @@
       <!------------FINE FORM PER IL LOG IN------------------------------>
 
       <!------------FORM PER IL SING UP------------------------------>
-      <form id="register" class="input-group" action="/register" method="post">
+      <form id="register" class="input-group" action="/Agora/User/login" method="post">
         <label>
           <input type="text" class="input-field" placeholder="Full Name" name="full_namea" required>
         </label>

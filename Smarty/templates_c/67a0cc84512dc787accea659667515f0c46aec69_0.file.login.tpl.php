@@ -1,10 +1,39 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 3.1.33, created on 2023-08-22 18:59:59
+  from 'C:\xampp\htdocs\Agora\Smarty\templates\login.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_64e4e98f6f1847_91456741',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '67a0cc84512dc787accea659667515f0c46aec69' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\login.tpl',
+      1 => 1692723532,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_64e4e98f6f1847_91456741 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('error', (($tmp = @$_smarty_tpl->tpl_vars['error']->value)===null||$tmp==='' ? 'ok' : $tmp));
+$_smarty_tpl->_assignInScope('bann', (($tmp = @$_smarty_tpl->tpl_vars['bann']->value)===null||$tmp==='' ? 'false' : $tmp));
+$_smarty_tpl->_assignInScope('errorSize', (($tmp = @$_smarty_tpl->tpl_vars['errorSize']->value)===null||$tmp==='' ? 'ok' : $tmp));
+$_smarty_tpl->_assignInScope('errorType', (($tmp = @$_smarty_tpl->tpl_vars['errorType']->value)===null||$tmp==='' ? 'ok' : $tmp));
+$_smarty_tpl->_assignInScope('errorEmail', (($tmp = @$_smarty_tpl->tpl_vars['errorEmail']->value)===null||$tmp==='' ? 'ok' : $tmp));?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{$pageTitle}</title>
+  <title><?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>
+</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
@@ -22,7 +51,8 @@
           <button type="button" class="toggle-btn" onclick="register()">Register</button>
       </div>
       <div class="tex-bold">
-        <h3>{$siteName}</h3>
+        <h3><?php echo $_smarty_tpl->tpl_vars['siteName']->value;?>
+</h3>
       </div>
       <!------------FORM PER IL LOG IN------------------------------>
       <form id="login" class="input-group" action="/Agora/User/login" method="post">
@@ -60,7 +90,8 @@
 
   </div>
 
-<script> const x = document.getElementById("login");
+<?php echo '<script'; ?>
+> const x = document.getElementById("login");
 const y = document.getElementById("register");
 const z = document.getElementById("btn-log");
 
@@ -76,7 +107,9 @@ function login(){
   z.style.left = "0px"
 }
 
-</script>
+<?php echo '</script'; ?>
+>
 
 </body>
-</html>
+</html><?php }
+}
