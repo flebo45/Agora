@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {assign var='userlogged' value=$userlogged|default:'nouser'}
-<html lang="eng">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">

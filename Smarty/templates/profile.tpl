@@ -38,14 +38,14 @@
           <img src="Img/A.png" alt=" log in">
         </div>
         <div class ="handle">
-          <h4>{$profileName}</h4>
+          <h4>{$personalUser->getUsername()}</h4>
           <p class="text-muted">@{$profileHandle}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button>Home
+          <button class="btn-transparent" onclick="location.href='home.html'"> <i class="uil uil-home"></i></button>Home
         </label>
         <label class="menu-items tex-bold">
           <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> Explore
@@ -91,6 +91,8 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
+
+        { foreach $postList as $post }
         <div class="feed">
           <div class="head">
             <div class="user">
@@ -98,8 +100,8 @@
                 <img src="Img/A.png" alt="img">
               </div>
               <div class="ingo">
-                <h3>{$feedTitle}</h3>
-                <small>{$feedTime}</small>
+                <h3>{$post->getTitle()}</h3>
+                <small>{$post->getTime()}</small>
               </div>
             </div>
             <span id="edit">
@@ -111,7 +113,7 @@
 
 
           <div class="caption">
-            <p><b>{$username}</b> {$feedText}</p>
+            <p><b>{$user->getUsername()}</b> {$post->getDescription()}</p>
           </div>
           <div class="photo">
             {foreach $feedPhotos as $photo}
@@ -132,13 +134,14 @@
 
           <div class="liked-by">
             {foreach $likedBy as $user}
-            <span><img src="{$user.profilePhoto}" alt=""></span>
+            <span><img src="{$user->profilePhoto()}" alt=""></span>
             {/foreach}
             <p> liked by {$likedByCount} users</p>
           </div>
 
           <div class=" comments text-muted">view all the comment</div>
         </div>
+        {/foreach}
         <!----------------END OF FEED------------------------------>
       </div>
       <!----------------END OF FEEDS------------------------------>
@@ -156,17 +159,17 @@
             <img src="Img/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> {$profileName} </h4>
+            <h4> {$user->getUsername()} </h4>
             <p class="text-muted">@{$profileHandle}</p>
           </div>
           <div>
-            <h4>{$followersCount}</h4>
+            <h4>{$user->getFollowedUsers()}</h4>
             <p class="text-muted">
               followers
             </p>
           </div>
           <div>
-            <h4>{$followingCount}</h4>
+            <h4>{$user->getFollower()}</h4>
             <p class="text-muted">following</p>
           </div>
         </div>
@@ -190,7 +193,7 @@
           <div class="bio-body">
             <h5 class="text-bold">Bio</h5>
             <div class="text-muted">
-              <h5>{$profileBio}</h5>
+              <h5>{$user->getBio()}</h5>
             </div>
           </div>
         </div>
@@ -200,7 +203,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Working </h5>
             <div class="text-muted">
-              <h5>{$profileWork}</h5>
+              <h5>{$user->getWorking()}</h5>
             </div>
           </div>
         </div>
@@ -210,7 +213,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Studied at</h5>
             <div class="text-muted">
-              <h5>{$profileEducation}</h5>
+              <h5>{$user->getStudiedAt()}</h5>
             </div>
           </div>
         </div>
@@ -220,7 +223,7 @@
           <div class="bio-body">
             <h5 class="tex-bold">Hobby</h5>
             <div class="text-muted">
-              <h5>{$profileHobby}</h5>
+              <h5>{$user->getHobby()}</h5>
           </div>
           </div>
         </div>
