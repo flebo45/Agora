@@ -80,8 +80,8 @@ class VUser{
         else $array_p = $arrayPost;
         $typeImg=array();
         $pic64Img=array();
-        if(count($array_image)!=0) {
-            foreach ($array_image as $im) {
+        if(count($arrayImg)!=0) {
+            foreach ($arrayImg as $im) {
                 if($im!=null) {
                     if(count($im)==1){
                         $typeImg[] = $im[0]->getType();
@@ -90,10 +90,24 @@ class VUser{
                         $typeImg[] = $im[0]->getType();
                         $pic64Img[] =  $im[0]->getImageFile();
                     }
+                }else{
+                    $data = file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/Agora/Smarty/immagini/1.png');
+                    $pic64Img[]= base64_encode($data);
+                    $typeImg[] = "image/png";
                 }
             }
         }
+        else{
+            $data = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/Agora/Smarty/immagini/1.png');
+            $pic64Img[] = base64_encode($data);
+            $typeImg[] = "image/png";
+        }
+        $this->smarty->assign('typeImg',$typeImg);
+        $this->smarty->assign('pic64Img',$pic64Img);
+        $this->smarty->assign('postList',$array_p);
+        $this->smarty->display('profile.tpl');
     }
+
 
     /**
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
