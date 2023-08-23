@@ -2,6 +2,7 @@
 //TODO  change attributes, follow, foto profilo, 
 
 //TODO change $_POST[] param in changeCredential() 
+//TODO vedere come salvare cose nella registrazione se uno sbaglia email o username 
 class CUser{
 
     /**
@@ -119,42 +120,31 @@ class CUser{
     }
 
     public static function registration(){
-        if(UServer::getRequestMethod() == "GET"){
-            $view = new VUser();
-            if(self::isLogged()){
-                header('Location: /Agora/User/home');
-            }
-            else{
-                $view->showRegistrationForm();
-            }
-        }elseif(UServer::getRequestMethod() == "POST"){
+        if(UServer::getRequestMethod() == "POST"){
             self::checkRegistration();
+        }
+        else{
+            header('Location: /Agora/User/login');
         }
     }
 
     public static function checkRegistration(){
-        if(UServer::getRequestMethod() != 'GET'){
-            $pm = FPersistentManager::getInstance();
-            $email = $pm::verifyEmail($_POST['email']);
-            $view = new VUser();
-            if($email == null){
-                $username = $pm::verifyUsername($_POST['username']);
-                if($username == null){
-                    $user = new User($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'], $_POST['username'],$_POST['password']);
-                    $pm::uploadUser($user);
-                    header('Location: /Agora/User/login');
-                }
-                else{
-                    $view->registrationError("username");
-                }
+        $pm = FPersistentManager::getInstance();
+        $email = $pm::verifyEmail($_POST['email']);
+        $view = new VUser();
+        if($email == null){
+            $username = $pm::verifyUsername($_POST['username']);
+            if($username == null){
+                $user = new User($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'], $_POST['username'],$_POST['password']);
+                $pm::uploadUser($user);
+                header('Location: /Agora/User/login');
             }
             else{
-                $view->registrationError("email");
+                $view->registrationError("username");
             }
-
         }
         else{
-            header('Location: /Agora/User/home');
+            $view->registrationError("email");
         }
     }
 

@@ -42,12 +42,18 @@
       <!------------FINE FORM PER IL LOG IN------------------------------>
 
       <!------------FORM PER IL SING UP------------------------------>
-      <form id="register" class="input-group" action="/Agora/User/login" method="post">
+      <form id="register" class="input-group" action="/Agora/User/registration" method="post">
         <label>
-          <input type="text" class="input-field" placeholder="Full Name" name="full_namea" required>
+          <input type="text" class="input-field" placeholder="Name" name="name" required>
         </label>
         <label>
-          <input type="text" class="input-field" placeholder="User ID" name="username" required>
+          <input type="text" class="input-field" placeholder="Surname" name="surname" required>
+        </label>
+        <label>
+          <input type="text" class="input-field" placeholder="Age" name="age" required>
+        </label>
+        <label>
+          <input type="text" class="input-field" placeholder="Username" name="username" required>
         </label>
         <label>
           <input type="email" class="input-field" placeholder="Email" name="email" required>

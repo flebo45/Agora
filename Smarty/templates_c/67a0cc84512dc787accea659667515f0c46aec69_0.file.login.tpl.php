@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-22 18:59:59
+/* Smarty version 3.1.33, created on 2023-08-23 10:27:34
   from 'C:\xampp\htdocs\Agora\Smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e4e98f6f1847_91456741',
+  'unifunc' => 'content_64e5c2f60c0890_38874768',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '67a0cc84512dc787accea659667515f0c46aec69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\login.tpl',
-      1 => 1692723532,
+      1 => 1692779252,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e4e98f6f1847_91456741 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5c2f60c0890_38874768 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('error', (($tmp = @$_smarty_tpl->tpl_vars['error']->value)===null||$tmp==='' ? 'ok' : $tmp));
 $_smarty_tpl->_assignInScope('bann', (($tmp = @$_smarty_tpl->tpl_vars['bann']->value)===null||$tmp==='' ? 'false' : $tmp));
@@ -67,12 +67,18 @@ $_smarty_tpl->_assignInScope('errorEmail', (($tmp = @$_smarty_tpl->tpl_vars['err
       <!------------FINE FORM PER IL LOG IN------------------------------>
 
       <!------------FORM PER IL SING UP------------------------------>
-      <form id="register" class="input-group" action="/Agora/User/login" method="post">
+      <form id="register" class="input-group" action="/Agora/User/registration" method="post">
         <label>
-          <input type="text" class="input-field" placeholder="Full Name" name="full_namea" required>
+          <input type="text" class="input-field" placeholder="Name" name="name" required>
         </label>
         <label>
-          <input type="text" class="input-field" placeholder="User ID" name="username" required>
+          <input type="text" class="input-field" placeholder="Surname" name="surname" required>
+        </label>
+        <label>
+          <input type="text" class="input-field" placeholder="Age" name="age" required>
+        </label>
+        <label>
+          <input type="text" class="input-field" placeholder="Username" name="username" required>
         </label>
         <label>
           <input type="email" class="input-field" placeholder="Email" name="email" required>
