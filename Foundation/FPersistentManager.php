@@ -229,7 +229,8 @@ class FPersistentManager{
      * @return array
      */
     //TODO verificare se va bene User o mettere solo id
-    public static function userPostsList(User $user){
+    public static function userPostsList(User $user): array
+    {
 
         $result = FPost::postList($user);
 
@@ -240,7 +241,8 @@ class FPersistentManager{
      * return a list of posts belong to an user without banned posts
      * @return array
      */
-    public static function userPostsListNotBanned(User $user){
+    public static function userPostsListNotBanned(User $user): array
+    {
 
         $result = FPost::postListNotBanned($user);
 
@@ -251,7 +253,8 @@ class FPersistentManager{
      * return a list of all comments belong to a post
      * @return array
      */
-    public static function postCommentsList(Post $post){
+    public static function postCommentsList(Post $post): array
+    {
 
         $result = FComment::commentList($post);
 
@@ -262,7 +265,8 @@ class FPersistentManager{
      * return a list of comments belong to a post, without banned comments
      * @return array 
      */
-    public static function postCommentsListNotBanned(Post $post){
+    public static function postCommentsListNotBanned(Post $post): array
+    {
 
         $result = FComment::commentListNotBanned($post);
 
@@ -273,7 +277,8 @@ class FPersistentManager{
      * return a list of all likes of a post
      * @return array
      */
-    public static function postLikeList(Post $post){
+    public static function postLikeList(Post $post): array
+    {
 
         $result = FLike::likeList($post);
 
@@ -284,7 +289,8 @@ class FPersistentManager{
      * return a list of all images of a post
      * @return array
      */
-    public static function postImageList(Post $post){
+    public static function postImageList(Post $post): array
+    {
 
         $result = FImage::imageList($post);
 
@@ -295,14 +301,16 @@ class FPersistentManager{
      * return a list of all the report (for moderator page)
      * @return array 
      */
-    public static function reportedPostList(){
+    public static function reportedPostList(): array
+    {
 
         $result = FReport::reportPostList();
 
         return $result;
     }
 
-    public static function loadHomePage(User $user){
+    public static function loadHomePage(User $user): ?array
+    {
         try{
             $followedUsers = $user->getFollowedUsers();
             $allPosts = array();

@@ -96,12 +96,12 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
-            {foreach $array_post_home as $post}
+                {foreach $arraypostinhome as $post}
                 <div class="feed">
                   <div class="head">
                     <div class="user">
                       <div class="profile-photo">
-                        <img src="Img/A.png" alt="img">
+                        <img src="Img/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
                       </div>
                       <div class="ingo">
                         <h3>{$post->getTitle()}</h3>
@@ -111,12 +111,13 @@
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b>{$user->getUsername()}</b> test <span class="harsh-tag">freestar
-                        {$postContent}</span></p>
+                        <p><b>{$post->getUser()->getUsername()}</b> test <span class="harsh-tag">freestar
+                        {$post->getDescription()}</span></p>
                     </div>
                     <div class="photo">
-                        {foreach $imageArray as $image}
-                        <img src="{$image}" alt="img">
+                        {foreach $post->getImages() as $image}
+                        <img src="{$image->getImageData()}" alt="img">
+                        {/foreach}
                         <!--img src="Img/A.png" alt="img">
                         <img src="Img/1.png" alt="img">
                         <img src="Img/A.png" alt="img">
@@ -127,7 +128,6 @@
                         <div class="interaction-buttons">
                             <span><i class="uil uil-heart"></i> </span>
                             <span><i class="uil uil-comment-dots"></i></span>
-
                         </div>
 
                         <div class= "interaction-buttons " id="report">
@@ -135,16 +135,17 @@
                         </div>
                     </div>
 
-                    <div class="liked-by">
+                    <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
+                        {for $i=0; $i<3;$i++}
                         <span><img src="Img/A.png" alt=""></span>
-                        <span><img src="Img/A.png" alt=""></span>
-                        <span><img src="Img/A.png" alt=""></span>
+                        {/for}
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$user->getUsername()}</b> and <b> n user </b></p>
+                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
                     <div class=" comments text-muted">view all the comment</div>
                 </div>
+                {/foreach}
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>
@@ -241,14 +242,14 @@
                    <i class="uil uil-award"> </i>
                    </div>
                    <div class="writer">
-                        {foreach $topWriters as $writer}
+                        {foreach $topWriters as $writer} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
                             <div class="profile-photo">
-                                <img src="Img/A.png" alt="img">
+                                <img src="Img/A.png" alt="img"> <!--IMMAGINE DI PROFILO-->
                             </div>
                             <div>
-                                <h5>{$writer.name}</h5>
-                                <p class="text-muted">{$writer.likes}</p>
+                                <h5>{$user->getUsername()}</h5>
+                                <p class="text-muted">{$user->getTotlike()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
                             </div>
                         </div>
                         {/foreach}
@@ -360,7 +361,7 @@
         </div>
     </div>
 </div>
-<script src="Sidebar.js"></script>
-<script src="report.js"></script>
+<script src="../js/Sidebar.js"></script>
+<script src="../js/report.js"></script>
 </body>
 </html>

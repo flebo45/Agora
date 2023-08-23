@@ -47,6 +47,7 @@ class CUser{
     /**
      * show the home page of the user
      * if logged show all the posts of the followed user in time order desc
+     * @throws SmartyException
      */
     public static function home(){
         if(CUser::isLogged()){
@@ -58,11 +59,11 @@ class CUser{
             $postsInHome = $pm::loadHomePage($user);
             if($postsInHome == null){
                 //view della pagina vuota
-                $view->home(array(), null);
+                $view->home(null,/*userimg*/);
             }else{
                 usort($postsInHome, ['CManagePost', 'comparePostsBycreationTime']);
                 //now $postInHome is modified
-                $view->home(array(), $postsInHome);
+                $view->home($postsInHome, /*$postsInHome*/);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }

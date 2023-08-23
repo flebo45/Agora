@@ -13,18 +13,18 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($image, $result){
+    public function home($arraypostinhome/*$userimagini*/){
       if(CUser::isLogged()){
         $pm = FPersistentManager::getInstance();
-        $this->smarty->assign('userlogged',"loggato");
+        $this->smarty->assign('user-logged',"loggato");
         $userId = USession::getSessionElement('user');
         $user = $pm::retriveUser($userId);
         $this->smarty->assign('username',$user->getUsername());
       }
       else{
-          $this->smarty->assign('userlogged','nouser');
+          $this->smarty->assign('user-logged','nouser');
       }
-      $typeImg = array();
+      /*$typeImg = array();
       $pic64Img = array();
       foreach ($image as $im){
           if($im!=null){
@@ -44,8 +44,8 @@ class VUser{
           }
       }
         $this->smarty->assign('typeImg',$typeImg);
-        $this->smarty->assign('pic64Img',$pic64Img);
-        $this->smarty->assign('array_post_home',$result);
+        $this->smarty->assign('pic64Img',$pic64Img);*/
+        $this->smarty->assign('array_post_home',$arraypostinhome);
         $this->smarty->display('home.tpl');
 
     }
