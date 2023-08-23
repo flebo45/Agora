@@ -49,10 +49,10 @@
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <a class="menu-items">
-          <button class="btn-transparent" onclick="location.href='home.html'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
         </a>
         <a class="menu-items ">
-          <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
         </a>
         <a class="menu-items" id="notification">
           <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> <h3> {$notificationLabel}</h3>
@@ -70,20 +70,21 @@
           </div>
         </a>
         <!------------------------END OF NOTIFICATION POP UP------------------->
-        <a class="menu-items">
-          <span><i class="uil uil-user-circle"></i></span> <h3>{$profileLabel}</h3>
-        </a>
+        <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"><i class="uil uil-user-circle"></i></button> Profile
+        </label>
         <a class="menu-items " id="theme">
           <span> <i class="uil uil-palette"></i></span> <h3> {$themeLabel}</h3>
         </a>
-        <a class="menu-items " >
-          <span> <i class="uil uil-setting"></i></span> <h3> {$settingLabel}</h3>
-        </a>
+        <label class="menu-items tex-bold" >
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+        </label>
+      </div>
       </div>
       <!--------------------END OF SIDE BAR----------------->
       <label
               class="btn btn-primary">{$createPostLabel}
-        <button class="btn-transparent" onclick="location.href='creation-post.html'"></button>
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
       </label>
     </div>
 

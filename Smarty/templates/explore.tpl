@@ -47,7 +47,7 @@
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button> Home
+          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> Home
         </label>
         <label class="menu-items active tex-bold">
           <span> <i class="uil uil-compass"></i></span> Explore
@@ -69,20 +69,20 @@
         </a>
         <!------------------------END OF NOTIFICATION POP UP------------------->
         <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='profile.html'"><i class="uil uil-user-circle"></i></button> Profile
+          <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"><i class="uil uil-user-circle"></i></button> Profile
         </label>
         <label class="menu-items tex-bold" id="theme">
           <span> <i class="uil uil-palette"></i></span> Theme
         </label>
         <label class="menu-items tex-bold " >
           <span> <i class="uil uil-setting"></i></span> Setting
-          <button class="btn-transparent" onclick="location.href='setting.html'"></button>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"></button>
         </label>
       </div>
       <!--------------------END OF SIDE BAR----------------->
       <label
               class="btn btn-primary">Create post
-        <button class="btn-transparent" onclick="location.href='creation-post.html'"></button>
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
       </label>
     </div>
 

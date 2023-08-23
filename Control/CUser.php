@@ -178,6 +178,9 @@ class CUser{
                 header('Location: /Agora/User/login');
             }
         }
+        else{
+            header('Location: /Agora/User/home');
+        }
     }
 
     public static function profile($userId){

@@ -50,10 +50,10 @@
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
         <a class="menu-items">
-          <button class="btn-transparent" onclick="location.href='index.html'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
         </a>
         <a class="menu-items ">
-          <button class="btn-transparent" onclick="location.href='explore.html'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
         </a>
         <a class="menu-items" id="notification">
           <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> {$notificationLabel}</h3>
@@ -84,7 +84,7 @@
       <!--------------------END OF SIDE BAR----------------->
       <label
               class="btn btn-primary">{$createPostLabel}
-        <button class="btn-transparent" onclick="location.href='creation-post.html'"></button>
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
       </label>
     </div>
 
