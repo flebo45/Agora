@@ -43,7 +43,7 @@
                 </div>
                 <div class ="handle">
                     <h4> {$user->getUsername()} </h4>
-                    <p class="text-muted">{$user->getUserDescripition()}
+                    <p class="text-muted">{$user->getName()}
                     </p>
                 </div>
             </a>
@@ -96,18 +96,19 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
+            {foreach $array_post_home as $post}
                 <div class="feed">
-                    <div class="head">
-                        <div class="user">
-                            <div class="profile-photo">
-                                <img src="Img/A.png" alt="img">
-                            </div>
-                            <div class="ingo">
-                                <h3>{$postTitle}</h3>
-                                <small>{$postTime}</small>
-                            </div>
-                        </div>
+                  <div class="head">
+                    <div class="user">
+                      <div class="profile-photo">
+                        <img src="Img/A.png" alt="img">
+                      </div>
+                      <div class="ingo">
+                        <h3>{$post->getTitle()}</h3>
+                        <small>{$post->getTime()}</small>
+                      </div>
                     </div>
+                  </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
                         <p><b>{$user->getUsername()}</b> test <span class="harsh-tag">freestar

@@ -46,7 +46,7 @@ class VUser{
         $this->smarty->assign('typeImg',$typeImg);
         $this->smarty->assign('pic64Img',$pic64Img);
         $this->smarty->assign('array_post_home',$result);
-        $this->smarty->display('index.tpl');
+        $this->smarty->display('home.tpl');
 
     }
 

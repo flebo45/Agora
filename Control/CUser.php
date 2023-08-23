@@ -58,15 +58,15 @@ class CUser{
             $postsInHome = $pm::loadHomePage($user);
             if($postsInHome == null){
                 //view della pagina vuota
-                $view->home();
+                $view->home(array(), null);
             }else{
                 usort($postsInHome, ['CManagePost', 'comparePostsBycreationTime']);
                 //now $postInHome is modified
+                $view->home(array(), $postsInHome);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }
         else{
-            header('Content-Type: text/css');
             header('Location: /Agora/User/login');
         }
 

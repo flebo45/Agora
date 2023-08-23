@@ -93,7 +93,7 @@
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
 
-        { foreach $postList as $post }
+        {foreach $postList as $post}
         <div class="feed">
           <div class="head">
             <div class="user">
