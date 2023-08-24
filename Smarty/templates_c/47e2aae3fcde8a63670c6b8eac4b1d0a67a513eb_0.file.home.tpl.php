@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
+<?php
+/* Smarty version 3.1.33, created on 2023-08-24 19:26:33
+  from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_64e792c9428c51_50812120',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
+      1 => 1692897404,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_64e792c9428c51_50812120 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,11 +34,15 @@
     <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
     <!-- stylesheet -->
-    {literal}
+    
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
-    {/literal}
-    <script src="/Agora/Smarty/js/Sidebar.js"></script>
-    <script src="/Agora/Smarty/js/report.js"></script>
+    
+    <?php echo '<script'; ?>
+ src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
 </head>
 <body>
     <nav>
@@ -44,8 +71,10 @@
                     <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4> {$username} </h4>
-                    <p class="text-muted">{$name}
+                    <h4> <?php echo $_smarty_tpl->tpl_vars['username']->value;?>
+ </h4>
+                    <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+
                     </p>
                 </div>
             </a>
@@ -83,7 +112,11 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
-                {foreach $arraypostinhome as $post}
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arraypostinhome']->value, 'post');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
+?>
                 <div class="feed">
                   <div class="head">
                     <div class="user">
@@ -91,15 +124,19 @@
                         <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
                       </div>
                       <div class="ingo">
-                        <h3>{$post->getTitle()}</h3>
-                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+                        <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+</h3>
+                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
+</small>
                       </div>
                     </div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
-                        {$post->getDescription()}</span></p>
+                        <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+</b><span class="harsh-tag">
+                        <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
+</span></p>
                     </div>
                     <div class="photo">
                         <!--img src="Img/A.png" alt="img">
@@ -120,16 +157,27 @@
                     </div>
 
                     <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
-                        {for $i=0; $i<3;$i++}
+                        <?php
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);
+$_smarty_tpl->tpl_vars['i']->value = 0;
+if ($_smarty_tpl->tpl_vars['i']->value < 3) {
+for ($_foo=true;$_smarty_tpl->tpl_vars['i']->value < 3; $_smarty_tpl->tpl_vars['i']->value++) {
+?>
                         <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
-                        {/for}
+                        <?php }
+}
+?>
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+                        <p> liked by <b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
                     <div class=" comments text-muted">view all the comment</div>
                 </div>
-                {/foreach}
+                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>
@@ -226,17 +274,26 @@
                    <i class="uil uil-award"> </i>
                    </div>
                    <div class="writer">
-                        {foreach $topWriters as $writer} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
+                        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topWriters']->value, 'writer');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['writer']->value) {
+?> <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
                             <div class="profile-photo">
                                 <img src="Img/A.png" alt="img"> <!--IMMAGINE DI PROFILO-->
                             </div>
                             <div>
-                                <h5>{$user->getUsername()}</h5>
-                                <p class="text-muted">{$user->getTotlike()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
+                                <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+</h5>
+                                <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getTotlike();?>
+</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
                             </div>
                         </div>
-                        {/foreach}
+                        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                    </div>
                 </div>
         </div>
@@ -346,4 +403,5 @@
     </div>
 </div>
 </body>
-</html>
+</html><?php }
+}

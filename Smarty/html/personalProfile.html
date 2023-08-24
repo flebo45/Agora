@@ -4,83 +4,74 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title>{$pageTitle}</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <title>personalUser</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="Img/A.png">
+  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="../css/style.css">
+  {literal}
+  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  {/literal}
+  <script src="/Agora/Smarty/js/Sidebar.js"></script>
+  <script src="/Agora/Smarty/js/report.js"></script>
 </head>
 <body>
-<nav>
-  <div class="container">
-    <h2 class="log">{$siteName}</h2>
-    <div class="search-bar">
-      <i class ="uil uil-search"></i>
-      <label>
-        <input type ="search" placeholder="search for post or users">
-      </label>
-    </div>
-    <div class="profile-photo">
-      <img src="Img/A.png" alt="">
-    </div>
-  </div>
-</nav>
+    <nav>
+        <div class="container">
+            <h2 class="log">
+                Agorà
+            </h2>
+            <div class="search-bar">
+                <i class ="uil uil-search"></i>
+                <label>
+                    <input type ="search" placeholder="search for post or users">
+                </label>
+            </div>
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/2.png" alt="">
+                </div>
+        </div>
+    </nav>
 <!-----------------------MAIN-------------------->
 <main>
-  <div class="container">
-    <!-----------------------left-------------------->
-    <div class="left">
-      <a class="profile">
-        <div class="profile-photo">
-          <img src="Img/A.png" alt=" log in">
+    <div class="container">
+        <!-----------------------left-------------------->
+        <div class="left">
+            <a class="profile">
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                </div>
+                <div class ="handle">
+                    <h4> {$username} </h4>
+                    <p class="text-muted">{$name}
+                    </p>
+                </div>
+            </a>
+            <!-----------------------SIDE BAR-------------------->
+            <div class="sidebar">
+              <label class="menu-items tex-bold">
+                <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button>Home
+              </label>
+              <label class="menu-items tex-bold">
+                <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
+              </label>
+       
+              <label class="menu-items active tex-bold">
+                <span><i class="uil uil-user-circle"></i></span> Profile
+              </label>
+              <label class="menu-items tex-bold" id="theme">
+                <span> <i class="uil uil-palette"></i></span>Theme
+              </label>
+              <label class="menu-items tex-bold" >
+                <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+              </label>
         </div>
-        <div class ="handle">
-          <h4>{$profileName}</h4>
-          <p class="text-muted">@{$profileHandle}</p>
-        </div>
-      </a>
-      <!-----------------------SIDE BAR-------------------->
-      <div class="sidebar">
-        <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button>Home
+        <!--------------------END OF SIDE BAR----------------->
+        <label class="btn btn-primary">create post
+          <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
         </label>
-        <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
-        </label>
-        <a class="menu-items" id="notification">
-          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> Notification</h3>
-          <!----------------NOTIFICATION POPUP------------------------>
-          <div class="notification-popup">
-            <div>
-              <div class="profile-photo">
-                <img src="Img/A.png" alt="photo">
-              </div>
-              <div class="notification-body">
-                <b> user name for notification</b> <-Action made by him
-                <small class="text-muted"> time</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        <!------------------------END OF NOTIFICATION POP UP------------------->
-        <label class="menu-items active tex-bold">
-          <span><i class="uil uil-user-circle"></i></span> Profile
-        </label>
-        <label class="menu-items tex-bold" id="theme">
-          <span> <i class="uil uil-palette"></i></span>Theme
-        </label>
-        <label class="menu-items tex-bold" >
-          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
-        </label>
-      </div>
-      <!--------------------END OF SIDE BAR----------------->
-      <label
-              class="btn btn-primary">create post
-              <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
-      </label>
     </div>
 
 
@@ -91,61 +82,57 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
+                {foreach $arraypostinhome as $post}
+                <div class="feed">
+                  <div class="head">
+                    <div class="user">
+                      <div class="profile-photo">
+                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
+                      </div>
+                      <div class="ingo">
+                        <h3>{$post->getTitle()}</h3>
+                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="caption ">
+                        <!-- Smarty tag for username -->
+                        <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
+                        {$post->getDescription()}</span></p>
+                    </div>
+                    <div class="photo">
+                        <!--img src="Img/A.png" alt="img">
+                        <img src="Img/1.png" alt="img">
+                        <img src="Img/A.png" alt="img">
+                        <img src="Img/1.png" alt="img"-->
+                    </div>
 
-        { foreach $postList as $post }
-        <div class="feed">
-          <div class="head">
-            <div class="user">
-              <div class="profile-photo">
-                <img src="Img/A.png" alt="img">
-              </div>
-              <div class="ingo">
-                <h3>{$post->getTitle()}</h3>
-                <small>{$post->getTime()}</small>
-              </div>
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><i class="uil uil-heart"></i> </span>
+                            <span><i class="uil uil-comment-dots"></i></span>
+                        </div>
+
+                        <div class= "interaction-buttons " id="report">
+                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
+                        </div>
+                    </div>
+
+                    <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
+                        {for $i=0; $i<3;$i++}
+                        <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
+                        {/for}
+                        <!-- Smarty tag for username -->
+                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+                    </div>
+
+                    <div class=" comments text-muted">view all the comment</div>
+                </div>
+                {/foreach}
+                <!----------------END OF FEED------------------------------>
             </div>
-            <span id="edit">
-              <button class="btn btn-transparent"><i class="uil uil-ellipsis-h"></i></button>
-                        </span>
-          </div>
-
-
-
-
-          <div class="caption">
-            <p><b>{$user->getUsername()}</b> {$post->getDescription()}</p>
-          </div>
-          <div class="photo">
-            {foreach $feedPhotos as $photo}
-            <img src="{$photo}" alt="img">
-            {/foreach}
-          </div>
-
-          <div class="action-buttons">
-            <div class="interaction-buttons">
-              <span><i class="uil uil-heart"></i> </span>
-              <span><i class="uil uil-comment-dots"></i></span>
-            </div>
-
-            <div class= "interaction-buttons " id="report">
-                <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
-            </div>
-          </div>
-
-          <div class="liked-by">
-            {foreach $likedBy as $user}
-            <span><img src="{$user->profilePhoto}" alt=""></span>
-            {/foreach}
-            <p> liked by {$likedByCount} users</p>
-          </div>
-
-          <div class=" comments text-muted">view all the comment</div>
+            <!----------------END OF FEEDS------------------------------>
         </div>
-        {/foreach}
-        <!----------------END OF FEED------------------------------>
-      </div>
-      <!----------------END OF FEEDS------------------------------>
-    </div>
 
     <!-----------------------END OF MIDDLE---------------------------->
 
@@ -195,24 +182,12 @@
             <h5 class="tex-bold">Hobby</h5>
             <div class="text-muted">
               <h5>{$user->getHobby()}</h5>
-          </div>
-          </div>
-        </div>
-
-        <div class="bio">
-          <i class="uil uil-plane-departure"></i>
-          <div class="bio-body">
-            <h5 class="tex-bold">Living in </h5>
-            <div class="text-muted">
-              <h5>{$profileLocation}</h5>
             </div>
           </div>
         </div>
       </div>
 
       <!----------------------END OF DESCRIPTION--------------------->
-
-      </div>
     </div>
 </main>
 
@@ -316,14 +291,12 @@
         {foreach $background as $bg}
         <div class="bg-{ $bg.id } {if $bg.active}active{/if}">
           <span></span>
-          <h5>{ $bg.name }</h5>
+          <h5>{$bg.name}</h5>
         </div>
         {/foreach}
       </div>
     </div>
   </div>
 </div>
-<script src="Sidebar.js"></script>
-<script src="report.js"></script>
 </body>
 </html>

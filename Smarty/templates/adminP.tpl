@@ -10,7 +10,7 @@
   <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
 </head>
 <body>
   <nav>

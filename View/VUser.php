@@ -13,17 +13,14 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($arraypostinhome/*$userimagini*/){
-      if(CUser::isLogged()){
-        $pm = FPersistentManager::getInstance();
+    public function home($user, $arraypostinhome/*$userimagini*/){
+        
         $this->smarty->assign('user-logged',"loggato");
-        $userId = USession::getSessionElement('user');
-        $user = $pm::retriveUser($userId);
+        $this->smarty->assign('arraypostinhome',$arraypostinhome);
         $this->smarty->assign('username',$user->getUsername());
-      }
-      else{
-          $this->smarty->assign('user-logged','nouser');
-      }
+        $this->smarty->assign('name', $user->getName());
+      
+      
       /*$typeImg = array();
       $pic64Img = array();
       foreach ($image as $im){
@@ -45,7 +42,6 @@ class VUser{
       }
         $this->smarty->assign('typeImg',$typeImg);
         $this->smarty->assign('pic64Img',$pic64Img);*/
-        $this->smarty->assign('array_post_home',$arraypostinhome);
         $this->smarty->display('home.tpl');
 
     }
@@ -59,7 +55,10 @@ class VUser{
         $this->smarty->display('login.tpl');
     }
 
-
+    /**
+     * Funzione che indirizza alla pagina con il form di login.
+     * @throws SmartyException
+     */
     public function uploadPersonalUserInfo($personalUser,$array_p){
         /*if(isset($image[0])){
             $this->smarty->assign('type',$image[0]->getType());
@@ -72,7 +71,10 @@ class VUser{
             $this->smarty->assign('type',$type);
             $this->smarty->assign('pic64',$pic64);
         }*/
+        $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('user',$personalUser);
+        $this->smarty->assign('username',$personalUser->getUsername());
+        $this->smarty->assign('name', $personalUser->getName());
         
         /*$typeImg=array();
         $pic64Img=array();
@@ -104,6 +106,10 @@ class VUser{
         $this->smarty->display('personalProfile.tpl');
     }
 
+    /**
+     * Funzione che indirizza alla pagina con il form di login.
+     * @throws SmartyException
+     */
     public function uploadUserInfo($user,$personalUser,$array_p){
          /*if(isset($image[0])){
             $this->smarty->assign('type',$image[0]->getType());

@@ -320,6 +320,7 @@ class FPersistentManager{
                     array_push($allPosts, $p);
                 }
             }
+            usort($allPosts, ['CManagePost', 'comparePostsByCreationTime']);
             return $allPosts;
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();

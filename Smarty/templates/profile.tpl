@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title>{$pageTitle}</title>
+  <title>userPage</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
 </head>
 <body>
 <nav>

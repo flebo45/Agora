@@ -11,14 +11,14 @@
   <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
 </head>
 <body>
 
 
 <nav>
   <div class="container">
-    <h2 class="log">{$siteName}</h2>
+    <h2 class="log">Agorà</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -41,7 +41,7 @@
         </div>
         <div class ="handle">
           <h4> {$title} </h4>
-          <p class="text-muted">{$user->getUsername()}</p>
+          <p class="text-muted">{$}</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->

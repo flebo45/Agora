@@ -59,11 +59,11 @@ class CUser{
             $postsInHome = $pm::loadHomePage($user);
             if($postsInHome == null){
                 //view della pagina vuota
-                $view->home(null,/*userimg*/);
+                $view->home($user, null,/*userimg*/);
             }else{
                 usort($postsInHome, ['CManagePost', 'comparePostsBycreationTime']);
                 //now $postInHome is modified
-                $view->home($postsInHome, /*$postsInHome*/);
+                $view->home($user, $postsInHome, /*$postsInHome*/);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }
@@ -167,7 +167,7 @@ class CUser{
                 $personalUser = $pm::retriveUser($personalUserId);
 
                 //post
-                $post= $pm::userPostsList($personalUserId);
+                $post= $pm::userPostsList($personalUser);
                 //prendere i dati da user per le view
 
                 $view->uploadPersonalUserInfo($personalUser,$post);
@@ -197,7 +197,7 @@ class CUser{
                 $user = $pm::retriveUser($userId);
 
                 //post
-                $post= $pm::userPostsList($userId);
+                $post= $pm::userPostsList($user);
                 //prendere i dati da user per le view
 
                 $view->uploadUserInfo($user,$personalUser,$post);
