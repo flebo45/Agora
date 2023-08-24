@@ -10,7 +10,9 @@ class USession{
      private static $instance;
 
      private function __construct() {
-         session_start();
+        $ses_exp = 2592000; // 30 days in seconds
+        session_set_cookie_params($ses_exp);
+        session_start();
      }
  
      public static function getInstance() {

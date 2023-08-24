@@ -13,13 +13,13 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($user, $arraypostinhome/*$userimagini*/){
+    public function home($user, $arraypostinhome/*$userimagini*/ /*$colorLabel, $backgroundLabel*/){
         
         $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('arraypostinhome',$arraypostinhome);
-        $this->smarty->assign('username',$user->getUsername());
-        $this->smarty->assign('name', $user->getName());
-      
+        $this->smarty->assign('user', $user);
+        //$this->smarty->assign('colorLabel', $colorLabel);
+        //$this->smarty->assign('backgroundLabel', $backgroundLabel);
       
       /*$typeImg = array();
       $pic64Img = array();

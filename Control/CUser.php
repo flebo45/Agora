@@ -57,13 +57,24 @@ class CUser{
             $userId = USession::getSessionElement('user');
             $user = $pm::retriveUser($userId);
             $postsInHome = $pm::loadHomePage($user);
+
+            /**if(USession::isSetSessionElement('colorLabel')){
+                $colorLabel = USession::getSessionElement('colorLabel');
+            }else{
+                $colorLabel = 'white';
+            }
+            if(USession::isSetSessionElement('backgroundLabel')){
+                $backgroundLabel = USession::getSessionElement('backgroundLabel');
+            }else{
+                $backgroundLabel = 'red';
+            }**/
+            
             if($postsInHome == null){
                 //view della pagina vuota
-                $view->home($user, null,/*userimg*/);
+            $view->home($user, null/*userimg*/ /*$colorLabel, $backgroundLabel*/);
             }else{
-                usort($postsInHome, ['CManagePost', 'comparePostsBycreationTime']);
                 //now $postInHome is modified
-                $view->home($user, $postsInHome, /*$postsInHome*/);
+            $view->home($user, $postsInHome, /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }
@@ -106,6 +117,9 @@ class CUser{
                         if(USession::getSessionStatus() == PHP_SESSION_NONE){
                             USession::getInstance();
                             USession::setSessionElement('user', $user->getId());
+                            //set color for text and background
+                            //USession::setSessionElement('colorLabel', 'black');
+                            //USession::setSessionElement('backgroundLabel', 'red');
                             header('Location: /Agora/User/home');
                         }
                     }
@@ -199,10 +213,16 @@ class CUser{
                 //post
                 $post= $pm::userPostsList($user);
                 //prendere i dati da user per le view
-
+                if($personalUser->getId() == $user->getId()){
+                    header('Location: /Agora/User/personalProfile');
+                }else{
+                      
                 $view->uploadUserInfo($user,$personalUser,$post);
                 //caricare imm profilo
                 //caricare i post(caricare anbche immagini post)
+                
+                }
+              
             }
             else{
                 header('Location: /Agora/User/login');

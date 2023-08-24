@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-24 19:26:33
+/* Smarty version 3.1.33, created on 2023-08-24 23:35:15
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e792c9428c51_50812120',
+  'unifunc' => 'content_64e7cd13e79047_35418686',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1692897404,
+      1 => 1692912913,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e792c9428c51_50812120 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e7cd13e79047_35418686 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -42,6 +42,9 @@ function content_64e792c9428c51_50812120 (Smarty_Internal_Template $_smarty_tpl)
 >
     <?php echo '<script'; ?>
  src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="/Agora/Smarty/js/index.js"><?php echo '</script'; ?>
 >
 </head>
 <body>
@@ -71,9 +74,9 @@ function content_64e792c9428c51_50812120 (Smarty_Internal_Template $_smarty_tpl)
                     <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4> <?php echo $_smarty_tpl->tpl_vars['username']->value;?>
+                    <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
  </h4>
-                    <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['name']->value;?>
+                    <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
 
                     </p>
                 </div>
@@ -368,39 +371,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <h3>Aa</h3>
             </div>
          </div>
-
-
-<!-----------------------PRIMARY COLORS------------------------>
-        <div class="color">
-            <h4>Color</h4>
-            <div class="choose-color">
-                <span class="color-1 active"></span>
-                <span class="color-2"></span>
-                <span class="color-3"></span>
-                <span class="color-4"></span>
-                <span class="color-5"></span>
-            </div>
-        </div>
-
-<!----------------------------BACKGROUND COLORS----------------------->
-        <div class="background">
-            <h4>Background</h4>
-            <div class="choose-bg">
-                <div class="bg-1 active">
-                    <span></span>
-                    <h5>Light</h5>
-                </div>
-                <div class="bg-2">
-                    <span></span>
-                    <h5>Dim</h5>
-                </div>
-                <div class="bg-3">
-                    <span></span>
-                    <h5> Lights Out</h5>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html><?php }

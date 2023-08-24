@@ -312,4 +312,12 @@ public function addLike(ELike $like): void
         return $this->reports;
     }
 
+    public function getFollowerNumber(){
+        return count($this->getFollower());
+    }
+
+    public function getFollowedNumber(){
+        return count($this->getFollowedUsers());
+    }
+
 }

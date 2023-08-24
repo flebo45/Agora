@@ -16,6 +16,7 @@
     {/literal}
     <script src="/Agora/Smarty/js/Sidebar.js"></script>
     <script src="/Agora/Smarty/js/report.js"></script>
+    <script src="/Agora/Smarty/js/index.js"></script>
 </head>
 <body>
     <nav>
@@ -44,8 +45,8 @@
                     <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4> {$username} </h4>
-                    <p class="text-muted">{$name}
+                    <h4> {$user->getUsername()} </h4>
+                    <p class="text-muted">{$user->getName()}
                     </p>
                 </div>
             </a>
@@ -311,39 +312,6 @@
                 <h3>Aa</h3>
             </div>
          </div>
-
-
-<!-----------------------PRIMARY COLORS------------------------>
-        <div class="color">
-            <h4>Color</h4>
-            <div class="choose-color">
-                <span class="color-1 active"></span>
-                <span class="color-2"></span>
-                <span class="color-3"></span>
-                <span class="color-4"></span>
-                <span class="color-5"></span>
-            </div>
-        </div>
-
-<!----------------------------BACKGROUND COLORS----------------------->
-        <div class="background">
-            <h4>Background</h4>
-            <div class="choose-bg">
-                <div class="bg-1 active">
-                    <span></span>
-                    <h5>Light</h5>
-                </div>
-                <div class="bg-2">
-                    <span></span>
-                    <h5>Dim</h5>
-                </div>
-                <div class="bg-3">
-                    <span></span>
-                    <h5> Lights Out</h5>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </body>
 </html>
