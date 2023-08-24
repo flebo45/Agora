@@ -84,7 +84,7 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
-                {foreach $arraypostinhome as $post}
+                {foreach $arrayPostInHome as $post}
                 <div class="feed">
                   <div class="head">
                     <div class="user">
@@ -102,12 +102,18 @@
                         <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
                         {$post->getDescription()}</span></p>
                     </div>
-                    <div class="photo">
-                        <!--img src="Img/A.png" alt="img">
-                        <img src="Img/1.png" alt="img">
-                        <img src="Img/A.png" alt="img">
-                        <img src="Img/1.png" alt="img"-->
-                    </div>
+                    
+                    {if $post->getImages()->count() === 0}
+                        
+                    {else}
+                        <div class="photo">
+                        {foreach from=$post->getImages() item=i}
+                            <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+                        </div>
+                        {/foreach}
+                    {/if}
+
+                        
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">

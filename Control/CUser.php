@@ -56,7 +56,10 @@ class CUser{
 
             $userId = USession::getSessionElement('user');
             $user = $pm::retriveUser($userId);
-            $postsInHome = $pm::loadHomePage($user);
+            $arrayHome = $pm::loadHomePage($user);  //array containing posts and images
+
+            $postsInHome = $arrayHome['posts'];
+            $imagesOfPosts = $arrayHome['images'];
 
             /**if(USession::isSetSessionElement('colorLabel')){
                 $colorLabel = USession::getSessionElement('colorLabel');
@@ -71,10 +74,10 @@ class CUser{
             
             if($postsInHome == null){
                 //view della pagina vuota
-            $view->home($user, null/*userimg*/ /*$colorLabel, $backgroundLabel*/);
+            $view->home($user, null, null/*userimg*/ /*$colorLabel, $backgroundLabel*/);
             }else{
                 //now $postInHome is modified
-            $view->home($user, $postsInHome, /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
+            $view->home($user, $postsInHome, $imagesOfPosts /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }

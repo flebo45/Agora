@@ -97,7 +97,7 @@ $pm::createLike($like, $post, $user2);
 
 //------------------------------IMAGES---------------------------------------------------------
 
-$imagePost = new Image("name","size","type","imagedata");
+$imagePost = new Image("name","size","image/jpeg","imagedata");
 
 $imagePost->setPost($post);
 $post->addImage($imagePost);

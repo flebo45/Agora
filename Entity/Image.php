@@ -80,8 +80,12 @@ class Image
         return $this->type;
     }
 
-    public function getimageData()
+    public function getImageData()
     {
         return $this->imageData;
+    }
+
+    public function getEncodedData(){
+        return base64_encode(stream_get_contents($this->imageData));
     }
 }

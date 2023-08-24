@@ -321,7 +321,11 @@ class FPersistentManager{
                 }
             }
             usort($allPosts, ['CManagePost', 'comparePostsByCreationTime']);
-            return $allPosts;
+            $allImage = array();
+            foreach($allPosts as $post){
+                $allImage[] = FImage::imageList($post);
+            }
+            return['posts' => $allPosts, 'images' => $allImage];
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();
             return null;
