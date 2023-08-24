@@ -1220,7 +1220,7 @@ MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
     }
 
     body {
-        font-size: 80%;
+        font-size: 60%;
     }
 
     img {
@@ -1237,6 +1237,10 @@ MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
 
     .lg-box .md-box {
         width: 100%;
+    }
+
+    .column{
+        width: calc(50%-20px);
     }
 }
 
@@ -1255,18 +1259,36 @@ MEDIA QUERIES FOR SMALL SCREENS (PHONE)
         gap: 0;
     }
 
+    .container {
+        width: 90%;
+    }
+
     main .container .left {
         grid-column: 3/4;
         position: fixed;
-        top: 3.5rem;
+        top: 5rem;
         bottom: 0;
-        right: 0
+        right: 0;
     }
+
+    main .container .middle .feeds {
+        width: 80%;
+    }
+
+    main .container .left .action-buttons{
+        font-size: 0;
+    }
+
 
     .lg-box .md-box {
         width: 100%;
     }
+
+    .column{
+        width:calc(100%-20px);
+    }
 }
+
 
     /*----------------------NOTIFICATION POPUP-------------------*/
 
@@ -1294,29 +1316,3 @@ MEDIA QUERIES FOR SMALL SCREENS (PHONE)
         width: 92vw;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
