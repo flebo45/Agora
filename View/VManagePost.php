@@ -14,24 +14,21 @@ class VManagePost{
 
     }
 
-    public function savePost(?){
+
+    public function showCreationForm($user){
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('creation_post.tpl');
 
     }
 
-    public function creation_post($postID){
-
-        $this->smarty->assign('postID', $postID);
-        $this->smarty->display(creation_post.tpl);
-
-    }
-
-    public function modify_post($post, $postID, $images){
+    
+    /**public function modify_post($post, $postID, $images){
 
         $this->smarty->assign('post',$post);
         $this->smarty->assign('postID',$postID);
         $imageArray=[]
 
-    }
+    }**/
 
 
 }

@@ -285,6 +285,19 @@ main .container .left .profile{
     position: relative;
 }
 
+.left .sidebar .theme-cust{
+    display:flex;
+    align-items:center;
+    height:4rem;
+    cursor:pointer;
+    transition: all 300ms ease;
+    position: relative;
+}
+
+.left .sidebar .theme-cust:hover{
+    background: var(--color-light);
+}
+
 .left .sidebar .menu-items:hover{
     background: var(--color-light);
 }

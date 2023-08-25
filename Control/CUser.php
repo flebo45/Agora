@@ -178,17 +178,20 @@ class CUser{
             if(CUser::isLogged()){
                 USession::getInstance();
 
-                $personalUserId = USession::getSessionElement('user');
-                $personalUser = $pm::retriveUser($personalUserId);
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
 
                 //post
-                $post= $pm::userPostsList($personalUser);
+                $arrayUser= $pm::userPostsList($user);
                 //prendere i dati da user per le view
+                $posts = $arrayUser['posts'];
+                $imagesOfPosts = $arrayUser['images'];
 
-                $view->uploadPersonalUserInfo($personalUser,$post);
+                $view->uploadPersonalUserInfo($user,$posts, $imagesOfPosts);
 
                 //caricare imm profilo
                 //caricare i post(caricare anbche immagini post)
+                //TODO
             }
             else{
                 header('Location: /Agora/User/login');
@@ -198,7 +201,7 @@ class CUser{
             header('Location: /Agora/User/home');
         }
     }
-//TODO verify that the user exists
+    
     public static function profile($userId){
         $view = new VUser();
         $pm = FPersistentManager::getInstance();
@@ -211,18 +214,22 @@ class CUser{
 
                 $user = $pm::retriveUser($userId);
 
-                //post
-                $post= $pm::userPostsList($user);
-                //prendere i dati da user per le view
-                if($personalUser->getId() == $user->getId()){
-                    header('Location: /Agora/User/personalProfile');
-                }else{
+                if($user != null){
+                    //post
+                    $post= $pm::userPostsList($user);
+                    //prendere i dati da user per le view
+                    if($personalUser->getId() == $user->getId()){
+                        header('Location: /Agora/User/personalProfile');
+                    }else{
                       
-                $view->uploadUserInfo($user,$personalUser,$post);
-                //caricare imm profilo
-                //caricare i post(caricare anbche immagini post)
-                
+                        $view->uploadUserInfo($user,$personalUser,$post);
+                        //caricare imm profilo
+                        //caricare i post(caricare anbche immagini post)
+                    }
+                }else{
+                    header('Location: /Agora/User/home');
                 }
+                
               
             }
             else{

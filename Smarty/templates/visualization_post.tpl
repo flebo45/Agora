@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title>{$pageTitle}</title>
+  <title>post</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="Img/A.png">
+  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -17,7 +17,7 @@
 <nav>
   <div class="container">
     <h2 class="log">
-      {$siteName}
+      Agorà
     </h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
@@ -26,7 +26,7 @@
       </label>
     </div>
     <div class="profile-photo">
-      <img src="Img/2.png" alt="">
+      <img src="/Agora/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -41,52 +41,37 @@
           <img src="Img/A.png" alt=" log in">
         </div>
         <div class ="handle">
-          <h4> {$profileName} </h4>
+          <h4> {$personalUser->getUsername()}</h4>
           <p class="text-muted">
-            @{$profileUsername}
+            {$personalUser->getName()}
           </p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
-        <a class="menu-items">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
-        </a>
-        <a class="menu-items ">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
-        </a>
-        <a class="menu-items" id="notification">
-          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> {$notificationLabel}</h3>
-          <!----------------NOTIFICATION POPUP------------------------>
-          <div class="notification-popup">
-            <div>
-              <div class="profile-photo">
-                <img src="Img/A.png" alt="photo">
-              </div>
-              <div class="notification-body">
-                <b> {$notificationUserName}</b> <-Action made by him
-                <small class="text-muted"> {$notificationTime}</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        <!------------------------END OF NOTIFICATION POP UP------------------->
-        <a class="menu-items">
-          <span><i class="uil uil-user-circle"></i></span> <h3>{$profileLabel}</h3>
-        </a>
-        <a class="menu-items " id="theme">
-          <span> <i class="uil uil-palette"></i></span> <h3> {$themeLabel}</h3>
-        </a>
-        <a class="menu-items " >
-          <span> <i class="uil uil-setting"></i></span> <h3> {$settingLabel}</h3>
-        </a>
-      </div>
-      <!--------------------END OF SIDE BAR----------------->
-      <label
-              class="btn btn-primary">{$createPostLabel}
-        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+      <label class="menu-items active tex-bold">
+          <span> <i class="uil uil-home"></i></span> Home
       </label>
-    </div>
+      <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
+      </label>
+
+      <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
+
+      </label>
+      <label class="tex-bold theme-cust"  id="theme">
+          <span> <i class="uil uil-palette"></i></span>Theme
+      </label>
+      <label class="menu-items tex-bold " >
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+      </label>
+  </div>
+  <!--------------------END OF SIDE BAR----------------->
+  <label class="btn btn-primary">create post
+      <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+  </label>
+</div>
 
 
     <!-----------------------END OF LEFT-------------------->
@@ -193,33 +178,33 @@
             <img src="Img/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> {$profileName} </h4>
+            <h4> {$user->getUsername()} </h4>
             <p class="text-muted">
-              @{$profileUsername}
+              {$user->getName()}
             </p>
           </div>
           <div>
-            <h4> {$followersCount}</h4>
-            <p class="text-muted">{$followersLabel}</p>
+            <h4> {$user->getFollowerNumber()}</h4>
+            <p class="text-muted">Followers</p>
           </div>
           <div>
-            <h4>{$followingCount}</h4>
-            <p class="text-muted">{$followingLabel}</p>
+            <h4>{$user->getFollowedNumber()}</h4>
+            <p class="text-muted">Followed by</p>
           </div>
         </div>
 
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
-          <h6>{$aboutMeLabel}</h6>
+          <h6>About me</h6>
         </div>
 
         <div class="bio">
           <i class="uil uil-chat-bubble-user"></i>
           <div class="bio-body">
-            <h5 class="text-bold">{$bioLabel}</h5>
+            <h5 class="text-bold">{$user->getBio()}</h5>
             <div class="text-muted">
-              <h5>{$bioText}</h5>
+              <h5>Bio</h5>
             </div>
           </div>
         </div>
@@ -227,9 +212,9 @@
         <div class="bio">
           <i class="uil uil-moneybag"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$workingLabel} </h5>
+            <h5 class="tex-bold">{$user->getWorking()}</h5>
             <div class="text-muted">
-              <h5>{$workingText}</h5>
+              <h5>Working</h5>
             </div>
           </div>
         </div>
@@ -237,9 +222,9 @@
         <div class="bio">
           <i class="uil uil-graduation-cap"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$studiedAtLabel}</h5>
+            <h5 class="tex-bold">{$user->getStudiedAt()}</h5>
             <div class="text-muted">
-              <h5>{$studiedAtText}</h5>
+              <h5>Studied At</h5>
             </div>
           </div>
         </div>
@@ -247,19 +232,9 @@
         <div class="bio">
           <i class="uil uil-hourglass"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$hobbyLabel}</h5>
+            <h5 class="tex-bold">{$user->getHobby()}</h5>
             <div class="text-muted">
-              <h5>{$hobbyText}</h5>
-            </div>
-          </div>
-        </div>
-
-        <div class="bio">
-          <i class="uil uil-plane-departure"></i>
-          <div class="bio-body">
-            <h5 class="tex-bold">{$livingInLabel}</h5>
-            <div class="text-muted">
-              <h5>{$livingInText}</h5>
+              <h5>Hobby</h5>
             </div>
           </div>
         </div>

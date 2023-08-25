@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale-1.0">
-  <title>{$pageTitle}</title>
+  <title>Mod</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="Img/A.png">
+  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -15,10 +15,10 @@
 <body>
   <nav>
     <div class="container">
-      <h2>{$siteTitle}</h2>
-      <h2>{$adminTitle}</h2>
+      <h2>Agorà</h2>
+      <h2>{$admin->getUsername()}</h2>
       <div class="profile-photo">
-        <img src="Img/A.png" alt="">
+        <img src="/Agora/Smarty/immagini/A.png" alt="Img">
       </div>
     </div>
   </nav>

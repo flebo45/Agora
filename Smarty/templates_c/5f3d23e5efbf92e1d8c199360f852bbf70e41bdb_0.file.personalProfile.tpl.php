@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 12:20:55
+/* Smarty version 3.1.33, created on 2023-08-25 17:26:36
   from 'C:\xampp\htdocs\Agora\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e88087accfd4_39955086',
+  'unifunc' => 'content_64e8c82c0f2130_40181717',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f3d23e5efbf92e1d8c199360f852bbf70e41bdb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\personalProfile.tpl',
-      1 => 1692958838,
+      1 => 1692976786,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e88087accfd4_39955086 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e8c82c0f2130_40181717 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -131,12 +131,24 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                         <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
 </span></p>
                     </div>
-                    <div class="photo">
-                        <!--img src="Img/A.png" alt="img">
-                        <img src="Img/1.png" alt="img">
-                        <img src="Img/A.png" alt="img">
-                        <img src="Img/1.png" alt="img"-->
-                    </div>
+                    <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
+                        
+                      <?php } else { ?>
+                          <div class="photo">
+                          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
+?>
+                              <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
+" alt="Img">
+                          </div>
+                          <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                      <?php }?>
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">

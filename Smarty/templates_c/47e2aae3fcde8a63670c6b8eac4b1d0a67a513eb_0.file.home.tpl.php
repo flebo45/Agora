@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 12:16:58
+/* Smarty version 3.1.33, created on 2023-08-25 18:02:11
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e87f9a95dec9_84488385',
+  'unifunc' => 'content_64e8d083435161_87307132',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1692958615,
+      1 => 1692979328,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e87f9a95dec9_84488385 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e8d083435161_87307132 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -85,7 +85,7 @@ function content_64e87f9a95dec9_84488385 (Smarty_Internal_Template $_smarty_tpl)
                     <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
 
                 </label>
-                <label class="menu-items  tex-bold" id="theme">
+                <label class="tex-bold theme-cust"  id="theme">
                     <span> <i class="uil uil-palette"></i></span>Theme
                 </label>
                 <label class="menu-items tex-bold " >
@@ -417,6 +417,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 >
 <?php echo '<script'; ?>
  src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/index.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

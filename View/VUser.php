@@ -60,7 +60,7 @@ class VUser{
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
-    public function uploadPersonalUserInfo($personalUser,$array_p){
+    public function uploadPersonalUserInfo($user, $arrayPostInHome, $arrayImagesPosts){
         /*if(isset($image[0])){
             $this->smarty->assign('type',$image[0]->getType());
             $this->smarty->assign('pic64', base64_decode($image[0]->getimageData()));
@@ -73,10 +73,9 @@ class VUser{
             $this->smarty->assign('pic64',$pic64);
         }*/
         $this->smarty->assign('user-logged',"loggato");
-        $this->smarty->assign('user',$personalUser);
-        $this->smarty->assign('username',$personalUser->getUsername());
-        $this->smarty->assign('name', $personalUser->getName());
-        
+        $this->smarty->assign('user',$user);
+        $this->smarty->assign('postList',$arrayPostInHome);
+        $this->smarty->assign('arrayImagesPosts',$arrayImagesPosts);
         /*$typeImg=array();
         $pic64Img=array();
         if(count($arrayImg)!=0) {
@@ -103,7 +102,7 @@ class VUser{
         }
         $this->smarty->assign('typeImg',$typeImg);
         $this->smarty->assign('pic64Img',$pic64Img);*/
-        $this->smarty->assign('postList',$array_p);
+
         $this->smarty->display('personalProfile.tpl');
     }
 

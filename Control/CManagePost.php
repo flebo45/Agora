@@ -114,6 +114,42 @@ class CManagePost{
 
         return ($time1 > $time2) ? -1 : 1;
     }
+
+    public static function createPost(){
+        $pm = FPersistentManager::getInstance();
+        USession::getInstance();
+        $userId = USession::getSessionElement('user');
+        $user = $pm::retriveUser($userId);
+        if(UServer::getRequestMethod() == 'GET'){
+            if(CUser::isLogged()){
+                
+                
+                $view = new VManagePost();
+
+                $view->showCreationForm($user);
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }elseif(UServer::getRequestMethod() == 'POST'){
+            $post = new Post($_POST['title'], $_POST['description'], $_POST['category']);
+            if(isset($_FILES['file']['tmp_name'])){
+                $image = new Image($_FILES['file']['name'], $_FILES['file']['size'], $_FILES['file']['type'], file_get_contents($_FILES['file']['tmp_name']));
+                $post->addImage($image);
+                $image->setPost($post);
+                $user->addPost($post);
+                $post->setUser($user);
+                $pm::uploadPost($post, $user);
+                $pm::uploadImagePost($image, $post);
+            }else{
+                $user->addPost($post);
+                $post->setUser($user);
+                $pm::uploadPost($post, $user);
+            }
+            header('Location: /Agora/User/personalProfile');
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
  
 
    /* public static function creaPost(){

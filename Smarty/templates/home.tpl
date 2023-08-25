@@ -60,7 +60,7 @@
                     <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
 
                 </label>
-                <label class="menu-items  tex-bold" id="theme">
+                <label class="tex-bold theme-cust"  id="theme">
                     <span> <i class="uil uil-palette"></i></span>Theme
                 </label>
                 <label class="menu-items tex-bold " >
@@ -352,5 +352,6 @@
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/Smarty/js/report.js"></script>
+<script src="/Agora/Smarty/js/index.js"></script>
 </body>
 </html>
