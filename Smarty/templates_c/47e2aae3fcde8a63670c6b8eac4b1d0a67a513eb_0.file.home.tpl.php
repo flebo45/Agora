@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 01:02:26
+/* Smarty version 3.1.33, created on 2023-08-25 12:16:58
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e7e1820a68d6_18128498',
+  'unifunc' => 'content_64e87f9a95dec9_84488385',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1692918143,
+      1 => 1692958615,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e7e1820a68d6_18128498 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e87f9a95dec9_84488385 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -37,15 +37,6 @@ function content_64e7e1820a68d6_18128498 (Smarty_Internal_Template $_smarty_tpl)
     
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
     
-    <?php echo '<script'; ?>
- src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="/Agora/Smarty/js/index.js"><?php echo '</script'; ?>
->
 </head>
 <body>
     <nav>
@@ -239,7 +230,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div class="category-body">
                             <h5>Music</h5>
                             <div class="action">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Music'">
                                     Select
                                 </button>
                         </div>
@@ -366,27 +357,67 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
 
-    <!----------------- THEME CUSTOMIZATION---------------------------->
+   <!----------------- THEME CUSTOMIZATION---------------------------->
+
 <div class="customize-theme">
-    <div class="card">
-        <h2>Customize your view</h2>
-        <p class="text-muted">Manage your font size, color and background.</p>
-    <!-------------------------FONT SIZE----------------------------->
-        <div class="font-size">
-            <h2>Font size</h2>
-            <div>
-                <h6>Aa</h6>
-                <div class="choose-size">
-                    <span class="font-size-1"></span>
-                    <span class="font-size-2"></span>
-                    <span class="font-size-3 active"></span>
-                    <span class="font-size-4"></span>
-                    <span class="font-size-5"></span>
-                </div>
-                <h3>Aa</h3>
-            </div>
-         </div>
+<div class="card">
+  <h2>Customize your view</h2>
+  <p class="text-muted">Manage your font size, color and background.</p>
+  <!-------------------------FONT SIZE----------------------------->
+  <div class="font-size">
+    <h2>Font size</h2>
+    <div>
+      <h6>Aa</h6>
+      <div class="choose-size">
+        <span class="font-size-1"></span>
+        <span class="font-size-2"></span>
+        <span class="font-size-3 active"></span>
+        <span class="font-size-4"></span>
+        <span class="font-size-5"></span>
+      </div>
+      <h3>Aa</h3>
+    </div>
+  </div>
+
+
+  <!-----------------------PRIMARY COLORS------------------------>
+  <div class="color">
+    <h4>Color</h4>
+    <div class="choose-color">
+      <span class="color-1 active"></span>
+      <span class="color-2"></span>
+      <span class="color-3"></span>
+      <span class="color-4"></span>
+      <span class="color-5"></span>
+    </div>
+  </div>
+
+  <!----------------------------BACKGROUND COLORS----------------------->
+  <div class="background">
+    <h4>Background</h4>
+    <div class="choose-bg">
+      <div class="bg-1 active">
+        <span></span>
+        <h5>Light</h5>
+      </div>
+      <div class="bg-2">
+        <span></span>
+        <h5>Dim</h5>
+      </div>
+      <div class="bg-3">
+        <span></span>
+        <h5> Lights Out</h5>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

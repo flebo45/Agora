@@ -158,5 +158,19 @@ class FEntityManager{
             }
     }
 
+    public static function objectListAttribute($table, $field, $id){
+        try{
+            $dql = "SELECT e FROM " . $table . " e WHERE  e." .$field . " = :attribute";
+            $query = self::$entityManager->createQuery($dql);
+            $query->setParameter('attribute', $id);
+
+            $result = $query->getResult();
+            return $result;
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return null;
+        }
+    }
+
 }
 

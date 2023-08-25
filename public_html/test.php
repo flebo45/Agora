@@ -11,9 +11,10 @@ $pm = FPersistentManager::getInstance();
 USession::getInstance();
 
 // Test the isLogged() method
+$userRet = $pm::retriveUser(1);
 
 // Simulate a logged-in user
-USession::setSessionElement('user', '1');
+USession::setSessionElement('user', $userRet);
 if (CUser::isLogged()) {
     echo "User is logged in.\n";
 } else {
@@ -22,11 +23,7 @@ if (CUser::isLogged()) {
 
 // Simulate a user not logged in
 //USession::unsetSessionElement('user');
-if (CUser::isLogged()) {
-    echo "User is logged in.\n";
-} else {
-    echo "User is not logged in.\n";
-}
 
-$userId = USession::getSessionElement('user');
-echo $userId;
+
+$user = USession::getSessionElement('user');
+echo $user->getId();

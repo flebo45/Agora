@@ -88,8 +88,6 @@ class CUser{
     }
 
     public static function login(){
-       $pm = FPersistentManager::getInstance();
-
        if(UServer::getRequestMethod() == "GET"){
         if(self::isLogged()){
             header('Location: /Agora/User/home');
@@ -119,7 +117,7 @@ class CUser{
                     else{
                         if(USession::getSessionStatus() == PHP_SESSION_NONE){
                             USession::getInstance();
-                            USession::setSessionElement('user', $user->getId());
+                            USession::setSessionElement('user', $user);
                             //set color for text and background
                             //USession::setSessionElement('colorLabel', 'black');
                             //USession::setSessionElement('backgroundLabel', 'red');
@@ -200,7 +198,7 @@ class CUser{
             header('Location: /Agora/User/home');
         }
     }
-
+//TODO verify that the user exists
     public static function profile($userId){
         $view = new VUser();
         $pm = FPersistentManager::getInstance();
@@ -296,4 +294,24 @@ class CUser{
             }
         }
     }
+
+    public static function category($category){
+        $pm = FPersistentManager::getInstance();
+        if(UServer::getRequestMethod() == 'GET'){
+            if(CUser::isLogged()){
+                $view = new VUser();
+                $posts = $pm::loadPostPerCategory($category);
+                if(! empty($posts)){
+                    $view->category($posts);
+                }else{
+                    header('Location: /Agora/User/home');
+                }
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
 }

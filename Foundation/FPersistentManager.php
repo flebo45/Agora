@@ -346,6 +346,18 @@ class FPersistentManager{
 
     public static function verifyPassword($password){
         $result = FUser::verifyPassword('password', $password);
+
+        return $result;
     }
+
+    public static function loadPostPerCategory($category){
+        $result = FPost::postListCategory($category);
+
+        usort($result,  ['CManagePost', 'comparePostsByCreationTime']);
+
+        return $result;
+    }
+
+
 
 }

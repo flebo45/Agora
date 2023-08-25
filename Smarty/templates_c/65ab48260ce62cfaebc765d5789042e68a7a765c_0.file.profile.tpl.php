@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-24 22:48:59
+/* Smarty version 3.1.33, created on 2023-08-25 12:21:05
   from 'C:\xampp\htdocs\Agora\Smarty\templates\profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e7c23b650194_95525052',
+  'unifunc' => 'content_64e88091294060_76389627',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '65ab48260ce62cfaebc765d5789042e68a7a765c' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\profile.tpl',
-      1 => 1692910134,
+      1 => 1692958844,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e7c23b650194_95525052 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e88091294060_76389627 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -37,12 +37,6 @@ function content_64e7c23b650194_95525052 (Smarty_Internal_Template $_smarty_tpl)
   
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   
-  <?php echo '<script'; ?>
- src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
->
-<?php echo '<script'; ?>
- src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
->
 </head>
 <body>
 <nav>
@@ -377,25 +371,66 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
 <!----------------- THEME CUSTOMIZATION---------------------------->
+
 <div class="customize-theme">
-  <div class="card">
-    <h2>Customize your view</h2>
-    <p class="text-muted">Manage your font size, color and background.</p>
-    <!-------------------------FONT SIZE----------------------------->
-    <div class="font-size">
-      <h2>Font size</h2>
-      <div>
-        <h6>Aa</h6>
-        <div class="choose-size">
-          <span class="font-size-1"></span>
-          <span class="font-size-2"></span>
-          <span class="font-size-3 active"></span>
-          <span class="font-size-4"></span>
-          <span class="font-size-5"></span>
-        </div>
-        <h3>Aa</h3>
+<div class="card">
+  <h2>Customize your view</h2>
+  <p class="text-muted">Manage your font size, color and background.</p>
+  <!-------------------------FONT SIZE----------------------------->
+  <div class="font-size">
+    <h2>Font size</h2>
+    <div>
+      <h6>Aa</h6>
+      <div class="choose-size">
+        <span class="font-size-1"></span>
+        <span class="font-size-2"></span>
+        <span class="font-size-3 active"></span>
+        <span class="font-size-4"></span>
+        <span class="font-size-5"></span>
+      </div>
+      <h3>Aa</h3>
+    </div>
+  </div>
+
+
+  <!-----------------------PRIMARY COLORS------------------------>
+  <div class="color">
+    <h4>Color</h4>
+    <div class="choose-color">
+      <span class="color-1 active"></span>
+      <span class="color-2"></span>
+      <span class="color-3"></span>
+      <span class="color-4"></span>
+      <span class="color-5"></span>
+    </div>
+  </div>
+
+  <!----------------------------BACKGROUND COLORS----------------------->
+  <div class="background">
+    <h4>Background</h4>
+    <div class="choose-bg">
+      <div class="bg-1 active">
+        <span></span>
+        <h5>Light</h5>
+      </div>
+      <div class="bg-2">
+        <span></span>
+        <h5>Dim</h5>
+      </div>
+      <div class="bg-3">
+        <span></span>
+        <h5> Lights Out</h5>
       </div>
     </div>
+  </div>
+</div>
+</div>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

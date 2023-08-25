@@ -63,4 +63,14 @@ class FPost extends FEntityManager{
 
         return $result;
     }
+
+    public static function postListCategory($category){
+        $fem =  FEntityManager::getInstance();
+
+        $field = "category";
+
+        $result = $fem::objectListAttribute(self::getEntityClass(), $field, $category);
+
+        return $result;
+    }
 }
