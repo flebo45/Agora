@@ -165,7 +165,7 @@
                     <div class="category-body">
                         <h5>Trip</h5>
                         <div class="action">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Trip'">
                                 Select
                             </button>
                         </div>
@@ -189,7 +189,7 @@
                         <div class="category-body">
                             <h5>Sport</h5>
                             <div class="action">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Sport'">
                                     Select
                                 </button>
                             </div>
@@ -201,7 +201,7 @@
                         <div class="category-body">
                             <h5>Book</h5>
                             <div class="action">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Book'">
                                     Select
                                 </button>
                             </div>
@@ -213,7 +213,7 @@
                         <div class="category-body">
                             <h5>Photography</h5>
                             <div class="action">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Photography'">
                                     Select
                                 </button>
                             </div>
