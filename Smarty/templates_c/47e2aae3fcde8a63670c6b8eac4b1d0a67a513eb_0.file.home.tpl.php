@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 18:02:11
+/* Smarty version 3.1.33, created on 2023-08-26 20:29:44
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e8d083435161_87307132',
+  'unifunc' => 'content_64ea44989fc4a0_01657072',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1692979328,
+      1 => 1693074581,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e8d083435161_87307132 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ea44989fc4a0_01657072 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -127,8 +127,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
-</b><span class="harsh-tag">
+                        <p><a  href="/Agora/User/profile/<?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> <?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+</a><span class="harsh-tag">
                         <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
 </span></p>
                     </div>
@@ -419,7 +420,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
  src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/index.js"><?php echo '</script'; ?>
+ src="/Agora/Smarty/js/categories.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

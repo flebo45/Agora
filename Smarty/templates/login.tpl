@@ -50,7 +50,7 @@
           <input type="text" class="input-field" placeholder="Surname" name="surname" required>
         </label>
         <label>
-          <input type="text" class="input-field" placeholder="Age" name="age" required>
+          <input type="number" class="input-field" placeholder="Age" name="age" required>
         </label>
         <label>
           <input type="text" class="input-field" placeholder="Username" name="username" required>

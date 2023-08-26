@@ -332,8 +332,9 @@ class FPersistentManager{
             foreach($allPosts as $post){
                 $allImage[] = FImage::imageList($post);
             }
-            return['posts' => $allPosts, 'images' => $allImage];
+            
         }
+        return['posts' => $allPosts, 'images' => $allImage];
     }
 
     /**

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-26 12:54:32
+/* Smarty version 3.1.33, created on 2023-08-26 20:13:36
   from 'C:\xampp\htdocs\Agora\Smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e9d9e8dd4ec7_22031565',
+  'unifunc' => 'content_64ea40d02e0481_54664250',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '67a0cc84512dc787accea659667515f0c46aec69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\login.tpl',
-      1 => 1693047270,
+      1 => 1693072749,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e9d9e8dd4ec7_22031565 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ea40d02e0481_54664250 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('error', (($tmp = @$_smarty_tpl->tpl_vars['error']->value)===null||$tmp==='' ? 'ok' : $tmp));
 $_smarty_tpl->_assignInScope('bann', (($tmp = @$_smarty_tpl->tpl_vars['bann']->value)===null||$tmp==='' ? 'false' : $tmp));
@@ -50,8 +50,7 @@ $_smarty_tpl->_assignInScope('errorEmail', (($tmp = @$_smarty_tpl->tpl_vars['err
           <button type="button" class="toggle-btn" onclick="register()">Register</button>
       </div>
       <div class="tex-bold">
-        <h3><?php echo $_smarty_tpl->tpl_vars['siteName']->value;?>
-</h3>
+        <h3>Agorà</h3>
       </div>
       <!------------FORM PER IL LOG IN------------------------------>
       <form id="login" class="input-group" action="/Agora/User/login" method="post">
@@ -74,7 +73,7 @@ $_smarty_tpl->_assignInScope('errorEmail', (($tmp = @$_smarty_tpl->tpl_vars['err
           <input type="text" class="input-field" placeholder="Surname" name="surname" required>
         </label>
         <label>
-          <input type="text" class="input-field" placeholder="Age" name="age" required>
+          <input type="number" class="input-field" placeholder="Age" name="age" required>
         </label>
         <label>
           <input type="text" class="input-field" placeholder="Username" name="username" required>

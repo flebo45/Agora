@@ -96,7 +96,7 @@
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
+                        <p><a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()}</a><span class="harsh-tag">
                         {$post->getDescription()}</span></p>
                     </div>
                     

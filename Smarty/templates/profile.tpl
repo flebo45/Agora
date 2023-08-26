@@ -40,8 +40,8 @@
                     <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4>{$user->getUsername()}</h4>
-                    <p class="text-muted">{$user->getName()}
+                    <h4>{$personalUser->getUsername()}</h4>
+                    <p class="text-muted">{$personalUser->getName()}
                     </p>
                 </div>
             </a>
