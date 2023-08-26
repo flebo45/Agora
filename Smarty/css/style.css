@@ -1180,22 +1180,22 @@ MEDIA QUERIES FOR BIG SCREENS
 -----------------------------------------------
  */
 
-@media  screen and (max-width: 1200px){
-    .container{
+@media  screen and (max-width: 1200px) {
+    .container {
         width: 96%;
     }
 
-    main .container{
+    main .container {
         grid-template-columns: 10% auto 30%;
-        gap:1rem;
+        gap: 1rem;
     }
 
-    .left{
+    .left {
         width: 10%;
         z-index: 5;
     }
 
-    main .container .left .profile{
+    main .container .left .profile {
         width: 80%;
         font-size: 14px;
     }
@@ -1204,17 +1204,18 @@ MEDIA QUERIES FOR BIG SCREENS
         display: none;
     }
 
-    .left .btn{
+    .left .btn {
         display: none;
     }
-    .customize-theme .card{
-        width:80%;
+
+    .customize-theme .card {
+        width: 80%;
     }
 
-    .lg-box .md-box{
-    width: 100%;
+    .lg-box .md-box {
+        width: 100%;
     }
-
+}
 
 
 /*--------------------------------------------
@@ -1252,9 +1253,6 @@ MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
         width: 100%;
     }
 
-    .column{
-        width: calc(50%-20px);
-    }
 }
 
 /*--------------------------------------------
@@ -1297,35 +1295,4 @@ MEDIA QUERIES FOR SMALL SCREENS (PHONE)
         width: 100%;
     }
 
-    .column{
-        width:calc(100%-20px);
-    }
-}
-
-
-    /*----------------------NOTIFICATION POPUP-------------------*/
-
-    .left .notification-popup{
-        position: absolute;
-        left:-20rem;
-        width: 20rem;
-    }
-
-    .left .notification-popup::before {
-        position: absolute;
-        top:1.3rem;
-        left: calc(20rem - 0.6rem);
-        display: block;
-    }
-
-    main .container .middle{
-        grid-column: 1/3;
-    }
-
-    main .container .right{
-        display: none
-    }
-    .customize-theme .card {
-        width: 92vw;
-    }
 }

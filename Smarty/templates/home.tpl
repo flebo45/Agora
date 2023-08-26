@@ -352,6 +352,6 @@
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/Smarty/js/report.js"></script>
-<script src="/Agora/Smarty/js/index.js"></script>
+<script src="/Agora/Smarty/js/categories.js"></script>
 </body>
 </html>
