@@ -8,11 +8,8 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$idUser = 4;
-$user = $pm::retriveUser($idUser);
+$id = 4;
 
-$posts = $pm::userPostsListNotBanned($user);
+$user = $pm::retriveUser($id);
 
-
-//nelle control mettere una verifica se l'array è null 
-print_r($posts);
+print_r($user->getFollowedNumber());

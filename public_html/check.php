@@ -10,4 +10,6 @@ $pm = FPersistentManager::getInstance();
 
 $email = $pm::verifyUsername('flebo45');
 
-print_r($email);
+$user = $pm::retriveUser($email[0]);
+
+echo $user->getId();

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 12:21:05
+/* Smarty version 3.1.33, created on 2023-08-26 13:03:48
   from 'C:\xampp\htdocs\Agora\Smarty\templates\profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e88091294060_76389627',
+  'unifunc' => 'content_64e9dc14302563_95766148',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '65ab48260ce62cfaebc765d5789042e68a7a765c' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\profile.tpl',
-      1 => 1692958844,
+      1 => 1693047825,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e88091294060_76389627 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e9dc14302563_95766148 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -39,143 +39,158 @@ function content_64e88091294060_76389627 (Smarty_Internal_Template $_smarty_tpl)
   
 </head>
 <body>
-<nav>
-  <div class="container">
-    <h2 class="log">Agorà</h2>
-    <div class="search-bar">
-      <i class ="uil uil-search"></i>
-      <label>
-        <input type ="search" placeholder="search for post or users">
-      </label>
+  <nav>
+    <div class="container">
+      <h2 class="log">Agorà</h2>
+      <div class="search-bar">
+        <i class ="uil uil-search"></i>
+        <label>
+          <input type ="search" placeholder="search for post or users">
+        </label>
+      </div>
+      <div class="profile-photo">
+        <img src="/Agora/Smarty/immagini/2.png" alt="">
+      </div>
     </div>
-    <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/2.png" alt="">
-    </div>
-  </div>
-</nav>
+  </nav>
 <!-----------------------MAIN-------------------->
 <main>
-  <div class="container">
-    <!-----------------------left-------------------->
-    <div class="left">
-      <a class="profile">
-        <div class="profile-photo">
-          <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
-        </div>
-        <div class ="handle">
-          <h4><?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getUsername();?>
+    <div class="container">
+        <!-----------------------left-------------------->
+        <div class="left">
+            <a class="profile">
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                </div>
+                <div class ="handle">
+                    <h4><?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
 </h4>
-          <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getName();?>
-</p>
-        </div>
-      </a>
-      <!-----------------------SIDE BAR-------------------->
-      <div class="sidebar">
-        <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button>Home
-        </label>
-        <label class="menu-items tex-bold">
-          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
-        </label>
-        <label class="menu-items tex-bold">
-              <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
-        </label>
-          <label class="menu-items  tex-bold" id="theme">
-              <span> <i class="uil uil-palette"></i></span>Theme
-          </label>
-          <label class="menu-items tex-bold " >
-              <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
-          </label>
+                    <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
+
+                    </p>
+                </div>
+            </a>
+            <!-----------------------SIDE BAR-------------------->
+            <div class="sidebar">
+              <label class="menu-items tex-bold">
+                <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button>Home
+              </label>
+              <label class="menu-items tex-bold">
+                <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
+              </label>
+              <label class="menu-items tex-bold">
+                <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
+              </label>
+              <label class="menu-items tex-bold" id="theme">
+                <span> <i class="uil uil-palette"></i></span>Theme
+              </label>
+              <label class="menu-items tex-bold" >
+                <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+              </label>
+      </div>
       <!--------------------END OF SIDE BAR----------------->
-      <label
-              class="btn btn-primary">create post
-              <button class="btn-transparent" onclick="location.href='ManagePost/createPost'"></button>
+      <label class="btn btn-primary">create post
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
       </label>
     </div>
 
 
-    <!-----------------------END OF LEFT-------------------->
+  <!-----------------------END OF LEFT-------------------->
 
 
     <!-----------------------middle-------------------->
-    <div class="feeds">
-    <?php
+    <div class="middle">
+      <!----------------FEEDS-------------------------------->
+      <div class="feeds">
+                <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['postList']->value, 'post');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 ?>
-    <div class="feed">
-      <div class="head">
-        <div class="user">
-          <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
-          </div>
-          <div class="ingo">
-            <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+                <div class="feed">
+                  <div class="head">
+                    <div class="user">
+                      <div class="profile-photo">
+                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
+                      </div>
+                      <div class="ingo">
+                        <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
 </h3>
-            <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
+                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
 </small>
-          </div>
-        </div>
-      </div>
-        <div class="caption ">
-            <!-- Smarty tag for username -->
-            <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="caption ">
+                        <!-- Smarty tag for username -->
+                        <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
 </b><span class="harsh-tag">
-            <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
+                        <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
 </span></p>
-        </div>
-        <div class="photo">
-            <!--img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img">
-            <img src="Img/A.png" alt="img">
-            <img src="Img/1.png" alt="img"-->
-        </div>
+                    </div>
+                    <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
+                        
+                      <?php } else { ?>
+                          <div class="photo">
+                          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
+?>
+                              <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
+" alt="Img">
+                          </div>
+                          <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                      <?php }?>
 
-        <div class="action-buttons">
-            <div class="interaction-buttons">
-                <span><i class="uil uil-heart"></i> </span>
-                <span><i class="uil uil-comment-dots"></i></span>
-            </div>
+                    <div class="action-buttons">
+                        <div class="interaction-buttons">
+                            <span><i class="uil uil-heart"></i> </span>
+                            <span><i class="uil uil-comment-dots"></i></span>
+                        </div>
 
-            <div class= "interaction-buttons " id="report">
-                <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
-            </div>
-        </div>
+                        <div class= "interaction-buttons " id="report">
+                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
+                        </div>
+                    </div>
 
-        <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
-            <?php
+                    <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
+                        <?php
 $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);
 $_smarty_tpl->tpl_vars['i']->value = 0;
 if ($_smarty_tpl->tpl_vars['i']->value < 3) {
 for ($_foo=true;$_smarty_tpl->tpl_vars['i']->value < 3; $_smarty_tpl->tpl_vars['i']->value++) {
 ?>
-            <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
-            <?php }
+                        <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
+                        <?php }
 }
 ?>
-            <!-- Smarty tag for username -->
-            <p> liked by <b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+                        <!-- Smarty tag for username -->
+                        <p> liked by <b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
 </b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
-        </div>
+                    </div>
 
-        <div class=" comments text-muted">view all the comment</div>
-    </div>
-    <?php
+                    <div class=" comments text-muted">view all the comment</div>
+                </div>
+                <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-        <!----------------END OF FEED------------------------------>
-      </div>
-      <!----------------END OF FEEDS------------------------------>
-    </div>
+                <!----------------END OF FEED------------------------------>
+            </div>
+            <!----------------END OF FEEDS------------------------------>
+        </div>
 
     <!-----------------------END OF MIDDLE---------------------------->
 
 
 
     <!-----------------------right-------------------->
-    <div class="right">
+  <div class="right">
       <div class="side-profile">
         <div class="heading">
           <div class="profile-photo">

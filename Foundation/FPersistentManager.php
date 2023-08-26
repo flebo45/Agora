@@ -309,9 +309,16 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return an array with all posts and images of the posts belonged to all the followed users of a user
+     * @return array
+    */
     public static function loadHomePage(User $user): ?array
     {
-        try{
+        if($user->getFollowedNumber() === 0){
+            $allPosts = array();
+            $allImage = array();
+        }else{
             $followedUsers = $user->getFollowedUsers();
             $allPosts = array();
             foreach($followedUsers as $u){
@@ -326,10 +333,25 @@ class FPersistentManager{
                 $allImage[] = FImage::imageList($post);
             }
             return['posts' => $allPosts, 'images' => $allImage];
-        }catch(Exception $e){
-            echo "ERROR " . $e->getMessage();
-            return null;
         }
+    }
+
+    /**
+     * return an array with all the post and the images of the posts belonged to an user
+     * @return array
+     */
+    public static function loadUserPage(User $user){
+        $allPosts = FPost::postListNotBanned($user);
+        //if empty $allPosts is an empty array
+        if(count($allPosts) > 0){
+            usort($allPosts, ['CManagePost', 'comparePostsByCreationTime']);
+        }
+        $allImage = array();
+
+        foreach($allPosts as $post){
+            $allImage[] = FImage::imageList($post);
+        }
+        return['posts' => $allPosts, 'images' => $allImage];
     }
 
     public static function verifyEmail($email){
