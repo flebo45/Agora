@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-25 18:07:02
+/* Smarty version 3.1.33, created on 2023-08-26 19:25:15
   from 'C:\xampp\htdocs\Agora\Smarty\templates\creation_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64e8d1a6871731_35064207',
+  'unifunc' => 'content_64ea357b9918a4_29137878',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c0961fa0ec223f764a562f6dd0a44a0bd5d994cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\creation_post.tpl',
-      1 => 1692979620,
+      1 => 1693070470,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e8d1a6871731_35064207 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ea357b9918a4_29137878 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +100,7 @@ function content_64e8d1a6871731_35064207 (Smarty_Internal_Template $_smarty_tpl)
         <div class="tex-bold">
           <h3>New Post</h3>
         </div>
-        <form id="creation-post" action="/Agora/ManagePost/createPost" method="post">
+        <form id="creation-post"  action="/Agora/ManagePost/createPost" enctype="multipart/form-data" method="post">
           <h4 class="tex-bold left-transition" >Title</h4>
           <label for="post-title">
             <input type="text" id="post-title" placeholder="Title" name="title" class="text" required>
@@ -111,7 +111,7 @@ function content_64e8d1a6871731_35064207 (Smarty_Internal_Template $_smarty_tpl)
           </label>
           <div>
             <label class="custom-btn">
-          <input type="file" name="image" id="image-input" class="image-input" accept="image/*">Selec Img</label>
+          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Images</label>
           </div>
           <div>
             <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">Topic</h4>
@@ -127,8 +127,8 @@ function content_64e8d1a6871731_35064207 (Smarty_Internal_Template $_smarty_tpl)
             </label>
           </div>
           <div>
-            <label class=" btn btn-primary">Save
-                <button type="submit" class="btn-transparent" ></button>
+            <label class=" btn btn-primary">
+                <button type="submit" class="btn-transparent" >Save</button>
             </label>
           </div>
         </form>

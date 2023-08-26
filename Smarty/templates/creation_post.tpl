@@ -75,7 +75,7 @@
         <div class="tex-bold">
           <h3>New Post</h3>
         </div>
-        <form id="creation-post" action="/Agora/ManagePost/createPost" method="post">
+        <form id="creation-post"  action="/Agora/ManagePost/createPost" enctype="multipart/form-data" method="post">
           <h4 class="tex-bold left-transition" >Title</h4>
           <label for="post-title">
             <input type="text" id="post-title" placeholder="Title" name="title" class="text" required>
@@ -86,7 +86,7 @@
           </label>
           <div>
             <label class="custom-btn">
-          <input type="file" name="image" id="image-input" class="image-input" accept="image/*">Selec Img</label>
+          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Images</label>
           </div>
           <div>
             <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">Topic</h4>
@@ -102,8 +102,8 @@
             </label>
           </div>
           <div>
-            <label class=" btn btn-primary">Save
-                <button type="submit" class="btn-transparent" ></button>
+            <label class=" btn btn-primary">
+                <button type="submit" class="btn-transparent" >Save</button>
             </label>
           </div>
         </form>

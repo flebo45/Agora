@@ -1,108 +1,20 @@
 <?php
-//TODO 
-/*class CManagePost{
-
-    //constructor
-    public function __construct(){
-
-    }
-
-    //methods
-    public static function showForm(){
-        //verify if User is logged 
-        if(CUser::isLogged()){
-            
-            //call to a view that show the form page
-        }
-        else{
-            //show the homepage of non registered user
-        }
-
-    }
-
-    public function newSketch(){
-        //verify if the user is logged
-      
-        $userID = $_SESSION['userID'];
-
-        //other value are taken by a viewClass 
-
-        //test data
-        $title = 'Title';
-        $body = 'Body';
-        $category = 'Category';
-        $creationDate = date("Y/m/d");
-        $creationTime = date("h:i:sa");
-        $postID = 'postId';
-
-        //data will be stored in the session 
-        //and we call the view to show the sketch
-
-        //$post = new Epost($postID, $title, $body, $category, 0, $userID, null, $creationDate, $creationTime);
-
-        //return $post;
-
-        }
-
-    public function loadPost(){
-            //check if the user is logged
-        //take the data from the _SESSION[] and create EPost obj
-
-        //test data
-        $userID = $_SESSION['userID'];
-        $title = 'Title';
-        $body = 'Body';
-        $category = 'Category';
-        $creationDate = date("Y/m/d");
-        $creationTime = date("h:i:sa");
-        $postID = 'postId';
-
-        $post = new Epost($postID, $title, $body, $category, 0, $userID, null, $creationDate, $creationTime);
-
-        //the post will be stored in the db
-
-        //call to PM
-        $pm = FPersistentManager::getInstance();
-
-        //PM call FPost to compute data and give the result
-        $pm->loadPost($post);
-
-            //else header('')
-    }
-
-    //tasto annulla
-    public function undoSketch(){
-        //check if the user is logged 
-        //call to the view that show the form 
-        // fill the form with the __SESSION data 
-    }
-
-    public function modifyPost($postID){
-        //check if the user is logged
-        //call to PM
-        $pm = FPersistentManager::getInstance();
-
-        //PM call to FPost tho perform query and return Post info
-        $post = $pm->selectPost($postID);
-        //probably we need to serialize and unserialize
-
-        //save the data in the __SESSION
-        //call to the view that show the form that will fill the form
-    }
-
-    public function deletePost($postID){
-        //check if the user is logged
-        //call to PM
-        $pm = FPersistentManager::getInstance();
-
-        $pm->deletePost($postID);
-    }
-
-}*/
 
 
+use Symfony\Component\HttpFoundation\Request;
 
 class CManagePost{
+
+    private static $allowedType = ['image/jpeg', 'image/png', 'image/jpg'];
+    private static $maxSize = 5242880; //5MB
+
+    public static function getAllowedType(){
+        return self::$allowedType;
+    }
+
+    public static function getMaxSize(){
+        return self::$maxSize;
+    }
 
     public static function comparePostsByCreationTime($post1, $post2) {
         $time1 = $post1->getTime();
@@ -131,153 +43,81 @@ class CManagePost{
                 header('Location: /Agora/User/login');
             }
         }elseif(UServer::getRequestMethod() == 'POST'){
+            $view = new VManagePost();
             $post = new Post($_POST['title'], $_POST['description'], $_POST['category']);
-            if(isset($_FILES['file']['tmp_name'])){
-                $image = new Image($_FILES['file']['name'], $_FILES['file']['size'], $_FILES['file']['type'], file_get_contents($_FILES['file']['tmp_name']));
-                $post->addImage($image);
-                $image->setPost($post);
-                $user->addPost($post);
-                $post->setUser($user);
-                $pm::uploadPost($post, $user);
-                $pm::uploadImagePost($image, $post);
-            }else{
-                $user->addPost($post);
-                $post->setUser($user);
-                $pm::uploadPost($post, $user);
-            }
-            header('Location: /Agora/User/personalProfile');
+            $post->setUser($user);
+            $user->addPost($post);
+            $pm::uploadPost($post, $user);
+            //if(isset($_FILES['imageFiles'])){
+                $uploadedImages = $_FILES['imageFile'];
+                foreach($uploadedImages['tmp_name'] as $index => $tmpName){
+                    $file = [
+                        'name' => $uploadedImages['name'][$index],
+                        'type' => $uploadedImages['type'][$index],
+                        'size' => $uploadedImages['size'][$index],
+                        'tmp_name' => $tmpName,
+                        'error' => $uploadedImages['error'][$index]
+                    ];
+            
+                    $checkUploadImage = self::uploadImage($file, $post);
+                    if($checkUploadImage == 'UPLOAD_ERROR_OK'){
+                        $pm::deletePost($post);
+                        $view->uploadFileError('UPLOAD_ERROR_OK');
+                    }
+                    elseif($checkUploadImage == 'TYPE_ERROR'){
+                        $pm::deletePost($post);
+                        $view->uploadFileError('TYPE_ERROR');
+                    }
+                    elseif($checkUploadImage == 'SIZE_ERROR'){
+                        $pm::deletePost($post);
+                        $view->uploadFileError('SIZE_ERROR');
+                    }
+                    else{
+                        $pm::uploadImagePost($checkUploadImage, $post);
+                        header('Location: /Agora/User/personalProfile');
+                    } 
+                }
+            //}
+            
         }else{
             header('Location: /Agora/User/home');
         }
     }
- 
 
-   /* public static function creaPost(){
-        if (CUser::isLogged()){
-            //crea un nuovo oggetto in VManagePost
-            $view = new VManagePost();
-            //richiamo il metodo della view sull'oggetto appena creato in VManagePost
-            $view->creation_post(true, null);
-        }
-        else{
-           // header('Location: /logBook/User/profile');
-        }
 
-    }
-
-    // classe che permette il salvataggio di nuovo post o di una modifica a un post già esistente
-    public static function savePost($postID){
-        //verifica se l'utente è loggato o meno
-        if(CUser::isLogged()){
-            //ottenimento dell'istanza di USession
-            USession::getInstance();
-            //ottenimento dell'istanza di FPersistentManager
-            $pm = FPersistentManager::getInstance();
-            //recupero dell'utentedella sessione
-            $user = unserialize(USession::getSessionElement('user'));
-            //salvataggio nuovo post 
-            if($postID == null){
-                //controllo dei dati: se ci sono dei dati fondamentali forniti dall'HTML
-                //se i dati sono stati forniti correttamente: recupero dati dal modulo
-                //creazione di un oggetto EPost che viene salvato nel db tramite il FPersistentManager
-                //qualcosa se non sono stati inseriti abbastanza dati
-            }
-            //salvataggio di una modifica a un post esistente
-            else{
-                //controllo se i dati essenziali non sono nulli (come titolo,...), se uno dei campi è vuoto chiamiamo il metodo annullaModifiche??
-                //recupero dati dal modulo
-                //recupero del post esistente dal db e aggiornamento del post
-                //gestione delle immagini con metodo upload
-            }
-
-        }
-        //se l'utente non è loggato viene rimandato alla pagina di login/profilo
-        else{
-             // header('Location: /logBook/User/profile');
+    public static function uploadImage($file, $post){
+        $check = self::validateImage($file);
+        if($check[0]){
+            $image = new Image($file['name'], $file['size'], $file['type'], file_get_contents($file['tmp_name']));
+            $post->addImage($image);
+            return $image;
+        }else{
+            return $check[1];
         }
     }
 
-    public static function deletePost($postID){
-        //verifica se l'utente è loggato o meno
-        if(CUser::isLogged()){
-            USession::getInstance();
-            $pm = FPersistentManager::getInstance();
-            //controllo l'esistenza del post con l'ID specificato
-            $exist = $pm->exist("IDpost", $postID, 'FPost');
-            //viene recuperato l'identificativo di 'user' e la sua rappresentazione serializzata viene convertito in un oggetto php
-            //$user contiene un oggetto che rappresenta l'utente
-            $user = unserialize(USession::getSessionElement('user'));
-            //condizione che verifica se il post preso esiste
-            if($exist){
-                //verifica se l'ID dell'utente corrente corrisponde con l'ID dell'autore del post
-                if($user->getUserID() == $pm->getUserByPost($postID)){
-                    //caricamento del post dal sistema e memorizzato nella variabile $post
-                    $post = $pm->load('IDpost', $postID, 'FPost');
-                    //rimozione delle segnalazioni del post
-                    //rimozione delle reazioni/like??
-                    //rimozione dei commenti associati al post
-                    $pm->delete('IDpost', $postID, 'FComment');
-                    //rimozione delle immagini associate al post
-                    $pm->delete('IDpost', $post->getPostID(), 'FImage');
-                    //eliminazione del post
-                    $pm->delete('IDpost', $postID, 'FPost');
+    public static function validateImage($file){
+        if($file['error'] !== UPLOAD_ERR_OK){
+            $error = 'UPLOAD_ERROR_OK';
 
-                    //reindirizzamento al profilo dell'utente
-                    //header('Location: ')
-                }
-                //se l'utente non è l'autore del post reindirizzamento alla homepage
-                else{
-                    //header('Location: /logBook/User/home');
-                }
-            }
-            //se il post non esiste reindirizzamento alla homepage
-            else{
-                //header('Location: /logBook/User/home');
-            }
+            return [false, $error];
         }
-        //se l'utente non è loggato viene rimandato alla pagina di login
-        else{
-            //header('Location: /logBook/User/login');
+
+        if(!in_array($file['type'], self::getAllowedType())){
+            $error = 'TYPE_ERROR';
+
+            return [false, $error];
         }
+
+        if($file['size'] > self::getMaxSize()){
+            $error = 'SIZE_ERROR';
+
+            return [false, $error];
+        }
+
+        return [true, null];
     }
-
-    public static function deleteExistingImage($ID, $postID){
-
-    }
-
-    static function writeComment(?){
-        //verifica se l'utente è loggato
-        if(CUser::isLogged()){
-            //si ottiene un'istanza della classe FPersistentManager
-            $pm = FPersistentManager::getInstance();
-            //verifica se esiste un oggetto di tipo FPost con l'attributo IDpost corrispondente al valore passato come argomento $IDpost
-            $exist = $pm->exist(?, 'FPost');
-            //se FPost corrispondente esiste
-            if($exist){
-                //ottenimento istanza di USession
-                USession::getInstance();
-                $user = unserialize(USession::getSessionElement('user'));
-                //ottenimento del commento 
-                //$content = $_POST['comment'];??
-                if($? != null){
-                    $comment = new EComment(?);
-                    //memorizza l'oggetto commento
-                    $pm->store($comment);
-                }
-            } 
-            //
-            //header('Location: /logBook/Research/postDetail/' . $IDpost);
-        }
-        else{
-            //header('Location: /logBook/User/login');
-        }
-
-    }
-
-    static function like()
-    */
-
-
+  
 }
 ?>
 

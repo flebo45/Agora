@@ -20,7 +20,20 @@ class VManagePost{
         $this->smarty->display('creation_post.tpl');
 
     }
+    
+    public function uploadFileError($error){
+        $this->smarty->assign('errore', $error);
+        $this->smarty->display('errore.tpl');
+    }
 
+    public function prova($a, $b, $c, $d){
+        $this->smarty->assign('titolo', $a);
+        $this->smarty->assign('descrizione', $b);
+        $this->smarty->assign('categoria', $c);
+        $this->smarty->assign('file', $d);
+        $this->smarty->display('errore.tpl');
+
+    }
     
     /**public function modify_post($post, $postID, $images){
 

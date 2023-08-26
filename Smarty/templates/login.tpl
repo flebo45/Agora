@@ -27,7 +27,7 @@
           <button type="button" class="toggle-btn" onclick="register()">Register</button>
       </div>
       <div class="tex-bold">
-        <h3>{$siteName}</h3>
+        <h3>Agorà</h3>
       </div>
       <!------------FORM PER IL LOG IN------------------------------>
       <form id="login" class="input-group" action="/Agora/User/login" method="post">
