@@ -86,7 +86,7 @@
           </label>
           <div>
             <label class="custom-btn">
-          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Images</label>
+          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Img</label>
           </div>
           <div>
             <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">Topic</h4>
