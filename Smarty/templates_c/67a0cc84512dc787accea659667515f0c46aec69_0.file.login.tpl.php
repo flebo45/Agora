@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-28 01:04:59
+/* Smarty version 3.1.33, created on 2023-08-28 01:41:14
   from 'C:\xampp\htdocs\Agora\Smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ebd69b634d09_58824323',
+  'unifunc' => 'content_64ebdf1a4d64f0_27578537',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '67a0cc84512dc787accea659667515f0c46aec69' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\login.tpl',
-      1 => 1693072749,
+      1 => 1693179670,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ebd69b634d09_58824323 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebdf1a4d64f0_27578537 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('error', (($tmp = @$_smarty_tpl->tpl_vars['error']->value)===null||$tmp==='' ? 'ok' : $tmp));
 $_smarty_tpl->_assignInScope('bann', (($tmp = @$_smarty_tpl->tpl_vars['bann']->value)===null||$tmp==='' ? 'false' : $tmp));
@@ -85,14 +85,18 @@ $_smarty_tpl->_assignInScope('errorEmail', (($tmp = @$_smarty_tpl->tpl_vars['err
           <input type="tel" class="input-field" placeholder="Phone" name="phone" required>
         </label>
         <label>
-          <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
+          <input type="password" class="input-field" placeholder="Enter Password" name="password" id="password" required>
         </label>
+        <p id="passwordMatchError" class="error-text" style="display: none;">Password must be at least 8 characters long, containing at least 1 number, 1 uppercase letter, and 1 special character.</p>
         <button type="submit" class="submit-btn" >Register</button>
       </form>
       <!------------FINE FORM PER IL SING UP------------------------------>
     </div>
 
   </div>
+  <?php echo '<script'; ?>
+ src="/Agora/Smarty/js/validatePwd.js"><?php echo '</script'; ?>
+>
 
 <?php echo '<script'; ?>
 > const x = document.getElementById("login");

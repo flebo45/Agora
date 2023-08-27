@@ -62,14 +62,16 @@
           <input type="tel" class="input-field" placeholder="Phone" name="phone" required>
         </label>
         <label>
-          <input type="password" class="input-field" placeholder="Enter Password" name="password" required>
+          <input type="password" class="input-field" placeholder="Enter Password" name="password" id="password" required>
         </label>
+        <p id="passwordMatchError" class="error-text" style="display: none;">Password must be at least 8 characters long, containing at least 1 number, 1 uppercase letter, and 1 special character.</p>
         <button type="submit" class="submit-btn" >Register</button>
       </form>
       <!------------FINE FORM PER IL SING UP------------------------------>
     </div>
 
   </div>
+  <script src="/Agora/Smarty/js/validatePwd.js"></script>
 
 <script> const x = document.getElementById("login");
 const y = document.getElementById("register");
