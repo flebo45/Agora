@@ -22,17 +22,17 @@
       <h3>SETTIINGS <i class="uil uil-setting"></i></h3>
     </div>
     <div class="profile-photo">
-      <img src="Img/2.png" alt="">
+      <img src="../immagini/1.png" alt="">
     </div>
   </div>
 </nav>
 
 <!-- START OF SETTING -->
 <main>
-  <form enctype="multipart/form-data" id="change-info" >
-    <div class="box-setting">
+  <div class="box-setting" id="change-info">
+    <form enctype="multipart/form-data"  >
       <div class="profile-photo">
-        <img src="Img/A.png" alt=" log in">
+        <img src="../immagini/1.png" alt=" log in">
       </div>
       <div>
         <label class="custom-btn btn">
@@ -67,10 +67,8 @@
           </label>
         </div>
       </div>
-    </div>
-  </form>
-  <form id="change-data">
-    <div class="box-setting">
+    </form>
+    <form>
       <h4 class="tex-bold" >UserName</h4>
       <label>
         <input type="text" class="text" placeholder={$personalUser->getUsername()}>
@@ -92,8 +90,8 @@
           <button type="reset" class="btn btn-primary">Delete</button>
         </label>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </main>
 </body>
 </html>
