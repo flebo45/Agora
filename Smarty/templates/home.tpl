@@ -106,7 +106,9 @@
                             </div>
                         {/if}
                         <div class="ingo">
-                            <h3>{$post->getTitle()}</h3>
+                            <div>
+                                <a href="/Agora/User/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
+                            </div>
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
@@ -150,7 +152,7 @@
                         <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
-                    <div class=" comments text-muted">view all the comment</div>
+                    <a href="/Agora/User/profile/" class=" comments text-muted">view all the comment</a>
                 </div>
                 {/foreach}
                 <!----------------END OF FEED------------------------------>

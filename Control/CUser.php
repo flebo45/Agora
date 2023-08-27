@@ -204,7 +204,22 @@ class CUser{
             header('Location: /Agora/User/home');
         }
     }
-    
+
+    public static function visitPost($post){
+        $view = new VPost();
+        $pm = FPersistentManager::getInstance();
+        if(UServer::getInstance()== 'GET'){
+            if(CUser::isLogged()){
+                USession::getInstance();
+                $personalUserID = USession::getSessionElement('User');
+                $personalUser = $pm::retriveUser($personalUserID);
+
+                $post = $pm::retrivePost($post);
+                $view->visualizzationPost($post,$personalUser);
+            }
+        }
+    }
+
     public static function profile($username){
         $view = new VUser();
         $pm = FPersistentManager::getInstance();

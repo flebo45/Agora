@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 18:22:47
+/* Smarty version 3.1.33, created on 2023-08-27 20:25:22
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb78577051d3_49202456',
+  'unifunc' => 'content_64eb9512760c07_28728112',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693153352,
+      1 => 1693160700,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb78577051d3_49202456 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb9512760c07_28728112 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -139,8 +139,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                             </div>
                         <?php }?>
                         <div class="ingo">
-                            <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
-</h3>
+                            <div>
+                                <a href="/Agora/User/<?php echo $_smarty_tpl->tpl_vars['post']->value->getId();?>
+" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+</a>
+                            </div>
                             <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
 </small>
                       </div>
@@ -205,7 +208,7 @@ for ($_foo=true;$_smarty_tpl->tpl_vars['i']->value < 3; $_smarty_tpl->tpl_vars['
 </b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
-                    <div class=" comments text-muted">view all the comment</div>
+                    <a href="/Agora/User/profile/" class=" comments text-muted">view all the comment</a>
                 </div>
                 <?php
 }

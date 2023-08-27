@@ -1,17 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 {assign var='userlogged' value=$userlogged|default:'nouser'}
-<html lang="eng">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
-  <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title>post</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+  <title>home</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  {literal}
+    <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  {/literal}
 </head>
 <body>
 <nav>
@@ -26,16 +28,15 @@
       </label>
     </div>
     <form  action="/Agora/User/logout" method="post">
-                <div>
-                    <button class="btn btn-primary" type="submit">Log out</button>
-                </div>
+      <div>
+        <button class="btn btn-primary" type="submit">Log out</button>
+      </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/2.png" alt="">
+      <img src="/Agora/Smarty/immagini/1.png" alt="">
     </div>
   </div>
 </nav>
-
 
 <main>
   <div class="container">

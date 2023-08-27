@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 17:40:59
+/* Smarty version 3.1.33, created on 2023-08-27 20:52:46
   from 'C:\xampp\htdocs\Agora\Smarty\templates\setting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb6e8b5b9765_31111002',
+  'unifunc' => 'content_64eb9b7eccfc65_74619115',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '34b2dd7e38c35c0a3add68c5ee1a5b96c073fc2e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\setting.tpl',
-      1 => 1693150855,
+      1 => 1693162366,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb6e8b5b9765_31111002 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb9b7eccfc65_74619115 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="eng">
 <head>
@@ -57,22 +57,56 @@ function content_64eb6e8b5b9765_31111002 (Smarty_Internal_Template $_smarty_tpl)
 
 <!-- START OF SETTING -->
 <main>
-  <div class="box-setting" id="change-info">
+  <div class="container">
+    <!-----------------------left-------------------->
+    <div class="left">
+      <!-----------------------SIDE BAR-------------------->
+      <div class="sidebar">
+        <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button>Home
+        </label>
+        <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
+        </label>
+
+        <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
+
+        </label>
+        <label class="tex-bold theme-cust"  id="theme">
+          <span> <i class="uil uil-palette"></i></span>Theme
+        </label>
+        <label class="menu-items active tex-bold " >
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+        </label>
+      </div>
+      <!--------------------END OF SIDE BAR----------------->
+      <label class="btn btn-primary">create post
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+      </label>
+    </div>
+
+
+    <!-----------------------END OF LEFT-------------------->
+
+
+    <div class="box-setting">
     <form enctype="multipart/form-data" action="/Agora/User/settings/4" method="post" >
       <div class="profile-photo">
         <img src="/Agora/Smarty/immagini/2.png"  alt="Img">
       </div>
       <div>
         <label class="custom-btn btn">
-          <input type="file" name="imageFile" id="" class="image-input" accept="image/*">
+          <input type="file" name="imageFile" class="image-input" accept="image/*">
           change img
         </label>
-          <label class=" btn btn-primary">Save
-            <button type="submit" class="btn-transparent"></button>
-          </label>
+        <label class=" btn btn-primary">Save
+          <button type="submit" class="btn-transparent"></button>
+        </label>
+      </div>
+
     </form>
     <form enctype="multipart/form-data" action="/Agora/User/settings/1" method="post" >
-      </div>
       <div class="info-profile">
         <h4 class="tex-bold" >Biography</h4>
         <label>
@@ -103,38 +137,38 @@ function content_64eb6e8b5b9765_31111002 (Smarty_Internal_Template $_smarty_tpl)
             <button type="reset" class="btn btn-primary">Delete</button>
           </label>
         </div>
-      </div>
-    </form>
-    <form enctype="multipart/form-data" action="/Agora/User/settings/2" method="post" >
-      <h4 class="tex-bold" >UserName</h4>
-      <label>
-        <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+        </form>
+        <form enctype="multipart/form-data" action="/Agora/User/settings/2" method="post" >
+        <h4 class="tex-bold" >UserName</h4>
+        <label>
+          <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
  >
-      </label>
-      <label class=" btn btn-primary">Save
+        </label>
+        <label class=" btn btn-primary">Save
           <button type="submit" class="btn-transparent"></button>
         </label>
         <label>
           <button type="reset" class="btn btn-primary">Delete</button>
         </label>
-    </form>
-    <form enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
-      <h4 class="tex-bold">Password</h4>
-      <label>
-        <input type="password" id="password" class="text" name="password" placeholder="NewPassword">
-      </label>
-      <h4 class="tex-bold">Confirm Password</h4>
-      <label>
-        <input type="password" id="confirmPassword" class="text" name='confirmPassword' placeholder="Confirm Password">
-      </label>
-      <p id="passwordMatchError" class="error-text">Password Not Match</p>
-      <div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type="reset" class="btn btn-primary">Delete</button>
-      </div>
-    </form>
-
+      </form>
+      <form enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
+        <h4 class="tex-bold">Password</h4>
+        <label>
+          <input type="password" id="password" class="text" name="password" placeholder="NewPassword">
+        </label>
+        <h4 class="tex-bold">Confirm Password</h4>
+        <label>
+          <input type="password" id="confirmPassword" class="text" name='confirmPassword' placeholder="Confirm Password">
+        </label>
+        <p id="passwordMatchError" class="error-text">Password Not Match</p>
+        <div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="reset" class="btn btn-primary">Delete</button>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
 </main>
 <?php echo '<script'; ?>
  src="/Agora/Smarty/js/checkPassword.js"><?php echo '</script'; ?>
