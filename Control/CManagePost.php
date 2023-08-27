@@ -27,6 +27,8 @@ class CManagePost{
         return ($time1 > $time2) ? -1 : 1;
     }
 
+    //TODO vedere come funziona _FILES con l'array di foto 
+
     public static function createPost(){
         $pm = FPersistentManager::getInstance();
         USession::getInstance();
@@ -48,7 +50,8 @@ class CManagePost{
             $post->setUser($user);
             $user->addPost($post);
             $pm::uploadPost($post, $user);
-            //if(isset($_FILES['imageFiles'])){
+            $check = $_FILES['imageFile']['size'][0];
+            if($check > 0){
                 $uploadedImages = $_FILES['imageFile'];
                 foreach($uploadedImages['tmp_name'] as $index => $tmpName){
                     $file = [
@@ -74,10 +77,12 @@ class CManagePost{
                     }
                     else{
                         $pm::uploadImagePost($checkUploadImage, $post);
-                        header('Location: /Agora/User/personalProfile');
+                        header('Location: /Agora/User/home');
                     } 
                 }
-            //}
+            }else{
+                header('Location: /Agora/User/personalProfile');
+            }
             
         }else{
             header('Location: /Agora/User/home');
@@ -117,8 +122,10 @@ class CManagePost{
 
         return [true, null];
     }
+
+    public static function prova(){
+        $view = new VManagePost();
+        $view->prova($_POST['title'], $_POST['description'], $_POST['category'], $_FILES);
+        }
   
-}
-?>
-
-
+    }
