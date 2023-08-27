@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 20:52:46
+/* Smarty version 3.1.33, created on 2023-08-28 01:07:18
   from 'C:\xampp\htdocs\Agora\Smarty\templates\setting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb9b7eccfc65_74619115',
+  'unifunc' => 'content_64ebd7263774b2_51500214',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '34b2dd7e38c35c0a3add68c5ee1a5b96c073fc2e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\setting.tpl',
-      1 => 1693162366,
+      1 => 1693177630,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb9b7eccfc65_74619115 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebd7263774b2_51500214 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="eng">
 <head>
@@ -50,7 +50,7 @@ function content_64eb9b7eccfc65_74619115 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/1.png" alt="">
+      <img src="/Agora/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -92,9 +92,17 @@ function content_64eb9b7eccfc65_74619115 (Smarty_Internal_Template $_smarty_tpl)
 
     <div class="box-setting">
     <form enctype="multipart/form-data" action="/Agora/User/settings/4" method="post" >
+    <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage() !== null) {?>
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/2.png"  alt="Img">
+          <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
       </div>
+  <?php } else { ?>
+      <div class="profile-photo">
+          <img src="/Agora/Smarty/immagini/1.png" alt="">
+      </div>
+  <?php }?>
       <div>
         <label class="custom-btn btn">
           <input type="file" name="imageFile" class="image-input" accept="image/*">

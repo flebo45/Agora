@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
-  <title>personalUser</title>
+  <title>Profile</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
@@ -43,9 +43,15 @@
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
+            {if $user->getProfileImage()->getSize() > 0}
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                    <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
                 </div>
+            {else}
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                </div>
+            {/if}
                 <div class ="handle">
                     <h4>{$user->getUsername()}</h4>
                     <p class="text-muted">{$user->getName()}
@@ -89,13 +95,13 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                      <div class="profile-photo">
-                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
-                      </div>
-                      <div class="ingo">
-                        <h3>{$post->getTitle()}</h3>
-                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
-                      </div>
+                        <div class="profile-photo">
+                            <img src="/Agora/Smarty/immagini/1.png" alt="">
+                        </div>
+                        <div class="ingo">
+                          <h3>{$post->getTitle()}</h3>
+                          <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+                        </div>
                     </div>
                       <label>
                               <button class="btn-transparent" id="edit" type="button">  <i class="uil uil-ellipsis-h"></i></button>
@@ -112,7 +118,6 @@
                         <div class="photo">
                           {foreach from=$post->getImages() item=i}
                               <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
-        
                           {/foreach}
                         </div>
                       {/if}

@@ -152,7 +152,11 @@ class CUser{
             $username = $pm::verifyUsername($_POST['username']);
             if(count($username) === 0){
                 $user = new User($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'], $_POST['username'],$_POST['password']);
+                $image = new Image('default', 0, "image/png", "default");
                 $pm::uploadUser($user);
+                $user->setProfileImage($image);
+                $image->setUser($user);
+                $pm::uploadImageUser($image, $user);
                 header('Location: /Agora/User/login');
             }
             else{
@@ -180,7 +184,6 @@ class CUser{
 
                 $userId = USession::getSessionElement('user');
                 $user = $pm::retriveUser($userId);
-
                 //posts and images
                 $arrayUser= $pm::loadUserPage($user);
                 
@@ -323,19 +326,13 @@ class CUser{
                         $view->uploadFileError('SIZE_ERROR');
                     }
                     else{
-                        if($user->getProfileImage() !== NULL){
-                            $oldImageId = $user->getProfileImage()->getId();
-                            $oldImage = $pm::retriveImage($oldImageId);
-                            $pm::deleteImage($oldImage);
-                            $user->setProfileImage($checkUploadImage);
-                            $checkUploadImage->setUser($user);
-                            $pm::uploadImageUser($checkUploadImage, $user);
-                            header('Location: /Agora/User/personalProfile');
-                        }
+                        $oldImageId = $user->getProfileImage()->getId();
+                        $oldImage = $pm::retriveImage($oldImageId);
+                        $pm::deleteImage($oldImage);
                         $user->setProfileImage($checkUploadImage);
                         $checkUploadImage->setUser($user);
                         $pm::uploadImageUser($checkUploadImage, $user);
-                        header('Location: /Agora/User/home');
+                        header('Location: /Agora/User/personalProfile');
                     } 
                 }else{
                     header('Location: /Agora/User/settings/0');
@@ -355,70 +352,6 @@ class CUser{
             return $image;
         }else{
             return $check[1];
-        }
-    }
-
-    public static function changeCredentials(){
-        $pm = FPersistentManager::getInstance();
-        if(UServer::getRequestMethod() == 'POST'){
-            if(CUser::isLogged()){
-                $userId = USession::getSessionElement('user');
-                $user = $pm::retriveUser($userId);
-
-                if($_POST['bio'] != null){
-                    $user->setBio($_POST['bio']);
-                }
-
-                if($_POST['work'] != null){
-                    $user->setWorking($_POST['work']);
-                }
-
-                if($_POST['study'] != null){
-                    $user->setStudiedAt($_POST['study']);
-                } 
-
-                if($_POST['hobby'] != null){
-                    $user->setHobby($_POST['hobby']);
-                }
-
-                $pm::uploadUser($user);
-            }
-            else{
-                header ('Location: /Agora/User/login');
-            }
-        }
-    }
-
-    public static function changeUsername(){
-        $pm = FPersistentManager::getInstance();
-        
-        if(UServer::getRequestMethod() == 'POST'){
-            if(CUser::isLogged()){
-                $userId = USession::getSessionElement('user');
-                $user = $pm::retriveUser($userId);
-                $probUser = $pm::verifyUsername($_POST['username']);
-                if($probUser == null){
-                    $user->setUsername($_POST['username']);
-                    $pm::uploadUser($user);
-                    header('Location: /Agora/User/home');
-                }
-                else{
-                    $view = new VUser();
-                    $view->errorUsername();
-                }
-            }
-        }
-    }
-
-    public static function changePassword(){
-        $pm = FPersistentManager::getInstance();
-
-        if(UServer::getRequestMethod() == 'POST'){
-            if(CUser::isLogged()){
-                $userId = USession::getSessionElement('user');
-                $user = $pm::retriveUser($userId);
-                
-            }
         }
     }
 

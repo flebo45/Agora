@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 20:25:22
+/* Smarty version 3.1.33, created on 2023-08-28 01:07:15
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb9512760c07_28728112',
+  'unifunc' => 'content_64ebd723c7dca4_09565518',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693160700,
+      1 => 1693177611,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb9512760c07_28728112 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebd723c7dca4_09565518 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -28,7 +28,7 @@ function content_64eb9512760c07_28728112 (Smarty_Internal_Template $_smarty_tpl)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
-    <title>home</title>
+    <title>Agorà</title>
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="/Agora/Smarty/immagini/A.png">
@@ -56,7 +56,7 @@ function content_64eb9512760c07_28728112 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             </form>
             <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                    <img src="/Agora/Smarty/immagini/2.png" alt="">
             </div>
         </div>
     </nav>
@@ -66,7 +66,7 @@ function content_64eb9512760c07_28728112 (Smarty_Internal_Template $_smarty_tpl)
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
-            <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage() !== null) {?>
+            <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getSize() > 0) {?>
                 <div class="profile-photo">
                     <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
@@ -127,7 +127,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                        <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage() !== NULL) {?>
+                        <?php if ($_smarty_tpl->tpl_vars['post']->value->getUser()->getProfileImage()->getSize() > 0) {?>
                             <div class="profile-photo">
                                 <img src="data:<?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getProfileImage()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getProfileImage()->getEncodedData();?>

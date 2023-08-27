@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
-    <title>home</title>
+    <title>Agorà</title>
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="/Agora/Smarty/immagini/A.png">
@@ -33,7 +33,7 @@
                 </div>
             </form>
             <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                    <img src="/Agora/Smarty/immagini/2.png" alt="">
             </div>
         </div>
     </nav>
@@ -43,7 +43,7 @@
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
-            {if $user->getProfileImage() !== null}
+            {if $user->getProfileImage()->getSize() > 0}
                 <div class="profile-photo">
                     <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
                 </div>
@@ -96,7 +96,7 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                        {if $user->getProfileImage() !== NULL}
+                        {if $post->getUser()->getProfileImage()->getSize() > 0}
                             <div class="profile-photo">
                                 <img src="data:{$post->getUser()->getProfileImage()->getType()};base64,{$post->getUser()->getProfileImage()->getEncodedData()}" alt="Img">
                             </div>

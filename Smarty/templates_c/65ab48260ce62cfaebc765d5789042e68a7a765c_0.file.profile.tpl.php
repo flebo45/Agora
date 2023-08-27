@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 17:00:01
+/* Smarty version 3.1.33, created on 2023-08-28 01:03:21
   from 'C:\xampp\htdocs\Agora\Smarty\templates\profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb64f1c77030_25161202',
+  'unifunc' => 'content_64ebd6394bcc54_30966338',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '65ab48260ce62cfaebc765d5789042e68a7a765c' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\profile.tpl',
-      1 => 1693147583,
+      1 => 1693177398,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb64f1c77030_25161202 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebd6394bcc54_30966338 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -28,7 +28,8 @@ function content_64eb64f1c77030_25161202 (Smarty_Internal_Template $_smarty_tpl)
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
-  <title>userPage</title>
+  <title>Agorà-<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
@@ -48,9 +49,11 @@ function content_64eb64f1c77030_25161202 (Smarty_Internal_Template $_smarty_tpl)
           <input type ="search" placeholder="search for post or users">
         </label>
       </div>
-      <div>
-        <button class="btn btn-primary">Log out</button>
-      </div>
+      <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+      </form>
       <div class="profile-photo">
         <img src="/Agora/Smarty/immagini/2.png" alt="">
       </div>
@@ -62,9 +65,17 @@ function content_64eb64f1c77030_25161202 (Smarty_Internal_Template $_smarty_tpl)
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
-                <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
-                </div>
+            <?php if ($_smarty_tpl->tpl_vars['personalUser']->value->getProfileImage()->getSize() > 0) {?>
+              <div class="profile-photo">
+                  <img src="data:<?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
+              </div>
+            <?php } else { ?>
+              <div class="profile-photo">
+                  <img src="/Agora/Smarty/immagini/1.png" alt="">
+              </div>
+            <?php }?>
                 <div class ="handle">
                     <h4><?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getUsername();?>
 </h4>
@@ -114,7 +125,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                   <div class="head">
                     <div class="user">
                       <div class="profile-photo">
-                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
+                          <img src="/Agora/Smarty/immagini/1.png" alt="">
                       </div>
                       <div class="ingo">
                         <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
@@ -197,9 +208,17 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   <div class="right">
       <div class="side-profile">
         <div class="heading">
+        <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getSize() > 0) {?>
           <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+              <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
           </div>
+        <?php } else { ?>
+          <div class="profile-photo">
+              <img src="/Agora/Smarty/immagini/1.png" alt="">
+          </div>
+        <?php }?>
           <div class ="handle">
             <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
  </h4>
@@ -285,7 +304,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 
         <!--------------------------TOP POST---------------------------->
-        <div class="top-post">
+        <!--<div class="top-post">
           <div class="heading">
             <h4>Top Post</h4>
             <i class="uil uil-award"> </i>
@@ -313,7 +332,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-        </div>
+        </div>-->
       <!----------------------END OF DESCRIPTION--------------------->
 
       </div>

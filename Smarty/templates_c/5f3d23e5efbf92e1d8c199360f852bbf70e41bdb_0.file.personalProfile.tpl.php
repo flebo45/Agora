@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 18:00:26
+/* Smarty version 3.1.33, created on 2023-08-28 01:04:46
   from 'C:\xampp\htdocs\Agora\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb731a69b2e6_28885773',
+  'unifunc' => 'content_64ebd68e041b40_22516291',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f3d23e5efbf92e1d8c199360f852bbf70e41bdb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\personalProfile.tpl',
-      1 => 1693152010,
+      1 => 1693177482,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb731a69b2e6_28885773 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebd68e041b40_22516291 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -28,7 +28,7 @@ function content_64eb731a69b2e6_28885773 (Smarty_Internal_Template $_smarty_tpl)
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
-  <title>personalUser</title>
+  <title>Profile</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
@@ -66,9 +66,17 @@ function content_64eb731a69b2e6_28885773 (Smarty_Internal_Template $_smarty_tpl)
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
+            <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getSize() > 0) {?>
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                    <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
                 </div>
+            <?php } else { ?>
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                </div>
+            <?php }?>
                 <div class ="handle">
                     <h4><?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
 </h4>
@@ -118,15 +126,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                      <div class="profile-photo">
-                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
-                      </div>
-                      <div class="ingo">
-                        <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+                        <div class="profile-photo">
+                            <img src="/Agora/Smarty/immagini/1.png" alt="">
+                        </div>
+                        <div class="ingo">
+                          <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
 </h3>
-                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
+                          <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
 </small>
-                      </div>
+                        </div>
                     </div>
                       <label>
                               <button class="btn-transparent" id="edit" type="button">  <i class="uil uil-ellipsis-h"></i></button>
@@ -151,7 +159,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
                               <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
 " alt="Img">
-        
                           <?php
 }
 }

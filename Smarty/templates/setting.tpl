@@ -27,7 +27,7 @@
                 </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/1.png" alt="">
+      <img src="/Agora/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -69,9 +69,15 @@
 
     <div class="box-setting">
     <form enctype="multipart/form-data" action="/Agora/User/settings/4" method="post" >
+    {if $user->getProfileImage() !== null}
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/2.png"  alt="Img">
+          <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
       </div>
+  {else}
+      <div class="profile-photo">
+          <img src="/Agora/Smarty/immagini/1.png" alt="">
+      </div>
+  {/if}
       <div>
         <label class="custom-btn btn">
           <input type="file" name="imageFile" class="image-input" accept="image/*">
