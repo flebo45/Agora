@@ -21,6 +21,9 @@
     <div class="tex-bold">
       <h3>SETTIINGS <i class="uil uil-setting"></i></h3>
     </div>
+    <div>
+      <button class="btn btn-primary">Log out</button>
+    </div>
     <div class="profile-photo">
       <img src="Img/2.png" alt="">
     </div>

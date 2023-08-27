@@ -24,6 +24,9 @@
         <input type ="search" placeholder="search for post or users">
       </label>
     </div>
+    <div>
+      <button class="btn btn-primary">Log out</button>
+    </div>
     <div class="profile-photo">
       <img src="Img/A.png" alt="">
     </div>

@@ -24,6 +24,9 @@
         <input type ="search" placeholder="search for post or users">
       </label>
     </div>
+    <div>
+      <button class="btn btn-primary">Log out</button>
+    </div>
     <div class="profile-photo">
       <img src="/Agora/Smarty/immagini/A.png" alt="">
     </div>
@@ -93,11 +96,22 @@
               <label for="topic">
               <select name="category" id="topic" required>
                 <option></option>
+                <option value="Animals">Animals</option>
+                <option value="Arts">Arts</option>
+                <option value="Book">Book</option>
+                <option value="Cars">Cars</option>
+                <option value="Cinema">Cinema</option>
                 <option value="Cooking">Cooking</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Gardening">Gardening</option>
+                <option value="Home">home</option>
+                <option value="News">News</option>
+                <option value="Photography">Photography</option>
+                <option value="School">School</option>
                 <option value="Sport">Sport</option>
                 <option value="Travel">Travel</option>
-                <option value="Cinema">Cinema</option>
-                <option value="Home">home</option>
+                <option value="Technology">technology</option>
+
               </select>
             </label>
           </div>

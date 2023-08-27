@@ -450,6 +450,8 @@ body { overflow-x: hidden }
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
+    max-height: 25%;
+    overflow-y:auto ;
 }
 
 .right .categories .heading{

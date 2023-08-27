@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-26 21:56:46
+/* Smarty version 3.1.33, created on 2023-08-27 16:30:41
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ea58fe3776c0_11826481',
+  'unifunc' => 'content_64eb5e11460645_30737182',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693079603,
+      1 => 1693146636,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ea58fe3776c0_11826481 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb5e11460645_30737182 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -50,8 +50,11 @@ function content_64ea58fe3776c0_11826481 (Smarty_Internal_Template $_smarty_tpl)
                     <input type ="search" placeholder="search for post or users">
                 </label>
             </div>
+            <div>
+                <button class="btn btn-primary" type="button" >Log out</button>
+            </div>
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/2.png" alt="">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
                 </div>
         </div>
     </nav>
@@ -137,16 +140,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                     <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
                         
                     <?php } else { ?>
-                        <div class="photo">
+
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
+                            <div class="photo">
                             <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
 " alt="Img">
-                        </div>
+                            </div>
                         <?php
 }
 }
@@ -215,11 +219,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
                 <!----------------------TYPE OF CATEGORIES-------------------->
                 <div class="category">
-                    <i class="uil uil-plane"></i>
+                    <i class="uil uil-github"></i>
                     <div class="category-body">
-                        <h5>Trip</h5>
+                        <h5>Animals</h5>
                         <div class="action">
-                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Trip'">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Animals'">
                                 Select
                             </button>
                         </div>
@@ -227,11 +231,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
 
                 <div class="category">
-                        <i class="uil uil-music"></i>
+                        <i class="uil uil-palette"></i>
                         <div class="category-body">
-                            <h5>Music</h5>
+                            <h5>Arts</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Music'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Arts'">
                                     Select
                                 </button>
                         </div>
@@ -239,23 +243,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 </div>
 
                     <div class="category">
-                        <i class="uil uil-football"></i>
-                        <div class="category-body">
-                            <h5>Sport</h5>
-                            <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Sport'">
-                                    Select
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="category">
                         <i class="uil uil-book-alt"></i>
                         <div class="category-body">
-                            <h5>Book</h5>
+                            <h5>Books</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Book'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Books'">
                                     Select
                                 </button>
                             </div>
@@ -263,16 +255,150 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
 
                     <div class="category">
-                        <i class="uil uil-camera"></i>
+                        <i class="uil uil-streering"></i>
                         <div class="category-body">
-                            <h5>Photography</h5>
+                            <h5>Cars</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Photography'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cars'">
                                     Select
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="category">
+                        <i class="uil uil-film"></i>
+                        <div class="category-body">
+                            <h5>Cinema</h5>
+                            <div class="action">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cinema'">
+                                    Select
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <div class="category">
+                    <i class="uil uil-pizza-slice"></i>
+                    <div class="category-body">
+                        <h5>Cooking</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cooking'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-mouse"></i>
+                    <div class="category-body">
+                        <h5>Gaming</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Gaming'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-flower"></i>
+                    <div class="category-body">
+                        <h5>Gardening</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Gardening'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-home-alt"></i>
+                    <div class="category-body">
+                        <h5>Home</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Home'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-music"></i>
+                    <div class="category-body">
+                        <h5>Music</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Music'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-megaphone"></i>
+                    <div class="category-body">
+                        <h5>News</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/News'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-camera"></i>
+                    <div class="category-body">
+                        <h5>Photography</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Photography'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-books"></i>
+                    <div class="category-body">
+                        <h5>School</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/School'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-football"></i>
+                    <div class="category-body">
+                        <h5>Sport</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Sport'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-plane"></i>
+                    <div class="category-body">
+                        <h5>Travel</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Travel'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-rocket"></i>
+                    <div class="category-body">
+                        <h5>Technology</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Technology'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
                     <!----------------------END OF CATEGORY--------------------->
 
