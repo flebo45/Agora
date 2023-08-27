@@ -27,8 +27,11 @@
                     <input type ="search" placeholder="search for post or users">
                 </label>
             </div>
+            <div>
+                <button class="btn btn-primary" type="button" >Log out</button>
+            </div>
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/2.png" alt="">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
                 </div>
         </div>
     </nav>
@@ -163,11 +166,11 @@
                 </div>
                 <!----------------------TYPE OF CATEGORIES-------------------->
                 <div class="category">
-                    <i class="uil uil-plane"></i>
+                    <i class="uil uil-github"></i>
                     <div class="category-body">
-                        <h5>Trip</h5>
+                        <h5>Animals</h5>
                         <div class="action">
-                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Trip'">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Animals'">
                                 Select
                             </button>
                         </div>
@@ -175,11 +178,11 @@
                 </div>
 
                 <div class="category">
-                        <i class="uil uil-music"></i>
+                        <i class="uil uil-palette"></i>
                         <div class="category-body">
-                            <h5>Music</h5>
+                            <h5>Arts</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Music'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Arts'">
                                     Select
                                 </button>
                         </div>
@@ -187,23 +190,11 @@
                 </div>
 
                     <div class="category">
-                        <i class="uil uil-football"></i>
-                        <div class="category-body">
-                            <h5>Sport</h5>
-                            <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Sport'">
-                                    Select
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="category">
                         <i class="uil uil-book-alt"></i>
                         <div class="category-body">
-                            <h5>Book</h5>
+                            <h5>Books</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Book'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Books'">
                                     Select
                                 </button>
                             </div>
@@ -211,16 +202,150 @@
                     </div>
 
                     <div class="category">
-                        <i class="uil uil-camera"></i>
+                        <i class="uil uil-streering"></i>
                         <div class="category-body">
-                            <h5>Photography</h5>
+                            <h5>Cars</h5>
                             <div class="action">
-                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Photography'">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cars'">
                                     Select
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="category">
+                        <i class="uil uil-film"></i>
+                        <div class="category-body">
+                            <h5>Cinema</h5>
+                            <div class="action">
+                                <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cinema'">
+                                    Select
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                <div class="category">
+                    <i class="uil uil-pizza-slice"></i>
+                    <div class="category-body">
+                        <h5>Cooking</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Cooking'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-mouse"></i>
+                    <div class="category-body">
+                        <h5>Gaming</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Gaming'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-flower"></i>
+                    <div class="category-body">
+                        <h5>Gardening</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Gardening'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-home-alt"></i>
+                    <div class="category-body">
+                        <h5>Home</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Home'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-music"></i>
+                    <div class="category-body">
+                        <h5>Music</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Music'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-megaphone"></i>
+                    <div class="category-body">
+                        <h5>News</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/News'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-camera"></i>
+                    <div class="category-body">
+                        <h5>Photography</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Photography'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-books"></i>
+                    <div class="category-body">
+                        <h5>School</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/School'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-football"></i>
+                    <div class="category-body">
+                        <h5>Sport</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Sport'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-plane"></i>
+                    <div class="category-body">
+                        <h5>Travel</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Travel'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <i class="uil uil-rocket"></i>
+                    <div class="category-body">
+                        <h5>Technology</h5>
+                        <div class="action">
+                            <button class="btn btn-primary" onclick="location.href='/Agora/User/category/Technology'">
+                                Select
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
                     <!----------------------END OF CATEGORY--------------------->
 

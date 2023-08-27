@@ -25,6 +25,9 @@
         <input type ="search" placeholder="search for post or users">
       </label>
     </div>
+    <div>
+      <button class="btn btn-primary">Log out</button>
+    </div>
     <div class="profile-photo">
       <img src="Img/A.png" alt="">
     </div>
@@ -52,27 +55,11 @@
         <label class="menu-items active tex-bold">
           <span> <i class="uil uil-compass"></i></span> Explore
         </label>
-        <a class="menu-items" id="notification">
-          <span> <i class="uil uil-bell"><small class="notification-count">1</small></i></span> <h3> Notification</h3>
-          <!----------------NOTIFICATION POPUP------------------------>
-          <div class="notification-popup">
-            <div>
-              <div class="profile-photo">
-                <img src="Img/A.png" alt="photo">
-              </div>
-              <div class="notification-body">
-                <b>{$notificationUsername}</b> <-Action made by him
-                <small class="text-muted"> time</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        <!------------------------END OF NOTIFICATION POP UP------------------->
         <label class="menu-items tex-bold">
           <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"><i class="uil uil-user-circle"></i></button> Profile
         </label>
-        <label class="menu-items tex-bold" id="theme">
-          <span> <i class="uil uil-palette"></i></span> Theme
+        <label class="tex-bold theme-cust"  id="theme">
+          <span> <i class="uil uil-palette"></i></span>Theme
         </label>
         <label class="menu-items tex-bold " >
           <span> <i class="uil uil-setting"></i></span> Setting

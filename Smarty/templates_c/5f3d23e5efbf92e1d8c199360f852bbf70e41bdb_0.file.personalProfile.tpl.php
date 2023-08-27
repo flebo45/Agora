@@ -1,18 +1,30 @@
 <?php
+<<<<<<< HEAD
 /* Smarty version 3.1.33, created on 2023-08-27 12:59:39
+=======
+/* Smarty version 3.1.33, created on 2023-08-27 15:37:51
+>>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
   from 'C:\xampp\htdocs\Agora\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
+<<<<<<< HEAD
   'unifunc' => 'content_64eb2c9bd97064_73097963',
+=======
+  'unifunc' => 'content_64eb51afd9bee2_40071628',
+>>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f3d23e5efbf92e1d8c199360f852bbf70e41bdb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\personalProfile.tpl',
+<<<<<<< HEAD
       1 => 1693129623,
+=======
+      1 => 1693143468,
+>>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
       2 => 'file',
     ),
   ),
@@ -20,7 +32,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
+<<<<<<< HEAD
 function content_64eb2c9bd97064_73097963 (Smarty_Internal_Template $_smarty_tpl) {
+=======
+function content_64eb51afd9bee2_40071628 (Smarty_Internal_Template $_smarty_tpl) {
+>>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -49,6 +65,9 @@ function content_64eb2c9bd97064_73097963 (Smarty_Internal_Template $_smarty_tpl)
                 <label>
                     <input type ="search" placeholder="search for post or users">
                 </label>
+            </div>
+            <div>
+                <button class="btn btn-primary">Log out</button>
             </div>
                 <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/2.png" alt="">
@@ -84,9 +103,9 @@ function content_64eb2c9bd97064_73097963 (Smarty_Internal_Template $_smarty_tpl)
               <label class="menu-items active tex-bold">
                 <span><i class="uil uil-user-circle"></i></span> Profile
               </label>
-              <label class="menu-items tex-bold" id="theme">
-                <span> <i class="uil uil-palette"></i></span>Theme
-              </label>
+                <label class="tex-bold theme-cust"  id="theme">
+                    <span> <i class="uil uil-palette"></i></span>Theme
+                </label>
               <label class="menu-items tex-bold" >
                 <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'">  <i class="uil uil-setting"></i></button>Setting
               </label>
@@ -123,6 +142,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 </small>
                       </div>
                     </div>
+                      <label>
+                              <button class="btn-transparent" id="edit" type="button">  <i class="uil uil-ellipsis-h"></i></button>
+                      </label>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
@@ -142,7 +164,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
                               <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
+<<<<<<< HEAD
 " alt="Img">   
+=======
+" alt="Img">
+>>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
                           <?php
 }
 }
@@ -154,10 +180,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div class="interaction-buttons">
                             <span><i class="uil uil-heart"></i> </span>
                             <span><i class="uil uil-comment-dots"></i></span>
-                        </div>
-
-                        <div class= "interaction-buttons " id="report">
-                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
                         </div>
                     </div>
 
@@ -256,7 +278,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 <div class="edit">
   <div class="card">
     <label>
-      <button class="btn btn-transparent"  onclick="location.href='creation-post.html'"><i class="uil uil-wrench">Modify</i></button>
+      <button class="btn btn-transparent"  onclick="location.href='Agora/user/creation_post'"><i class="uil uil-wrench">Modify</i></button>
     </label>
     <label>
       <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
@@ -280,44 +302,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     </div>
   </div>
 </div>
-
-<!-----------------REPORT MODAL----------------------------------->
-
-
-<div class="report">
-  <div class="card">
-    <h2>Report</h2>
-    <h3 class="text-muted">Why are you reporting this post?</h3>
-    <form>
-        <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['reportReasons']->value, 'reason');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['reason']->value) {
-?>
-        <div class="report-checkbox">
-        <input type="checkbox" id="violence" value="violence">
-        <label for="violence"><?php echo $_smarty_tpl->tpl_vars['reasonName']->value;?>
-</label>
-        </div>
-        <?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-      <div>
-      <h3 class="text-muted">Write a small description why you're reporting this post</h3>
-      <label>
-        <textarea class="text-area"></textarea>
-      </label>
-      </div>
-      <label>
-        <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
-      </label>
-    </form>
-  </div>
-</div>
-
-
-
 <!----------------- THEME CUSTOMIZATION---------------------------->
 
 <div class="customize-theme">
@@ -377,7 +361,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
  src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+ src="/Agora/smarty/js/edit.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

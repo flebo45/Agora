@@ -27,6 +27,9 @@
                     <input type ="search" placeholder="search for post or users">
                 </label>
             </div>
+            <div>
+                <button class="btn btn-primary">Log out</button>
+            </div>
                 <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/2.png" alt="">
                 </div>
@@ -59,9 +62,9 @@
               <label class="menu-items active tex-bold">
                 <span><i class="uil uil-user-circle"></i></span> Profile
               </label>
-              <label class="menu-items tex-bold" id="theme">
-                <span> <i class="uil uil-palette"></i></span>Theme
-              </label>
+                <label class="tex-bold theme-cust"  id="theme">
+                    <span> <i class="uil uil-palette"></i></span>Theme
+                </label>
               <label class="menu-items tex-bold" >
                 <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'">  <i class="uil uil-setting"></i></button>Setting
               </label>
@@ -92,6 +95,9 @@
                         <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
+                      <label>
+                              <button class="btn-transparent" id="edit" type="button">  <i class="uil uil-ellipsis-h"></i></button>
+                      </label>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
@@ -103,7 +109,8 @@
                       {else}
                         <div class="photo">
                           {foreach from=$post->getImages() item=i}
-                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">   
+                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+        
                           {/foreach}
                         </div>
                       {/if}
@@ -112,10 +119,6 @@
                         <div class="interaction-buttons">
                             <span><i class="uil uil-heart"></i> </span>
                             <span><i class="uil uil-comment-dots"></i></span>
-                        </div>
-
-                        <div class= "interaction-buttons " id="report">
-                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
                         </div>
                     </div>
 
@@ -199,7 +202,7 @@
 <div class="edit">
   <div class="card">
     <label>
-      <button class="btn btn-transparent"  onclick="location.href='creation-post.html'"><i class="uil uil-wrench">Modify</i></button>
+      <button class="btn btn-transparent"  onclick="location.href='Agora/user/creation_post'"><i class="uil uil-wrench">Modify</i></button>
     </label>
     <label>
       <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
@@ -223,36 +226,6 @@
     </div>
   </div>
 </div>
-
-<!-----------------REPORT MODAL----------------------------------->
-
-
-<div class="report">
-  <div class="card">
-    <h2>Report</h2>
-    <h3 class="text-muted">Why are you reporting this post?</h3>
-    <form>
-        {foreach $reportReasons as $reason}
-        <div class="report-checkbox">
-        <input type="checkbox" id="violence" value="violence">
-        <label for="violence">{$reasonName}</label>
-        </div>
-        {/foreach}
-      <div>
-      <h3 class="text-muted">Write a small description why you're reporting this post</h3>
-      <label>
-        <textarea class="text-area"></textarea>
-      </label>
-      </div>
-      <label>
-        <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
-      </label>
-    </form>
-  </div>
-</div>
-
-
-
 <!----------------- THEME CUSTOMIZATION---------------------------->
 
 <div class="customize-theme">
@@ -309,6 +282,6 @@
 </div>
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/Smarty/js/report.js"></script>
+<script src="/Agora/smarty/js/edit.js"></script>
 </body>
 </html>

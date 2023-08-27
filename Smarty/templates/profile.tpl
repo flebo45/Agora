@@ -25,6 +25,9 @@
           <input type ="search" placeholder="search for post or users">
         </label>
       </div>
+      <div>
+        <button class="btn btn-primary">Log out</button>
+      </div>
       <div class="profile-photo">
         <img src="/Agora/Smarty/immagini/2.png" alt="">
       </div>
@@ -56,7 +59,7 @@
               <label class="menu-items tex-bold">
                 <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
               </label>
-              <label class="menu-items tex-bold" id="theme">
+              <label class="tex-bold theme-cust"  id="theme">
                 <span> <i class="uil uil-palette"></i></span>Theme
               </label>
               <label class="menu-items tex-bold" >
