@@ -96,6 +96,7 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
+<<<<<<< Updated upstream
                         {if $user->getProfileImage() !== NULL}
                             <div class="profile-photo">
                                 <img src="data:{$post->getUser()->getProfileImage()->getType()};base64,{$post->getUser()->getProfileImage()->getEncodedData()}" alt="Img">
@@ -108,6 +109,14 @@
                         <div class="ingo">
                             <h3>{$post->getTitle()}</h3>
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+=======
+                      <div class="profile-photo">
+                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
+                      </div>
+                      <div class="ingo">
+                        <a style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold" href="/Agora/User/Post">{$post->getTitle()}</a>
+                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+>>>>>>> Stashed changes
                       </div>
                     </div>
                   </div>
@@ -150,7 +159,7 @@
                         <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
-                    <div class=" comments text-muted">view all the comment</div>
+                    <a href="/Agora/USer/Post/" class=" comments text-muted">view all the comment</a>
                 </div>
                 {/foreach}
                 <!----------------END OF FEED------------------------------>

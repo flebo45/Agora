@@ -87,6 +87,11 @@ class CUser{
 
     }
 
+    public static function visualizzationPost(){
+        if(self::isLogged()){
+            header('Location: /Agora/User/post/postID')
+        }
+    }
     public static function login(){
        if(UServer::getRequestMethod() == "GET"){
         if(self::isLogged()){
@@ -136,12 +141,7 @@ class CUser{
     }
 
     public static function registration(){
-        if(UServer::getRequestMethod() == "POST"){
-            self::checkRegistration();
-        }
-        else{
-            header('Location: /Agora/User/login');
-        }
+        $view = new Vpost
     }
 
     public static function checkRegistration(){
@@ -425,5 +425,6 @@ class CUser{
             header('Location: /Agora/User/home');
         }
     }
+
 
 }
