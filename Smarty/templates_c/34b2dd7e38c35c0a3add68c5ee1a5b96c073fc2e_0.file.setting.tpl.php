@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 13:03:59
+/* Smarty version 3.1.33, created on 2023-08-27 17:40:59
   from 'C:\xampp\htdocs\Agora\Smarty\templates\setting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb2d9f6ba9f2_88839050',
+  'unifunc' => 'content_64eb6e8b5b9765_31111002',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '34b2dd7e38c35c0a3add68c5ee1a5b96c073fc2e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\setting.tpl',
-      1 => 1693134236,
+      1 => 1693150855,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb2d9f6ba9f2_88839050 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb6e8b5b9765_31111002 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="eng">
 <head>
@@ -44,6 +44,11 @@ function content_64eb2d9f6ba9f2_88839050 (Smarty_Internal_Template $_smarty_tpl)
     <div class="tex-bold">
       <h3>SETTIINGS <i class="uil uil-setting"></i></h3>
     </div>
+    <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+    </form>
     <div class="profile-photo">
       <img src="/Agora/Smarty/immagini/1.png" alt="">
     </div>
@@ -113,27 +118,27 @@ function content_64eb2d9f6ba9f2_88839050 (Smarty_Internal_Template $_smarty_tpl)
           <button type="reset" class="btn btn-primary">Delete</button>
         </label>
     </form>
-    <from enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
-      <h4 class="tex-bold" >Password</h4>
+    <form enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
+      <h4 class="tex-bold">Password</h4>
       <label>
-        <input type="password" class="text" name="password" placeholder="NewPassword">
+        <input type="password" id="password" class="text" name="password" placeholder="NewPassword">
       </label>
-      <h4 class="tex-bold" >Confirm Password</h4>
+      <h4 class="tex-bold">Confirm Password</h4>
       <label>
-        <input type="password" class="text" placeholder="Confirm Password">
+        <input type="password" id="confirmPassword" class="text" name='confirmPassword' placeholder="Confirm Password">
       </label>
+      <p id="passwordMatchError" class="error-text">Password Not Match</p>
       <div>
-
-        <label class=" btn btn-primary">Save
-          <button type="submit" class="btn-transparent"></button>
-        </label>
-        <label>
-          <button type="reset" class="btn btn-primary">Delete</button>
-        </label>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-primary">Delete</button>
       </div>
     </form>
+
   </div>
 </main>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/checkPassword.js"><?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

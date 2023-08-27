@@ -1,30 +1,18 @@
 <?php
-<<<<<<< HEAD
-/* Smarty version 3.1.33, created on 2023-08-27 16:35:36
-=======
-/* Smarty version 3.1.33, created on 2023-08-27 15:51:37
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+/* Smarty version 3.1.33, created on 2023-08-27 17:21:50
   from 'C:\xampp\htdocs\Agora\Smarty\templates\creation_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-<<<<<<< HEAD
-  'unifunc' => 'content_64eb5f38ad6028_63810892',
-=======
-  'unifunc' => 'content_64eb54e93ab522_39777778',
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+  'unifunc' => 'content_64eb6a0e0007e3_09571176',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c0961fa0ec223f764a562f6dd0a44a0bd5d994cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\creation_post.tpl',
-<<<<<<< HEAD
-      1 => 1693129649,
-=======
-      1 => 1693144295,
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+      1 => 1693149249,
       2 => 'file',
     ),
   ),
@@ -32,11 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-<<<<<<< HEAD
-function content_64eb5f38ad6028_63810892 (Smarty_Internal_Template $_smarty_tpl) {
-=======
-function content_64eb54e93ab522_39777778 (Smarty_Internal_Template $_smarty_tpl) {
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+function content_64eb6a0e0007e3_09571176 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,9 +47,11 @@ function content_64eb54e93ab522_39777778 (Smarty_Internal_Template $_smarty_tpl)
         <input type ="search" placeholder="search for post or users">
       </label>
     </div>
-    <div>
-      <button class="btn btn-primary">Log out</button>
-    </div>
+    <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+    </form>
     <div class="profile-photo">
       <img src="/Agora/Smarty/immagini/A.png" alt="">
     </div>

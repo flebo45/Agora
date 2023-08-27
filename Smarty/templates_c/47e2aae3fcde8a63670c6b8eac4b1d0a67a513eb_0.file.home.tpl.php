@@ -1,30 +1,18 @@
 <?php
-<<<<<<< HEAD
-/* Smarty version 3.1.33, created on 2023-08-27 13:03:34
-=======
-/* Smarty version 3.1.33, created on 2023-08-27 16:30:41
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+/* Smarty version 3.1.33, created on 2023-08-27 17:12:56
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-<<<<<<< HEAD
-  'unifunc' => 'content_64eb2d86833664_29619843',
-=======
-  'unifunc' => 'content_64eb5e11460645_30737182',
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+  'unifunc' => 'content_64eb67f8e5ed24_57817065',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-<<<<<<< HEAD
-      1 => 1693134195,
-=======
-      1 => 1693146636,
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+      1 => 1693149171,
       2 => 'file',
     ),
   ),
@@ -32,11 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-<<<<<<< HEAD
-function content_64eb2d86833664_29619843 (Smarty_Internal_Template $_smarty_tpl) {
-=======
-function content_64eb5e11460645_30737182 (Smarty_Internal_Template $_smarty_tpl) {
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
+function content_64eb67f8e5ed24_57817065 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -66,9 +50,11 @@ function content_64eb5e11460645_30737182 (Smarty_Internal_Template $_smarty_tpl)
                     <input type ="search" placeholder="search for post or users">
                 </label>
             </div>
-            <div>
-                <button class="btn btn-primary" type="button" >Log out</button>
-            </div>
+            <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+            </form>
                 <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/1.png" alt="">
                 </div>
@@ -156,29 +142,17 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                     <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
                         
                     <?php } else { ?>
-<<<<<<< HEAD
                     <div class="photo">
-=======
-
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
-<<<<<<< HEAD
                             
                             <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
 " alt="Img">
                             
-=======
-                            <div class="photo">
-                            <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
-;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
-" alt="Img">
-                            </div>
->>>>>>> 9d3cdf072a1d19bbb2a87381fbf97949ce3cfaab
                         <?php
 }
 }

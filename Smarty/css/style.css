@@ -44,7 +44,6 @@ body {
 }
 
 
-
 /*LOG IN STYLE*/
 
 
@@ -1078,6 +1077,11 @@ VISUALIZATION POST
     display: inline-block;
     margin-top: 1%;
 }
+
+.box-setting .error-text {
+    color: var(--color-danger);
+    display: none;
+  }
 
 /*--------------------------------------------
 SEARCH PAGE

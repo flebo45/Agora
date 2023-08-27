@@ -1,5 +1,28 @@
-<!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
+<?php
+/* Smarty version 3.1.33, created on 2023-08-27 17:00:01
+  from 'C:\xampp\htdocs\Agora\Smarty\templates\profile.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_64eb64f1c77030_25161202',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '65ab48260ce62cfaebc765d5789042e68a7a765c' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\profile.tpl',
+      1 => 1693147583,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_64eb64f1c77030_25161202 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
+<?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,9 +34,9 @@
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
-  {literal}
+  
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
-  {/literal}
+  
 </head>
 <body>
   <nav>
@@ -25,11 +48,9 @@
           <input type ="search" placeholder="search for post or users">
         </label>
       </div>
-      <form  action="/Agora/User/logout" method="post">
-                <div>
-                    <button class="btn btn-primary" type="submit">Log out</button>
-                </div>
-      </form>
+      <div>
+        <button class="btn btn-primary">Log out</button>
+      </div>
       <div class="profile-photo">
         <img src="/Agora/Smarty/immagini/2.png" alt="">
       </div>
@@ -45,8 +66,10 @@
                     <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
                 </div>
                 <div class ="handle">
-                    <h4>{$personalUser->getUsername()}</h4>
-                    <p class="text-muted">{$personalUser->getName()}
+                    <h4><?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getUsername();?>
+</h4>
+                    <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getName();?>
+
                     </p>
                 </div>
             </a>
@@ -82,7 +105,11 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
-                {foreach $postList as $post}
+                <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['postList']->value, 'post');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
+?>
                 <div class="feed">
                   <div class="head">
                     <div class="user">
@@ -90,26 +117,39 @@
                         <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
                       </div>
                       <div class="ingo">
-                        <h3>{$post->getTitle()}</h3>
-                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+                        <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+</h3>
+                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
+</small>
                       </div>
                     </div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
-                        {$post->getDescription()}</span></p>
+                        <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+</b><span class="harsh-tag">
+                        <?php echo $_smarty_tpl->tpl_vars['post']->value->getDescription();?>
+</span></p>
                     </div>
-                    {if $post->getImages()->count() === 0}
+                    <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
                         
-                      {else}
+                      <?php } else { ?>
                         <div class="photo">
-                          {foreach from=$post->getImages() item=i}
-                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+                          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
+?>
+                              <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
+" alt="Img">
                           
-                          {/foreach}
+                          <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
-                      {/if}
+                      <?php }?>
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">
@@ -123,16 +163,27 @@
                     </div>
 
                     <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
-                        {for $i=0; $i<3;$i++}
+                        <?php
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);
+$_smarty_tpl->tpl_vars['i']->value = 0;
+if ($_smarty_tpl->tpl_vars['i']->value < 3) {
+for ($_foo=true;$_smarty_tpl->tpl_vars['i']->value < 3; $_smarty_tpl->tpl_vars['i']->value++) {
+?>
                         <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
-                        {/for}
+                        <?php }
+}
+?>
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+                        <p> liked by <b><?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getUsername();?>
+</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
                     <div class=" comments text-muted">view all the comment</div>
                 </div>
-                {/foreach}
+                <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>
@@ -150,28 +201,35 @@
             <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
           </div>
           <div class ="handle">
-            <h4> {$user->getUsername()} </h4>
-            <p class="text-muted">{$user->getName()}</p>
+            <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+ </h4>
+            <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
+</p>
           </div>
           <div>
-            <h4>{$user->getFollowedNumber()}</h4>
+            <h4><?php echo $_smarty_tpl->tpl_vars['user']->value->getFollowedNumber();?>
+</h4>
             <p class="text-muted">
               followers
             </p>
           </div>
           <div>
-            <h4>{$user->getFollowerNumber()}</h4>
+            <h4><?php echo $_smarty_tpl->tpl_vars['user']->value->getFollowerNumber();?>
+</h4>
             <p class="text-muted">following</p>
           </div>
         </div>
 
-        <!--<button class="btn-primary btn" onclick="toggle(this)">{$followButtonText}</button>
-        <script>
+        <!--<button class="btn-primary btn" onclick="toggle(this)"><?php echo $_smarty_tpl->tpl_vars['followButtonText']->value;?>
+</button>
+        <?php echo '<script'; ?>
+>
           function toggle(e) {
             let txt = e.innerText;
             e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
           }
-        </script>-->
+        <?php echo '</script'; ?>
+>-->
         <button class="btn-primary btn" onclick="">follow button</button>
 
 
@@ -185,7 +243,8 @@
           <div class="bio-body">
             <h5 class="text-bold">Bio</h5>
             <div class="text-muted">
-              <h5>{$user->getBio()}</h5>
+              <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getBio();?>
+</h5>
             </div>
           </div>
         </div>
@@ -195,7 +254,8 @@
           <div class="bio-body">
             <h5 class="tex-bold">Working </h5>
             <div class="text-muted">
-              <h5>{$user->getWorking()}</h5>
+              <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getWorking();?>
+</h5>
             </div>
           </div>
         </div>
@@ -205,7 +265,8 @@
           <div class="bio-body">
             <h5 class="tex-bold">Studied at</h5>
             <div class="text-muted">
-              <h5>{$user->getStudiedAt()}</h5>
+              <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getStudiedAt();?>
+</h5>
             </div>
           </div>
         </div>
@@ -215,7 +276,8 @@
           <div class="bio-body">
             <h5 class="tex-bold">Hobby</h5>
             <div class="text-muted">
-              <h5>{$user->getHobby()}</h5>
+              <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getHobby();?>
+</h5>
           </div>
           </div>
         </div>
@@ -229,19 +291,28 @@
             <i class="uil uil-award"> </i>
           </div>
 
-          {foreach $topPosts as $post}
+          <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topPosts']->value, 'post');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
+?>
           <div class="post">
             <div class="info">
                 <div class="first-photo">
                   <img src="Img/A.png" alt="img">
                 </div>
               <div>
-                <h5>{$post.title}</h5>
-                <p class="text-muted">{$post.likesCount}</p>
+                <h5><?php echo $_smarty_tpl->tpl_vars['post']->value['title'];?>
+</h5>
+                <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['post']->value['likesCount'];?>
+</p>
               </div>
             </div>
           </div>
-          {/foreach}
+          <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
@@ -289,12 +360,20 @@
     <h2>Report</h2>
     <h3 class="text-muted">Why are you reporting this post?</h3>
     <form>
-        {foreach $reportReasons as $reason}
+        <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['reportReasons']->value, 'reason');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['reason']->value) {
+?>
         <div class="report-checkbox">
         <input type="checkbox" id="violence" value="violence">
-        <label for="violence">{$reasonName}</label>
+        <label for="violence"><?php echo $_smarty_tpl->tpl_vars['reasonName']->value;?>
+</label>
         </div>
-        {/foreach}
+        <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <div>
       <h3 class="text-muted">Write a small description why you're reporting this post</h3>
       <label>
@@ -365,7 +444,12 @@
   </div>
 </div>
 </div>
-<script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/Smarty/js/report.js"></script>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

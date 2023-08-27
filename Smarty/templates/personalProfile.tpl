@@ -27,9 +27,11 @@
                     <input type ="search" placeholder="search for post or users">
                 </label>
             </div>
-            <div>
-                <button class="btn btn-primary">Log out</button>
-            </div>
+            <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+            </form>
                 <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/2.png" alt="">
                 </div>

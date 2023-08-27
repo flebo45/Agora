@@ -21,9 +21,11 @@
     <div class="tex-bold">
       <h3>SETTIINGS <i class="uil uil-setting"></i></h3>
     </div>
-    <div>
-      <button class="btn btn-primary">Log out</button>
-    </div>
+    <form  action="/Agora/User/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+    </form>
     <div class="profile-photo">
       <img src="/Agora/Smarty/immagini/1.png" alt="">
     </div>
@@ -88,26 +90,24 @@
           <button type="reset" class="btn btn-primary">Delete</button>
         </label>
     </form>
-    <from enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
-      <h4 class="tex-bold" >Password</h4>
+    <form enctype="multipart/form-data" action="/Agora/User/settings/3" method="post" >
+      <h4 class="tex-bold">Password</h4>
       <label>
-        <input type="password" class="text" name="password" placeholder="NewPassword">
+        <input type="password" id="password" class="text" name="password" placeholder="NewPassword">
       </label>
-      <h4 class="tex-bold" >Confirm Password</h4>
+      <h4 class="tex-bold">Confirm Password</h4>
       <label>
-        <input type="password" class="text" placeholder="Confirm Password">
+        <input type="password" id="confirmPassword" class="text" name='confirmPassword' placeholder="Confirm Password">
       </label>
+      <p id="passwordMatchError" class="error-text">Password Not Match</p>
       <div>
-
-        <label class=" btn btn-primary">Save
-          <button type="submit" class="btn-transparent"></button>
-        </label>
-        <label>
-          <button type="reset" class="btn btn-primary">Delete</button>
-        </label>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="reset" class="btn btn-primary">Delete</button>
       </div>
     </form>
+
   </div>
 </main>
+<script src="/Agora/Smarty/js/checkPassword.js"></script>
 </body>
 </html>
