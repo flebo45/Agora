@@ -60,7 +60,7 @@
             <span> <i class="uil uil-palette"></i></span>Theme
         </label>
         <label class="menu-items tex-bold " >
-            <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+            <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
         </label>
       </div>
   </div>

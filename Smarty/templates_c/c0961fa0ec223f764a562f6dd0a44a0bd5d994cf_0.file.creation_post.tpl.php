@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 10:59:10
+/* Smarty version 3.1.33, created on 2023-08-27 16:35:36
   from 'C:\xampp\htdocs\Agora\Smarty\templates\creation_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb105e3a5447_72562180',
+  'unifunc' => 'content_64eb5f38ad6028_63810892',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c0961fa0ec223f764a562f6dd0a44a0bd5d994cf' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\creation_post.tpl',
-      1 => 1693126747,
+      1 => 1693129649,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb105e3a5447_72562180 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb5f38ad6028_63810892 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +85,7 @@ function content_64eb105e3a5447_72562180 (Smarty_Internal_Template $_smarty_tpl)
             <span> <i class="uil uil-palette"></i></span>Theme
         </label>
         <label class="menu-items tex-bold " >
-            <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+            <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
         </label>
       </div>
   </div>
@@ -111,7 +111,7 @@ function content_64eb105e3a5447_72562180 (Smarty_Internal_Template $_smarty_tpl)
           </label>
           <div>
             <label class="custom-btn">
-          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Images</label>
+          <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Img</label>
           </div>
           <div>
             <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">Topic</h4>

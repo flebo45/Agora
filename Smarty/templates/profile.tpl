@@ -60,7 +60,7 @@
                 <span> <i class="uil uil-palette"></i></span>Theme
               </label>
               <label class="menu-items tex-bold" >
-                <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+                <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'">  <i class="uil uil-setting"></i></button>Setting
               </label>
       </div>
       <!--------------------END OF SIDE BAR----------------->
@@ -98,11 +98,12 @@
                     {if $post->getImages()->count() === 0}
                         
                       {else}
-                          <div class="photo">
+                        <div class="photo">
                           {foreach from=$post->getImages() item=i}
                               <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
-                          </div>
+                          
                           {/foreach}
+                        </div>
                       {/if}
 
                     <div class="action-buttons">

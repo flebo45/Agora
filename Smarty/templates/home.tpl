@@ -39,7 +39,7 @@
         <div class="left">
             <a class="profile">
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                  <img src="/Agora/Smarty/immagini/2.png" alt="Img">
                 </div>
                 <div class ="handle">
                     <h4> {$user->getUsername()} </h4>
@@ -64,7 +64,7 @@
                     <span> <i class="uil uil-palette"></i></span>Theme
                 </label>
                 <label class="menu-items tex-bold " >
-                    <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
                 </label>
             </div>
             <!--------------------END OF SIDE BAR----------------->
@@ -103,12 +103,13 @@
                     {if $post->getImages()->count() === 0}
                         
                     {else}
-
+                    <div class="photo">
                         {foreach from=$post->getImages() item=i}
-                            <div class="photo">
+                            
                             <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
-                            </div>
+                            
                         {/foreach}
+                    </div>
                     {/if}
 
                         

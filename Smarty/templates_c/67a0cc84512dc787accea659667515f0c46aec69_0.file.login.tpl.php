@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-26 20:13:36
+/* Smarty version 3.1.33, created on 2023-08-27 13:00:59
   from 'C:\xampp\htdocs\Agora\Smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ea40d02e0481_54664250',
+  'unifunc' => 'content_64eb2cebcb7461_62558957',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ea40d02e0481_54664250 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb2cebcb7461_62558957 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('error', (($tmp = @$_smarty_tpl->tpl_vars['error']->value)===null||$tmp==='' ? 'ok' : $tmp));
 $_smarty_tpl->_assignInScope('bann', (($tmp = @$_smarty_tpl->tpl_vars['bann']->value)===null||$tmp==='' ? 'false' : $tmp));

@@ -248,6 +248,101 @@ class CUser{
         }
     }
 
+    public static function settings($param){
+        if(UServer::getRequestMethod() == 'GET'){
+            if($param == 0){
+                if(CUser::isLogged()){
+                $pm = FPersistentManager::getInstance();
+                $view = new VUser();
+                USession::getInstance();
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+                $view->settings($user);
+            }else{
+                header('Location: /Agora/User/home');
+            }
+            }
+        }elseif(UServer::getRequestMethod() == 'POST'){
+            $pm = FPersistentManager::getInstance();
+            USession::getInstance();
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveUser($userId);
+            $view = new VUser();
+            //credential form (bio, hobby ecc)
+            if($param == 1){
+                $user->setBio($_POST['Bio']);
+                $user->setWorking($_POST['Working']);
+                $user->setStudiedAt($_POST['StudiedAt']);
+                $user->setHobby($_POST['Hobby']);
+                $pm::uploadUser($user);
+                header('Location: /Agora/User/personalProfile');
+            //Username
+            }elseif($param == 2){
+                if($user->getUsername() == $_POST['username']){
+                    header('Location: /Agora/User/personalProfile');
+                }
+                $username = $pm::verifyUsername($_POST['username']);
+                if(count($username) === 0){
+                    $user->setUsername($_POST['username']);
+                    $pm::uploadUser($user);
+                    header('Location: /Agora/User/personalProfile');
+                }else{
+                    $view->usernameError($user);
+                }
+            }elseif($param == 3){
+                $newPass = $_POST['password'];
+                $user->setPassword($newPass);
+                $pm::uploadUser($user);
+                header('Location: /Agora/User/personalProfile');
+            }elseif($param == 4){
+                if($_FILES['imageFile']['size'] > 0){
+                    $uploadedImage = $_FILES['imageFile'];
+                    $checkUploadImage = self::uploadImage($uploadedImage);
+                    if($checkUploadImage == 'UPLOAD_ERROR_OK'){
+                        $view->uploadFileError('UPLOAD_ERROR_OK');
+                    }
+                    elseif($checkUploadImage == 'TYPE_ERROR'){
+                        $view->uploadFileError('TYPE_ERROR');
+                    }
+                    elseif($checkUploadImage == 'SIZE_ERROR'){
+                        $view->uploadFileError('SIZE_ERROR');
+                    }
+                    else{
+                        if($user->getProfileImage() !== NULL){
+                            $oldImageId = $user->getProfileImage()->getId();
+                            $oldImage = $pm::retriveImage($oldImageId);
+                            $pm::deleteImage($oldImage);
+                            $user->setProfileImage($checkUploadImage);
+                            $checkUploadImage->setUser($user);
+                            $pm::uploadImageUser($checkUploadImage, $user);
+                            header('Location: /Agora/User/personalProfile');
+                        }
+                        $user->setProfileImage($checkUploadImage);
+                        $checkUploadImage->setUser($user);
+                        $pm::uploadImageUser($checkUploadImage, $user);
+                        header('Location: /Agora/User/home');
+                    } 
+                }else{
+                    header('Location: /Agora/User/settings/0');
+                }
+            }else{
+                header('Location: /Agora/User/home');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function uploadImage($file){
+        $check = CManagePost::validateImage($file);
+        if($check[0]){
+            $image = new Image($file['name'], $file['size'], $file['type'], file_get_contents($file['tmp_name']));
+            return $image;
+        }else{
+            return $check[1];
+        }
+    }
+
     public static function changeCredentials(){
         $pm = FPersistentManager::getInstance();
         if(UServer::getRequestMethod() == 'POST'){

@@ -1,4 +1,27 @@
-<!doctype html>
+<?php
+/* Smarty version 3.1.33, created on 2023-08-27 13:03:59
+  from 'C:\xampp\htdocs\Agora\Smarty\templates\setting.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_64eb2d9f6ba9f2_88839050',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '34b2dd7e38c35c0a3add68c5ee1a5b96c073fc2e' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\setting.tpl',
+      1 => 1693134236,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_64eb2d9f6ba9f2_88839050 (Smarty_Internal_Template $_smarty_tpl) {
+?><!doctype html>
 <html lang="eng">
 <head>
   <meta charset="UTF-8">
@@ -48,19 +71,23 @@
       <div class="info-profile">
         <h4 class="tex-bold" >Biography</h4>
         <label>
-          <input type="text" class="text" name="Bio" value="{$user->getBio()}">
+          <input type="text" class="text" name="Bio" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getBio();?>
+">
         </label>
         <h4 class="tex-bold" >Work at</h4>
         <label>
-          <input type="text" class="text" name="Working" value="{$user->getWorking()}">
+          <input type="text" class="text" name="Working" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getWorking();?>
+">
         </label>
         <h4 class="tex-bold" >Studied at</h4>
         <label>
-          <input type="text" class="text" name="StudiedAt" value="{$user->getStudiedAt()}">
+          <input type="text" class="text" name="StudiedAt" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getStudiedAt();?>
+">
         </label>
         <h4 class="tex-bold" >Hobby</h4>
         <label>
-          <input type="text" class="text" name="Hobby" value={$user->getHobby()}>
+          <input type="text" class="text" name="Hobby" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getHobby();?>
+>
         </label>
         <div>
 
@@ -76,7 +103,8 @@
     <form enctype="multipart/form-data" action="/Agora/User/settings/2" method="post" >
       <h4 class="tex-bold" >UserName</h4>
       <label>
-        <input type="text" class="text" maxlength="15" minlength="3" name="username" value={$user->getUsername()} >
+        <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+ >
       </label>
       <label class=" btn btn-primary">Save
           <button type="submit" class="btn-transparent"></button>
@@ -107,4 +135,5 @@
   </div>
 </main>
 </body>
-</html>
+</html><?php }
+}

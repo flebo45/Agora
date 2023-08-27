@@ -8,8 +8,10 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$id = 1;
+$id = 3;
 
 $user = $pm::retriveUser($id);
 
-echo $user->getProfileImage()->getId();
+if($user->getProfileImage() !== null){
+    echo 1;
+}

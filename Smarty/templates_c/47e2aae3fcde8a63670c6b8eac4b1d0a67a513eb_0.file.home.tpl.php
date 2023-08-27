@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-26 21:56:46
+/* Smarty version 3.1.33, created on 2023-08-27 13:03:34
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ea58fe3776c0_11826481',
+  'unifunc' => 'content_64eb2d86833664_29619843',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693079603,
+      1 => 1693134195,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ea58fe3776c0_11826481 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb2d86833664_29619843 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -62,7 +62,7 @@ function content_64ea58fe3776c0_11826481 (Smarty_Internal_Template $_smarty_tpl)
         <div class="left">
             <a class="profile">
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/A.png" alt=" log in">
+                  <img src="/Agora/Smarty/immagini/2.png" alt="Img">
                 </div>
                 <div class ="handle">
                     <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
@@ -89,7 +89,7 @@ function content_64ea58fe3776c0_11826481 (Smarty_Internal_Template $_smarty_tpl)
                     <span> <i class="uil uil-palette"></i></span>Theme
                 </label>
                 <label class="menu-items tex-bold " >
-                    <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
                 </label>
             </div>
             <!--------------------END OF SIDE BAR----------------->
@@ -137,20 +137,22 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                     <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
                         
                     <?php } else { ?>
-                        <div class="photo">
+                    <div class="photo">
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
+                            
                             <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
 " alt="Img">
-                        </div>
+                            
                         <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                    </div>
                     <?php }?>
 
                         

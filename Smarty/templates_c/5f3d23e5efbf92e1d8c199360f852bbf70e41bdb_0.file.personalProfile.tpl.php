@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-26 19:36:32
+/* Smarty version 3.1.33, created on 2023-08-27 12:59:39
   from 'C:\xampp\htdocs\Agora\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ea382025f249_79166972',
+  'unifunc' => 'content_64eb2c9bd97064_73097963',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f3d23e5efbf92e1d8c199360f852bbf70e41bdb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\personalProfile.tpl',
-      1 => 1693071389,
+      1 => 1693129623,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ea382025f249_79166972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb2c9bd97064_73097963 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -88,7 +88,7 @@ function content_64ea382025f249_79166972 (Smarty_Internal_Template $_smarty_tpl)
                 <span> <i class="uil uil-palette"></i></span>Theme
               </label>
               <label class="menu-items tex-bold" >
-                <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+                <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'">  <i class="uil uil-setting"></i></button>Setting
               </label>
         </div>
         <!--------------------END OF SIDE BAR----------------->
@@ -134,20 +134,20 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                     <?php if ($_smarty_tpl->tpl_vars['post']->value->getImages()->count() === 0) {?>
                         
                       <?php } else { ?>
+                        <div class="photo">
                           <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value->getImages(), 'i');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
-                            <div class="photo">
                               <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
-" alt="Img">
-                          </div>
+" alt="Img">   
                           <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </div>
                       <?php }?>
 
                     <div class="action-buttons">

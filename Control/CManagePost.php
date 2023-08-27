@@ -27,7 +27,6 @@ class CManagePost{
         return ($time1 > $time2) ? -1 : 1;
     }
 
-    //TODO vedere come funziona _FILES con l'array di foto 
 
     public static function createPost(){
         $pm = FPersistentManager::getInstance();
@@ -77,7 +76,7 @@ class CManagePost{
                     }
                     else{
                         $pm::uploadImagePost($checkUploadImage, $post);
-                        header('Location: /Agora/User/home');
+                        header('Location: /Agora/User/personalProfile');
                     } 
                 }
             }else{

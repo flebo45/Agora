@@ -76,7 +76,7 @@
         </label>
         <label class="menu-items tex-bold " >
           <span> <i class="uil uil-setting"></i></span> Setting
-          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"></button>
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"></button>
         </label>
       </div>
       <!--------------------END OF SIDE BAR----------------->

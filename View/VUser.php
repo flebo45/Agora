@@ -72,4 +72,9 @@ class VUser{
         $this->smarty->display('login.tpl');
     }
 
+    public function settings($user){
+        $this->smarty->assign('user', $user);
+        $this->smarty->display('setting.tpl');
+    }
+
 }
