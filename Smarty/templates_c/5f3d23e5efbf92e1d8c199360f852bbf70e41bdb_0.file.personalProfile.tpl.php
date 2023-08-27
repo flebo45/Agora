@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 17:22:29
+/* Smarty version 3.1.33, created on 2023-08-27 18:00:26
   from 'C:\xampp\htdocs\Agora\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb6a35c1cdf5_61179739',
+  'unifunc' => 'content_64eb731a69b2e6_28885773',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5f3d23e5efbf92e1d8c199360f852bbf70e41bdb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\personalProfile.tpl',
-      1 => 1693149287,
+      1 => 1693152010,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb6a35c1cdf5_61179739 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb731a69b2e6_28885773 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -345,6 +345,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 >
 <?php echo '<script'; ?>
  src="/Agora/smarty/js/edit.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/storage.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

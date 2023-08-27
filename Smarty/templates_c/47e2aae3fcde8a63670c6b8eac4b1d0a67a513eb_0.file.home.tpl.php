@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-27 17:12:56
+/* Smarty version 3.1.33, created on 2023-08-27 18:22:47
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64eb67f8e5ed24_57817065',
+  'unifunc' => 'content_64eb78577051d3_49202456',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693149171,
+      1 => 1693153352,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eb67f8e5ed24_57817065 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eb78577051d3_49202456 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -55,9 +55,9 @@ function content_64eb67f8e5ed24_57817065 (Smarty_Internal_Template $_smarty_tpl)
                     <button class="btn btn-primary" type="submit">Log out</button>
                 </div>
             </form>
-                <div class="profile-photo">
+            <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/1.png" alt="">
-                </div>
+            </div>
         </div>
     </nav>
 <!-----------------------MAIN-------------------->
@@ -66,9 +66,17 @@ function content_64eb67f8e5ed24_57817065 (Smarty_Internal_Template $_smarty_tpl)
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
+            <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage() !== null) {?>
                 <div class="profile-photo">
-                  <img src="/Agora/Smarty/immagini/2.png" alt="Img">
+                    <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
                 </div>
+            <?php } else { ?>
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                </div>
+            <?php }?>
                 <div class ="handle">
                     <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
  </h4>
@@ -119,13 +127,21 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                      <div class="profile-photo">
-                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
-                      </div>
-                      <div class="ingo">
-                        <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
+                        <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage() !== NULL) {?>
+                            <div class="profile-photo">
+                                <img src="data:<?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['post']->value->getUser()->getProfileImage()->getEncodedData();?>
+" alt="Img">
+                            </div>
+                        <?php } else { ?>
+                            <div class="profile-photo">
+                                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                            </div>
+                        <?php }?>
+                        <div class="ingo">
+                            <h3><?php echo $_smarty_tpl->tpl_vars['post']->value->getTitle();?>
 </h3>
-                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
+                            <small><?php echo $_smarty_tpl->tpl_vars['post']->value->getTime()->format('Y-m-d H:i:s');?>
 </small>
                       </div>
                     </div>
@@ -550,6 +566,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 >
 <?php echo '<script'; ?>
  src="/Agora/Smarty/js/categories.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/storage.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

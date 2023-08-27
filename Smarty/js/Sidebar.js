@@ -173,7 +173,10 @@ bg3.addEventListener('click', ()=> {
     bg2.classList.remove('active');
     changeBG();
 })
-
+// Save theme settings to session storage
+sessionStorage.setItem('fontSize', fontSize); // Save the selected font size
+sessionStorage.setItem('primaryColorHue', primaryHue); // Save the selected primary color
+sessionStorage.setItem('backgroundChoice', backgroundChoice); // Save the selected background
 
 
 

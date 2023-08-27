@@ -285,5 +285,6 @@
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/smarty/js/edit.js"></script>
+<script src="/Agora/Smarty/js/storage.js"></script>
 </body>
 </html>

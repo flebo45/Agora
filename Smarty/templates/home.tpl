@@ -32,9 +32,9 @@
                     <button class="btn btn-primary" type="submit">Log out</button>
                 </div>
             </form>
-                <div class="profile-photo">
+            <div class="profile-photo">
                     <img src="/Agora/Smarty/immagini/1.png" alt="">
-                </div>
+            </div>
         </div>
     </nav>
 <!-----------------------MAIN-------------------->
@@ -43,9 +43,15 @@
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
+            {if $user->getProfileImage() !== null}
                 <div class="profile-photo">
-                  <img src="/Agora/Smarty/immagini/2.png" alt="Img">
+                    <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
                 </div>
+            {else}
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                </div>
+            {/if}
                 <div class ="handle">
                     <h4> {$user->getUsername()} </h4>
                     <p class="text-muted">{$user->getName()}
@@ -90,12 +96,18 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                      <div class="profile-photo">
-                        <img src="/Agora/Smarty/immagini/A.png" alt="img"> <!--IMMAGINE PROFILO UTENTE-->
-                      </div>
-                      <div class="ingo">
-                        <h3>{$post->getTitle()}</h3>
-                        <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
+                        {if $user->getProfileImage() !== NULL}
+                            <div class="profile-photo">
+                                <img src="data:{$post->getUser()->getProfileImage()->getType()};base64,{$post->getUser()->getProfileImage()->getEncodedData()}" alt="Img">
+                            </div>
+                        {else}
+                            <div class="profile-photo">
+                                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                            </div>
+                        {/if}
+                        <div class="ingo">
+                            <h3>{$post->getTitle()}</h3>
+                            <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
                   </div>
@@ -482,5 +494,6 @@
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/Smarty/js/report.js"></script>
 <script src="/Agora/Smarty/js/categories.js"></script>
+<script src="/Agora/Smarty/js/storage.js"></script>
 </body>
 </html>
