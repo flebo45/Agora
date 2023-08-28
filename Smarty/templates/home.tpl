@@ -44,7 +44,7 @@
         <div class="left">
             <a class="profile">
             {if $user->getProfileImage()->getSize() > 0}
-                <div class="profile-photo">
+                <div class="profile-photo">  
                     <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
                 </div>
             {else}
@@ -53,7 +53,7 @@
                 </div>
             {/if}
                 <div class ="handle">
-                    <h4> {$user->getUsername()} </h4>
+        <h4> {$user->getUsername()} {if $user->isVip()}<i class='uil uil-star'></i> {/if}</h4>
                     <p class="text-muted">{$user->getName()}
                     </p>
                 </div>
@@ -369,18 +369,24 @@
                 <!----------------------START OF TOP WRITER--------------------->
                <div class="top-writer">
                    <div class="heading">
-                   <h4>Top Writer</h4>
+                   <h4>VIP Writer</h4>
                    <i class="uil uil-award"> </i>
                    </div>
                    <div class="writer">
-                        {foreach $topWriters as $writer} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
+                        {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
+                        {if $vip->getProfileImage()->getSize() > 0}
                             <div class="profile-photo">
-                                <img src="Img/A.png" alt="img"> <!--IMMAGINE DI PROFILO-->
+                                    <img src="data:{$vip->getProfileImage()->getType()};base64,{$vip->getProfileImage()->getEncodedData()}" alt="Img">
                             </div>
+                        {else}
+                            <div class="profile-photo">
+                                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                            </div>
+                        {/if}
                             <div>
-                                <h5>{$user->getUsername()}</h5>
-                                <p class="text-muted">{$user->getTotlike()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
+                                <h5>{$vip->getUsername()}</h5>
+                                <p class="text-muted">Followers : {$vip->getFollowerNumber()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
                             </div>
                         </div>
                         {/foreach}

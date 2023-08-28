@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 3.1.33, created on 2023-08-28 12:04:46
+  from 'C:\xampp\htdocs\Agora\Smarty\templates\creation_post.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_64ec713ed40560_60709807',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c0961fa0ec223f764a562f6dd0a44a0bd5d994cf' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\creation_post.tpl',
+      1 => 1693217084,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_64ec713ed40560_60709807 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -40,18 +63,22 @@
     <!-----------------------left-------------------->
     <div class="left">
       <a class="profile">
-      {if $user->getProfileImage()->getSize() > 0}
+      <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getSize() > 0) {?>
         <div class="profile-photo">
-            <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
+            <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
         </div>
-      {else}
+      <?php } else { ?>
         <div class="profile-photo">
             <img src="/Agora/Smarty/immagini/1.png" alt="">
         </div>
-      {/if}
+      <?php }?>
         <div class ="handle">
-          <h4>{$user->getUsername()}</h4>
-          <p class="text-muted">{$user->getName()}</p>
+          <h4><?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+</h4>
+          <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
+</p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
@@ -191,7 +218,12 @@
   </div>
 </div>
 </div>
-<script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/Smarty/js/report.js"></script>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/Sidebar.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

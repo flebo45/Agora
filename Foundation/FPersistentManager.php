@@ -381,6 +381,81 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function loadVipUsers(){
+        $result = FUser::loadVipUsers();
 
+        return $result;
+    }
+
+    public static function topUserFollower(){
+        $result = FUser::topUserFollower();
+
+        return $result;
+    }
+
+    public static function loadVip(){
+        $oldVips = self::loadVipUsers();
+        $oldIds = array();
+
+        foreach($oldVips as $o){
+            $oldIds[] = $o->getId();
+        }
+
+        $newVips = self::topUserFollower();
+        $newIds = array();
+
+        foreach($newVips as $n){
+            $newIds[] = $n['id'];
+        }
+
+        $arr = self::findCommon($oldIds, $newIds);
+        
+        if(count($arr['remainFirst']) > 0){
+            foreach($arr['remainFirst'] as $u){
+                $user = self::retriveUser($u);
+                $user->setVip(false);
+                self::uploadUser($user);
+            }
+        }
+        
+        if(count($arr['remainSecond']) > 0){
+            foreach($arr['remainSecond'] as $d){
+                $user = self::retriveUser($d);
+                $user->setVip(true);
+                self::uploadUser($user);
+            }
+        }
+
+        $vipArr = array(); 
+        foreach($newIds as $i){
+            $vipArr[] = self::retriveUser($i);
+        }
+        
+        return $vipArr;
+
+    }
+
+
+    private static function findCommon($array1, $array2){
+        $common = [];
+        $remainFirst = [];
+        $remainSecond = [];
+
+        foreach ($array1 as $num) {
+            if (in_array($num, $array2)) {
+                $common[] = $num;
+            } else {
+                $remainFirst[] = $num;
+            }
+        }
+
+        foreach ($array2 as $num) {
+            if (!in_array($num, $common)) {
+                $remainSecond[] = $num;
+            }
+        }
+
+        return ['common'=>$common, 'remainFirst'=>$remainFirst, 'remainSecond'=>$remainSecond];
+    }
 
 }

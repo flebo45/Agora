@@ -61,6 +61,8 @@ class CUser{
             $postsInHome = $arrayHome['posts'];
             $imagesOfPosts = $arrayHome['images'];
 
+            $arrVip = $pm::loadVip();
+
             /**if(USession::isSetSessionElement('colorLabel')){
                 $colorLabel = USession::getSessionElement('colorLabel');
             }else{
@@ -74,10 +76,10 @@ class CUser{
             
             if(count($postsInHome) === 0){
                 //view della pagina vuota
-            $view->home($user, null, null/*userimg*/ /*$colorLabel, $backgroundLabel*/);
+            $view->home($user, null, null, $arrVip/*userimg*/ /*$colorLabel, $backgroundLabel*/);
             }else{
                 //now $postInHome is modified
-            $view->home($user, $postsInHome, $imagesOfPosts /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
+            $view->home($user, $postsInHome, $imagesOfPosts, $arrVip /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
             }
             //pass attributes of the post to the view to show it in the homepage 
         }
@@ -372,6 +374,15 @@ class CUser{
         }else{
             header('Location: /Agora/User/home');
         }
+    }
+
+
+
+    //andare sul db, controllare i 3 user con piu followwer, togliere il vip agli uetenti vecchi che non sono piu vip , dare il vip ai nuovi e poi usare il metodo per restituirei vip user
+    public static function checkVip(){
+        
+        $pm = FPersistentManager::getInstance();
+        
     }
 
 }

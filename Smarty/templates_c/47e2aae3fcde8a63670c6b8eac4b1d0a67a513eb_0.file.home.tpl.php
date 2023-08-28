@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-28 01:07:15
+/* Smarty version 3.1.33, created on 2023-08-28 17:32:23
   from 'C:\xampp\htdocs\Agora\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ebd723c7dca4_09565518',
+  'unifunc' => 'content_64ecbe0711e0e3_08878255',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '47e2aae3fcde8a63670c6b8eac4b1d0a67a513eb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\home.tpl',
-      1 => 1693177611,
+      1 => 1693236740,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ebd723c7dca4_09565518 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ecbe0711e0e3_08878255 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -67,7 +67,7 @@ function content_64ebd723c7dca4_09565518 (Smarty_Internal_Template $_smarty_tpl)
         <div class="left">
             <a class="profile">
             <?php if ($_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getSize() > 0) {?>
-                <div class="profile-photo">
+                <div class="profile-photo">  
                     <img src="data:<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['user']->value->getProfileImage()->getEncodedData();?>
 " alt="Img">
@@ -78,8 +78,8 @@ function content_64ebd723c7dca4_09565518 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             <?php }?>
                 <div class ="handle">
-                    <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
- </h4>
+        <h4> <?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+ <?php if ($_smarty_tpl->tpl_vars['user']->value->isVip()) {?><i class='uil uil-star'></i> <?php }?></h4>
                     <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
 
                     </p>
@@ -428,23 +428,31 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <!----------------------START OF TOP WRITER--------------------->
                <div class="top-writer">
                    <div class="heading">
-                   <h4>Top Writer</h4>
+                   <h4>VIP Writer</h4>
                    <i class="uil uil-award"> </i>
                    </div>
                    <div class="writer">
                         <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['topWriters']->value, 'writer');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrVip']->value, 'vip');
 if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['writer']->value) {
+foreach ($_from as $_smarty_tpl->tpl_vars['vip']->value) {
 ?> <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
+                        <?php if ($_smarty_tpl->tpl_vars['vip']->value->getProfileImage()->getSize() > 0) {?>
                             <div class="profile-photo">
-                                <img src="Img/A.png" alt="img"> <!--IMMAGINE DI PROFILO-->
+                                    <img src="data:<?php echo $_smarty_tpl->tpl_vars['vip']->value->getProfileImage()->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['vip']->value->getProfileImage()->getEncodedData();?>
+" alt="Img">
                             </div>
+                        <?php } else { ?>
+                            <div class="profile-photo">
+                                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                            </div>
+                        <?php }?>
                             <div>
-                                <h5><?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+                                <h5><?php echo $_smarty_tpl->tpl_vars['vip']->value->getUsername();?>
 </h5>
-                                <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getTotlike();?>
+                                <p class="text-muted">Followers : <?php echo $_smarty_tpl->tpl_vars['vip']->value->getFollowerNumber();?>
 </p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
                             </div>
                         </div>

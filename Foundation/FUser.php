@@ -1,5 +1,7 @@
 <?php
 
+use LDAP\Result;
+
 class FUser extends FEntityManager{
 
     private static $entity_class = User::class;
@@ -49,6 +51,22 @@ class FUser extends FEntityManager{
     public static function verifyUsername($field, $username){
         $fem = FEntityManager::getInstance();
         $result = $fem::verifyAttributes(self::getEntityClass(), $field, $username);
+
+        return $result;
+    }
+
+    public static function loadVipUsers(){
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectListAttribute(self::getEntityClass(), 'vip', '1');
+
+        return $result;
+    }
+
+    public static function topUserFollower(){
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::topUserFollower();
 
         return $result;
     }

@@ -172,5 +172,25 @@ class FEntityManager{
         }
     }
 
+    public static function topUserFollower(){
+        $limit = 3;
+        $query = self::$entityManager->createQuery('
+        SELECT u.id, u.username, COUNT(f) AS followerCount
+        FROM User u
+        JOIN u.followers f
+        GROUP BY u.id, u.username
+        ORDER BY followerCount DESC
+        ')->setMaxResults($limit);
+
+        try {
+            $result = $query->getResult();
+        }catch (\Exception $e) {
+        // Handle any exceptions here
+        echo "ERROR " . $e->getMessage();
+        return [];
+        }
+        return $result;
+    }
+
 }
 

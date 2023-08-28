@@ -13,12 +13,13 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($user, $arrayPostInHome, $arrayImagesPosts/*$userimagini*/ /*$colorLabel, $backgroundLabel*/){
+    public function home($user, $arrayPostInHome, $arrayImagesPosts, $vipUsers/*$userimagini*/ /*$colorLabel, $backgroundLabel*/){
         
         $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('arrayPostInHome',$arrayPostInHome);
         $this->smarty->assign('arrayImagesPosts',$arrayImagesPosts);
         $this->smarty->assign('user', $user);
+        $this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->display('home.tpl');
     }
 
