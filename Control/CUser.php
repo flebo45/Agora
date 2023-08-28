@@ -385,4 +385,38 @@ class CUser{
         
     }
 
+    public static function explore(){
+        if(CUser::isLogged()){
+            $pm = FPersistentManager::getInstance();
+            $view = new VUser();
+
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveUser($userId);
+            $arrayExplore = $pm::loadArrayExplore($user);  //array containing posts and images
+
+            $postsInExplore = $arrayExplore['posts'];
+            $imagesOfPosts = $arrayExplore['images'];
+
+            $arrVip = $pm::loadVip();
+
+            /**if(USession::isSetSessionElement('colorLabel')){
+            $colorLabel = USession::getSessionElement('colorLabel');
+            }else{
+            $colorLabel = 'white';
+            }
+            if(USession::isSetSessionElement('backgroundLabel')){
+            $backgroundLabel = USession::getSessionElement('backgroundLabel');
+            }else{
+            $backgroundLabel = 'red';
+            }**/
+    //now $postInHome is modified
+                $view->explore($user, $postsInExplore, $imagesOfPosts, $arrVip /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
+            //pass attributes of the post to the view to show it in the homepage
+        }
+        else{
+            header('Location: /Agora/User/login');
+        }
+
+    }
+
 }
