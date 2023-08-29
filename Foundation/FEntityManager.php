@@ -185,9 +185,24 @@ class FEntityManager{
         try {
             $result = $query->getResult();
         }catch (\Exception $e) {
-        // Handle any exceptions here
-        echo "ERROR " . $e->getMessage();
-        return [];
+            echo "ERROR " . $e->getMessage();
+            return [];
+        }
+        return $result;
+    }
+
+    public static function postExplore($table, $field, $id) {
+        $limit = 20;
+        $dql = 'SELECT p FROM ' . $table . ' p JOIN p.user u WHERE u.' . $field . ' != :userId ORDER BY p.creation_time DESC';
+        $query = self::$entityManager->createQuery($dql)
+            ->setMaxResults($limit)
+            ->setParameter('userId', $id);
+    
+        try {
+            $result = $query->getResult();
+        } catch (Exception $e) {
+            echo "ERROR " . $e->getMessage();
+            return [];
         }
         return $result;
     }

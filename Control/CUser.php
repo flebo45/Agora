@@ -386,18 +386,19 @@ class CUser{
     }
 
     public static function explore(){
-        if(CUser::isLogged()){
-            $pm = FPersistentManager::getInstance();
-            $view = new VUser();
+        if(UServer::getRequestMethod() == 'GET'){
+             if(CUser::isLogged()){
+                $pm = FPersistentManager::getInstance();
+                $view = new VUser();
 
-            $userId = USession::getSessionElement('user');
-            $user = $pm::retriveUser($userId);
-            $arrayExplore = $pm::loadArrayExplore($user);  //array containing posts and images
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveUser($userId);
+                $arrayExplore = $pm::loadArrayExplore($user);  //array containing posts and images
 
-            $postsInExplore = $arrayExplore['posts'];
-            $imagesOfPosts = $arrayExplore['images'];
+                $postsInExplore = $arrayExplore['posts'];
+                $imagesOfPosts = $arrayExplore['images'];
 
-            $arrVip = $pm::loadVip();
+                //$arrVip = $pm::loadVip();
 
             /**if(USession::isSetSessionElement('colorLabel')){
             $colorLabel = USession::getSessionElement('colorLabel');
@@ -410,12 +411,16 @@ class CUser{
             $backgroundLabel = 'red';
             }**/
     //now $postInHome is modified
-                $view->explore($user, $postsInExplore, $imagesOfPosts, $arrVip /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
+                $view->explore($user, $postsInExplore, $imagesOfPosts /*$arrVip*/ /*$postsInHome*/ /*$colorLabel, $backgroundLabel*/);
             //pass attributes of the post to the view to show it in the homepage
+            }
+            else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
         }
-        else{
-            header('Location: /Agora/User/login');
-        }
+       
 
     }
 

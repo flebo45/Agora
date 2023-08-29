@@ -73,4 +73,16 @@ class FPost extends FEntityManager{
 
         return $result;
     }
+
+    public static function postInExplore(User $user){
+        $fem =  FEntityManager::getInstance();
+
+        $id = $user->getId();
+
+        $field = 'id';
+
+        $result = $fem::postExplore(self::getEntityClass(), $field, $id);
+
+        return $result;
+    }
 }

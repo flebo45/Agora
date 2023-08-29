@@ -339,26 +339,16 @@ class FPersistentManager{
 
     public static function loadArrayExplore(User $user): ?array
     {
-        if($user->getFollowedNumber() === 0){
-            $allPosts = array();
-            $allImage = array();
-        }else{
-            $followedUsers = $user->getFollowedUsers();
-            $allPosts = array();
-            foreach($followedUsers as $u){
-                $posts = FPost::postListNotBanned($u);
-                foreach($posts as $p){
-                    array_push($allPosts, $p);
-                }
-            }
-            usort($allPosts, ['CManagePost', 'comparePostsByCreationTime']);
-            $allImage = array();
-            foreach($allPosts as $post){
+        $arrayPosts = self::postInExplore($user);
+        $allImage = array();
+        if(count($arrayPosts) > 0){
+            foreach($arrayPosts as $post){
                 $allImage[] = FImage::imageList($post);
             }
-
+        }else{
+            $arrayPosts = array();
         }
-        return['posts' => $allPosts, 'images' => $allImage];
+        return['posts' => $arrayPosts, 'images' => $allImage];
     }
 
 
@@ -481,6 +471,12 @@ class FPersistentManager{
         }
 
         return ['common'=>$common, 'remainFirst'=>$remainFirst, 'remainSecond'=>$remainSecond];
+    }
+
+    public static function postInExplore(User $user){
+        $result = FPost::postInExplore($user);
+
+        return $result;
     }
 
 }

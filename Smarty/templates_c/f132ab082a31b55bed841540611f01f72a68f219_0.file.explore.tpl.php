@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2023-08-28 18:04:49
+/* Smarty version 3.1.33, created on 2023-08-29 12:01:55
   from 'C:\xampp\htdocs\Agora\Smarty\templates\explore.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_64ecc5a1744995_68681004',
+  'unifunc' => 'content_64edc2136e0c53_86005489',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f132ab082a31b55bed841540611f01f72a68f219' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\Smarty\\templates\\explore.tpl',
-      1 => 1693238685,
+      1 => 1693303313,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ecc5a1744995_68681004 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64edc2136e0c53_86005489 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -124,7 +124,7 @@ function content_64ecc5a1744995_68681004 (Smarty_Internal_Template $_smarty_tpl)
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
         <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrayPostInExplore']->value, 'post');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['arrayPostInHome']->value, 'post');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 ?>
