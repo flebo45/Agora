@@ -191,21 +191,27 @@ class FEntityManager{
         return $result;
     }
 
-    public static function postExplore($table, $field, $id) {
-        $limit = 20;
-        $dql = 'SELECT p FROM ' . $table . ' p JOIN p.user u WHERE u.' . $field . ' != :userId ORDER BY p.creation_time DESC';
-        $query = self::$entityManager->createQuery($dql)
-            ->setMaxResults($limit)
-            ->setParameter('userId', $id);
+    public static function getPostsNotBelongingToUser($userId)
+{
+    try {
+        $limit = 1;
+        $dql = 'SELECT p FROM Post p
+                LEFT JOIN p.user u
+                WHERE u.id != :userId';
     
-        try {
-            $result = $query->getResult();
-        } catch (Exception $e) {
-            echo "ERROR " . $e->getMessage();
-            return [];
-        }
-        return $result;
+        $query = self::$entityManager->createQuery($dql)
+            ->setParameter('userId', $userId)
+            ->setMaxResults($limit);
+    
+    
+        $result = $query->getResult();
+    } catch (Exception $e) {
+        echo "ERROR " . $e->getMessage();
+        return [];
     }
+    
+    return $result;
+}
 
 }
 

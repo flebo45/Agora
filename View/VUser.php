@@ -78,15 +78,21 @@ class VUser{
         $this->smarty->display('setting.tpl');
     }
 
-    public function explore($user, $arrayPostInExplore, $arrayImagesPosts, /*$vipUsers/*$userimagini*/ /*$colorLabel, $backgroundLabel*/){
+    public function explore($user, $arrayPostInExplore /*$vipUsers/*$userimagini*/ /*$colorLabel, $backgroundLabel*/){
 
         $this->smarty->assign('user-logged',"loggato");
-        $this->smarty->assign('arrayPostInHome',$arrayPostInExplore);
-        $this->smarty->assign('arrayImagesPosts',$arrayImagesPosts);
+        $this->smarty->assign('posts',$arrayPostInExplore);
+        //$this->smarty->assign('arrayImagesPosts',$arrayImagesPosts);
         $this->smarty->assign('user', $user);
         //$this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->display('explore.tpl');
     }
 
+    public function category($user, $post){
+        $this->smarty->assign('user-logged',"loggato");
+        $this->smarty->assign('user', $user);
+        $this->smarty->assign('arrayPostInHome', $post);
+        $this->smarty->display('explore.tpl');
+    }
 
 }

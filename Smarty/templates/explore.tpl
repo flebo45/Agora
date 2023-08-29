@@ -96,7 +96,7 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
-        {foreach $arrayPostInHome as $post}
+        {foreach $posts as $post}
           <div class="feed">
             <div class="head">
               <div class="user">

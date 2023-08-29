@@ -79,9 +79,7 @@ class FPost extends FEntityManager{
 
         $id = $user->getId();
 
-        $field = 'id';
-
-        $result = $fem::postExplore(self::getEntityClass(), $field, $id);
+        $result = $fem::getPostsNotBelongingToUser($id);
 
         return $result;
     }

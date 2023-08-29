@@ -12,8 +12,8 @@ $id = 2;
 
 $user = $pm::retriveUser($id);
 
-$arrayExplore = $pm::loadArrayExplore($user);
+$arrayExplore = $pm::postInExplore($user);
 
-foreach($arrayExplore['posts'] as $p){
+foreach($arrayExplore as $p){
     echo $p->getId();
 }   

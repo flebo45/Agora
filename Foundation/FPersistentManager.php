@@ -337,19 +337,7 @@ class FPersistentManager{
         return['posts' => $allPosts, 'images' => $allImage];
     }
 
-    public static function loadArrayExplore(User $user): ?array
-    {
-        $arrayPosts = self::postInExplore($user);
-        $allImage = array();
-        if(count($arrayPosts) > 0){
-            foreach($arrayPosts as $post){
-                $allImage[] = FImage::imageList($post);
-            }
-        }else{
-            $arrayPosts = array();
-        }
-        return['posts' => $arrayPosts, 'images' => $allImage];
-    }
+ 
 
 
     /**
