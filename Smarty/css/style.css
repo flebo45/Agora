@@ -448,7 +448,7 @@ body { overflow-x: hidden }
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
-    max-height: 25%;
+    max-height: 40%;
     overflow-y:auto ;
 }
 
