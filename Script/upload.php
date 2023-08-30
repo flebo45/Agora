@@ -1,0 +1,31 @@
+<?php
+require_once "bootstrap.php";
+require_once "autoloader.php";
+$em = getEntityManager();
+
+$fem = FEntityManager::getInstance($em);
+
+$pm = FPersistentManager::getInstance();
+
+
+$id = 2;
+
+$user = $pm::retriveObj(EUser::getEntity(), $id);
+
+$title = "Vacanza a Catanzaro";
+$description = "Vacanza pazzesca in quel di catanzaro";
+$category = "Travel";
+
+$post = new EPost($title, $description, $category);
+
+$post->setUser($user);
+$pm::uploadObj($post);
+
+$name = 'sakura.png';
+$size = 1024;
+$type = 'image/png';
+$imageData = "ziopera";
+
+$postPic1 = new EImage($name, $size, $type, $imageData);
+
+$pm::uploadImagePost($postPic1, $post);
