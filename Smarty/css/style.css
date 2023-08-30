@@ -1078,6 +1078,9 @@ VISUALIZATION POST
     display: inline-block;
     margin-top: 1%;
 }
+.box-setting .custom-btn{
+    width: fit-content;
+}
 
 .box-setting .error-text {
     color: var(--color-danger);
