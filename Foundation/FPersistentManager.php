@@ -127,7 +127,7 @@ class FPersistentManager{
         $followed = self::getFollowed($id);
         if(count($followed) === 0)
         {
-            $posts = array();
+            $allPosts = array();
         }else{
             $allPosts = array();
             foreach($followed as $f){

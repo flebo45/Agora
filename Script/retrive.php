@@ -8,8 +8,8 @@ $fem = FEntityManager::getInstance($em);
 $pm = FPersistentManager::getInstance();
 
 
-$username = "flebo45";
+$image = $pm::retriveProPicInfo(1);
 
-$user = $pm::retriveUserOnUsername($username);
-
-
+foreach($image as $i){
+    print_r($i->getId());
+}

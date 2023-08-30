@@ -43,9 +43,9 @@
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
-            {if $user->getProfileImage()->getSize() > 0}
+            {if $userPic[0]->getSize() > 0}
                 <div class="profile-photo">  
-                    <img src="data:{$user->getProfileImage()->getType()};base64,{$user->getProfileImage()->getEncodedData()}" alt="Img">
+                    <img src="data:{$userPic[0]->getType()};base64,{$userPic[0]->getEncodedData()}" alt="Img">
                 </div>
             {else}
                 <div class="profile-photo">
@@ -92,7 +92,7 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
-                {if empty($arrayPostInHomen)}
+                {if empty($arrayPostInHome)}
                      <div class="error tex-bold">There are no Post, Start Following new User to see their post here</div>
                 {else}
                 {foreach $arrayPostInHome as $post}
@@ -100,15 +100,9 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                        {if $post->getUser()->getProfileImage()->getSize() > 0}
-                            <div class="profile-photo">
-                                <img src="data:{$post->getUser()->getProfileImage()->getType()};base64,{$post->getUser()->getProfileImage()->getEncodedData()}" alt="Img">
-                            </div>
-                        {else}
-                            <div class="profile-photo">
-                                <img src="/Agora/Smarty/immagini/1.png" alt="">
-                            </div>
-                        {/if}
+                        <div class="profile-photo">
+                            <img src="/Agora/Smarty/immagini/1.png" alt="">
+                        </div>
                         <div class="ingo">
                             <div>
                                 <a href="/Agora/User/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
@@ -381,9 +375,9 @@
                    <div class="writer">
                         {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
-                        {if $vip->getProfileImage()->getSize() > 0}
+                        {if $vipPic[$vip->getId()][0]->getSize()> 0}
                             <div class="profile-photo">
-                                    <img src="data:{$vip->getProfileImage()->getType()};base64,{$vip->getProfileImage()->getEncodedData()}" alt="Img">
+                                    <img src="data:{$vipPic[$vip->getId()][0]->getType()};base64,{$vipPic[$vip->getId()][0]->getEncodedData()}" alt="Img">
                             </div>
                         {else}
                             <div class="profile-photo">
@@ -392,7 +386,7 @@
                         {/if}
                             <div>
                                 <h5>{$vip->getUsername()}</h5>
-                                <p class="text-muted">Followers : {$vip->getFollowerNumber()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
+                                <p class="text-muted">Followers : <!--{$vip->getFollowerNumber()}--></p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
                             </div>
                         </div>
                         {/foreach}

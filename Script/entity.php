@@ -3,7 +3,9 @@
 require_once "bootstrap.php";
 require_once "autoloader.php";
 $em = getEntityManager();
+$fem = FEntityManager::getInstance($em);
 
+$pm = FPersistentManager::getInstance();
 //-------------------------ENTITY---------------------------------
 
 $name = "Alessio";
@@ -15,8 +17,7 @@ $username = "flebo45";
 
 $user = new EUser($name, $surname, $year, $email, $password, $username);
 
-$em->persist($user);
-$em->flush();
+$pm::uploadObj($user);
 
 $name = "Alessio";
 $surname = "Martinelli";
@@ -27,15 +28,13 @@ $username = "aleMammt0";
 
 $user2 = new EUser($name, $surname, $year, $email, $password, $username);
 
-$em->persist($user2);
-$em->flush();
+$pm::uploadObj($user2);
 
 //------------------------FOLLOW------------------------------------
 
 $follow = new EUserFollow($user2->getId(), $user->getId());
 
-$em->persist($follow);
-$em->flush();
+$pm::uploadObj($follow);
 
 //-------------------------POST-------------------------------------
 
@@ -46,8 +45,7 @@ $category = "Travel";
 $post = new EPost($title, $description, $category);
 
 $post->setUser($user);
-$em->persist($post);
-$em->flush();
+$pm::uploadObj($post);
 
 $title = "Le nuove Nike DunkLow fanno paura";
 $description = "pazzesce";
@@ -56,8 +54,7 @@ $category = "Hobby";
 $post2 = new EPost($title, $description, $category);
 
 $post2->setUser($user2);
-$em->persist($post2);
-$em->flush();
+$pm::uploadObj($post2);
 
 //-------------------------COMMENT---------------------------------------
 
@@ -65,15 +62,13 @@ $body = "Ahahahah gg";
 
 $comment = new EComment($body, $user2, $post->getId());
 
-$em->persist($comment);
-$em->flush();
+$pm::uploadObj($comment);
 
 //--------------------------LIKE----------------------------------------
 
 $like = new ELike($user2->getId(), $post->getId());
 
-$em->persist($like);
-$em->flush();
+$pm::uploadObj($like);
 
 //------------------------REPORT--------------------------------------
 
@@ -84,9 +79,7 @@ $report = new EReport($description, $type, $user2->getId());
 
 $report->setPost($post);
 
-$em->persist($report);
-$em->flush();
-
+$pm::uploadObj($report);
 
 //-----------------------IMAGE-----------------------------------------
 $name = 'supra.jpeg';
@@ -96,12 +89,10 @@ $imageData = "ziopera";
 
 $proPic = new EImage($name, $size, $type, $imageData);
 
-$em->persist($proPic);
-$em->flush();
+$pm::uploadObj($proPic);
 
 $user->setIdImage($proPic->getId());
-$em->persist($user);
-$em->flush();
+$pm::uploadObj($user);
 
 $name = 'sakura.png';
 $size = 1024;
@@ -112,9 +103,8 @@ $postPic1 = new EImage($name, $size, $type, $imageData);
 $post->addImage($postPic1);
 $postPic1->setPost($post);
 
-$em->persist($post);
-$em->persist($postPic1);
-$em->flush();
+$pm::uploadObj($post);
+$pm::uploadObj($postPic1);
 
 $name = 'zio.jpg';
 $size = 1024;
@@ -125,6 +115,5 @@ $postPic2 = new EImage($name, $size, $type, $imageData);
 $post->addImage($postPic2);
 $postPic2->setPost($post);
 
-$em->persist($post);
-$em->persist($postPic2);
-$em->flush();
+$pm::uploadObj($post);
+$pm::uploadObj($postPic2);

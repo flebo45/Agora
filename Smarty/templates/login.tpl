@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-{assign var='error' value=$error|default:'ok'}
-{assign var='bann' value=$bann|default:'false'}
-{assign var='errorSize' value=$errorSize|default:'ok'}
-{assign var='errorType' value=$errorType|default:'ok'}
-{assign var='errorEmail' value=$errorEmail|default:'ok'}
 <html lang="en">
 <head>
   <meta charset="UTF-8">

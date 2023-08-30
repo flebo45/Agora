@@ -50,16 +50,19 @@ class CUser{
     public static function checkRegistration()
     {
         $pm = FPersistentManager::getInstance();
+        
         $email = $pm::verifyEmail($_POST['email']);
+        
         $view = new VUser();
         if($email == false){
             $username = $pm::verifyUsername($_POST['username']);
             if($username == false){
                 $user = new EUser($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'],$_POST['password'],$_POST['username']);
+                $pm::uploadObj($user);
                 $image = new EImage('default', 0, "image/png", "default");
-                $pm::uploadObj(EImage::getEntity(), $image);
+                $pm::uploadObj($image);
                 $user->setIdImage($image);
-                $pm::uploadObj(EUser::getEntity(), $user);
+                $pm::uploadObj($user);
                 header('Location: /Agora/User/login');
             }
             else{
@@ -122,11 +125,13 @@ class CUser{
     public static function logout(){
         USession::getInstance();
         USession::unsetSession();
+        $cookie_params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 3600, $cookie_params['path'], $cookie_params['domain'], $cookie_params['secure'], $cookie_params['httponly']);
         USession::destroySession();
         header('Location: /Agora/User/login');
     }
 
-    public function home()
+    public static function home()
     {
         if(UServer::getRequestMethod() == "GET"){
             if(CUser::isLogged())

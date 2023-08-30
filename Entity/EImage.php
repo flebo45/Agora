@@ -28,7 +28,7 @@ use Doctrine\ORM\Mapping as ORM;
     /**
      * @ORM\Column(type="string")
      */
-    private $type;
+    private $types;
 
     /**
      * @ORM\Column(type="blob")
@@ -49,7 +49,7 @@ use Doctrine\ORM\Mapping as ORM;
     public function __construct($name, $size, $type, $imageData){
         $this->name = $name;
         $this->size = $size;
-        $this->type = $type;
+        $this->types = $type;
         $this->imageData = $imageData;
     }
 
@@ -80,7 +80,7 @@ use Doctrine\ORM\Mapping as ORM;
 
     public function getType()
     {
-        return $this->type;
+        return $this->types;
     }
 
     public function getImageData()

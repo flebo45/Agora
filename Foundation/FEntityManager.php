@@ -1,9 +1,6 @@
 <?php
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 
-//NOTA IMPORTANTE : SE UTILIZZIAMO SQL, L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
-use Doctrine\ORM\Query as DQL;
+//NOTA IMPORTANTE : SE UTILIZZIAMO SQL, L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOV
 
 class FEntityManager{
     private static $instance;
@@ -53,12 +50,11 @@ class FEntityManager{
     public static function getProPicInfos($table, $id)
     {
         try{
-            $dql = "SELECT partial i.{type, imageData} FROM " . $table . " i WHERE i.idImage = : idImage";
+            $dql = "SELECT partial i.{idImage, size, types, imageData} FROM " . $table . " i WHERE i.idImage = :idImage";
             $query = self::$entityManager->createQuery($dql)->setParameter('idImage', $id);
             $resutl = $query->getResult();
             return $resutl;
         }catch(Exception $e){
-            self::$entityManager->getConnection()->rollBack();
             echo "ERROR: " . $e->getMessage();
             return false;
         }   
@@ -235,7 +231,7 @@ class FEntityManager{
             }
         }catch(Exception $e){
                 echo "ERROR " . $e->getMessage();
-                return null;
+                return false;
             }
     }
 
