@@ -91,6 +91,9 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
+          {if empty($postList)}
+          <div class="error tex-bold">You haven't posted yet,post something to see it here</div>
+          {else}
                 {foreach $postList as $post}
                 <div class="feed">
                   <div class="head">
@@ -140,6 +143,7 @@
                     <div class=" comments text-muted">view all the comment</div>
                 </div>
                 {/foreach}
+          {/if}
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>

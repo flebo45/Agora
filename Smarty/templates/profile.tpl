@@ -88,6 +88,7 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
+
                 {foreach $postList as $post}
                 <div class="feed">
                   <div class="head">

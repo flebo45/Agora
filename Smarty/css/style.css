@@ -48,9 +48,9 @@ body {
 
 .box .form-box{
     width:25rem;
-    height: 30rem;
+    height: 41rem;
     position: relative;
-    margin: 5% auto;
+    margin: 3% auto;
     background:  var(--color-white);
     padding:5px;
     overflow: hidden;
@@ -362,7 +362,12 @@ main .container .left .profile{
 }
 /*-------------------------FEEDS---------------------*/
 
+.middle .feeds .error{
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
 
+}
 .middle .feeds .feed{
     background: var(--color-white);
     border-radius: var(--card-border-radius);
@@ -870,12 +875,10 @@ REPORT CARD
 
 .creation .form-box{
     margin-left: 30%;
-    height: 90%;
     width:40rem;
     position: relative;
     background:  var(--color-white);
     padding:5px;
-    overflow: hidden;
 }
 .creation .form-box h3{
     margin-left:40%;
@@ -885,7 +888,6 @@ REPORT CARD
     margin-left: 13%;
 }
 .text{
-
     margin-left:2rem;
     padding: 1em;
     border-radius: 10px;

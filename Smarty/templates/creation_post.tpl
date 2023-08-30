@@ -100,9 +100,9 @@
           <input type="file" name="imageFile[]" id="image-input" class="image-input" accept=".png, .jpg, .jpeg" multiple>Selec Img</label>
           </div>
           <div>
-            <h4 class="tex-bold " style="margin-left: 5%; margin-top: 0.3rem;">Topic</h4>
               <label for="topic">
-              <select name="category" id="topic" required>
+                <h4 class="tex-bold " style="margin-left: 5%; margin-top: 1rem;">Topic</h4>
+              <select name="category" id="topic" style="width: fit-content"required>
                 <option></option>
                 <option value="Animals">Animals</option>
                 <option value="Arts">Arts</option>

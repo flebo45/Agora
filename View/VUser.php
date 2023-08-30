@@ -95,4 +95,13 @@ class VUser{
         $this->smarty->display('explore.tpl');
     }
 
+
+    public function registrationError($error){
+
+    }
+
+    public function uploadFileError(string $string){
+
+
+    }
 }

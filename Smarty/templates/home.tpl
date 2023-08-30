@@ -92,7 +92,11 @@
         <div class="middle">
         <!----------------FEEDS-------------------------------->
             <div class="feeds">
+                {if empty($arrayPostInHomen)}
+                     <div class="error tex-bold">There are no Post, Start Following new User to see their post here</div>
+                {else}
                 {foreach $arrayPostInHome as $post}
+
                 <div class="feed">
                   <div class="head">
                     <div class="user">
@@ -154,7 +158,9 @@
 
                     <a href="/Agora/User/profile/" class=" comments text-muted">view all the comment</a>
                 </div>
+
                 {/foreach}
+                {/if}
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>
