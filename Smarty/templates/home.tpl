@@ -80,7 +80,7 @@
             </div>
             <!--------------------END OF SIDE BAR----------------->
             <label class="btn btn-primary">create post
-                <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+                <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
             </label>
         </div>
 
@@ -105,7 +105,7 @@
                         </div>
                         <div class="ingo">
                             <div>
-                                <a href="/Agora/User/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
+                                <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
                             </div>
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>

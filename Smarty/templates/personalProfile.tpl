@@ -79,7 +79,7 @@
         </div>
         <!--------------------END OF SIDE BAR----------------->
         <label class="btn btn-primary">create post
-          <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+          <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
         </label>
     </div>
 
@@ -108,13 +108,14 @@
                       </div>
                     {/if}
                         <div class="ingo">
-                          <h3>{$post->getTitle()}</h3>
+                          <div>
+                            <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
+                          </div>
                           <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                         </div>
                     </div>
-                      <label>
-                              <button class="btn-transparent" id="edit" type="button">  <i class="uil uil-ellipsis-h"></i></button>
-                      </label>
+                    <!--Botone uil-uil-edits-->
+                    <!--TODO-->
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
@@ -232,10 +233,10 @@
     <h2>Are you sure you want to delete this post?</h2>
     <div>
       <label>
-        <button class="btn-transparent btn">Yes</button>
+        <button class="btn-transparent btn" onclick="location.href='Agora/Post/delete'">Yes</button>
       </label>
       <label>
-        <button class="btn-transparent btn">No</button>
+        <button class="btn-transparent btn" onclick="location.reload()">No</button>
       </label>
     </div>
   </div>

@@ -76,7 +76,7 @@
       </div>
       <!--------------------END OF SIDE BAR----------------->
       <label class="btn btn-primary">create post
-        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+        <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
       </label>
     </div>
 
@@ -97,7 +97,9 @@
                           <img src="/Agora/Smarty/immagini/1.png" alt="">
                       </div>
                       <div class="ingo">
-                        <h3>{$post->getTitle()}</h3>
+                        <div>
+                          <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
+                        </div>
                         <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
@@ -167,26 +169,24 @@
             <p class="text-muted">{$user->getName()}</p>
           </div>
           <div>
-            <h4>{$user->getFollowedNumber()}</h4>
+            <h4>{$user->getId()}</h4>
             <p class="text-muted">
               followers
             </p>
           </div>
           <div>
-            <h4>{$user->getFollowerNumber()}</h4>
+            <h4>{$user->getId()}</h4>
             <p class="text-muted">following</p>
           </div>
         </div>
 
-        <!--<button class="btn-primary btn" onclick="toggle(this)">{$followButtonText}</button>
+        <button class="btn-primary btn" onclick="toggle(this)">follow</button>
         <script>
           function toggle(e) {
             let txt = e.innerText;
             e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
           }
-        </script>-->
-        <button class="btn-primary btn" onclick="">follow button</button>
-
+        </script>
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
@@ -236,7 +236,7 @@
 
 
         <!--------------------------TOP POST---------------------------->
-        <!--<div class="top-post">
+        <div class="top-post">
           <div class="heading">
             <h4>Top Post</h4>
             <i class="uil uil-award"> </i>
@@ -255,11 +255,12 @@
             </div>
           </div>
           {/foreach}
-        </div>-->
+        </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
       </div>
-    </div>
+  </div>
+  
 </main>
 
 

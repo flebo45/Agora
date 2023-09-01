@@ -59,7 +59,7 @@
       </div>
       <!--------------------END OF SIDE BAR----------------->
       <label class="btn btn-primary">create post
-        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+        <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
       </label>
     </div>
 
