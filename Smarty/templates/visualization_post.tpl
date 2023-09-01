@@ -43,20 +43,20 @@
     <!-----------------------left-------------------->
     <div class="left">
       <a class="profile">
-        <div class="profile-photo">
-          <img src="Img/A.png" alt=" log in">
+      <div class="profile-photo">
+            <img src="/Agora/Smarty/immagini/1.png" alt="">
         </div>
         <div class ="handle">
-          <h4> {$personalUser->getUsername()}</h4>
+          <h4> {$user->getUsername()}</h4>
           <p class="text-muted">
-            {$personalUser->getName()}
+            {$user->getName()}
           </p>
         </div>
       </a>
       <!-----------------------SIDE BAR-------------------->
       <div class="sidebar">
-      <label class="menu-items active tex-bold">
-          <span> <i class="uil uil-home"></i></span> Home
+      <label class="menu-items tex-bold">
+      <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> Home
       </label>
       <label class="menu-items tex-bold">
           <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
@@ -75,7 +75,7 @@
   </div>
   <!--------------------END OF SIDE BAR----------------->
   <label class="btn btn-primary">create post
-      <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+      <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
   </label>
 </div>
 
@@ -87,54 +87,61 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
-        <div class="feed">
-          <div class="head">
-            <div class="user">
-              <div class="profile-photo">
-                <img src="Img/A.png" alt="img">
-              </div>
-              <div class="ingo">
-                <h3>{$feedTitle}</h3>
-                <small>{$feedTime}</small>
-              </div>
+      <div class="feed">
+      <div class="head">
+        <div class="user">
+        <div class="profile-photo">
+            <img src="/Agora/Smarty/immagini/1.png" alt="">
+        </div>
+          <div class="ingo">
+            <div>
+              <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
             </div>
-            <span class="edit">
-              <i class="uil uil-ellipsis-h"></i>
-            </span>
+            <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
           </div>
+        </div>
+      </div>
+        <div class="caption ">
+            <!-- Smarty tag for username -->
+            <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
+            {$post->getDescription()}</span></p>
+        </div>
+        {if $post->getImages()->count() === 0}
+            
+          {else}
+            <div class="photo">
+              {foreach from=$post->getImages() item=i}
+                  <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+              
+              {/foreach}
+            </div>
+          {/if}
 
-          <div class="caption ">
-            <p><b>{$username}</b>
-              <span class="harsh-tag">{$tag}
-                {$feedContenti}
-            </span></p>
-          </div>
-
-          <div class="photo">
-            {foreach $feedImages as $image}
-              <img src="{$image}" alt="img">
-            {/foreach}
-          </div>
-
-          <div class="action-buttons">
+        <div class="action-buttons">
             <div class="interaction-buttons">
-              <span><i class="uil uil-heart"></i> </span>
+                <span><i class="uil uil-heart"></i> </span>
+                <span><i class="uil uil-comment-dots"></i></span>
             </div>
-          </div>
 
-          <div class="liked-by">
-            {foreach $likedByUsers as $likedUser}
-              <span><img src="{$likedUser}" alt=""></span>
-            {/foreach}
-            <p> {$likedByText} <b> {$likedByUsernames}</b> {$likedByAnd} <b> {$likeByCount} </b></p>
-          </div>
+            <div class= "interaction-buttons " id="report">
+                <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
+            </div>
+        </div>
+
+        <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
+            {for $i=0; $i<3;$i++}
+            <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
+            {/for}
+            <!-- Smarty tag for username -->
+            <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+        </div>
 
           <div class="comments">
             <div class="head-comment">
               <div class=" action-buttons">
                 <span><i class="uil uil-comment-dots"></i></span>
-                </div>
-              <h3  class="tex-bold">{$commentsLabel}</h3>
+              </div>
+              <h3  class="tex-bold">comments</h3>
             </div>
 
             {foreach $comments as $comment}
@@ -145,29 +152,28 @@
                       <img src="Img/A.png" alt="img">
                     </div>
                     <div class="ingo">
-                      <h3> {$comment.username} </h3>
-                      <small>{$comment.time}</small>
+                      <h3> {$comment->getUser()->getUsername()} </h3>
+                      <small>{$comment->getTime()->format('Y-m-d H:i:s')}</small>
                     </div>
                   </div>
 
                   <div class="body-comment">
-                    <b>{$comment.commentText}</b>
+                    <b>{$comment->getBody()}</b>
                   </div>
                 </div>
               </div>
             {/foreach}
 
             <div class="send-comment">
-              <form>
+              <form id="comment-post"  action="/Agora/Post/visit/{$post->getId()}"  method="post">
               <label class="left-transition ">
-                <input type="text" placeholder="{$writeCommentPlaceholder}">
+                <input type="text" name ='body'placeholder="write a comment">
               </label>
-                <label class="btn btn-primary left-transition">{$sendButtonLabel}
+                <label class="btn btn-primary left-transition">send
                   <button type="submit" class="btn-transparent"></button>
                 </label>
               </form>
             </div>
-
           </div>
         </div>
       </div>
@@ -180,25 +186,32 @@
     <div class="right">
       <div class="side-profile">
         <div class="heading">
-          <div class="profile-photo">
-            <img src="Img/A.png" alt=" log in">
-          </div>
+        <div class="profile-photo">
+            <img src="/Agora/Smarty/immagini/1.png" alt="">
+        </div>
           <div class ="handle">
-            <h4> {$user->getUsername()} </h4>
+            <h4> {$post->getUser()->getUsername()} </h4>
+            <p class="text-muted">{$post->getUser()->getName()}</p>
+          </div>
+          <div>
+            <h4>{$post->getUser()->getId()}</h4>
             <p class="text-muted">
-              {$user->getName()}
+              followers
             </p>
           </div>
           <div>
-            <h4> {$user->getFollowerNumber()}</h4>
-            <p class="text-muted">Followers</p>
-          </div>
-          <div>
-            <h4>{$user->getFollowedNumber()}</h4>
-            <p class="text-muted">Followed by</p>
+            <h4>{$post->getUser()->getId()}</h4>
+            <p class="text-muted">following</p>
           </div>
         </div>
 
+        <button class="btn-primary btn" onclick="toggle(this)">follow</button>
+        <script>
+          function toggle(e) {
+            let txt = e.innerText;
+            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
+          }
+        </script>
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
@@ -208,9 +221,9 @@
         <div class="bio">
           <i class="uil uil-chat-bubble-user"></i>
           <div class="bio-body">
-            <h5 class="text-bold">{$user->getBio()}</h5>
+            <h5 class="text-bold">Bio</h5>
             <div class="text-muted">
-              <h5>Bio</h5>
+              <h5>{$post->getUser()->getBio()}</h5>
             </div>
           </div>
         </div>
@@ -218,9 +231,9 @@
         <div class="bio">
           <i class="uil uil-moneybag"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$user->getWorking()}</h5>
+            <h5 class="tex-bold">Working </h5>
             <div class="text-muted">
-              <h5>Working</h5>
+              <h5>{$post->getUser()->getWorking()}</h5>
             </div>
           </div>
         </div>
@@ -228,9 +241,9 @@
         <div class="bio">
           <i class="uil uil-graduation-cap"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$user->getStudiedAt()}</h5>
+            <h5 class="tex-bold">Studied at</h5>
             <div class="text-muted">
-              <h5>Studied At</h5>
+              <h5>{$post->getUser()->getStudiedAt()}</h5>
             </div>
           </div>
         </div>
@@ -238,10 +251,10 @@
         <div class="bio">
           <i class="uil uil-hourglass"></i>
           <div class="bio-body">
-            <h5 class="tex-bold">{$user->getHobby()}</h5>
+            <h5 class="tex-bold">Hobby</h5>
             <div class="text-muted">
-              <h5>Hobby</h5>
-            </div>
+              <h5>{$post->getUser()->getHobby()}</h5>
+          </div>
           </div>
         </div>
       </div>

@@ -31,6 +31,13 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function getCommentList($idPost)
+    {
+        $result = FComment::getCommentListNotBanned($idPost);
+
+        return $result;
+
+    }
     public static function retriveUserOnUsername($username)
     {
         $result = FUser::getUserByUsername($username);

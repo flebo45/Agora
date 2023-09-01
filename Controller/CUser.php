@@ -333,7 +333,7 @@ class CUser{
     }
 
     public static function uploadImage($file){
-        $check = CManagePost::validateImage($file);
+        $check = CPost::validateImage($file);
         if($check[0]){
             $image = new EImage($file['name'], $file['size'], $file['type'], file_get_contents($file['tmp_name']));
             return $image;

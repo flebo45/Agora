@@ -32,4 +32,14 @@ class VManagePost{
         $this->smarty->display('errore.tpl');
 
     }
+
+    public function showPost($user, $userPic, $visitedUserPic, $post, $comments)
+    {
+        $this->smarty->assign('user', $user);
+        $this->smarty->assign('userPic', $userPic);
+        $this->smarty->assign('post', $post);
+        $this->smarty->assign('comments', $comments);
+        $this->smarty->assign('visitedUserPic', $visitedUserPic);
+        $this->smarty->display('visualization_post.tpl');
+    }
 }

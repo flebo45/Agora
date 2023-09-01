@@ -7,10 +7,10 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$idImage = 6;
+$postId = 2;
 
-$proPic= $pm::retriveProPicInfo($idImage);
+//$post = $pm::retriveObj(EPost::getEntity(), $postId);
 
-var_dump($proPic);
+$comments = $pm::retriveCommentOnPost($postId);
 
-
+ echo $comments->getId();
