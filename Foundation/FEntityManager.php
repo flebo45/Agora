@@ -49,7 +49,7 @@ class FEntityManager{
         }
     }
 
-    public static function getProPicInfos($table, $id)
+    /**public static function getProPicInfos($table, $id)
     {
         try{
             $dql = "SELECT partial i.{idImage, types, imageData} FROM " . $table . " i WHERE i.idImage = :idImage";
@@ -61,7 +61,7 @@ class FEntityManager{
             echo "ERROR: " . $e->getMessage();
             return false;
         }   
-    }
+    }**/
 
     /**
      * delete the object in the db, and all the object related to it if there is cascade
@@ -195,11 +195,11 @@ class FEntityManager{
             {
                 return $result;
             }else{
-                return [];
+                return array();
             }
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();
-            return null;
+            return array();
         }
     }
     

@@ -28,7 +28,9 @@ class CUser{
      */
     public static function isBanned()
     {
-        $user =  USession::getSessionElement('user');
+        $pm = FPersistentManager::getInstance();
+        $userId = USession::getSessionElement('user');
+        $user = $pm::retriveObj(EUser::getEntity(), $userId);
         if($user->isBanned()){
             $view = new VUser();
             USession::unsetSession();
@@ -56,10 +58,16 @@ class CUser{
             $username = $pm::verifyUsername($_POST['username']);
             if($username == false){
                 $user = new EUser($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'],$_POST['password'],$_POST['username']);
-                $image = new EImage('default', 0, "image/png", "default");
-                $pm::uploadObj($image);
-                $user->setIdImage($image);
                 $pm::uploadObj($user);
+                if($pm::retriveObj(EImage::getEntity(), 1) != null){
+                    $user->setIdImage(1);
+                    $pm::uploadObj($user);
+                }else{
+                    $image = new EImage('default', 0, "image/png", "default");
+                    $pm::uploadObj($image);
+                    $user->setIdImage(1);
+                    $pm::uploadObj($user);
+                }
                 header('Location: /Agora/User/login');
             }
             else{
@@ -101,7 +109,7 @@ class CUser{
                     else{
                         if(USession::getSessionStatus() == PHP_SESSION_NONE){
                             USession::getInstance();
-                            USession::setSessionElement('user', $user);
+                            USession::setSessionElement('user', $user->getId());
                             //set color for text and background
                             //USession::setSessionElement('colorLabel', 'black');
                             //USession::setSessionElement('backgroundLabel', 'red');
@@ -134,18 +142,19 @@ class CUser{
             $pm = FPersistentManager::getInstance();
             $view = new VUser();
 
-            $user = USession::getSessionElement('user');
-            $proPic = $pm::retriveProPicInfo($user->getIdImage());
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveObj(EUser::getEntity(), $userId);
+            $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
             $postInHome = $pm::loadHomePage($user->getId());
-
+            
             $vipUsers = $pm::loadVip();
             $vipPic = array();
             
 
             foreach($vipUsers as $v)
             {
-                $vipPic[$v->getId()] = $pm::retriveProPicInfo($v->getId());
+                $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getId());
             }
 
             if(count($postInHome) === 0)
@@ -170,9 +179,10 @@ class CUser{
                 $view = new VUser();
                 USession::getInstance();
                 $pm = FPersistentManager::getInstance();
-                $user = USession::getSessionElement('user');
-                $proPic = $pm::retriveProPicInfo($user->getIdImage());
-                $user = $pm::retriveObj(EUser::getEntity(), $user->getId());
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+                
 
                 $postProfile = $pm::loadUserPage($user->getId());
 
@@ -199,14 +209,15 @@ class CUser{
                 USession::getInstance();
                 $pm = FPersistentManager::getInstance();
 
-                $personalUser =  USession::getSessionElement('user');
+                $personalUserId =  USession::getSessionElement('user');
+                $personalUser = $pm::retriveObj(EUser::getEntity(), $personalUserId);
                 if($personalUser->getUsername() != $username)
                 {
                     if($pm::verifyUsername($username))
                     {
-                        $personalProPic = $pm::retriveProPicInfo($personalUser->getIdImage());
+                        $personalProPic = $pm::retriveObj(EImage::getEntity(), $personalUser->getIdImage());
                         $user = $pm::retriveUserOnUsername($username);
-                        $profileProPic = $pm::retriveProPicInfo($user->getIdImage());
+                        $profileProPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
                         $postUser = $pm::loadUserPage($user->getId());
                         $view = new VUser();
@@ -242,8 +253,9 @@ class CUser{
                 $pm = FPersistentManager::getInstance();
                 USession::getInstance();
 
-                $user = USession::getSessionElement('user');
-                $proPic = $pm::retriveProPicInfo($user->getIdImage());
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
                 $view->settings($user, $proPic);
             }else{
                 header('Location: /Agora/User/home');
@@ -254,7 +266,8 @@ class CUser{
             USession::getInstance();
             $view = new VUser();
                 
-            $user = USession::getSessionElement('user');
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveObj(EUser::getEntity(), $userId);
             //credential form (bio, hobby ecc)
             if($param == 1)
             {
@@ -303,8 +316,6 @@ class CUser{
                         $view->uploadFileError('SIZE_ERROR');
                     }
                     else{
-                        $oldProPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
-                        $pm::deleteImage($oldProPic);
                         $pm::uploadObj($checkUploadImage);
                         $user->setIdImage($checkUploadImage->getId());
                         $pm::uploadObj($user);
@@ -340,8 +351,9 @@ class CUser{
                 $pm = FPersistentManager::getInstance();
                 $view = new VUser();
                 USession::getInstance();
-                $user = USession::getSessionElement('user');
-                $proPic = $pm::retriveProPicInfo($user->getIdImage());
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
                 $postCategory = $pm::loadPostPerCategory($category);
 
@@ -368,8 +380,9 @@ class CUser{
                 $pm = FPersistentManager::getInstance();
                 $view = new VUser();
                 USession::getInstance();
-                $user = USession::getSessionElement('user');
-                $proPic = $pm::retriveProPicInfo($user->getIdImage());
+                $userId = USession::getSessionElement('user');
+                $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
                 $postExplore = $pm::loadPostInExplore($user->getId());
 

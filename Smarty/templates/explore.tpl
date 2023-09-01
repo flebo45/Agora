@@ -43,9 +43,9 @@
     <!-----------------------left-------------------->
     <div class="left">
       <a class="profile">
-      {if $userPic[0]->getSize() > 0}
+      {if $userPic->getSize() > 0}
         <div class="profile-photo">  
-            <img src="data:{$userPic[0]->getType()};base64,{$userPic[0]->getEncodedData()}" alt="Img">
+            <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
         </div>
       {else}
         <div class="profile-photo">

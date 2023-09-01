@@ -41,9 +41,9 @@
         <!-----------------------left-------------------->
         <div class="left">
             <a class="profile">
-            {if $personalPic[0]->getSize() > 0}
+            {if $personalPic->getSize() > 0}
               <div class="profile-photo">  
-                  <img src="data:{$personalPic[0]->getType()};base64,{$personalPic[0]->getEncodedData()}" alt="Img">
+                  <img src="data:{$personalPic->getType()};base64,{$personalPic->getEncodedData()}" alt="Img">
               </div>
             {else}
               <div class="profile-photo">
@@ -153,9 +153,9 @@
   <div class="right">
       <div class="side-profile">
         <div class="heading">
-        {if $userPic[0]->getSize() > 0}
+        {if $userPic->getSize() > 0}
           <div class="profile-photo">  
-              <img src="data:{$userPic[0]->getType()};base64,{$userPic[0]->getEncodedData()}" alt="Img">
+              <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
           </div>
         {else}
           <div class="profile-photo">

@@ -38,14 +38,14 @@ class FPersistentManager{
         return $result;
     }
 
-    public static function retriveProPicInfo($idUser)
+    /**public static function retriveProPicInfo($idUser)
     {
         $fem = FEntityManager::getInstance();
 
         $result = $fem::getProPicInfos(EImage::getEntity(), $idUser);
 
         return $result;
-    }
+    }*/
 
     public static function uploadObj($obj){
         $fem = FEntityManager::getInstance();
@@ -132,9 +132,6 @@ class FPersistentManager{
             $posts = array();
             foreach($followed as $f){
                 $posts = FPost::postListNotBanned($f->getFollowed());
-                foreach($posts as $p){
-                    array_push($allPosts, $p);
-                }
             }
             usort($posts, ['FPost', 'comparePostsByCreationTime']);
         }

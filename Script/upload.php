@@ -7,8 +7,11 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
+$follow = new EUserFollow(1,2);
 
-$id = 1;
+$pm::uploadObj($follow);
+
+/**$id = 1;
 
 $user = $pm::retriveObj(EUser::getEntity(), $id);
 
@@ -19,7 +22,7 @@ $category = "Travel";
 $post = new EPost($title, $description, $category);
 
 $post->setUser($user);
-$pm::uploadObj($post);
+$pm::uploadObj($post);**/
 
 /*$name = 'sakura.png';
 $size = 1024;

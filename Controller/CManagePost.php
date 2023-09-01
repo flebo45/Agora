@@ -22,8 +22,9 @@ public static function createPost(){
         {
             $pm = FPersistentManager::getInstance();
             USession::getInstance();
-            $user = USession::getSessionElement('user');
-            $proPic = $pm::retriveProPicInfo($user->getIdImage());
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveObj(EUser::getEntity(), $userId);
+            $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
             $view = new VManagePost();
             $view->showCreationForm($user, $proPic);
@@ -37,7 +38,8 @@ public static function createPost(){
             $view = new VManagePost();
             $pm = FPersistentManager::getInstance();
             USession::getInstance();
-            $user = USession::getSessionElement('user');
+            $userId = USession::getSessionElement('user');
+            $user = $pm::retriveObj(EUser::getEntity(), $userId);
             $post = new EPost($_POST['title'], $_POST['description'], $_POST['category']);
             $post->setUser($user);
             $pm::uploadObj($post);

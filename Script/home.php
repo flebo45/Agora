@@ -7,14 +7,8 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$id  = 2;
+$id  = 1;
 
 $homePagePosts = $pm::loadHomePage($id);
 
-foreach($homePagePosts as $p)
-{
-    foreach($p->getImages() as $i)
-    {
-        echo $i->getName();
-    }
-}
+print_r($homePagePosts[1]->getId());
