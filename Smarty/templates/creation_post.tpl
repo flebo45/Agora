@@ -86,7 +86,7 @@
         <div class="tex-bold">
           <h3>New Post</h3>
         </div>
-        <form id="creation-post"  action="/Agora/ManagePost/createPost" enctype="multipart/form-data" method="post">
+        <form id="creation-post"  action="/Agora/Post/createPost" enctype="multipart/form-data" method="post">
           <h4 class="tex-bold left-transition" >Title</h4>
           <label for="post-title">
             <input type="text" id="post-title" placeholder="Title" name="title" class="text" required>
@@ -131,7 +131,7 @@
         </form>
 
         <div>
-        <button class="btn btn-primary" onclick="location.href='index.html'">Cancel</button>
+        <button class="btn btn-primary" onclick="location.href='/Agora/User/home'">Cancel</button>
         </div>
       </div>
     </div>
