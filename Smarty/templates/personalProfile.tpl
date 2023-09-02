@@ -144,7 +144,7 @@
                         <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
                         {/for}
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+                        <p> liked by <b>{$arrayLikeNumb[$post->getId()]} user</b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
                     </div>
 
                     <div class=" comments text-muted">view all the comment</div>

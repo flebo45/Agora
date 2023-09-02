@@ -49,19 +49,6 @@ class FEntityManager{
         }
     }
 
-    /**public static function getProPicInfos($table, $id)
-    {
-        try{
-            $dql = "SELECT partial i.{idImage, types, imageData} FROM " . $table . " i WHERE i.idImage = :idImage";
-            $query = self::$entityManager->createQuery($dql)->setParameter('idImage', $id);
-            $resutl = $query->getResult();
-            return $resutl;
-        }catch(Exception $e){
-            self::$entityManager->getConnection();
-            echo "ERROR: " . $e->getMessage();
-            return false;
-        }   
-    }**/
 
     /**
      * delete the object in the db, and all the object related to it if there is cascade
@@ -174,6 +161,21 @@ class FEntityManager{
             }else{
                 return [];
             }
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return [];
+        }
+    }
+
+    public static function countObjectListAttribute($table, $field, $id)
+    {
+        try{
+            $dql = "SELECT COUNT(e) FROM " . $table . " e WHERE  e." .$field . " = :attribute";
+            $query = self::$entityManager->createQuery($dql);
+            $query->setParameter('attribute', $id);
+
+            $result = $query->getSingleScalarResult();
+            return $result;
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();
             return [];

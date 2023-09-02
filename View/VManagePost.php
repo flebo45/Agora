@@ -33,12 +33,13 @@ class VManagePost{
 
     }
 
-    public function showPost($user, $userPic, $visitedUserPic, $post, $comments)
+    public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb)
     {
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic', $userPic);
         $this->smarty->assign('post', $post);
         $this->smarty->assign('comments', $comments);
+        $this->smarty->assign('likeNumb', $likeNumb);
         $this->smarty->assign('visitedUserPic', $visitedUserPic);
         $this->smarty->display('visualization_post.tpl');
     }

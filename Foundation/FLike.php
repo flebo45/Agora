@@ -11,4 +11,13 @@ class FLike extends FEntityManager{
         return $result;
     }
 
+    public static function getLikeNumber($idPost)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::countObjectListAttribute(ELike::getEntity(), 'idPost', $idPost);
+
+        return $result;
+    }
+
 }

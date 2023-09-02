@@ -45,14 +45,12 @@ class FPersistentManager{
         return $result;
     }
 
-    /**public static function retriveProPicInfo($idUser)
+    public static function getLikeNumber($idPost)
     {
-        $fem = FEntityManager::getInstance();
-
-        $result = $fem::getProPicInfos(EImage::getEntity(), $idUser);
+        $result = FLike::getLikeNumber($idPost);
 
         return $result;
-    }*/
+    }
 
     public static function uploadObj($obj){
         $fem = FEntityManager::getInstance();

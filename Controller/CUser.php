@@ -188,9 +188,14 @@ class CUser{
 
                 if(count($postProfile) === 0)
                 {
-                    $view->uploadPersonalUserInfo($user, $proPic, null);
+                    $view->uploadPersonalUserInfo($user, $proPic, null, null);
                 }else{
-                    $view->uploadPersonalUserInfo($user,$proPic, $postProfile);
+                    $arrayLikeNumb = array();
+                    foreach($postProfile as $p)
+                    {
+                        $arrayLikeNumb[$p->getId()] = $pm::getLikeNumber($p->getId());
+                    }
+                    $view->uploadPersonalUserInfo($user,$proPic, $postProfile, $arrayLikeNumb);
                 }
             }else{
                 header('Location: /Agora/User/login');
@@ -224,9 +229,14 @@ class CUser{
 
                         if(count($postUser) === 0)
                         {
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null);
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null, null);
                         }else{
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser);
+                            $arrayLikeNumb = array();
+                            foreach($postUser as $p)
+                            {
+                                $arrayLikeNumb[$p->getId()] = $pm::getLikeNumber($p->getId());
+                            }
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser, $arrayLikeNumb);
                         }
                     }else{
                         header('Location: /Agora/User/home');

@@ -43,9 +43,15 @@
     <!-----------------------left-------------------->
     <div class="left">
       <a class="profile">
-      <div class="profile-photo">
+      {if $userPic->getSize() > 0}
+        <div class="profile-photo">  
+            <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+        </div>
+      {else}
+        <div class="profile-photo">
             <img src="/Agora/Smarty/immagini/1.png" alt="">
         </div>
+      {/if}
         <div class ="handle">
           <h4> {$user->getUsername()}</h4>
           <p class="text-muted">
@@ -70,7 +76,7 @@
           <span> <i class="uil uil-palette"></i></span>Theme
       </label>
       <label class="menu-items tex-bold " >
-          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
       </label>
   </div>
   <!--------------------END OF SIDE BAR----------------->
@@ -90,9 +96,15 @@
       <div class="feed">
       <div class="head">
         <div class="user">
-        <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/1.png" alt="">
-        </div>
+        {if $userPic->getSize() > 0}
+          <div class="profile-photo">  
+              <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+          </div>
+        {else}
+          <div class="profile-photo">
+              <img src="/Agora/Smarty/immagini/1.png" alt="">
+          </div>
+        {/if}
           <div class="ingo">
             <div>
               <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
@@ -133,7 +145,7 @@
             <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
             {/for}
             <!-- Smarty tag for username -->
-            <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+            <p> liked by <b>{$likeNumb} user</b> </p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
         </div>
 
           <div class="comments">
@@ -259,35 +271,57 @@
         </div>
       </div>
 
-
-      <!--------------------------TOP POST---------------------------->
-      <div class="top-post">
-        <div class="heading">
-          <h5 class="text-muted left-transition">{$youCanAlsoReadLabel}</h5>
-          <i class="uil uil-award"> </i>
-        </div>
-
-        {foreach $topPosts as $post}
-          <div class="post">
-            <div class="info">
-              <div class="first-photo">
-                <img src="Img/A.png" alt="img">
-              </div>
-              <div>
-                <h5>{$post.title}</h5>
-                <p class="text-muted">{$post.likes}</p>
-              </div>
-            </div>
-          </div>
-        {/foreach}
-
-        
-      </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
     </div>
   </div>
 </main>
+
+<!-----------------REPORT MODAL----------------------------------->
+
+
+<div class="report">
+<div class="card">
+    <h2>Report</h2>
+    <h3 class="text-muted">Why are you reporting this post?</h3>
+    <form id="report"  action="/Agora/Post/report/{$post->getId()}" method="post">
+
+        <div class="report-checkbox">
+            <input type="radio" required id="violence" name='type' value="violence">
+            <label for="violence">violence</label>
+        </div>
+        <div class="report-checkbox">
+            <input type="radio"  required id="gambling" name='type' value="gambling">
+            <label for="gambling">gambling</label>
+        </div>
+        <div class="report-checkbox">
+            <input type="radio" required id="inappropriate or offending" name='type' value="inappropriate or offending">
+            <label for="inappropriate or offending">inappropriate or offensive</label>
+        </div>
+        <div class="report-checkbox">
+            <input type="radio" required id="suspicious activities" name='type' value="suspicious activities">
+            <label for="suspicious activities">suspicious activities</label>
+        </div>
+        <div class="report-checkbox">
+            <input type="radio" required id="pornography" name='type' value="pornography">
+            <label for="pornography">pornography</label>
+        </div>
+        <div>
+            <h3 class="text-muted">Write a small description why you're reporting this post</h3>
+            <label>
+                <textarea class="text-area" name='description'></textarea>
+            </label>
+        </div>
+        <label>
+            <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
+        </label>
+        
+    </form>
+    <label>
+      <button onclick="location.reload()" class="btn btn-primary" style="margin-top: 1%">cancel</button>
+    </label>
+</div>
+</div>
 
 <!----------------- THEME CUSTOMIZATION---------------------------->
 

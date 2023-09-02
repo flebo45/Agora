@@ -136,10 +136,11 @@ public static function visit($idPost)
                 $userPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
                 $visitedUserPic = $pm::retriveObj(EImage::getEntity(), $post->getUser()->getIdImage());
                 $comments = $pm::getCommentList($post->getId());
+                $numbLike = $pm::getLikeNumber($idPost);
 
                 $view = new VManagePost();
                 
-                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments);
+                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike);
             }else{
                 header('Location: /Agora/User/home');
             }
@@ -161,12 +162,36 @@ public static function visit($idPost)
             $userPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
             $post = $pm::retriveObj(EPost::getEntity(), $idPost);
             $visitedUserPic = $pm::retriveObj(EImage::getEntity(), $post->getUser()->getIdImage());
+            $numbLike = $pm::getLikeNumber($idPost);
+
             
             $comments = $pm::getCommentList($post->getId());
             $view = new VManagePost();
                 
-            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments);
+            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike);
         }
+    }
+}
+
+public static function report($idPost){
+    if(UServer::getRequestMethod() == 'POST')
+    {
+        if(CUser::isLogged())
+        {
+            $pm = FPersistentManager::getInstance();
+            USession::getInstance();
+            $idUser = USession::getSessionElement('user');
+            $report = new EReport($_POST['description'], $_POST['type'], $idUser);
+            $pm::uploadObj($report);
+            $reportedPost = $pm::retriveObj(EPost::getEntity(), $idPost);
+            $report->setPost($reportedPost);
+            $pm::uploadObj($report);
+            header('Location: /Agora/User/home');
+        }else{
+            header('Location: /Agora/User/login');
+        }
+    }else{
+        header('Location: /Agora/User/home');
     }
 }
 
