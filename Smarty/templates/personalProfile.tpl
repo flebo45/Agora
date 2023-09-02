@@ -98,15 +98,9 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                    {if $userPic->getSize() > 0}
-                      <div class="profile-photo">  
-                          <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
-                      </div>
-                    {else}
                       <div class="profile-photo">
                           <img src="/Agora/Smarty/immagini/1.png" alt="">
                       </div>
-                    {/if}
                         <div class="ingo">
                           <div>
                             <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
@@ -127,7 +121,7 @@
                       {else}
                         <div class="photo">
                           {foreach from=$post->getImages() item=i}
-                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" loading="lazy" alt="Img">
                           {/foreach}
                         </div>
                       {/if}

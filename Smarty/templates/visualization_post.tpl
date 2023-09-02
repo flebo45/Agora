@@ -217,7 +217,7 @@
             <p class="text-muted">following</p>
           </div>
         </div>
-
+        {if $user->getId() !== $post->getUser()->getId()}
         <button class="btn-primary btn" onclick="toggle(this)">follow</button>
         <script>
           function toggle(e) {
@@ -225,6 +225,8 @@
             e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
           }
         </script>
+        {else}
+        {/if}
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
