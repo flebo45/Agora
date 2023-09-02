@@ -24,7 +24,7 @@ function getEntityManager() : \Doctrine\ORM\EntityManager
         $connectionParams = array(
             'dbname' => 'Agora',
             'user' => 'root',
-            'password' => 'pippo',
+            'password' => '',
             'host' => '127.0.0.1',
             'driver' => 'pdo_mysql',
         );

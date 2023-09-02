@@ -2,7 +2,6 @@
 
 const report = document.querySelector('#report');
 const reportModal1 = document.querySelector('.report')
-
 const openReportModal =() => {
     reportModal1.style.display = 'grid'
 }

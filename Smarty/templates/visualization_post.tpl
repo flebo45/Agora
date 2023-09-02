@@ -131,8 +131,9 @@
 
         <div class="action-buttons">
             <div class="interaction-buttons">
-                <span><i class="uil uil-heart"></i> </span>
-                <span><i class="uil uil-comment-dots"></i></span>
+                <span>
+                    <button class="like-button btn-transparent" data-id="{$post->getId()}" style="font-size:24px;width:40px;height:40px;padding:5px;"><i class="uil uil-heart"></i> </button>
+                </span>
             </div>
 
             <div class= "interaction-buttons " id="report">
@@ -380,5 +381,6 @@
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/Smarty/js/report.js"></script>
+<script src="/Agora/Smarty/js/like.js"></script>
 </body>
 </html>
