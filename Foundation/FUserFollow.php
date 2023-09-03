@@ -20,4 +20,21 @@ class FUserFollow extends FEntityManager{
         return $result;
     }
 
+    public static function followedList($idUser)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectList(EUserFollow::getEntity(), 'idFollower', $idUser);
+
+        return $result;
+    }
+
+    public static function followerList($idUser)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectList(EUserFollow::getEntity(), 'idFollowed', $idUser);
+
+        return $result;
+    }
 }

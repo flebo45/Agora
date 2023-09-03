@@ -153,9 +153,37 @@ class FPersistentManager{
 
     public static function getFollowedList($idUser)
     {
-        $result = FUserFollow::followedList();
+        $followList = FUserFollow::followedList($idUser);
 
+        $result = array();
+
+        if($followList !== null)
+        {
+            foreach($followList as $f)
+            {
+                $user = self::retriveObj(EUser::getEntity(), $f->getFollower());
+                $result[] = $user;
+            }
+        }
         return $result;
+    }
+
+    public static function getFollowerList($idUser)
+    {
+        $followList = FUserFollow::followerList($idUser);
+
+        $result = array();
+
+        if($followList !== null)
+        {
+            foreach($followList as $f)
+            {
+                $user = self::retriveObj(EUser::getEntity(), $f->getFollowed());
+                $result[] = $user;
+            }
+        }
+        return $result;
+
     }
 
 //-------------------------------------HOME-------------------------------------------

@@ -48,8 +48,8 @@ class VManagePost{
 
     public function showLikesList($userList, $usersPic)
     {
-        $this->smarty->assign('likeList', $userList);
-        $this->smarty->assign('usersPic', $usersPic);
-        $this->smarty->display('like.tpl');
+        $this->smarty->assign('userLike', $userList);
+        $this->smarty->assign('userPic', $usersPic);
+        $this->smarty->display('userlist.tpl');
     }
 }

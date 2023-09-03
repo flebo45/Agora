@@ -7,8 +7,8 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$follow = new EUserFollow(1,2);
-$pm::uploadObj($follow);
+$like = new ELike(3, 1);
+$pm::uploadObj($like);
 /**$id = 1;
 
 $user = $pm::retriveObj(EUser::getEntity(), $id);

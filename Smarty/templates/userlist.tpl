@@ -69,8 +69,14 @@
 
         <div class="middle">
             <div class="feeds">
+                <div class ="feed">
+            {if count($userLike) == 0}
+                    <div class="tex-bold" style="font-size:18px">This post has 0 like for now</div>
+            {else}
+                    <div class="tex-bold" style="font-size:18px">This Post is liked by:</div>
                 {foreach $userLike as $like}
-                    <div class ="feed">
+                    
+                    <div style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
                         {if $userPic[$like->getId()]->getSize() > 0}
                             <div class="profile-photo">
                                 <img src="data:{$userPic[$like->getId()]->getType()};base64,{$userPic[$like->getId()]->getEncodedData()}" alt="Img">
@@ -80,14 +86,15 @@
                                 <img src="/Agora/Smarty/immagini/1.png" alt="">
                             </div>
                         {/if}
-                        <div>
-                            <i class="uil uil-heart" style="color:red;"></i> {$like->getUsername()}
-                            <p class="text-muted"> {$like->getName()}</p>
-                        </div>
+                            <i class="uil uil-heart" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$like->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$like->getUsername()}</a>
+                            <p class="text-muted left-transition"> {$like->getName()}</p>
+                        
                     </div>
 
                 {/foreach}
+            {/if}
+                </div>
             </div>
-        </div>
+            <button class="btn-primary btn"  onclick="history. back()">Go Back</button>
     </div>
 </main>
