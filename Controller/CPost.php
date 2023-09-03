@@ -137,10 +137,11 @@ public static function visit($idPost)
                 $visitedUserPic = $pm::retriveObj(EImage::getEntity(), $post->getUser()->getIdImage());
                 $comments = $pm::getCommentList($post->getId());
                 $numbLike = $pm::getLikeNumber($idPost);
-
+                $followerNumb = $pm::getFollowerNumb($post->getUser()->getId());
+                $followedNumb = $pm::getFollowedNumb($post->getUser()->getId());
                 $view = new VManagePost();
                 
-                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike);
+                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb);
             }else{
                 header('Location: /Agora/User/home');
             }
@@ -163,12 +164,14 @@ public static function visit($idPost)
             $post = $pm::retriveObj(EPost::getEntity(), $idPost);
             $visitedUserPic = $pm::retriveObj(EImage::getEntity(), $post->getUser()->getIdImage());
             $numbLike = $pm::getLikeNumber($idPost);
+            $followerNumb = $pm::getFollowerNumb($post->getUser()->getId());
+            $followedNumb = $pm::getFollowedNumb($post->getUser()->getId());
 
             
             $comments = $pm::getCommentList($post->getId());
             $view = new VManagePost();
                 
-            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike);
+            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb);
         }
     }
 }

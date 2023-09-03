@@ -207,13 +207,13 @@
             <p class="text-muted">{$post->getUser()->getName()}</p>
           </div>
           <div>
-            <h4>{$post->getUser()->getId()}</h4>
+            <h4>{$followerNumb}</h4>
             <p class="text-muted">
               followers
             </p>
           </div>
           <div>
-            <h4>{$post->getUser()->getId()}</h4>
+            <h4>{$followedNumb}</h4>
             <p class="text-muted">following</p>
           </div>
         </div>

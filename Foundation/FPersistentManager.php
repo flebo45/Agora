@@ -136,6 +136,28 @@ class FPersistentManager{
 
         return $result;
     }
+
+    public static function getFollowedNumb($idUser)
+    {
+        $result = FUserFollow::followedNumb($idUser);
+
+        return $result;
+    }
+
+    public static function getFollowerNumb($idUser)
+    {
+        $result = FUserFollow::followerNumb($idUser);
+
+        return $result;
+    }
+
+    public static function getFollowedList($idUser)
+    {
+        $result = FUserFollow::followedList();
+
+        return $result;
+    }
+
 //-------------------------------------HOME-------------------------------------------
 
     public static function getFollowed($id)
