@@ -118,6 +118,24 @@ class FPersistentManager{
 
         return $result;
     }
+
+    public static function getLikesUserOfAPost($idPost)
+    {
+        $likes = FLike::getLikeList($idPost);
+
+        $result = array();
+
+        if($likes !== null)
+        {
+            foreach($likes as $l)
+            {
+                $user = self::retriveObj(EUser::getEntity(), $l->getIdUser());
+                $result[] = $user;
+            }
+        }
+
+        return $result;
+    }
 //-------------------------------------HOME-------------------------------------------
 
     public static function getFollowed($id)

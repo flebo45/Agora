@@ -20,4 +20,13 @@ class FLike extends FEntityManager{
         return $result;
     }
 
+    public static function getLikeList($idPost)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectList(ELike::getEntity(), 'idPost', $idPost);
+
+        return $result;
+    }
+
 }

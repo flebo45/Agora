@@ -1,7 +1,6 @@
 <?php
 
 //NOTA IMPORTANTE : SE UTILIZZIAMO SQL, L'ENTITY MANAGER NON RICONOSCE LE ENTITY SALVATE IN PRECEDENZA E QUINDI NE CREA DI NUOVE
-use Doctrine\ORM\Query as DQL;
 require_once('bootstrap.php');
 
 class FEntityManager{

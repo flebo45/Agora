@@ -195,5 +195,29 @@ public static function report($idPost){
     }
 }
 
+public static function like($idPost)
+{
+    if(UServer::getRequestMethod() == 'GET')
+    {
+        if(CUser::isLogged())
+        {
+            $pm = FPersistentManager::getInstance();
+            $usersLikeList = $pm::getLikesUserOfAPost($idPost);
+            $usersPic = array();
+            foreach($usersLikeList as $u)
+            {
+                $pic = $pm::retriveObj(EImage::getEntity(), $u->getIdImage());
+                $usersPic[$u->getId()] = $pic;
+            }
+            $view = new VManagePost();
+            $view->showLikesList($usersLikeList, $usersPic);
+        }else{
+            header('Location: /Agora/User/login');
+        }
+    }else{
+        header('Location: /Agora/User/home');
+    }
+}
+
 
 }

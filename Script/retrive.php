@@ -7,10 +7,10 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$postId = 1;
+$postId = 3;
 
 //$post = $pm::retriveObj(EPost::getEntity(), $postId);
 
-$likesNumber = $pm::getLikeNumber($postId);
+$userList = $pm::getLikesUserOfAPost($postId);
 
-print_r($likesNumber);
+print_r($userList);

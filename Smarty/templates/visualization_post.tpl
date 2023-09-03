@@ -145,8 +145,8 @@
             {for $i=0; $i<3;$i++}
             <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
             {/for}
-            <!-- Smarty tag for username -->
-            <p> liked by <b>{$likeNumb} user</b> </p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+            <!-- Smarty tag for username --> 
+            <p> liked by <a href="/Agora/Post/like/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$likeNumb} user</a> </p>
         </div>
 
           <div class="comments">
