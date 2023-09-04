@@ -78,6 +78,9 @@
           <img src="/Agora/Smarty/immagini/1.png" alt="">
       </div>
     {/if}
+      {if $errorImg == true}
+        <div style="color:red; margin-left: 47%">Invalid input</div>
+      {/if}
       <div>
         <label class="custom-btn btn">
           <input type="file" name="imageFile" class="image-input" accept="image/*">
@@ -119,6 +122,9 @@
         </form>
         <form enctype="multipart/form-data" action="/Agora/User/settings/2" method="post" >
         <h4 class="tex-bold" >UserName</h4>
+          {if $error == true}
+          <div style="color: red ; margin-left: 4%">Username already taken</div>
+          {/if}
         <label>
           <input type="text" class="text" maxlength="15" minlength="3" name="username" value={$user->getUsername()} >
         </label>

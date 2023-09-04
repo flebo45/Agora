@@ -25,6 +25,9 @@
         <h3>Agorà</h3>
       </div>
       <!------------FORM PER IL LOG IN------------------------------>
+      {if $error == true}
+        <p style="color: red; margin-left: 11%">username or password incorrect</p>
+        {/if}
       <form id="login" class="input-group" action="/Agora/User/login" method="post">
         <label>
           <input type="text" class="input-field" placeholder="Enter Username" name="username" required>

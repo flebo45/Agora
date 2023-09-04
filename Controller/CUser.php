@@ -118,11 +118,13 @@ class CUser{
                     }
                 }
                 else{
-                    $view->loginError();
+                    $error = true;
+                    $view->loginError($error);
                 }
                 
             }else{
-                $view->loginError();
+                $error = true;
+                $view->loginError($error);
             }
         }
     }
@@ -306,9 +308,19 @@ class CUser{
                         $pm::uploadObj($user);
                         header('Location: /Agora/User/personalProfile');
                     }else{
-                        $view->usernameError($user);
+                        $pm = FPersistentManager::getInstance();
+                        USession::getInstance();
+
+                        $userId = USession::getSessionElement('user');
+                        $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                        $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+
+                        $view->usernameError($user , true, $proPic);
                     }
                 }
+
+
+
             //password
             }elseif($param == 3)
             {
@@ -323,14 +335,16 @@ class CUser{
                 {
                     $uploadedImage = $_FILES['imageFile'];
                     $checkUploadImage = self::uploadImage($uploadedImage);
-                    if($checkUploadImage == 'UPLOAD_ERROR_OK'){
-                        $view->uploadFileError('UPLOAD_ERROR_OK');
-                    }
-                    elseif($checkUploadImage == 'TYPE_ERROR'){
-                        $view->uploadFileError('TYPE_ERROR');
-                    }
-                    elseif($checkUploadImage == 'SIZE_ERROR'){
-                        $view->uploadFileError('SIZE_ERROR');
+                    if($checkUploadImage == 'UPLOAD_ERROR_OK' || $checkUploadImage == 'TYPE_ERROR' || $checkUploadImage == 'SIZE_ERROR'){
+
+                        $pm = FPersistentManager::getInstance();
+                        USession::getInstance();
+
+                        $userId = USession::getSessionElement('user');
+                        $user = $pm::retriveObj(EUser::getEntity(), $userId);
+                        $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+
+                        $view->FileError($user, $proPic );
                     }
                     else{
                         $pm::uploadObj($checkUploadImage);
@@ -348,6 +362,7 @@ class CUser{
             header('Location: /Agora/User/home');
         }
     }
+
 
     public static function uploadImage($file){
         $check = CPost::validateImage($file);

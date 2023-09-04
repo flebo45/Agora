@@ -29,7 +29,7 @@ class VUser{
      * @throws SmartyException
      */
     public function showLoginForm(){
-        $this->smarty->assign('siteName', 'Agorà');
+        $this->smarty->assign('error', false);
         $this->smarty->display('login.tpl');
     }
 
@@ -66,11 +66,18 @@ class VUser{
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException
      */
-    public function loginError() {
-        $this->smarty->assign('error',"errore");
+    public function loginError($error) {
+        $this->smarty->assign('error',$error);
         $this->smarty->display('login.tpl');
     }
 
+    public function usernameError($user , $error, $propic){
+        $this->smarty->assign('errorImg',false);
+        $this->smarty->assign('error' , $error);
+        $this->smarty->assign('user',$user);
+        $this->smarty->assign('userPic',$propic);
+        $this->smarty->display('setting.tpl');
+    }
     /**
      * @throws SmartyException
      */
@@ -80,6 +87,8 @@ class VUser{
     }
 
     public function settings($user, $proPic){
+        $this->smarty->assign('errorImg',false);
+        $this->smarty->assign('error',false);
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->display('setting.tpl');
@@ -102,4 +111,11 @@ class VUser{
         $this->smarty->display('explore.tpl');
     }
 
+    public function FileError($user, $proPic ){
+        $this->smarty->assign('errorImg',true);
+        $this->smarty->assign('error',false);
+        $this->smarty->assign('user', $user);
+        $this->smarty->assign('userPic',$proPic);
+        $this->smarty->display('setting.tpl');
+    }
 }
