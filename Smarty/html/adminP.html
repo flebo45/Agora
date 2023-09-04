@@ -35,10 +35,11 @@
         <div class="admin-report" style="margin-top: 1%">
           <div class="admin">
             <div class="left">
-              <h3>{$report.numReports} report</h3>
-              <h4>{$report.type}</h4>
-              <h4>{$report.username}</h4>
-              <h5>{$report.reportCount}/3</h5>
+              <h3>{$report->getId()} report</h3>
+              <h4>{$report->getType()}</h4>
+              <h4>{$report->getUsername()}</h4>
+              <h5>{$report->countReport()}/3</h5>
+              <h6>Id who sent the report: {$report->getIduser()}</h6>
             </div>
             <div class="middle">
               <div class="body-report"> {$report.body}</div>
