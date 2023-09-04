@@ -71,6 +71,9 @@ class VUser{
         $this->smarty->display('login.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function usernameError($user , $error, $propic){
         $this->smarty->assign('errorImg',false);
         $this->smarty->assign('error' , $error);
@@ -86,6 +89,9 @@ class VUser{
         $this->smarty->display('login.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function settings($user, $proPic){
         $this->smarty->assign('errorImg',false);
         $this->smarty->assign('error',false);

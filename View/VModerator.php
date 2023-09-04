@@ -10,6 +10,9 @@ class VModerator{
 
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showReportList($modUsername, $reportedPost, $reportedComment)
     {
         $this->smarty->assign('modUsername', $modUsername);
@@ -18,12 +21,18 @@ class VModerator{
         $this->smarty->display('adminP.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showLoginForm()
     {
         $this->smarty->assign('error', false);
         $this->smarty->display('Admin-login.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function loginError(){
         $this->smarty->assign('error', true);
         $this->smarty->display('Admin-login.tpl');

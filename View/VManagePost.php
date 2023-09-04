@@ -13,17 +13,26 @@ class VManagePost{
  
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showCreationForm($user, $proPic){
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->display('creation_post.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function uploadFileError($error){
         $this->smarty->assign('errore', $error);
         $this->smarty->display('errore.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb, $followedNumb, $followerNumb, $checkLike)
     {
         $this->smarty->assign('user', $user);
@@ -38,6 +47,9 @@ class VManagePost{
         $this->smarty->display('visualization_post.tpl');
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showUsersList($userList, $usersPic, $param)
     {
         $this->smarty->assign('userList', $userList);

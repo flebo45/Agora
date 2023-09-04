@@ -55,7 +55,7 @@
         <div class ="handle">
           <h4> {$user->getUsername()}</h4>
           <p class="text-muted">
-            {$user->getName()}
+            @{$user->getName()}
           </p>
         </div>
       </a>
@@ -106,8 +106,9 @@
             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
           </div>
         </div>
+          <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post->getCategory()}</div>
       </div>
-        <div class="caption ">
+        <div class="caption">
             <!-- Smarty tag for username -->
             <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
             {$post->getDescription()}</span></p>

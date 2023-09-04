@@ -56,8 +56,7 @@
             {/if}
                 <div class ="handle">
                     <h4> {$user->getUsername()} {if $user->isVip()}<i class='uil uil-star'></i> {/if}</h4>
-                    <p class="text-muted">{$user->getName()}
-                    </p>
+                    <p class="text-muted">@{$user->getName()}</p>
                 </div>
             </a>
             <!-----------------------SIDE BAR-------------------->
@@ -89,7 +88,6 @@
 
         <!-----------------------END OF LEFT-------------------->
 
-
         <!-----------------------middle-------------------->
         <div class="middle">
         <!----------------FEEDS-------------------------------->
@@ -102,9 +100,15 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
-                        <div class="profile-photo">
-                            <img src="/Agora/Smarty/immagini/1.png" alt="">
-                        </div>
+                        {if $post->getUser()->getProfileImage()->getSize() > 0}
+                            <div class="profile-photo">
+                                <img src="data:{$post->getUser()->getProfileImage()->getType()};base64,{$post->getUser()->getProfileImage()->getEncodedData()}" alt="Img">
+                            </div>
+                        {else}
+                            <div class="profile-photo">
+                                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                            </div>
+                        {/if}
                         <div class="ingo">
                             <div>
                                 <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
@@ -112,48 +116,17 @@
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
+                      <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post->getCategory()}</div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
-                        <p><a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()}</a><span class="harsh-tag">
-                        {$post->getDescription()}</span></p>
+                        <p>
+                            <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()}</a>
+                            <span class="harsh-tag" style="max-width: 30rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;  ">
+                                {$post->getDescription()}
+                            </span>
+                        </p>
                     </div>
-                    
-                    {if $post->getImages()->count() === 0}
-                        
-                    {else}
-                    <div class="photo">
-                        {foreach from=$post->getImages() item=i}
-                            
-                            <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
-                            
-                        {/foreach}
-                    </div>
-                    {/if}
-
-                        
-
-                    <div class="action-buttons">
-                        <div class="interaction-buttons">
-                            <span><i class="uil uil-heart"></i> </span>
-                            <span><i class="uil uil-comment-dots"></i></span>
-                        </div>
-
-                        <div class= "interaction-buttons " id="report">
-                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
-                        </div>
-                    </div>
-
-                    <div class="liked-by"> <!--FARE QUERY PER PRENDERE L'IMM PROFILO DEGLI  ULTIMI 3 UTENTI CHE HANNO MESSO MI PIACE -->
-                        {for $i=0; $i<3;$i++}
-                        <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
-                        {/for}
-                        <!-- Smarty tag for username -->
-                        <p> liked by <b>{$post->getUser()->getUsername()}</b> and <b> n user </b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
-                    </div>
-
-                    <a href="/Agora/User/profile/" class=" comments text-muted">view all the comment</a>
-                </div>
 
                 {/foreach}
                 {/if}
@@ -398,54 +371,6 @@
     </div>
 </main>
 
-
-
-
-    <!-----------------REPORT MODAL----------------------------------->
-
-
-    <div class="report">
-        <div class="card">
-            <h2>Report</h2>
-            <h3 class="text-muted">Why are you reporting this post?</h3>
-            <form>
-
-                <div class="report-checkbox">
-                    <input type="checkbox" id="violence" value="violence">
-                    <label for="violence">violence</label>
-                </div>
-                <div class="report-checkbox">
-                    <input type="checkbox" id="gambling" value="gambling">
-                    <label for="gambling">gambling</label>
-                </div>
-                <div class="report-checkbox">
-                    <input type="checkbox" id="inappropriate or offending" value="inappropriate or offending">
-                    <label for="inappropriate or offending">inappropriate or offensive</label>
-                </div>
-                <div class="report-checkbox">
-                    <input type="checkbox" id="suspicious activities" value="suspicious activities">
-                    <label for="suspicious activities">suspicious activities</label>
-                </div>
-                <div class="report-checkbox">
-                    <input type="checkbox" id="pornography" value="pornography">
-                    <label for="pornography">pornography</label>
-                </div>
-                <div>
-                    <h3 class="text-muted">Write a small description why you're reporting this post</h3>
-                    <label>
-                        <textarea class="text-area"></textarea>
-                    </label>
-                </div>
-                <label>
-                    <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
-                </label>
-            </form>
-        </div>
-    </div>
-
-
-
-
    <!----------------- THEME CUSTOMIZATION---------------------------->
 
 <div class="customize-theme">
@@ -502,7 +427,6 @@
 </div>
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/Smarty/js/report.js"></script>
 <script src="/Agora/Smarty/js/categories.js"></script>
 <script src="/Agora/Smarty/js/storage.js"></script>
 </body>

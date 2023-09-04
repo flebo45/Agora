@@ -108,6 +108,7 @@
                           <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                         </div>
                     </div>
+                      <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post->getCategory()}</div>
                     <div>
                       <form id="delete" action="/Agora/Post/delete/{$post->getId()}" method="get">
                         <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
@@ -131,8 +132,7 @@
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">
-                            <span><i class="uil uil-heart"></i> </span>
-                            <span><i class="uil uil-comment-dots"></i></span>
+                            <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; "><i class="uil uil-comment-dots"></i></a>
                         </div>
                     </div>
 
@@ -157,6 +157,31 @@
     <!-----------------------right-------------------->
     <div class="right">
       <div class="side-profile">
+          <div class="heading">
+              {if $userPic->getSize() > 0}
+                  <div class="profile-photo">
+                      <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+                  </div>
+              {else}
+                  <div class="profile-photo">
+                      <img src="/Agora/Smarty/immagini/1.png" alt="">
+                  </div>
+              {/if}
+              <div class ="handle">
+                  <h4> {$user->getUsername()} </h4>
+                  <p class="text-muted">{$user->getName()}</p>
+              </div>
+              <div>
+                  <h4>{$user->getId()}</h4>
+                  <p class="text-muted">
+                      followers
+                  </p>
+              </div>
+              <div>
+                  <h4>{$user->getId()}</h4>
+                  <p class="text-muted">following</p>
+              </div>
+          </div>
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>

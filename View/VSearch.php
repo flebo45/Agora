@@ -11,6 +11,9 @@ class VSearch{
 
     }
 
+    /**
+     * @throws SmartyException
+     */
     public function showSearch($keyword, $searchedPosts, $postUserPic, $searchedUsers, $userPic)
     {
         $this->smarty->assign('searchedPost', $searchedPosts);

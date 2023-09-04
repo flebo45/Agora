@@ -362,12 +362,20 @@ main .container .left .profile{
 }
 /*-------------------------FEEDS---------------------*/
 
-.middle .feeds .error{
+.middle .feeds .error {
     background: var(--color-white);
     border-radius: var(--card-border-radius);
     padding: var(--card-padding);
-
 }
+ .middle  .feeds .feed  .rainbow-text {
+        background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
 .middle .feeds .feed{
     background: var(--color-white);
     border-radius: var(--card-border-radius);
