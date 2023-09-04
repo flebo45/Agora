@@ -20,6 +20,12 @@ class VModerator{
 
     public function showLoginForm()
     {
+        $this->smarty->assign('error', false);
+        $this->smarty->display('Admin-login.tpl');
+    }
+
+    public function loginError(){
+        $this->smarty->assign('error', true);
         $this->smarty->display('Admin-login.tpl');
     }
 

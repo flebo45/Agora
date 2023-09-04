@@ -37,6 +37,7 @@
         </label>
         <button type="submit" class="submit-btn">Log in</button>
       </form>
+
       <!------------FINE FORM PER IL LOG IN------------------------------>
 
       <!------------FORM PER IL SING UP------------------------------>
