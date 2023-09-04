@@ -23,6 +23,9 @@ class FPersistentManager{
         return self::$instance;
     }
 
+    /**
+     * return an object specifying the class and the id 
+     */
     public static function retriveObj($class, $id){
         $fem = FEntityManager::getInstance();
 
@@ -31,6 +34,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Comments belonged to a post
+     */
     public static function getCommentList($idPost)
     {
         $result = FComment::getCommentListNotBanned($idPost);
@@ -38,6 +44,10 @@ class FPersistentManager{
         return $result;
 
     }
+
+    /**
+     * return a User findig it not on the id but on it's username
+     */
     public static function retriveUserOnUsername($username)
     {
         $result = FUser::getUserByUsername($username);
@@ -45,6 +55,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a MOderator finding it not on id but on it's username
+     */
     public static function retriveModOnUsername($username)
     {
         $result = FModerator::getModByUsername($username);
@@ -52,6 +65,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return the number of Like of a Post
+     */
     public static function getLikeNumber($idPost)
     {
         $result = FLike::getLikeNumber($idPost);
@@ -59,6 +75,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * upload any Object in the database
+     */
     public static function uploadObj($obj){
         $fem = FEntityManager::getInstance();
 
@@ -126,6 +145,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * call to the entityManger to delete an UserFollow object
+     */
     public static function deleteFollow(EUserFollow $follow)
     {
         $fem = FEntityManager::getInstance();
@@ -135,6 +157,10 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Users who liked a Post
+     * @return array
+     */
     public static function getLikesUserOfAPost($idPost)
     {
         $likes = FLike::getLikeList($idPost);
@@ -153,6 +179,10 @@ class FPersistentManager{
         return $result;
     }
 
+
+    /**
+     * return the number of the Users followed by the user
+     */
     public static function getFollowedNumb($idUser)
     {
         $result = FUserFollow::followedNumb($idUser);
@@ -160,6 +190,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return the number of the Users following a user
+     */
     public static function getFollowerNumb($idUser)
     {
         $result = FUserFollow::followerNumb($idUser);
@@ -167,6 +200,10 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Users who are followed by a user
+     * @return array
+     */
     public static function getFollowedList($idUser)
     {
         $followList = FUserFollow::followedList($idUser);
@@ -184,6 +221,10 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Users who follow a user
+     * @return array
+     */
     public static function getFollowerList($idUser)
     {
         $followList = FUserFollow::followerList($idUser);
@@ -202,6 +243,9 @@ class FPersistentManager{
 
     }
 
+    /**
+     * return UserFollow object specifying the follower and the followed
+     */
     public static function retriveFollow($idUser, $followedId)
     {
         $result = FUserFollow::getFollow($idUser, $followedId);
@@ -209,6 +253,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return Like Object specifying the User and the Post
+     */
     public static function retriveLike($idUser, $idPost)
     {
         $result = FLike::getLike($idUser, $idPost);
@@ -216,7 +263,9 @@ class FPersistentManager{
         return $result;
     }
 
-
+    /**
+     * retrun a list of Posts that have the $keyword in their Title
+     */
     public static function getSerachedPosts($keyword)
     {
         $result = FPost::getSearched($keyword);
@@ -224,6 +273,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Users that have the $keyword in their Username
+     */
     public static function getSearchedUsers($keyword)
     {
         $result = FUser::getSearched($keyword);
@@ -231,6 +283,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of all Report of Posts
+     */
     public static function getReportedPost()
     {
         $result = FReport::reportedPostList();
@@ -238,6 +293,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of all Report of Comments
+     */
     public static function getReportedComment()
     {
         $result = FReport::reportedCommentList();
@@ -254,6 +312,10 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of Posts belonged to Users that a user is Following
+     * @return array
+     */
     public static function loadHomePage($id)
     {
         $followed = self::getFollowed($id);
@@ -265,12 +327,16 @@ class FPersistentManager{
             foreach($followed as $f){
                 $posts = FPost::postListNotBanned($f->getFollowed());
             }
+            //sort posts array by creation time desc
             usort($posts, ['FPost', 'comparePostsByCreationTime']);
         }
         return $posts;
     }
 
     //-------------------VIP------------------------------------------------------------
+    /**
+     * return a list of all vip (they are max 3)
+     */
     public static function loadVipUsers()
     {
         $result = FUser::loadVipUsers();
@@ -278,6 +344,9 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * return a list of the users who have thge highest number of followers
+     */
     public static function topUserFollower()
     {
         $result = FUser::topUserFollower();
@@ -285,6 +354,11 @@ class FPersistentManager{
         return $result;
     }
 
+    /**
+     * retrurn an array containing 3 array, 'common' are the user who were vip and now are also vip, 
+     * 'remainFirst' are the users who were vip but not now, 
+     * 'remainSecond' are the users who weren't vip but now yes
+    */
     private static function findCommon($array1, $array2){
         $common = [];
         $remainFirst = [];
@@ -307,6 +381,9 @@ class FPersistentManager{
         return ['common'=>$common, 'remainFirst'=>$remainFirst, 'remainSecond'=>$remainSecond];
     }
 
+    /**
+     * from the findCommon() set the vip to the users
+     */
     public static function loadVip()
     {
         $oldVips = self::loadVipUsers();
@@ -350,12 +427,18 @@ class FPersistentManager{
 
     //---------------------------VERIFY----------------------------------------------
 
+    /**
+     * verify if exist a user with this email (also mod)
+     */
     public static function verifyUserEmail($email){
         $result = FPerson::verify('email', $email);
 
         return $result;
     }
 
+    /**
+     * verify if exist a user with this username (also mod)
+     */
     public static function verifyUserUsername($username){
         $result = FPerson::verify('username', $username);
 
@@ -363,6 +446,9 @@ class FPersistentManager{
     }
     //-------------------------USER-PAGE---------------------------------------
 
+    /**
+     * load all post of a user that are not banned
+     */
     public static function loadUserPage($id)
     {
         $allPosts = FPost::postListNotBanned($id);
@@ -376,6 +462,9 @@ class FPersistentManager{
 
     //-----------------------CATEGORY----------------------------------------------
 
+    /**
+     * return all post that are not banned finded on a specific category
+     */
     public static function loadPostPerCategory($category)
     {
         $result = FPost::postListCategory($category);
@@ -387,6 +476,9 @@ class FPersistentManager{
 
     //------------------------EXPLORE--------------------------------------------
     
+    /**
+     * load all post not banned that are not belonged to the user
+     */
     public static function loadPostInExplore($idUser)
     {
         $result = FPost::postInExplore($idUser);

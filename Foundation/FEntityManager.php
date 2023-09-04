@@ -37,6 +37,9 @@ class FEntityManager{
         
     }
 
+    /**
+     * return an object finding it not on the id but on an attribute
+     */
     public static function retriveObjNotOnId($class, $field, $id)
     {
         try{
@@ -48,6 +51,9 @@ class FEntityManager{
         }
     }
 
+    /**
+     * return an object finding it not on the id but specifying 2 attributes
+     */
     public static function getObjOnAttributes($table, $field1, $id1, $field2, $id2)
     {
         try{
@@ -166,6 +172,9 @@ class FEntityManager{
 
     }
 
+    /**
+     * retrun a list of objects finding it on a specific attribute
+     */
     public static function objectListAttribute($table, $field, $id)
     {
         try{
@@ -186,6 +195,9 @@ class FEntityManager{
         }
     }
 
+    /**
+     * return the numbe of objects in a list finding they on a specific attribute
+     */
     public static function countObjectListAttribute($table, $field, $id)
     {
         try{
@@ -224,6 +236,7 @@ class FEntityManager{
         }
     }
     
+
     public static function topUserFollower()
     {
         $limit = 3;
@@ -241,6 +254,9 @@ class FEntityManager{
         return $result;
     }
 
+    /**
+     * verify if exist an object
+     */
     public static function verifyAttributes($fieldId, $table, $field, $id){
         try{
             $dql = "SELECT u.id".$fieldId. " FROM " . $table . " u WHERE u." . $field . " = :attribute";
@@ -259,6 +275,9 @@ class FEntityManager{
             }
     }
 
+    /**
+     * return a list of all the Post that are not beloged to an user
+     */
     public static function getPostNotBelongedToUser($table, $field, $idUser)
     {
         try{
@@ -278,6 +297,9 @@ class FEntityManager{
         }
     }
 
+    /**
+     * return a list of all the object that have the $str in the specified attribute
+     */
     public static function getSearchedItem($table, $field, $str)
     {
         try{
@@ -296,6 +318,9 @@ class FEntityManager{
         }
     }
 
+    /**
+     * return a liss of partial Post  that have the $str in the specified attribute
+     */
     public static function getSearchedItemPart($table, $field, $str)
     {
         try{
