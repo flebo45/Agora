@@ -209,6 +209,13 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function retriveLike($idUser, $idPost)
+    {
+        $result = FLike::getLike($idUser, $idPost);
+    
+        return $result;
+    }
+
 
     public static function getSerachedPosts($keyword)
     {

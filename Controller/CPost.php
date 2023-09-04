@@ -247,5 +247,46 @@ public static function delete($idPost)
     }
 }
 
+public static function settingLike($idPost)
+{
+    if(UServer::getRequestMethod() == "POST")
+    {
+        if(CUser::isLogged())
+        {
+            $pm = FPersistentManager::getInstance();+
+            USession::getInstance();
+            $idUser = USession::getSessionElement('user');
+            
+            $like = new ELike($idUser, $idPost);
+            $pm::uploadObj($like);
+            header('Location: /Agora/Post/visit/'.$idPost);
+        }else{
+            header('Location: /Agora/User/login');
+        }
+    }else{
+        header('Location: /Agora/User/home');
+    }
+}
+
+
+public static function deleteLike($idPost)
+{
+    if(UServer::getRequestMethod() == "POST")
+    {
+        if(CUser::isLogged())
+        {
+            $pm = FPersistentManager::getInstance();+
+            USession::getInstance();
+            $idUser = USession::getSessionElement('user');
+            $like = $pm::retriveLike($idUser, $idPost);
+            $pm::deleteLike($like);
+            header('Location: /Agora/Post/visit/'.$idPost);
+        }else{
+            header('Location: /Agora/User/login');
+        }
+    }else{
+        header('Location: /Agora/User/home');
+    }
+}
 
 }
