@@ -17,7 +17,7 @@
 
 <nav>
   <div class="container">
-    <h2 class="log">{$siteName}</h2>
+    <h2 class="log">Agora</h2>
     <div class="search-bar">
       <i class ="uil uil-search"></i>
       <label>
@@ -25,9 +25,9 @@
       </label>
     </div>
     <form  action="/Agora/User/logout" method="post">
-                <div>
-                    <button class="btn btn-primary" type="submit">Log out</button>
-                </div>
+      <div>
+        <button class="btn btn-primary" type="submit">Log out</button>
+      </div>
     </form>
     <div class="profile-photo">
       <img src="Img/A.png" alt="">
@@ -42,71 +42,68 @@
 <main>
 
   <div class="result">
-    <h3 class="text-muted">Result for : {$searchQuery}</h3>
+    <h3 class="text-muted">Result for : {$keyWord}</h3>
   </div>
+  {if is_null($resultPost)}
+    <div class="result" style="margin-top: 2%">There are no post with this title, try something else</div>
+    {else}
+  {foreach $resultPost as $post}
   <div class="result" style="margin-top: 2%">
     <div class="left">
       <h3>Post</h3>
         <div class="profile">
-          <div class="profile-photo">
-            <img src="Img/A.png" alt=" log in">
-          </div>
+          {if $userPic->getSize() > 0}
+            <div class="profile-photo">
+              <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+            </div>
+          {else}
+            <div class="profile-photo">
+              <img src="/Agora/Smarty/immagini/1.png" alt="">
+            </div>
+          {/if}
           <div class ="handle">
-            <h4> {$postAuthorName} </h4>
+            <h4> {$post->getUser()->getUsername()} </h4>
             <p class="text-muted">
-              @{$postAuthorName}
+              @{$post->getuser()->getUsername()}
             </p>
           </div>
         </div>
       <div>
       <h3>Title</h3>
-        <h5 class="search"> {$postTitle}</h5>
-        {$postContent}
-      </div>
+        <a href="/Agora/Post/visit/{$post->getId()}" class="search"> {$post->getTitle()}</a>
+          </div>
         <div>
       </div>
-      <label>
-        <button class="btn btn-primary" type="button" onclick="location.href='visualization-post.html'">Go to the post</button>
-      </label>
     </div>
-
-
+    {/foreach}
+    {/if}
+    {if is_null($resultProfile)}
+    <div class="result" style="margin-top: 2%">There are no user with this username, try something else</div>
+    {else}
+{foreach $resultProfile as $user}
     <div class="right">
       <div class="list-profile">
         <div>
         <h3>User</h3>
-        <div class="profile">
-          <div class="profile-photo">
-            <img src="Img/A.png" alt=" log in">
-          </div>
+          {if $userPic->getSize() > 0}
+            <div class="profile-photo">
+              <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+            </div>
+          {else}
+            <div class="profile-photo">
+              <img src="/Agora/Smarty/immagini/1.png" alt="">
+            </div>
+          {/if}
           <div class ="handle">
-            <h4> {$userProfileName} </h4>
+            <a href="Agora/User/profile/{$user->getUsername()}"> {$user->getUsername()} </a>
             <p class="text-muted">
-              @{$userProfileHandle}
+              @{$user->getName()}
             </p>
           </div>
         </div>
-        <label>
-          <button class="btn btn-primary" type="button" onclick="location.href='profile.html'">Go to the user</button>
-        </label>
-        </div>
-          <div class="search-prof">
-            <div class="profile">
-              <div class="profile-photo">
-                <img src="Img/A.png" alt=" log in">
-              </div>
-              <div class ="handle">
-                <h4> {$userProfileName} </h4>
-                <p class="text-muted">
-                  @{$userProfileHandle}
-                </p>
-              </div>
-            </div>
-            <label>
-              <button class="btn btn-primary" type="button" onclick="location.href='profile.html'">Go to the user</button>
-            </label>
-        </div>
       </div>
     </div>
+    {/foreach}
+      {/if}
   </div>
 </main>
