@@ -25,7 +25,7 @@
         </div>
         <!------------FORM PER IL LOG IN------------------------------>
         {if $error == true}
-            <div style="color: red">
+            <div style="color: red; margin-left: 8%;">
                 wrong username or password, try again
             </div>
         {/if}
