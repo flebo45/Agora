@@ -383,11 +383,11 @@
     <div>
       <h6>Aa</h6>
       <div class="choose-size">
-        <span class="font-size-1"></span>
-        <span class="font-size-2"></span>
-        <span class="font-size-3 active"></span>
-        <span class="font-size-4"></span>
-        <span class="font-size-5"></span>
+        <input class="font-size-1"></input>
+        <input class="font-size-2"></input>
+        <input class="font-size-3 active"></input>
+        <input class="font-size-4"></input>
+        <input class="font-size-5"></input>
       </div>
       <h3>Aa</h3>
     </div>
@@ -398,11 +398,11 @@
   <div class="color">
     <h4>Color</h4>
     <div class="choose-color">
-      <span class="color-1 active"></span>
-      <span class="color-2"></span>
-      <span class="color-3"></span>
-      <span class="color-4"></span>
-      <span class="color-5"></span>
+      <input class="color-1 active"></input>
+      <input class="color-2"></input>
+      <input class="color-3"></input>
+      <input class="color-4"></input>
+      <input class="color-5"></input>
     </div>
   </div>
 
@@ -411,15 +411,15 @@
     <h4>Background</h4>
     <div class="choose-bg">
       <div class="bg-1 active">
-        <span></span>
+        <input></input>
         <h5>Light</h5>
       </div>
       <div class="bg-2">
-        <span></span>
+        <input></input>
         <h5>Dim</h5>
       </div>
       <div class="bg-3">
-        <span></span>
+        <input></input>
         <h5> Lights Out</h5>
       </div>
     </div>
