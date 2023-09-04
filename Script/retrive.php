@@ -7,9 +7,8 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$reportedPost = $pm::getReportedPost();
+$modUsername = "mod123";
 
-foreach($reportedPost as $rp)
-{
-   echo $rp->getId();
-}
+$mod = $pm::verifyModUsername($modUsername);
+
+print_r($mod);

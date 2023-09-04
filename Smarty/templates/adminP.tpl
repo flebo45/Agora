@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-compatible" content ="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale-1.0">
-  <title>Mod</title>
+  <title>Mod-Report</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
+  <link rel="icon" href="Img/A.png">
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -16,9 +16,14 @@
   <nav>
     <div class="container">
       <h2>Agorà</h2>
-      <h2>{$admin->getUsername()}</h2>
+      <h2>{$modUsername}</h2>
+      <form  action="/Agora/Moderator/logout" method="post">
+                <div>
+                    <button class="btn btn-primary" type="submit">Log out</button>
+                </div>
+      </form>
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/A.png" alt="Img">
+        <img src="/Agora/Smarty/immagini/A.png" alt="">
       </div>
     </div>
   </nav>
@@ -26,22 +31,25 @@
   <!----------------REPORT PAGE FOR ADMIN------------------------------->
   <main>
 
-        <div class="admin">
+        <div class="admin" style="height: 60%; overflow-y:auto; margin-top: 1rem;">
           <h3 class="title">ID</h3>
-          <h3 class="title">Info</h3>
+          <h3 class="title">Info Posts</h3>
           <h3 class="title">Action</h3>
         </div>
-        {foreach $reports as $report}
+      {if count($reportedPost) === 0}
+          <div class="admin" style="margin-top: 1rem;">There are no reported post</div>
+      {else}
+        {foreach $reportedPost as $report}
         <div class="admin-report" style="margin-top: 1%">
           <div class="admin">
             <div class="left">
-              <h3>{$report.numReports} report</h3>
-              <h4>{$report.type}</h4>
-              <h4>{$report.username}</h4>
-              <h5>{$report.reportCount}/3</h5>
+              <h3>{$report->getId()} report</h3>
+              <h4>{$report->getType()}</h4>
+              <h4>{$report->getPost()->getUser()->getUsername()}</h4>
+              <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
-              <div class="body-report"> {$report.body}</div>
+              <div class="body-report"> {$report->getDescription()}</div>
               <label>
                 <button class="btn btn btn-primary" onclick="location.href='visualization-post.html'">See the post</button>
               </label>
@@ -61,6 +69,46 @@
           </div>
         </div>
         {/foreach}
+      {/if}
+        <div class="admin" style="height: 60%; overflow-y:auto; margin-top: 1rem;">
+          <h3 class="title">ID</h3>
+          <h3 class="title">Info Comments</h3>
+          <h3 class="title">Action</h3>
+        </div>
+      {if count($reportedPost) === 0}
+          <div class="admin" style="margin-top: 1rem;">There are no reported comment</div>
+      {else}
+        {foreach $reportedComment as $report}
+        <div class="admin-report" style="margin-top: 1%">
+          <div class="admin">
+            <div class="left">
+              <h3>{$report->getId()} report</h3>
+              <h4>{$report->getType()}</h4>
+              <h4>{$report->getPost()->getUser()->getUsername()}</h4>
+              <h6>Id who sent the report: {$report->getIdUser()}</h6>
+            </div>
+            <div class="middle">
+              <div class="body-report"> {$report->getDescription()}</div>
+              <label>
+                <button class="btn btn btn-primary" onclick="location.href='visualization-post.html'">See the post</button>
+              </label>
+            </div>
+            <div class="right">
+              <div>
+              <label>
+                <button class="btn btn-primary "><i class="uil uil-trash-alt">Delete</i></button>
+              </label>
+              </div>
+              <div style="margin-top: 100%">
+              <label>
+                <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
+              </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/foreach}
+      {/if}
   </main>
 </body>
 </html>

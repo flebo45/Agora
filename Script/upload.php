@@ -7,26 +7,6 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$like = new ELike(3, 1);
-$pm::uploadObj($like);
-/**$id = 1;
+$mod = new EModerator('nome', 'cognome', 20, 'admin@admin', 'admin', 'mod123');
 
-$user = $pm::retriveObj(EUser::getEntity(), $id);
-
-$title = "Vacanza a Catanzaro";
-$description = "Vacanza pazzesca in quel di catanzaro";
-$category = "Travel";
-
-$post = new EPost($title, $description, $category);
-
-$post->setUser($user);
-$pm::uploadObj($post);**/
-
-/*$name = 'sakura.png';
-$size = 1024;
-$type = 'image/png';
-$imageData = "ziopera";
-
-$postPic1 = new EImage($name, $size, $type, $imageData);
-
-$pm::uploadImagePost($postPic1, $post);*/
+$pm::uploadObj($mod);

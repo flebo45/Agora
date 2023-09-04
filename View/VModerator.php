@@ -10,14 +10,17 @@ class VModerator{
 
     }
 
-    public function showReportList($modUsername, $reportedPost, $postUserPic, $reportedComment, $commentUserPic)
+    public function showReportList($modUsername, $reportedPost, $reportedComment)
     {
         $this->smarty->assign('modUsername', $modUsername);
         $this->smarty->assign('reportedPost', $reportedPost);
-        $this->smarty->assign('postUserPic', $postUserPic);
         $this->smarty->assign('reportedComment', $reportedComment);
-        $this->smarty->assign('commentUserPic', $commentUserPic);
         $this->smarty->display('adminP.tpl');
+    }
+
+    public function showLoginForm()
+    {
+        $this->smarty->display('Admin-login.tpl');
     }
 
 }

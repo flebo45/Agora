@@ -241,9 +241,9 @@ class FEntityManager{
         return $result;
     }
 
-    public static function verifyAttributes($fieldId, $table, $field, $id, $discr){
+    public static function verifyAttributes($fieldId, $table, $field, $id){
         try{
-            $dql = "SELECT u.id".$fieldId. " FROM " . $table . " u WHERE u." . $field . " = :attribute AND u.discr = " .$discr;
+            $dql = "SELECT u.id".$fieldId. " FROM " . $table . " u WHERE u." . $field . " = :attribute";
             $query = self::$entityManager->createQuery($dql);
             $query->setParameter('attribute', $id);
 

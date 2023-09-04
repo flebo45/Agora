@@ -41,9 +41,9 @@ class CModerator{
         if(UServer::getRequestMethod() != 'GET'){
             $pm = FPersistentManager::getInstance();
             $view = new VModerator();
-            $username = $pm::verifyModUsername($_POST['username']);
+            $username = $pm::verifyUserUsername($_POST['username']);
             if($username){
-                $user = $pm::retriveUserOnUsername($_POST['username']);
+                $user = $pm::retriveModOnUsername($_POST['username']);
                 if(password_verify($_POST['password'], $user->getPassword())){
                     if(USession::getSessionStatus() == PHP_SESSION_NONE){
                         USession::getInstance();
@@ -83,7 +83,7 @@ class CModerator{
                 $reportedPost = $pm::getReportedPost();
                 $reportedComment = $pm::getReportedComment();
 
-                $postUserPic = array();
+                /*$postUserPic = array();
                 $commentUserPic = array();
 
                 if(count($reportedPost) > 0)
@@ -99,11 +99,11 @@ class CModerator{
                     {
                         $commentUserPic[$rc->getComment()->getId()] = $pm::retriveObj(EImage::getEntity(), $rc->getComment()->getUser()->getIdImage());
                     }
-                }
+                }*/
 
                 $view = new VModerator();
 
-                $view->showReportList($mod->getUsername(), $reportedPost, $postUserPic, $reportedComment, $commentUserPic);
+                $view->showReportList($mod->getUsername(), $reportedPost,  $reportedComment);
             }else{
                 header('Location: /Agora/Moderator/login');
             }

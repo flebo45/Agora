@@ -2,9 +2,11 @@
 
 class FModerator extends FEntityManager{
 
-    public static function verify($field, $id){
+    public static function getModByUsername($username)
+    {
         $fem = FEntityManager::getInstance();
-        $result = $fem::verifyAttributes('User', EPerson::getEntity(), $field, $id, 'moderator');
+
+        $result = $fem::retriveObjNotOnId(EModerator::getEntity(), 'username', $username);
 
         return $result;
     }

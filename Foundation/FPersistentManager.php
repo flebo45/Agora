@@ -45,6 +45,13 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function retriveModOnUsername($username)
+    {
+        $result = FModerator::getModByUsername($username);
+
+        return $result;
+    }
+
     public static function getLikeNumber($idPost)
     {
         $result = FLike::getLikeNumber($idPost);
@@ -347,13 +354,6 @@ class FPersistentManager{
 
         return $result;
     }
-
-    public static function verifyModUsername($username){
-        $result = FModerator::verify('username', $username);
-
-        return $result;
-    }
-
     //-------------------------USER-PAGE---------------------------------------
 
     public static function loadUserPage($id)
