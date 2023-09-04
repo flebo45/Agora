@@ -24,16 +24,7 @@ class VManagePost{
         $this->smarty->display('errore.tpl');
     }
 
-    public function prova($a, $b, $c, $d){
-        $this->smarty->assign('titolo', $a);
-        $this->smarty->assign('descrizione', $b);
-        $this->smarty->assign('categoria', $c);
-        $this->smarty->assign('file', $d);
-        $this->smarty->display('errore.tpl');
-
-    }
-
-    public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb, $followedNumb, $followerNumb)
+    public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb, $followedNumb, $followerNumb, $checkLike)
     {
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic', $userPic);
@@ -43,6 +34,7 @@ class VManagePost{
         $this->smarty->assign('visitedUserPic', $visitedUserPic);
         $this->smarty->assign('followerNumb', $followerNumb);
         $this->smarty->assign('followedNumb', $followedNumb);
+        $this->smarty->assign('checkLike', $checkLike);
         $this->smarty->display('visualization_post.tpl');
     }
 

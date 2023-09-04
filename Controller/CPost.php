@@ -139,9 +139,16 @@ public static function visit($idPost)
                 $numbLike = $pm::getLikeNumber($idPost);
                 $followerNumb = $pm::getFollowerNumb($post->getUser()->getId());
                 $followedNumb = $pm::getFollowedNumb($post->getUser()->getId());
+                $like = $pm::retriveLike($userId, $idPost);
+                if($like !== null)
+                {
+                    $checkLike = true;
+                }else{
+                    $checkLike = false;
+                }
                 $view = new VManagePost();
                 
-                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb);
+                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb, $checkLike);
             }else{
                 header('Location: /Agora/User/home');
             }
@@ -169,9 +176,16 @@ public static function visit($idPost)
 
             
             $comments = $pm::getCommentList($post->getId());
+            $like = $pm::retriveLike($userId, $idPost);
+                if($like !== null)
+                {
+                    $checkLike = true;
+                }else{
+                    $checkLike = false;
+                }
             $view = new VManagePost();
                 
-            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb);
+            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb,  $checkLike);
         }
     }
 }
@@ -253,7 +267,7 @@ public static function settingLike($idPost)
     {
         if(CUser::isLogged())
         {
-            $pm = FPersistentManager::getInstance();+
+            $pm = FPersistentManager::getInstance();
             USession::getInstance();
             $idUser = USession::getSessionElement('user');
             
@@ -275,7 +289,7 @@ public static function deleteLike($idPost)
     {
         if(CUser::isLogged())
         {
-            $pm = FPersistentManager::getInstance();+
+            $pm = FPersistentManager::getInstance();
             USession::getInstance();
             $idUser = USession::getSessionElement('user');
             $like = $pm::retriveLike($idUser, $idPost);

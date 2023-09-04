@@ -122,14 +122,21 @@
               {/foreach}
             </div>
           {/if}
-
+          
         <div class="action-buttons">
+        {if $checkLike == true}
             <div class="interaction-buttons">
-                <span>
-                    <button class="like-button btn-transparent" data-id="{$post->getId()}" style="font-size:24px;width:40px;height:40px;padding:5px;"><i class="uil uil-heart"></i> </button>
-                </span>
+                <form id="like" action="/Agora/Post/deleteLike/{$post->getId()}" method="post">
+                    <button class="like-button btn-transparent"  style="color:red; font-size:24px;width:40px;height:40px;padding:5px;"><i class="uil uil-heart"></i> </button>
+                </form>
             </div>
-
+        {else}
+          <div class="interaction-buttons">
+            <form id="like" action="/Agora/Post/settingLike/{$post->getId()}" method="post">
+              <button class="like-button btn-transparent"  style="font-size:24px;width:40px;height:40px;padding:5px;"><i class="uil uil-heart"></i> </button>
+            </form>
+          </div>
+        {/if}
             <div class= "interaction-buttons " id="report">
                 <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
             </div>
@@ -383,6 +390,5 @@
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
 <script src="/Agora/Smarty/js/report.js"></script>
-<script src="/Agora/Smarty/js/like.js"></script>
 </body>
 </html>
