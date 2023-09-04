@@ -96,15 +96,9 @@
       <div class="feed">
       <div class="head">
         <div class="user">
-        {if $userPic->getSize() > 0}
-          <div class="profile-photo">  
-              <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
-          </div>
-        {else}
           <div class="profile-photo">
               <img src="/Agora/Smarty/immagini/1.png" alt="">
           </div>
-        {/if}
           <div class="ingo">
             <div>
               <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
@@ -165,7 +159,7 @@
                       <img src="Img/A.png" alt="img">
                     </div>
                     <div class="ingo">
-                      <h3> {$comment->getUser()->getUsername()} </h3>
+                    <a href="/Agora/User/profile/{$comment->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$comment->getUser()->getUsername()} </a>
                       <small>{$comment->getTime()->format('Y-m-d H:i:s')}</small>
                     </div>
                   </div>
@@ -180,7 +174,7 @@
             <div class="send-comment">
               <form id="comment-post"  action="/Agora/Post/visit/{$post->getId()}"  method="post">
               <label class="left-transition ">
-                <input type="text" name ='body'placeholder="write a comment">
+                <input type="text" name ='body'placeholder="write a comment" required>
               </label>
                 <label class="btn btn-primary left-transition">send
                   <button type="submit" class="btn-transparent"></button>
@@ -199,21 +193,27 @@
     <div class="right">
       <div class="side-profile">
         <div class="heading">
-        <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/1.png" alt="">
-        </div>
+        {if $visitedUserPic->getSize() > 0}
+          <div class="profile-photo">  
+              <img src="data:{$visitedUserPic->getType()};base64,{$visitedUserPic->getEncodedData()}" alt="Img">
+          </div>
+        {else}
+          <div class="profile-photo">
+              <img src="/Agora/Smarty/immagini/1.png" alt="">
+          </div>
+        {/if}
           <div class ="handle">
-            <h4> {$post->getUser()->getUsername()} </h4>
+            <a href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()} </a>
             <p class="text-muted">{$post->getUser()->getName()}</p>
           </div>
           <div>
-            <h4>{$followerNumb}</h4>
+            <a href="/Agora/User/followed/{$post->getUser()->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followerNumb}</a>
             <p class="text-muted">
               followers
             </p>
           </div>
           <div>
-            <h4>{$followedNumb}</h4>
+          <a href="/Agora/User/followers/{$post->getUser()->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followedNumb}</a>
             <p class="text-muted">following</p>
           </div>
         </div>

@@ -61,4 +61,13 @@ class FPost extends FEntityManager{
         return $result;
     }
 
+    public static function getSearched($keyword)
+    {
+        $fem =  FEntityManager::getInstance();
+
+        $result = $fem::getSearchedItem(EPost::getEntity(), 'title', $keyword);
+
+        return $result;
+    }
+
 }

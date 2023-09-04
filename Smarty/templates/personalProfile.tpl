@@ -108,8 +108,11 @@
                           <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                         </div>
                     </div>
-                    <!--Botone uil-uil-edits-->
-                    <!--TODO-->
+                    <div>
+                      <form id="delete" action="/Agora/Post/delete/{$post->getId()}" method="get">
+                        <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
+                      </form>
+                   </div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
@@ -204,37 +207,6 @@
     </div>
 </main>
 
-
-<!-------------------EDIT MODAL----------------------------------------->
-
-
-<div class="edit">
-  <div class="card">
-    <label>
-      <button class="btn btn-transparent"  onclick="location.href='Agora/user/creation_post'"><i class="uil uil-wrench">Modify</i></button>
-    </label>
-    <label>
-      <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
-    </label>
-  </div>
-</div>
-
-
-<!------------------CONFIRM DELETE------------------------------>
-
-<div class="delete">
-  <div class="card">
-    <h2>Are you sure you want to delete this post?</h2>
-    <div>
-      <label>
-        <button class="btn-transparent btn" onclick="location.href='Agora/Post/delete'">Yes</button>
-      </label>
-      <label>
-        <button class="btn-transparent btn" onclick="location.reload()">No</button>
-      </label>
-    </div>
-  </div>
-</div>
 <!----------------- THEME CUSTOMIZATION---------------------------->
 
 <div class="customize-theme">
@@ -291,7 +263,7 @@
 </div>
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/smarty/js/edit.js"></script>
+<!--<script src="/Agora/smarty/js/edit.js"></script>-->
 <script src="/Agora/Smarty/js/storage.js"></script>
 </body>
 </html>

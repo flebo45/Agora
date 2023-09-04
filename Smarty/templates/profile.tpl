@@ -179,15 +179,15 @@
             <p class="text-muted">following</p>
           </div>
         </div>
-
-        <button class="btn-primary btn" onclick="toggle(this)">follow</button>
-        <script>
-          function toggle(e) {
-            let txt = e.innerText;
-            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
-          }
-        </script>
-
+        {if $follow == true}
+          <form id='unfollow' action="/Agora/User/unfollow/{$user->getId()}" method="post">
+            <button class="btn-primary btn">Unfollow</button>
+          </form>
+        {elseif $follow == false}
+          <form id='follow' action="/Agora/User/follow/{$user->getId()}" method="post">
+            <button class="btn-primary btn">Follow</button>
+          </form>
+        {/if}
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -262,40 +262,6 @@
   </div>
   
 </main>
-
-
-<!-------------------EDIT MODAL----------------------------------------->
-
-
-<div class="edit">
-  <div class="card">
-    <label>
-      <button class="btn btn-transparent"  onclick="location.href='creation-post.html'"><i class="uil uil-wrench">Modify</i></button>
-    </label>
-    <label>
-      <button class="btn btn-transparent" id="delete"><i class="uil uil-trash-alt"></i>Delete</button>
-    </label>
-  </div>
-</div>
-
-
-<!------------------CONFIRM DELETE------------------------------>
-
-<div class="delete">
-  <div class="card">
-    <h2>Are you sure you want to delete this post?</h2>
-    <div>
-      <label>
-        <button class="btn-transparent btn">Yes</button>
-      </label>
-      <label>
-        <button class="btn-transparent btn">No</button>
-      </label>
-    </div>
-  </div>
-</div>
-
-<!-----------------REPORT MODAL----------------------------------->
 
 
 <div class="report">

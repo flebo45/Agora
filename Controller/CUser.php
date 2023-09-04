@@ -154,7 +154,7 @@ class CUser{
 
             foreach($vipUsers as $v)
             {
-                $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getId());
+                $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getIdImage());
             }
 
             if(count($postInHome) === 0)
@@ -225,18 +225,25 @@ class CUser{
                         $profileProPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
 
                         $postUser = $pm::loadUserPage($user->getId());
+                        $follow = $pm::retriveFollow($personalUserId, $user->getId());
                         $view = new VUser();
 
+                        if($follow !== null)
+                        {
+                            $followCheck = true;
+                        }else{
+                            $followCheck = false;
+                        }
                         if(count($postUser) === 0)
                         {
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null, null);
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null, null, $followCheck);
                         }else{
                             $arrayLikeNumb = array();
                             foreach($postUser as $p)
                             {
                                 $arrayLikeNumb[$p->getId()] = $pm::getLikeNumber($p->getId());
                             }
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser, $arrayLikeNumb);
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser, $arrayLikeNumb, $followCheck);
                         }
                     }else{
                         header('Location: /Agora/User/home');
@@ -402,6 +409,102 @@ class CUser{
                 }else{
                     $view->explore($user, $proPic, null);
                 }
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function followers($idUser)
+    {
+        if(UServer::getRequestMethod() == "GET")
+        {
+            if(CUser::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+                $userList = $pm::getFollowedList($idUser);
+                $usersPic = array();
+                foreach($userList as $u)
+                {
+                    $pic = $pm::retriveObj(EImage::getEntity(), $u->getIdImage());
+                    $usersPic[$u->getId()] = $pic;
+                }
+                $view = new VManagePost();
+                $view->showUsersList($userList, $usersPic, 'followers');
+
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function followed($idUser)
+    {
+        if(UServer::getRequestMethod() == "GET")
+        {
+            if(CUser::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+                $userList = $pm::getFollowerList($idUser);
+                $usersPic = array();
+                foreach($userList as $u)
+                {
+                    $pic = $pm::retriveObj(EImage::getEntity(), $u->getIdImage());
+                    $usersPic[$u->getId()] = $pic;
+                }
+                $view = new VManagePost();
+                $view->showUsersList($userList, $usersPic, 'followed');
+
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function follow($followedId)
+    {
+        if(UServer::getRequestMethod() == "POST")
+        {
+            if(CUser::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                USession::getInstance();
+                $userId = USession::getSessionElement('user');
+
+                $follow = new EUserFollow($userId, $followedId);
+                $pm::uploadObj($follow);
+                $visitedUser = $pm::retriveObj(EUser::getEntity(), $followedId);
+                header('Location: /Agora/User/profile/' . $visitedUser->getUsername());
+            }else{
+                header('Location: /Agora/User/login');
+            }
+        }else{
+            header('Location: /Agora/User/home');
+        }
+    }
+
+    public static function unfollow($followedId)
+    {
+        if(UServer::getRequestMethod() == "POST")
+        {
+            if(CUser::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                USession::getInstance();
+                $userId = USession::getSessionElement('user');
+
+                $follow = $pm::retriveFollow($userId, $followedId);
+                $pm::deleteFollow($follow);
+                $visitedUser = $pm::retriveObj(EUser::getEntity(), $followedId);
+                header('Location: /Agora/User/profile/' . $visitedUser->getUsername());
             }else{
                 header('Location: /Agora/User/login');
             }

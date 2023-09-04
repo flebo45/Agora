@@ -46,10 +46,13 @@ class VManagePost{
         $this->smarty->display('visualization_post.tpl');
     }
 
-    public function showLikesList($userList, $usersPic)
+    public function showUsersList($userList, $usersPic, $param)
     {
-        $this->smarty->assign('userLike', $userList);
+        $this->smarty->assign('userList', $userList);
         $this->smarty->assign('userPic', $usersPic);
+        $this->smarty->assign('param', $param);
         $this->smarty->display('userlist.tpl');
     }
+
+
 }

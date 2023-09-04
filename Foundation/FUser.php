@@ -38,4 +38,13 @@ class FUser extends FEntityManager{
         return $result;
     }
 
+    public static function getSearched($keyword)
+    {
+        $fem =  FEntityManager::getInstance();
+
+        $result = $fem::getSearchedItem(EUser::getEntity(), 'username', $keyword);
+
+        return $result;
+    }
+
 }

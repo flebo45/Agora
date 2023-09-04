@@ -8,12 +8,8 @@ $fem = FEntityManager::getInstance($em);
 $pm = FPersistentManager::getInstance();
 
 $idUser = 1;
+$idFollowed = 2;
 
-//$post = $pm::retriveObj(EPost::getEntity(), $postId);
+$follow = $pm::retriveFollow($idUser, $idFollowed);
 
-$followedNumb = $pm::getFollowedNumb($idUser);
-
-$followerNumb = $pm::getFollowerNumb($idUser);
-
-print_r($followedNumb);
-print_r($followerNumb);
+print_r($follow);

@@ -48,6 +48,21 @@ class FEntityManager{
         }
     }
 
+    public static function getObjOnAttributes($table, $field1, $id1, $field2, $id2)
+    {
+        try{
+            $dql = "SELECT e FROM " . $table . " e WHERE e." . $field1 . " = ".$id1. " AND e." . $field2 . " = ". $id2;
+            $query = self::$entityManager->createQuery($dql);
+            $result = $query->getOneOrNullResult();
+            return $result;
+
+        }catch(Exception $e){
+            self::$entityManager->getConnection();
+            echo "ERROR: " . $e->getMessage();
+            return false;
+        }
+    }
+
 
     /**
      * delete the object in the db, and all the object related to it if there is cascade
@@ -268,7 +283,25 @@ class FEntityManager{
             {
                 return $result;
             }else{
-                return [];
+                return array();
+            }
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public static function getSearchedItemPart($table, $field, $str)
+    {
+        try{
+            $dql = "SELECT partial{} FROM " . $table . " e WHERE e." . $field . " LIKE :searchedStr";
+            $query = self::$entityManager->createQuery($dql)->setParameter('searchedStr', '%' . $str . '%');
+            $result = $query->getResult();
+            if(count($result) > 0)
+            {
+                return $result;
+            }else{
+                return array();
             }
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();

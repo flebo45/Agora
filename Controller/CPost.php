@@ -213,7 +213,32 @@ public static function like($idPost)
                 $usersPic[$u->getId()] = $pic;
             }
             $view = new VManagePost();
-            $view->showLikesList($usersLikeList, $usersPic);
+            $view->showUsersList($usersLikeList, $usersPic, 'like');
+        }else{
+            header('Location: /Agora/User/login');
+        }
+    }else{
+        header('Location: /Agora/User/home');
+    }
+}
+
+public static function delete($idPost)
+{
+    if(UServer::getRequestMethod() == 'GET')
+    {
+        if(CUser::isLogged())
+        {
+            $pm = FPersistentManager::getInstance();
+            USession::getInstance();
+            $idUser = USession::getSessionElement('user');
+            $post = $pm::retriveObj(EPost::getEntity(), $idPost);
+            if($idUser == $post->getUser()->getId() && $post !== null)
+            {
+                $pm::deletePost($post);
+                header('Location: /Agora/User/personalProfile');
+            }else{
+                header('Location: /Agora/User/home');
+            }
         }else{
             header('Location: /Agora/User/login');
         }

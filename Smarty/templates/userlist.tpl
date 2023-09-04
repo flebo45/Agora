@@ -70,24 +70,42 @@
         <div class="middle">
             <div class="feeds">
                 <div class ="feed">
-            {if count($userLike) == 0}
+            {if count($userList) == 0}
+                {if $param == 'like'}
                     <div class="tex-bold" style="font-size:18px">This post has 0 like for now</div>
+                {elseif $param == 'followers'}
+                    <div class="tex-bold" style="font-size:18px">No one is following this user</div>
+                {elseif $param == 'followed'}
+                    <div class="tex-bold" style="font-size:18px">This user is not following anyone</div>
+                {/if}
             {else}
+                {if $param == 'like'}
                     <div class="tex-bold" style="font-size:18px">This Post is liked by:</div>
-                {foreach $userLike as $like}
+                {elseif $param == 'followers'}
+                    <div class="tex-bold" style="font-size:18px">This User is following:</div>
+                {elseif $param == 'followed'}
+                    <div class="tex-bold" style="font-size:18px">This User is followed by:</div>
+                {/if}
+                {foreach $userList as $l}
                     
                     <div style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
-                        {if $userPic[$like->getId()]->getSize() > 0}
+                        {if $userPic[$l->getId()]->getSize() > 0}
                             <div class="profile-photo">
-                                <img src="data:{$userPic[$like->getId()]->getType()};base64,{$userPic[$like->getId()]->getEncodedData()}" alt="Img">
+                                <img src="data:{$userPic[$l->getId()]->getType()};base64,{$userPic[$l->getId()]->getEncodedData()}" alt="Img">
                             </div>
                         {else}
                             <div class="profile-photo">
                                 <img src="/Agora/Smarty/immagini/1.png" alt="">
                             </div>
                         {/if}
-                            <i class="uil uil-heart" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$like->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$like->getUsername()}</a>
-                            <p class="text-muted left-transition"> {$like->getName()}</p>
+                        
+                        {if $param == 'like'}
+                            <i class="uil uil-heart" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l->getUsername()}</a>
+                            <p class="text-muted left-transition"> {$l->getName()}</p>
+                        {else}
+                            <i class="uil uil-accessible-icon-alt" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l->getUsername()}</a>
+                            <p class="text-muted left-transition"> {$l->getName()}</p>
+                        {/if}
                         
                     </div>
 
@@ -95,6 +113,6 @@
             {/if}
                 </div>
             </div>
-            <button class="btn-primary btn"  onclick="history. back()">Go Back</button>
+            <button class="btn-primary btn"  onclick="history.back()">Go Back</button>
     </div>
 </main>

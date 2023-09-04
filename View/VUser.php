@@ -50,7 +50,7 @@ class VUser{
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
-    public function uploadUserInfo($user, $userPic, $personalUser, $personalPic, $arrayPostUser, $arrayLikeNumb){
+    public function uploadUserInfo($user, $userPic, $personalUser, $personalPic, $arrayPostUser, $arrayLikeNumb, $follow){
         
         $this->smarty->assign('user',$user);
         $this->smarty->assign('userPic',$userPic);
@@ -58,6 +58,7 @@ class VUser{
         $this->smarty->assign('personalPic',$personalPic);
         $this->smarty->assign('postList',$arrayPostUser);
         $this->smarty->assign('arrayLikeNumb', $arrayLikeNumb);
+        $this->smarty->assign('follow',$follow);
         $this->smarty->display('profile.tpl');
     }
 

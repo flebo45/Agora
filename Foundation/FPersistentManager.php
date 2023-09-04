@@ -119,6 +119,15 @@ class FPersistentManager{
         return $result;
     }
 
+    public static function deleteFollow(EUserFollow $follow)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::deleteObjInDb($follow);
+
+        return $result;
+    }
+
     public static function getLikesUserOfAPost($idPost)
     {
         $likes = FLike::getLikeList($idPost);
@@ -186,6 +195,28 @@ class FPersistentManager{
 
     }
 
+    public static function retriveFollow($idUser, $followedId)
+    {
+        $result = FUserFollow::getFollow($idUser, $followedId);
+    
+        return $result;
+    }
+
+
+    public static function getSerachedPosts($keyword)
+    {
+        $result = FPost::getSearched($keyword);
+
+        return $result;
+    }
+
+    public static function getSearchedUsers($keyword)
+    {
+        $result = FUser::getSearched($keyword);
+
+        return $result;
+    }
+    
 //-------------------------------------HOME-------------------------------------------
 
     public static function getFollowed($id)

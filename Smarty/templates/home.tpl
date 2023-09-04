@@ -375,9 +375,9 @@
                    <div class="writer">
                         {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
                         <div class="info">
-                        {if $vipPic[$vip->getId()][0]->getSize()> 0}
+                        {if $vipPic[$vip->getId()]->getSize()> 0}
                             <div class="profile-photo">
-                                    <img src="data:{$vipPic[$vip->getId()][0]->getType()};base64,{$vipPic[$vip->getId()][0]->getEncodedData()}" alt="Img">
+                                    <img src="data:{$vipPic[$vip->getId()]->getType()};base64,{$vipPic[$vip->getId()]->getEncodedData()}" alt="Img">
                             </div>
                         {else}
                             <div class="profile-photo">

@@ -37,4 +37,13 @@ class FUserFollow extends FEntityManager{
 
         return $result;
     }
+
+    public static function getFollow($idUser, $followedId)
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::getObjOnAttributes(EUserFollow::getEntity(), 'idFollower', $idUser, 'idFollowed', $followedId);
+
+        return $result;
+    }
 }
