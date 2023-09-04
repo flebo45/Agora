@@ -7,9 +7,9 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$idUser = 1;
-$idFollowed = 2;
+$reportedPost = $pm::getReportedPost();
 
-$follow = $pm::retriveFollow($idUser, $idFollowed);
-
-print_r($follow);
+foreach($reportedPost as $rp)
+{
+   echo $rp->getId();
+}
