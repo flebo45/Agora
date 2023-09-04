@@ -52,10 +52,10 @@ class CUser{
     public static function checkRegistration()
     {
         $pm = FPersistentManager::getInstance();
-        $email = $pm::verifyEmail($_POST['email']);
+        $email = $pm::verifyUserEmail($_POST['email']);
         $view = new VUser();
         if($email == false){
-            $username = $pm::verifyUsername($_POST['username']);
+            $username = $pm::verifyUserUsername($_POST['username']);
             if($username == false){
                 $user = new EUser($_POST['name'], $_POST['surname'],$_POST['age'], $_POST['email'],$_POST['password'],$_POST['username']);
                 $pm::uploadObj($user);
@@ -99,7 +99,7 @@ class CUser{
         if(UServer::getRequestMethod() != 'GET'){
             $pm = FPersistentManager::getInstance();
             $view = new VUser();
-            $username = $pm::verifyUsername($_POST['username']);
+            $username = $pm::verifyUserUsername($_POST['username']);
             if($username){
                 $user = $pm::retriveUserOnUsername($_POST['username']);
                 if(password_verify($_POST['password'], $user->getPassword())){
@@ -218,7 +218,7 @@ class CUser{
                 $personalUser = $pm::retriveObj(EUser::getEntity(), $personalUserId);
                 if($personalUser->getUsername() != $username)
                 {
-                    if($pm::verifyUsername($username))
+                    if($pm::verifyUserUsername($username))
                     {
                         $personalProPic = $pm::retriveObj(EImage::getEntity(), $personalUser->getIdImage());
                         $user = $pm::retriveUserOnUsername($username);
@@ -300,7 +300,7 @@ class CUser{
                 if($user->getUsername() == $_POST['username']){
                     header('Location: /Agora/User/personalProfile');
                 }else{
-                    if($pm::verifyUsername($_POST['username']) == false)
+                    if($pm::verifyUserUsername($_POST['username']) == false)
                     {
                         $user->setUsername($_POST['username']);
                         $pm::uploadObj($user);

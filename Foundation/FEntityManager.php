@@ -147,13 +147,18 @@ class FEntityManager{
      * return all the object of a specifyc table (ex. all the report)
      * @return array
      */
-    public static function allObjectList($table)
+    public static function objectListNull($table, $field)
     {
         try{
-            $dql = "SELECT e FROM " . $table . " e";
+            $dql = "SELECT e FROM " . $table . " e WHERE e." .$field. " IS NULL";
             $query = self::$entityManager->createQuery($dql);
             $result = $query->getResult();
-            return $result;
+            if(count($result) > 0)
+            {
+                return $result;
+            }else{
+                return array();
+            }
             }catch(Exception $e){
                 echo "ERROR " . $e->getMessage();
                 return null;
@@ -173,7 +178,7 @@ class FEntityManager{
             {
                 return $result;
             }else{
-                return [];
+                return array();
             }
         }catch(Exception $e){
             echo "ERROR " . $e->getMessage();
@@ -236,9 +241,9 @@ class FEntityManager{
         return $result;
     }
 
-    public static function verifyAttributes($fieldId, $table, $field, $id){
+    public static function verifyAttributes($fieldId, $table, $field, $id, $discr){
         try{
-            $dql = "SELECT u.id".$fieldId. " FROM " . $table . " u WHERE u." . $field . " = :attribute";
+            $dql = "SELECT u.id".$fieldId. " FROM " . $table . " u WHERE u." . $field . " = :attribute AND u.discr = " .$discr;
             $query = self::$entityManager->createQuery($dql);
             $query->setParameter('attribute', $id);
 
@@ -294,7 +299,7 @@ class FEntityManager{
     public static function getSearchedItemPart($table, $field, $str)
     {
         try{
-            $dql = "SELECT partial{} FROM " . $table . " e WHERE e." . $field . " LIKE :searchedStr";
+            $dql = "SELECT partial e.{idPost, user, title} FROM " . $table . " e WHERE e." . $field . " LIKE :searchedStr";
             $query = self::$entityManager->createQuery($dql)->setParameter('searchedStr', '%' . $str . '%');
             $result = $query->getResult();
             if(count($result) > 0)

@@ -216,6 +216,20 @@ class FPersistentManager{
 
         return $result;
     }
+
+    public static function getReportedPost()
+    {
+        $result = FReport::reportedPostList();
+
+        return $result;
+    }
+
+    public static function getReportedComment()
+    {
+        $result = FReport::reportedCommentList();
+
+        return $result;
+    }
     
 //-------------------------------------HOME-------------------------------------------
 
@@ -322,14 +336,20 @@ class FPersistentManager{
 
     //---------------------------VERIFY----------------------------------------------
 
-    public static function verifyEmail($email){
+    public static function verifyUserEmail($email){
         $result = FPerson::verify('email', $email);
 
         return $result;
     }
 
-    public static function verifyUsername($username){
+    public static function verifyUserUsername($username){
         $result = FPerson::verify('username', $username);
+
+        return $result;
+    }
+
+    public static function verifyModUsername($username){
+        $result = FModerator::verify('username', $username);
 
         return $result;
     }

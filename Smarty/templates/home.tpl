@@ -22,10 +22,12 @@
                 Agorà
             </h2>
             <div class="search-bar">
+            <form id='search' action="/Agora/Search/search" method="post">
                 <i class ="uil uil-search"></i>
                 <label>
-                    <input type ="search" placeholder="search for post or users">
+                    <input type ="search" name="keyword" placeholder="search for post or users">
                 </label>
+            </form>
             </div>
             <form  action="/Agora/User/logout" method="post">
                 <div>

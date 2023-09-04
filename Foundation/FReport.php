@@ -11,4 +11,22 @@ class FReport extends FEntityManager{
         return $result;
     }
 
+    public static function reportedPostList()
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectListNull(EReport::getEntity(), 'comment');
+
+        return $result;
+    }
+
+    public static function reportedCommentList()
+    {
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectListNull(EReport::getEntity(), 'post');
+
+        return $result;
+    }
+
 }
