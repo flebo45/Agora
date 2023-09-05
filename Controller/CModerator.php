@@ -3,7 +3,7 @@
 class CModerator{
 
     /**
-     * check if the user is logged (using session)
+     * check if the Moderator is logged (using session)
      * @return boolean
      */
     public static function isLogged()
@@ -21,6 +21,12 @@ class CModerator{
         return $logged;
     }
 
+    
+    /**
+     * check the request, if the Mod have the session cookie(isLogged()) return the Mod in the home page, if not and request is in POST 
+     * start the checkLogin() to start the login process
+     * @return void
+     */
     public static function login()
     {
         if(UServer::getRequestMethod() == "GET"){
@@ -36,6 +42,11 @@ class CModerator{
            }
     }
 
+    
+    /**
+     * check if exist teh Username inserted, and for this username check the password. If is everything correct the session is created and
+     * the Mod is redirected in the homepage
+     */
     public static function checkLogin()
     {
         if(UServer::getRequestMethod() != 'GET'){
@@ -60,6 +71,11 @@ class CModerator{
         }
     }
 
+    
+    /**
+     * this method can logout the User, unsetting all the session element and destroing the session. Return the user to the Login Page
+     * @return void
+     */
     public static function logout(){
         USession::getInstance();
         USession::unsetSession();

@@ -2,6 +2,9 @@
 
 class CSearch{
 
+    /**
+     * load all the Posts and the Users who have in their Title/Username the $kewyword pass in the $_POST[]
+     */
     public static function search()
     {
         if(UServer::getRequestMethod() == 'POST')
@@ -9,9 +12,13 @@ class CSearch{
             if(CUser::isLogged())
             {
                 $pm = FPersistentManager::getInstance();
+
+                //list of Posts 'title LIKE keyword'
                 $searchedPosts = $pm::getSerachedPosts($_POST['keyword']);
+                //list of Users 'username LIKE keyword'
                 $searchedUsers = $pm::getSearchedUsers($_POST['keyword']);
 
+                //load the Users profile Image 
                 $postUserPic = array();
                 $userPic = array();
 
