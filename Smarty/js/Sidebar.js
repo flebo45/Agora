@@ -15,8 +15,6 @@ const bg1 = document.querySelector('.bg-1');
 const bg2 = document.querySelector('.bg-2');
 const bg3 = document.querySelector('.bg-3');
 
-
-
 //REMOVE ACTIVE CLASS FROM ALL MENU ITEMS
 
 const changeActiveItem = () => {
@@ -71,11 +69,13 @@ fontSize.forEach(size =>{
             fontSize = '10px';
             root.style.setProperty('----sticky-top-left', '5.4rem');
             root.style.setProperty('----sticky-top-right', '5.4rem');
+
         }
         else if (size.classList.contains('font-size-2')) {
             fontSize = '13px';
             root.style.setProperty('----sticky-top-left', '5.4rem');
             root.style.setProperty('----sticky-top-right', '-7rem');
+
         }
         else if (size.classList.contains('font-size-3')) {
             fontSize = '16px';
@@ -173,11 +173,4 @@ bg3.addEventListener('click', ()=> {
     bg2.classList.remove('active');
     changeBG();
 })
-// Save theme settings to session storage
-sessionStorage.setItem('fontSize', fontSize); // Save the selected font size
-sessionStorage.setItem('primaryColorHue', primaryHue); // Save the selected primary color
-sessionStorage.setItem('backgroundChoice', backgroundChoice); // Save the selected background
-
-
-
 
