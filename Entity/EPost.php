@@ -56,8 +56,6 @@ class EPost{
 
     private static $entity = EPost::class;
 
-    private static $alias= 'post';
-
     public function __construct($title, $description, $category)
     {
         $this->title = $title;
@@ -80,11 +78,6 @@ class EPost{
     public static function getEntity(): string
     {
         return self::$entity;
-    }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
     }
 
     public function getId()

@@ -27,7 +27,6 @@ class ELike{
 
     private static $entity = ELike::class;
 
-    private static $alias = 'likes';
 
     public function __construct($idUser, $idPost)
     {
@@ -38,11 +37,6 @@ class ELike{
     public static function getEntity(): string
     {
         return self::$entity;
-    }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
     }
 
     public function getId()

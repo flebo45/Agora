@@ -44,8 +44,6 @@ use Doctrine\ORM\Mapping as ORM;
 
     private static $entity = EReport::class;
 
-    private static $alias = 'report';
-
     public function __construct($description, $type, $idUser)
     {   
         $this->description = $description;
@@ -71,11 +69,6 @@ use Doctrine\ORM\Mapping as ORM;
     public static function getEntity(): string
     {
         return self::$entity;
-    }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
     }
 
     public function getId()

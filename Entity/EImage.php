@@ -44,7 +44,6 @@ use Doctrine\ORM\Mapping as ORM;
 
     private static $entity = EImage::class;
 
-    private static $alias= 'image';
 
     public function __construct($name, $size, $type, $imageData){
         $this->name = $name;
@@ -58,10 +57,6 @@ use Doctrine\ORM\Mapping as ORM;
         return self::$entity;
     }
 
-    public static function getAlias(): string
-    {
-        return self::$alias;
-    }
 
     public function getId()
     {

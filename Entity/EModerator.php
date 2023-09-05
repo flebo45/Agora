@@ -12,17 +12,10 @@ require_once('EPerson.php');
 
     private static string $entity = EModerator::class;
 
-    private static string $alias= 'moderator';
-
-
     public static function getEntity(): string
     {
         return self::$entity;
     }
 
-    public static function getAlias(): string
-    {
-        return self::$alias;
-    }
 
  }

@@ -50,8 +50,6 @@ class EUser extends EPerson{
 
     private static $entity = EUser::class;
 
-    private static $alias= 'user';
-
     public function __construct($name,$surname, $year, $email, $password, $username)
     {
         parent::__construct($name, $surname, $year, $email, $password, $username);
@@ -65,12 +63,6 @@ class EUser extends EPerson{
     {
         return self::$entity;
     }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
-    }
-
 
     public function isBanned()
     {

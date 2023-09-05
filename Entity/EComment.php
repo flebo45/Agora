@@ -41,8 +41,6 @@ class EComment{
 
     private static $entity = EComment::class;
 
-    private static $alias = 'comment';
-
     public function __construct($body, $user, $idPost)
     {
         $this->body = $body;
@@ -66,10 +64,6 @@ class EComment{
         return self::$entity;
     }
 
-    public static function getAlias(): string
-    {
-        return self::$alias;
-    }
 
     public function getId()
     {

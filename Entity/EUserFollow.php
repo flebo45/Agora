@@ -24,7 +24,6 @@ class EUserFollow {
 
     private static $entity = EUserFollow::class;
 
-    private static $alias= 'useFollow';
 
     public function __construct($followerId, $followedId) {
         $this->idFollower = $followerId;
@@ -34,11 +33,6 @@ class EUserFollow {
     public static function getEntity(): string
     {
         return self::$entity;
-    }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
     }
 
     public function getFollower()

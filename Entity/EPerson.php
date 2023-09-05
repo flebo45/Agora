@@ -51,8 +51,6 @@ class EPerson{
 
     private static  $entity = EPerson::class;
 
-    private static string $alias= 'person';
-
     public function __construct($name,$surname, $year, $email, $password, $username)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -67,11 +65,6 @@ class EPerson{
     public static function getEntity(): string
     {
         return self::$entity;
-    }
-
-    public static function getAlias(): string
-    {
-        return self::$alias;
     }
 
     public function getId()
