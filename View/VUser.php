@@ -38,7 +38,7 @@ class VUser{
      * @throws SmartyException
      */
     public function uploadPersonalUserInfo($user, $proPic, $arrayPostUser, $arrayLikeNumb,$followerNumb, $followedNumb){
-        $this->smarty->assign('user-logged',"loggato");
+
         $this->smarty->assign('user',$user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('postList',$arrayPostUser);
