@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -323,29 +322,30 @@
       </div>
       <!----------------------END OF CATEGORY--------------------->
 
+      <!----------------------START OF TOP WRITER--------------------->
       <div class="top-writer">
         <div class="heading">
           <h4>VIP Writer</h4>
           <i class="uil uil-award"> </i>
         </div>
         <div class="writer">
-          {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
-            <div class="info">
-              {if $vip->getProfileImage()->getSize() > 0}
-                <div class="profile-photo">
-                  <img src="data:{$vip->getProfileImage()->getType()};base64,{$vip->getProfileImage()->getEncodedData()}" alt="Img">
-                </div>
-              {else}
-                <div class="profile-photo">
-                  <img src="/Agora/Smarty/immagini/1.png" alt="">
-                </div>
-              {/if}
-              <div>
-                <h5>{$vip->getUsername()}</h5>
-                <p class="text-muted">Followers : {$vip->getFollowerNumber()}</p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
-              </div>
-            </div>
-          {/foreach}
+           {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
+           <div class="info">
+           {if $vipPic[$vip->getId()]->getSize()> 0}
+               <div class="profile-photo">
+                       <img src="data:{$vipPic[$vip->getId()]->getType()};base64,{$vipPic[$vip->getId()]->getEncodedData()}" alt="Img">
+               </div>
+           {else}
+               <div class="profile-photo">
+                   <img src="/Agora/Smarty/immagini/1.png" alt="">
+               </div>
+           {/if}
+               <div>
+               <a  href="/Agora/User/profile/{$vip->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$vip->getUsername()}</a>
+                   <p class="text-muted">Followers : {$vipFollower[$vip->getId()]}</p> 
+               </div>
+           </div>
+           {/foreach}
         </div>
       </div>
     </div>

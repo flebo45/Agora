@@ -13,14 +13,14 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($user,$userPic, $postInHome, $vipUsers, $vipPic){
+    public function home($user,$userPic, $postInHome, $vipUsers, $vipPic, $vipFollower){
         
-        $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic', $userPic);
         $this->smarty->assign('arrayPostInHome',$postInHome);
         $this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->assign('vipPic', $vipPic);
+        $this->smarty->assign('vipFollower', $vipFollower);
         $this->smarty->display('home.tpl');
     }
 
@@ -37,12 +37,14 @@ class VUser{
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
-    public function uploadPersonalUserInfo($user, $proPic, $arrayPostUser, $arrayLikeNumb){
+    public function uploadPersonalUserInfo($user, $proPic, $arrayPostUser, $arrayLikeNumb,$followerNumb, $followedNumb){
         $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('user',$user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('postList',$arrayPostUser);
         $this->smarty->assign('arrayLikeNumb', $arrayLikeNumb);
+        $this->smarty->assign('followerNumb',$followerNumb);
+        $this->smarty->assign('followedNumb',$followedNumb);
         $this->smarty->display('personalProfile.tpl');
     }
 
@@ -50,7 +52,7 @@ class VUser{
      * Funzione che indirizza alla pagina con il form di login.
      * @throws SmartyException
      */
-    public function uploadUserInfo($user, $userPic, $personalUser, $personalPic, $arrayPostUser, $arrayLikeNumb, $follow){
+    public function uploadUserInfo($user, $userPic, $personalUser, $personalPic, $arrayPostUser, $arrayLikeNumb, $follow, $followerNumb, $followedNumb){
         
         $this->smarty->assign('user',$user);
         $this->smarty->assign('userPic',$userPic);
@@ -58,6 +60,8 @@ class VUser{
         $this->smarty->assign('personalPic',$personalPic);
         $this->smarty->assign('postList',$arrayPostUser);
         $this->smarty->assign('arrayLikeNumb', $arrayLikeNumb);
+        $this->smarty->assign('followerNumb',$followerNumb);
+        $this->smarty->assign('followedNumb',$followedNumb);
         $this->smarty->assign('follow',$follow);
         $this->smarty->display('profile.tpl');
     }
@@ -100,20 +104,25 @@ class VUser{
         $this->smarty->display('setting.tpl');
     }
 
-    public function explore($user,$proPic, $arrayPostInExplore){
+    public function explore($user,$proPic, $arrayPostInExplore, $vipUsers, $vipPic, $vipFollower){
 
-        $this->smarty->assign('user-logged',"loggato");
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('posts',$arrayPostInExplore);
+        $this->smarty->assign('arrVip', $vipUsers);
+        $this->smarty->assign('vipPic', $vipPic);
+        $this->smarty->assign('vipFollower', $vipFollower);
         $this->smarty->display('explore.tpl');
     }
 
-    public function category($user, $proPic, $postInExplore){
-        $this->smarty->assign('user-logged',"loggato");
+    public function category($user, $proPic, $postInExplore, $vipUsers, $vipPic, $vipFollower){
+
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
-        $this->smarty->assign('arrayPostInExplore', $postInExplore);
+        $this->smarty->assign('posts', $postInExplore);
+        $this->smarty->assign('arrVip', $vipUsers);
+        $this->smarty->assign('vipPic', $vipPic);
+        $this->smarty->assign('vipFollower', $vipFollower);
         $this->smarty->display('explore.tpl');
     }
 

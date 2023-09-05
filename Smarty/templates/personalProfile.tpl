@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -141,10 +140,8 @@
                         <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
                         {/for}
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$arrayLikeNumb[$post->getId()]} user</b></p> <!-- PRENDERE L'ULTIMO UTENTE CHE HA MESSO MI PIACE -->
+                        <p> liked by <a href="/Agora/Post/like/{$post->getId()}" style="text-decoration: none; color: inherit; font-weight : bold">{$arrayLikeNumb[$post->getId()]} user</a></p>
                     </div>
-
-                    <div class=" comments text-muted">view all the comment</div>
                 </div>
                 {/foreach}
           {/if}
@@ -172,13 +169,13 @@
                   <p class="text-muted">{$user->getName()}</p>
               </div>
               <div>
-                  <h4>{$user->getId()}</h4>
+              <a href="/Agora/User/followed/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followerNumb}</a>
                   <p class="text-muted">
                       followers
                   </p>
               </div>
               <div>
-                  <h4>{$user->getId()}</h4>
+              <a href="/Agora/User/followers/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followedNumb}</a>
                   <p class="text-muted">following</p>
               </div>
           </div>

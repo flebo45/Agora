@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -52,7 +51,7 @@
             {/if}
                 <div class ="handle">
                     <h4>{$personalUser->getUsername()}</h4>
-                    <p class="text-muted">{$personalUser->getName()}
+                    <p class="text-muted">@{$personalUser->getName()}
                     </p>
                 </div>
             </a>
@@ -136,10 +135,9 @@
                         <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
                         {/for}
                         <!-- Smarty tag for username -->
-                        <p> liked by <b>{$arrayLikeNumb[$post->getId()]} user</b></p>
+                        <p> liked by <a href="/Agora/Post/like/{$post->getId()}" style="text-decoration: none; color: inherit; font-weight : bold">{$arrayLikeNumb[$post->getId()]} user</a></p>
                     </div>
 
-                    <div class=" comments text-muted">view all the comment</div>
                 </div>
                 {/foreach}
                 <!----------------END OF FEED------------------------------>
@@ -169,15 +167,15 @@
             <p class="text-muted">{$user->getName()}</p>
           </div>
           <div>
-            <h4>{$user->getId()}</h4>
-            <p class="text-muted">
-              followers
-            </p>
-          </div>
-          <div>
-            <h4>{$user->getId()}</h4>
-            <p class="text-muted">following</p>
-          </div>
+              <a href="/Agora/User/followed/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followerNumb}</a>
+                  <p class="text-muted">
+                      followers
+                  </p>
+              </div>
+              <div>
+              <a href="/Agora/User/followers/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followedNumb}</a>
+                  <p class="text-muted">following</p>
+              </div>
         </div>
         {if $follow == true}
           <form id='unfollow' action="/Agora/User/unfollow/{$user->getId()}" method="post">
@@ -233,29 +231,6 @@
           </div>
         </div>
       </div>
-
-
-        <!--------------------------TOP POST---------------------------->
-        <div class="top-post">
-          <div class="heading">
-            <h4>Top Post</h4>
-            <i class="uil uil-award"> </i>
-          </div>
-
-          {foreach $topPosts as $post}
-          <div class="post">
-            <div class="info">
-                <div class="first-photo">
-                  <img src="Img/A.png" alt="img">
-                </div>
-              <div>
-                <h5>{$post.title}</h5>
-                <p class="text-muted">{$post.likesCount}</p>
-              </div>
-            </div>
-          </div>
-          {/foreach}
-        </div>
       <!----------------------END OF DESCRIPTION--------------------->
 
       </div>

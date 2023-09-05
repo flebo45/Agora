@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -73,9 +72,9 @@
             {if count($userList) == 0}
                 {if $param == 'like'}
                     <div class="tex-bold" style="font-size:18px">This post has 0 like for now</div>
-                {elseif $param == 'followers'}
-                    <div class="tex-bold" style="font-size:18px">No one is following this user</div>
                 {elseif $param == 'followed'}
+                    <div class="tex-bold" style="font-size:18px">No one is following this user</div>
+                {elseif $param == 'followers'}
                     <div class="tex-bold" style="font-size:18px">This user is not following anyone</div>
                 {/if}
             {else}

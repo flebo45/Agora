@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{assign var='userlogged' value=$userlogged|default:'nouser'}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -360,8 +359,8 @@
                             </div>
                         {/if}
                             <div>
-                                <h5>{$vip->getUsername()}</h5>
-                                <p class="text-muted">Followers : <!--{$vip->getFollowerNumber()}--></p> <!--BISOGNA FARE UN METODO PER CALCOLARE TUTTI I MI PIACE DI UN UTENTE-->
+                            <a  href="/Agora/User/profile/{$vip->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$vip->getUsername()}</a>
+                                <p class="text-muted">Followers : {$vipFollower[$vip->getId()]}</p> 
                             </div>
                         </div>
                         {/foreach}

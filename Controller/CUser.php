@@ -39,6 +39,10 @@ class CUser{
         }
     }
 
+    /**
+     * check the request, and call to checkRegistration() to start the registartion process
+     * @return void
+     */
     public static function registration()
     {
         if(UServer::getRequestMethod() == "POST"){
@@ -49,6 +53,10 @@ class CUser{
         }
     }
 
+    /**
+     * verify if the choosen username and email already exist, create the User Obj and set a default profile image 
+     * @return void
+     */
     public static function checkRegistration()
     {
         $pm = FPersistentManager::getInstance();
@@ -79,6 +87,11 @@ class CUser{
         }
     }
 
+    /**
+     * check the request, if the user have the session cookie(isLogged()) return the User in the home page, if not and request is in POST 
+     * start the checkLogin() to start the login process
+     * @return void
+     */
     public static function login()
     {
         if(UServer::getRequestMethod() == "GET"){
@@ -94,6 +107,10 @@ class CUser{
            }
     }
 
+    /**
+     * check if exist teh Username inserted, and for this username check the password. If is everything correct the session is created and
+     * the User is redirected in the homepage
+     */
     public static function checkLogin()
     {
         if(UServer::getRequestMethod() != 'GET'){
@@ -110,9 +127,6 @@ class CUser{
                         if(USession::getSessionStatus() == PHP_SESSION_NONE){
                             USession::getInstance();
                             USession::setSessionElement('user', $user->getId());
-                            //set color for text and background
-                            //USession::setSessionElement('colorLabel', 'black');
-                            //USession::setSessionElement('backgroundLabel', 'red');
                             header('Location: /Agora/User/home');
                         }
                     }
@@ -129,6 +143,10 @@ class CUser{
         }
     }
 
+    /**
+     * this method can logout the User, unsetting all the session element and destroing the session. Return the user to the Login Page
+     * @return void
+     */
     public static function logout(){
         USession::getInstance();
         USession::unsetSession();
@@ -136,6 +154,10 @@ class CUser{
         header('Location: /Agora/User/login');
     }
 
+    /**
+     * load all the Posts in homepage (Posts of the Users that the logged User are following). Also are loaded Information about vip User and
+     * about profile Images of all the involved User
+     */
     public static function home()
     {
         if(UServer::getRequestMethod() == "GET"){
@@ -150,20 +172,27 @@ class CUser{
 
             $postInHome = $pm::loadHomePage($user->getId());
             
+            //load the VIP Users and their profile Images
             $vipUsers = $pm::loadVip();
             $vipPic = array();
+            $vipFollower = array();
             
 
             foreach($vipUsers as $v)
             {
+                //associative array for the Vip's images
                 $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getIdImage());
+                //associative array for Vip's followers number
+                $vipFollower[$v->getId()] = $pm::getFollowerNumb($v->getId());
             }
+
+
 
             if(count($postInHome) === 0)
             {
-                $view->home($user, $proPic, null,  $vipUsers, $vipPic);
+                $view->home($user, $proPic, null,  $vipUsers, $vipPic, $vipFollower);
             }else{
-                $view->home($user, $proPic, $postInHome, $vipUsers, $vipPic);
+                $view->home($user, $proPic, $postInHome, $vipUsers, $vipPic, $vipFollower);
             }
         }else{
             header('Location: /Agora/User/login');
@@ -172,6 +201,9 @@ class CUser{
         
     }
 
+    /**
+     * load Posts belonged to the logged User and his Bio information
+     */
     public static function personalProfile()
     {
         if(UServer::getRequestMethod() == "GET")
@@ -185,19 +217,23 @@ class CUser{
                 $user = $pm::retriveObj(EUser::getEntity(), $userId);
                 $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
                 
-
+                //load all the Posts belonged to a User that are not Banned
                 $postProfile = $pm::loadUserPage($user->getId());
+
+                //load the number of followed and following users
+                $followerNumb = $pm::getFollowerNumb($userId);
+                $followedNumb = $pm::getFollowedNumb($userId);
 
                 if(count($postProfile) === 0)
                 {
-                    $view->uploadPersonalUserInfo($user, $proPic, null, null);
+                    $view->uploadPersonalUserInfo($user, $proPic, null, null, $followerNumb, $followedNumb);
                 }else{
                     $arrayLikeNumb = array();
                     foreach($postProfile as $p)
                     {
                         $arrayLikeNumb[$p->getId()] = $pm::getLikeNumber($p->getId());
                     }
-                    $view->uploadPersonalUserInfo($user,$proPic, $postProfile, $arrayLikeNumb);
+                    $view->uploadPersonalUserInfo($user,$proPic, $postProfile, $arrayLikeNumb, $followerNumb, $followedNumb);
                 }
             }else{
                 header('Location: /Agora/User/login');
@@ -207,6 +243,9 @@ class CUser{
         }
     }
 
+    /**
+     * load post belonget to the visited User and his informations
+     */
     public static function profile($username)
     {
         if(UServer::getRequestMethod() == "GET")
@@ -228,8 +267,12 @@ class CUser{
 
                         $postUser = $pm::loadUserPage($user->getId());
                         $follow = $pm::retriveFollow($personalUserId, $user->getId());
+
+                        $followerNumb = $pm::getFollowerNumb($user->getId());
+                        $followedNumb = $pm::getFollowedNumb($user->getId());
                         $view = new VUser();
 
+                        //check if the Logged User is following the visited User
                         if($follow !== null)
                         {
                             $followCheck = true;
@@ -238,14 +281,15 @@ class CUser{
                         }
                         if(count($postUser) === 0)
                         {
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null, null, $followCheck);
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, null, null, $followCheck, $followerNumb, $followedNumb);
                         }else{
                             $arrayLikeNumb = array();
                             foreach($postUser as $p)
                             {
+                                //associative array for the number of like
                                 $arrayLikeNumb[$p->getId()] = $pm::getLikeNumber($p->getId());
                             }
-                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser, $arrayLikeNumb, $followCheck);
+                            $view->uploadUserInfo($user, $profileProPic, $personalUser, $personalProPic, $postUser, $arrayLikeNumb, $followCheck, $followerNumb, $followedNumb);
                         }
                     }else{
                         header('Location: /Agora/User/home');
@@ -262,10 +306,15 @@ class CUser{
         }
     }
 
+    /**
+     * check the request: if Get load the settings page compiling the form withe the user data
+     * if Post check the attributes changed
+     */
     public static function settings($param)
     {
         if(UServer::getRequestMethod() == "GET")
         {
+            //param 0 load the page
             if($param == 0)
             {
                 $view = new VUser();
@@ -287,7 +336,7 @@ class CUser{
                 
             $userId = USession::getSessionElement('user');
             $user = $pm::retriveObj(EUser::getEntity(), $userId);
-            //credential form (bio, hobby ecc)
+            //param 1 Credential form (bio, hobby ecc)
             if($param == 1)
             {
                 $user->setBio($_POST['Bio']);
@@ -296,7 +345,7 @@ class CUser{
                 $user->setHobby($_POST['Hobby']);
                 $pm::uploadObj($user);
                 header('Location: /Agora/User/personalProfile');
-            //Username
+            //param 2 Username
             }elseif($param == 2)
             {
                 if($user->getUsername() == $_POST['username']){
@@ -321,14 +370,14 @@ class CUser{
 
 
 
-            //password
+            //param 3 Password
             }elseif($param == 3)
             {
                 $newPass = $_POST['password'];
                 $user->setPassword($newPass);
                 $pm::uploadObj($user);
                 header('Location: /Agora/User/personalProfile');
-            //proPic
+            //param 4 ProPic
             }elseif($param == 4)
             {
                 if($_FILES['imageFile']['size'] > 0)
@@ -363,7 +412,9 @@ class CUser{
         }
     }
 
-
+    /**
+     * check if the Uploaded image is ok and upload it in the database
+     */
     public static function uploadImage($file){
         $check = CPost::validateImage($file);
         if($check[0]){
@@ -374,6 +425,9 @@ class CUser{
         }
     }
 
+    /**
+     * load all the post finded by a specifyc category
+     */
     public static function category($category)
     {
         if(UServer::getRequestMethod() == "GET")
@@ -386,14 +440,27 @@ class CUser{
                 $userId = USession::getSessionElement('user');
                 $user = $pm::retriveObj(EUser::getEntity(), $userId);
                 $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+                //load the VIP Users and their profile Images
+                $vipUsers = $pm::loadVip();
+                $vipPic = array();
+                $vipFollower = array();
+            
+
+                foreach($vipUsers as $v)
+                {
+                    //associative array for the Vip's images
+                    $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getIdImage());
+                    //associative array for Vip's followers number
+                    $vipFollower[$v->getId()] = $pm::getFollowerNumb($v->getId());
+                }
 
                 $postCategory = $pm::loadPostPerCategory($category);
 
                 if(count($postCategory) > 0)
                 {
-                    $view->category($user, $proPic, $postCategory);
+                    $view->category($user, $proPic, $postCategory, $vipUsers, $vipPic, $vipFollower);
                 }else{
-                    $view->category($user, $proPic, null);
+                    $view->category($user, $proPic, null, $vipUsers, $vipPic, $vipFollower);
                 }
             }else{
                 header('Location: /Agora/User/login');
@@ -403,6 +470,9 @@ class CUser{
         }
     }
 
+    /**
+     * load a limit number of posts that are not belonged to the logged user, so this page is for discover new Users
+     */
     public static function explore()
     {
         if(UServer::getRequestMethod() == "GET")
@@ -415,14 +485,27 @@ class CUser{
                 $userId = USession::getSessionElement('user');
                 $user = $pm::retriveObj(EUser::getEntity(), $userId);
                 $proPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+                //load the VIP Users and their profile Images
+                $vipUsers = $pm::loadVip();
+                $vipPic = array();
+                $vipFollower = array();
+            
+
+                foreach($vipUsers as $v)
+                {
+                    //associative array for the Vip's images
+                    $vipPic[$v->getId()] = $pm::retriveObj(EImage::getEntity(), $v->getIdImage());
+                    //associative array for Vip's followers number
+                    $vipFollower[$v->getId()] = $pm::getFollowerNumb($v->getId());
+                }
 
                 $postExplore = $pm::loadPostInExplore($user->getId());
 
                 if(count($postExplore) > 0)
                 {
-                    $view->explore($user, $proPic, $postExplore);
+                    $view->explore($user, $proPic, $postExplore, $vipUsers, $vipPic, $vipFollower);
                 }else{
-                    $view->explore($user, $proPic, null);
+                    $view->explore($user, $proPic, null, $vipUsers, $vipPic, $vipFollower);
                 }
             }else{
                 header('Location: /Agora/User/login');
@@ -432,6 +515,9 @@ class CUser{
         }
     }
 
+    /**
+     * return a page with a list of Users who are followed by the User logged 
+     */
     public static function followers($idUser)
     {
         if(UServer::getRequestMethod() == "GET")
@@ -457,6 +543,9 @@ class CUser{
         }
     }
 
+    /**
+     * return a page with a list of Users who are following the User logged 
+     */
     public static function followed($idUser)
     {
         if(UServer::getRequestMethod() == "GET")
@@ -482,6 +571,9 @@ class CUser{
         }
     }
 
+    /**
+     * method to follow a user, the check is in the profile() method
+     */
     public static function follow($followedId)
     {
         if(UServer::getRequestMethod() == "POST")
@@ -493,6 +585,7 @@ class CUser{
                 USession::getInstance();
                 $userId = USession::getSessionElement('user');
 
+                //new Follow Object
                 $follow = new EUserFollow($userId, $followedId);
                 $pm::uploadObj($follow);
                 $visitedUser = $pm::retriveObj(EUser::getEntity(), $followedId);
@@ -505,6 +598,9 @@ class CUser{
         }
     }
 
+    /**
+     * method to unfollow a user, the check is in the profile() method
+     */
     public static function unfollow($followedId)
     {
         if(UServer::getRequestMethod() == "POST")
