@@ -181,7 +181,7 @@ bg1.addEventListener('click', ()=> {
 
     darkColorLightness='0%';
     whiteColorLightness ='100%';
-    lightColorLightness = '80%';
+    lightColorLightness = '90%';
 
 
     bg1.classList.add('active');

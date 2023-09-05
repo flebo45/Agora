@@ -89,8 +89,8 @@ if (cookieValue[2] == '1' || cookieValue[2] == 'null') {
 
     darkColorLightnesCookie='0%';
     whiteColorLightnessCookie ='100%';
-    lightColorLightnessCookie = '80%';
-    
+    lightColorLightnessCookie = '90%';
+
     changeBGCookie()
 }
 
