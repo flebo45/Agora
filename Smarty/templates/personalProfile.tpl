@@ -8,7 +8,7 @@
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
-
+    <script src="/Agora/Smarty/js/test.js"></script>
   <!-- stylesheet -->
   {literal}
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -292,7 +292,7 @@
   </div>
 </div>
 </div>
-<script src="/Agora/Smarty/js/Sidebar.js"></script>
+    <script src="/Agora/Smarty/js/sidebar2.js"></script>
 <script src="/Agora/Smarty/js/storage.js"></script>
 </body>
 </html>

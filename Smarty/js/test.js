@@ -85,28 +85,21 @@ const changeBGCookie = () => {
 
 
 
-/*if (cookieValue[2] == '1' ) {
+if (cookieValue[2] == '1' || cookieValue[2] == 'null') {
 
     darkColorLightnesCookie='0%';
     whiteColorLightnessCookie ='100%';
     lightColorLightnessCookie = '80%';
-
-    bg1Cookie.classList.add('active');
-    bg3Cookie.classList.remove('active');
-    bg2Cookie.classList.remove('active');
-
+    
     changeBGCookie()
 }
-*/
+
 
  if (cookieValue[2] == '2') {
     darkColorLightnesCookie='95%';
     whiteColorLightnessCookie ='20%';
     lightColorLightnessCookie = '15%';
 
-    bg2Cookie.classList.add('active');
-    bg1Cookie.classList.remove('active');
-    bg3Cookie.classList.remove('active');
     changeBGCookie()
 }
 
@@ -115,9 +108,6 @@ else if (cookieValue[2] == '3' ) {
     whiteColorLightnessCookie = '10%';
     lightColorLightnessCookie = '0%';
 
-    bg3Cookie.classList.add('active');
-    bg1Cookie.classList.remove('active');
-    bg2Cookie.classList.remove('active');
     changeBGCookie()
 }
 

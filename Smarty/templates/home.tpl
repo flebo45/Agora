@@ -8,7 +8,7 @@
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="/Agora/Smarty/immagini/A.png">
-
+    <script src="/Agora/Smarty/js/test.js"></script>
     <!-- stylesheet -->
     {literal}
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -378,62 +378,62 @@
     </div>
 </main>
 
-   <!----------------- THEME CUSTOMIZATION---------------------------->
+    <!----------------- THEME CUSTOMIZATION---------------------------->
 
-<div class="customize-theme">
-<div class="card">
-  <h2>Customize your view</h2>
-  <p class="text-muted">Manage your font size, color and background.</p>
-  <!-------------------------FONT SIZE----------------------------->
-  <div class="font-size">
-    <h2>Font size</h2>
-    <div>
-      <h6>Aa</h6>
-      <div class="choose-size">
-        <input class="font-size-1"></input>
-        <input class="font-size-2"></input>
-        <input class="font-size-3 active"></input>
-        <input class="font-size-4"></input>
-        <input class="font-size-5"></input>
-      </div>
-      <h3>Aa</h3>
+    <div class="customize-theme">
+        <div class="card">
+            <h2>Customize your view</h2>
+            <p class="text-muted">Manage your font size, color and background.</p>
+            <!-------------------------FONT SIZE----------------------------->
+            <div class="font-size">
+                <h2>Font size</h2>
+                <div>
+                    <h6>Aa</h6>
+                    <div class="choose-size">
+                        <span class="font-size-1"></span>
+                        <span class="font-size-2"></span>
+                        <span class="font-size-3 active"></span>
+                        <span class="font-size-4"></span>
+                        <span class="font-size-5"></span>
+                    </div>
+                    <h3>Aa</h3>
+                </div>
+            </div>
+
+
+            <!-----------------------PRIMARY COLORS------------------------>
+            <div class="color">
+                <h4>Color</h4>
+                <div class="choose-color">
+                    <span class="color-1 active"></span>
+                    <span class="color-2"></span>
+                    <span class="color-3"></span>
+                    <span class="color-4"></span>
+                    <span class="color-5"></span>
+                </div>
+            </div>
+
+            <!----------------------------BACKGROUND COLORS----------------------->
+            <div class="background">
+                <h4>Background</h4>
+                <div class="choose-bg">
+                    <div class="bg-1 active">
+                        <span></span>
+                        <h5>Light</h5>
+                    </div>
+                    <div class="bg-2">
+                        <span></span>
+                        <h5>Dim</h5>
+                    </div>
+                    <div class="bg-3">
+                        <span></span>
+                        <h5> Lights Out</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
-
-  <!-----------------------PRIMARY COLORS------------------------>
-  <div class="color">
-    <h4>Color</h4>
-    <div class="choose-color">
-      <input class="color-1 active"></input>
-      <input class="color-2"></input>
-      <input class="color-3"></input>
-      <input class="color-4"></input>
-      <input class="color-5"></input>
-    </div>
-  </div>
-
-  <!----------------------------BACKGROUND COLORS----------------------->
-  <div class="background">
-    <h4>Background</h4>
-    <div class="choose-bg">
-      <div class="bg-1 active">
-        <input></input>
-        <h5>Light</h5>
-      </div>
-      <div class="bg-2">
-        <input></input>
-        <h5>Dim</h5>
-      </div>
-      <div class="bg-3">
-        <input></input>
-        <h5> Lights Out</h5>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<script src="/Agora/Smarty/js/Sidebar.js"></script>
+<script src="/Agora/Smarty/js/sidebar2.js"></script>
 <script src="/Agora/Smarty/js/categories.js"></script>
 <script src="/Agora/Smarty/js/storage.js"></script>
 </body>
