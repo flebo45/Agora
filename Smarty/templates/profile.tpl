@@ -13,6 +13,14 @@
   {literal}
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   {/literal}
+  <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
 </head>
 <body>
   <nav>
@@ -102,6 +110,7 @@
                         <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                       </div>
                     </div>
+                    <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post->getCategory()}</div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
@@ -121,12 +130,7 @@
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">
-                            <span><i class="uil uil-heart"></i> </span>
-                            <span><i class="uil uil-comment-dots"></i></span>
-                        </div>
-
-                        <div class= "interaction-buttons " id="report">
-                            <button type = "button" class="btn btn-transparent"><i class = "uil uil-exclamation-triangle" > </i> </button>
+                          <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; "><i class="uil uil-comment-dots"></i></a>
                         </div>
                     </div>
 
@@ -238,33 +242,6 @@
   
 </main>
 
-
-<div class="report">
-  <div class="card">
-    <h2>Report</h2>
-    <h3 class="text-muted">Why are you reporting this post?</h3>
-    <form>
-        {foreach $reportReasons as $reason}
-        <div class="report-checkbox">
-        <input type="checkbox" id="violence" value="violence">
-        <label for="violence">{$reasonName}</label>
-        </div>
-        {/foreach}
-      <div>
-      <h3 class="text-muted">Write a small description why you're reporting this post</h3>
-      <label>
-        <textarea class="text-area"></textarea>
-      </label>
-      </div>
-      <label>
-        <button type="submit" class="btn btn-primary" style="margin-top: 1%">Send</button>
-      </label>
-    </form>
-  </div>
-</div>
-
-
-
 <!----------------- THEME CUSTOMIZATION---------------------------->
 
 <div class="customize-theme">
@@ -321,6 +298,5 @@
 </div>
 </div>
 <script src="/Agora/Smarty/js/Sidebar.js"></script>
-<script src="/Agora/Smarty/js/report.js"></script>
 </body>
 </html>

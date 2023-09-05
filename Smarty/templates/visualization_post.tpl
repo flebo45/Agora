@@ -14,6 +14,14 @@
   {literal}
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   {/literal}
+  <script>
+        function ready(){
+            if (!navigator.cookieEnabled) {
+                alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
+            }
+        }
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
 </head>
 <body>
 <nav>
