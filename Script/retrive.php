@@ -7,8 +7,8 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$modUsername = "mod123";
+$idPost = 12;
 
-$mod = $pm::verifyModUsername($modUsername);
+$post = $pm::retriveObj(EPost::getEntity(), $idPost);
 
-print_r($mod);
+var_dump($post);
