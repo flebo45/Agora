@@ -1,6 +1,6 @@
 <?php
 use Doctrine\ORM\Mapping as ORM;
-
+require_once("EPerson.php");
 /**
  * @ORM\Entity 
  * @ORM\Table(name="moderator")
