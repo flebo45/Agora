@@ -214,7 +214,7 @@ class FPersistentManager{
         {
             foreach($followList as $f)
             {
-                $user = self::retriveObj(EUser::getEntity(), $f->getFollower());
+                $user = self::retriveObj(EUser::getEntity(), $f->getFollowed());
                 $result[] = $user;
             }
         }
@@ -235,7 +235,7 @@ class FPersistentManager{
         {
             foreach($followList as $f)
             {
-                $user = self::retriveObj(EUser::getEntity(), $f->getFollowed());
+                $user = self::retriveObj(EUser::getEntity(), $f->getFollower());
                 $result[] = $user;
             }
         }
@@ -328,7 +328,7 @@ class FPersistentManager{
                 $posts = FPost::postListNotBanned($f->getFollowed());
             }
             //sort posts array by creation time desc
-            usort($posts, ['FPost', 'comparePostsByCreationTime']);
+            //usort($posts, ['FPost', 'comparePostsByCreationTime']);
         }
         return $posts;
     }
