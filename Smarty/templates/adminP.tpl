@@ -51,9 +51,9 @@
         <div class="admin-report" style="margin-top: 1%">
           <div class="admin">
             <div class="left">
-              <h3>{$report->getId()} report</h3>
-              <h4>{$report->getType()}</h4>
-              <h4>{$report->getPost()->getUser()->getUsername()}</h4>
+              <h3>Id Report: {$report->getId()}</h3>
+              <h4>Type: {$report->getType()}</h4>
+              <h4>Post's creator: {$report->getPost()->getUser()->getUsername()}</h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
@@ -90,9 +90,9 @@
         <div class="admin-report" style="margin-top: 1%">
           <div class="admin">
             <div class="left">
-              <h3>{$report->getId()} report</h3>
-              <h4>{$report->getType()}</h4>
-              <h4>{$report->getPost()->getUser()->getUsername()}</h4>
+              <h3>Id Report: {$report->getId()} report</h3>
+              <h4>Type: {$report->getType()}</h4>
+              <h4>Comment's creator: {$report->getComment()->getUser()->getUsername()}</h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">

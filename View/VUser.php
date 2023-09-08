@@ -13,11 +13,12 @@ class VUser{
     /**
      * @throws SmartyException
      */
-    public function home($user,$userPic, $postInHome, $vipUsers, $vipPic, $vipFollower){
+    public function home($user,$userPic, $postInHome, $followedPic, $vipUsers, $vipPic, $vipFollower){
         
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic', $userPic);
         $this->smarty->assign('arrayPostInHome',$postInHome);
+        $this->smarty->assign('followedPic', $followedPic);
         $this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->assign('vipPic', $vipPic);
         $this->smarty->assign('vipFollower', $vipFollower);
@@ -38,7 +39,7 @@ class VUser{
      * @throws SmartyException
      */
     public function uploadPersonalUserInfo($user, $proPic, $arrayPostUser, $arrayLikeNumb,$followerNumb, $followedNumb){
-
+        
         $this->smarty->assign('user',$user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('postList',$arrayPostUser);
@@ -104,22 +105,24 @@ class VUser{
         $this->smarty->display('setting.tpl');
     }
 
-    public function explore($user,$proPic, $arrayPostInExplore, $vipUsers, $vipPic, $vipFollower){
+    public function explore($user,$proPic, $arrayPostInExplore, $usersPic, $vipUsers, $vipPic, $vipFollower){
 
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('posts',$arrayPostInExplore);
+        $this->smarty->assign('exploreUsersPic',$usersPic);
         $this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->assign('vipPic', $vipPic);
         $this->smarty->assign('vipFollower', $vipFollower);
         $this->smarty->display('explore.tpl');
     }
 
-    public function category($user, $proPic, $postInExplore, $vipUsers, $vipPic, $vipFollower){
+    public function category($user, $proPic, $postInExplore, $usersPic, $vipUsers, $vipPic, $vipFollower){
 
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic',$proPic);
         $this->smarty->assign('posts', $postInExplore);
+        $this->smarty->assign('exploreUsersPic',$usersPic);
         $this->smarty->assign('arrVip', $vipUsers);
         $this->smarty->assign('vipPic', $vipPic);
         $this->smarty->assign('vipFollower', $vipFollower);

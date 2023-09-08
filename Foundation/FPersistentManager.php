@@ -318,17 +318,19 @@ class FPersistentManager{
      */
     public static function loadHomePage($id)
     {
-        $followed = self::getFollowed($id);
+        $followed = self::getFollowedList($id);
         if(count($followed) === 0)
         {
             $posts = array();
         }else{
-            $posts = array();
+            $nestedPosts = array();
             foreach($followed as $f){
-                $posts = FPost::postListNotBanned($f->getFollowed());
+                $nestedPosts[] = FPost::postListNotBanned($f->getId());
             }
+            $posts = array_merge(...$nestedPosts);
+            
             //sort posts array by creation time desc
-            //usort($posts, ['FPost', 'comparePostsByCreationTime']);
+            usort($posts, ['FPost', 'comparePostsByCreationTime']);
         }
         return $posts;
     }

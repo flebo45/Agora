@@ -99,24 +99,6 @@ class CModerator{
                 $reportedPost = $pm::getReportedPost();
                 $reportedComment = $pm::getReportedComment();
 
-                /*$postUserPic = array();
-                $commentUserPic = array();
-
-                if(count($reportedPost) > 0)
-                {
-                    foreach($reportedPost as $rp)
-                    {
-                        $postUserPic[$rp->getPost()->getId()] = $pm::retriveObj(EImage::getEntity(), $rp->getPost()->getUser()->getIdImage());
-                    }
-                }
-                if(count($reportedComment) > 0)
-                {
-                    foreach($reportedComment as $rc)
-                    {
-                        $commentUserPic[$rc->getComment()->getId()] = $pm::retriveObj(EImage::getEntity(), $rc->getComment()->getUser()->getIdImage());
-                    }
-                }*/
-
                 $view = new VModerator();
 
                 $view->showReportList($mod->getUsername(), $reportedPost,  $reportedComment);

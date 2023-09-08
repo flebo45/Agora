@@ -190,13 +190,21 @@ class CUser{
 
             if(count($postInHome) === 0)
             {
-                $view->home($user, $proPic, null,  $vipUsers, $vipPic, $vipFollower);
+                $view->home($user, $proPic, null,null, $vipUsers, $vipPic, $vipFollower);
             }else{
-                $view->home($user, $proPic, $postInHome, $vipUsers, $vipPic, $vipFollower);
+                $followedPic = array();
+                foreach($postInHome as $p)
+                {
+                    //asscoiative array for the users profile pic 
+                    $followedPic[$p->getUser()->getId()] = $pm::retriveObj(EImage::getEntity(), $p->getUser()->getIdImage());
+                }
+                $view->home($user, $proPic, $postInHome,$followedPic, $vipUsers, $vipPic, $vipFollower);
             }
         }else{
             header('Location: /Agora/User/login');
         }
+        }else{
+            header('Location: /Agora/User/home');
         }
         
     }
@@ -458,9 +466,13 @@ class CUser{
 
                 if(count($postCategory) > 0)
                 {
-                    $view->category($user, $proPic, $postCategory, $vipUsers, $vipPic, $vipFollower);
+                    foreach($postCategory as $p)
+                    {
+                        $usersPic[$p->getUser()->getId()] = $pm::retriveObj(EImage::getEntity(), $p->getUser()->getIdImage());
+                    }
+                    $view->category($user, $proPic, $postCategory, $usersPic, $vipUsers, $vipPic, $vipFollower);
                 }else{
-                    $view->category($user, $proPic, null, $vipUsers, $vipPic, $vipFollower);
+                    $view->category($user, $proPic, null,null, $vipUsers, $vipPic, $vipFollower);
                 }
             }else{
                 header('Location: /Agora/User/login');
@@ -503,9 +515,14 @@ class CUser{
 
                 if(count($postExplore) > 0)
                 {
-                    $view->explore($user, $proPic, $postExplore, $vipUsers, $vipPic, $vipFollower);
+                    foreach($postExplore as $p)
+                    {
+                        //asscoiative array for the users profile pic 
+                        $usersPic[$p->getUser()->getId()] = $pm::retriveObj(EImage::getEntity(), $p->getUser()->getIdImage());
+                    }
+                    $view->explore($user, $proPic, $postExplore, $usersPic, $vipUsers, $vipPic, $vipFollower);
                 }else{
-                    $view->explore($user, $proPic, null, $vipUsers, $vipPic, $vipFollower);
+                    $view->explore($user, $proPic, null,null, $vipUsers, $vipPic, $vipFollower);
                 }
             }else{
                 header('Location: /Agora/User/login');

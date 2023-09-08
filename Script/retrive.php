@@ -7,8 +7,11 @@ $fem = FEntityManager::getInstance($em);
 
 $pm = FPersistentManager::getInstance();
 
-$idPost = 12;
+$id = 1;
 
-$post = $pm::retriveObj(EPost::getEntity(), $idPost);
+$followed = $pm::getFollowedList($id);
 
-var_dump($post);
+foreach($followed as $f)
+{
+    echo $f->getId();
+}
