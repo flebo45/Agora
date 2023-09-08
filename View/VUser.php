@@ -72,7 +72,11 @@ class VUser{
      * @throws SmartyException
      */
     public function loginError($error) {
-        $this->smarty->assign('error',$error);
+        $this->smarty->assign('errorLog',$error);
+        $this->smarty->display('login.tpl');
+    }
+    public function registrationError() {
+        $this->smarty->assign('error',true);
         $this->smarty->display('login.tpl');
     }
 

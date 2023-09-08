@@ -25,8 +25,8 @@
 <div class="box">
     <div class="form-box">
         <div class="button-box">
-            <div id="btn-log"> </div>
-            <button type="button" class="toggle-btn" onclick="login()">ADMIN LOGIN</button>
+
+            <div clas="tex-bold" style="margin-left: 3.5rem">ADMIN LOGIN</div>
         </div>
         <div class="tex-bold">
             <h3>Agorà</h3>
