@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * class to acces to the $_SERVER superglobal array, you Must use this array instead of using directly the _SERVER array
+ */
 class UServer
 {
+    /**
+     * singleton class
+     */
     private static $instance=null;
 
     static function getInstance(){
@@ -18,7 +24,9 @@ class UServer
         return UServer::$instance;
     }
 
-
+    /**
+     * return the request method of the server(POT, GET, ...)
+     */
     public static function getRequestMethod(){
         return $_SERVER['REQUEST_METHOD'];
     }

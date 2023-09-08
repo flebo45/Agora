@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Autoload
+ * This function take the class name, every class should have the initial of the package,
+ * for ex. if there is a class called User in the Entity Package the class must be renamed in EUser.php,
+ * and read the first letter, for each letter there is a specific folder like Entity 
+ */
 function my_autoloader($className) {
 
         $firstLetter = $className[0];

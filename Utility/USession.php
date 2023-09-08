@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * class to access to the $_SESSION superglobal array, you Must use this class instead of using directly the array
+ */
 class USession{
 
     /**
@@ -11,8 +14,8 @@ class USession{
 
      private function __construct() {
         $ses_exp = 2592000; // 30 days in seconds
-        session_set_cookie_params($ses_exp);
-        session_start();
+        session_set_cookie_params($ses_exp); //set the duration of the session cookie
+        session_start(); //start the session
      }
  
      public static function getInstance() {

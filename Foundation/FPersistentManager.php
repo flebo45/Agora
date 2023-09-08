@@ -321,13 +321,6 @@ class FPersistentManager{
     
 //-------------------------------------HOME-------------------------------------------
 
-    public static function getFollowed($id)
-    {
-        $result = FUser::getFollowed($id);
-
-        return $result;
-    }
-
     /**
      * return a list of Posts belonged to Users that a user is Following
      * @return array
