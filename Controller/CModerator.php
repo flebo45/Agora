@@ -83,6 +83,9 @@ class CModerator{
         header('Location: /Agora/Moderator/login');
     }
 
+    /**
+     * Show the all reported post and comment 
+     */
     public static function reportList()
     {
         if(UServer::getRequestMethod() == 'GET')
@@ -110,5 +113,154 @@ class CModerator{
         }
     }
 
+    /**
+     * with this method the Moderator can ban an User or Post or Comment. The ban delete all the related reports to the banned object
+     */
+    public static function ban($param, $id)
+    {
+        if(UServer::getRequestMethod() == 'POST')
+        {
+            if(CModerator::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                if($param == 'user')
+                {
+                    $user = $pm::retriveObj(EUser::getEntity(), $id);
+                    if($user !== null)
+                    {
+                        $user->setBan(true);
+                        $pm::uploadObj($user);
+                    }
+                }
+                elseif($param == 'post')
+                {
+                    $post = $pm::retriveObj(EPost::getEntity(), $id);
+                    if($post !== null)
+                    {
+                        $post->setBan(true);
+                        $pm::uploadObj($post);
+                        $pm::deleteRelatedReports($param, $id);
+                    }
+                }
+                elseif($param == 'comment')
+                {
+                    $comment = $pm::retriveObj(EComment::getEntity(), $id);
+                    if($comment !== null)
+                    {
+                        $comment->setBan(true);
+                        $pm::uploadObj($comment);
+                        $pm::deleteRelatedReports($param, $id);
+                    }
+                }
+                else{
+                    header('Location: /Agora/Moderator/reportList');
+                }
+            }else{
+                header('Location: /Agora/Moderator/login');
+            }
+        }else{
+            header('Location: /Agora/Moderator/reportList');
+        }
+    }
+
+    /**
+     * With this method the Moderato ignore the Report, so it will be delated
+     */
+    public static function ignore($id)
+    {
+        if(UServer::getRequestMethod() == 'POST')
+        {
+            if(CModerator::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                $report = $pm::retriveObj(EReport::getEntity(), $id);
+                if($report !== null)
+                {
+                    $pm::deleteReport($report);
+                }else{
+                    header('Location: /Agora/Moderator/reportList');
+                }
+            }else{
+                header('Location: /Agora/Moderator/login');
+            }
+        }else{
+            header('Location: /Agora/Moderator/reportList');
+        }
+    }
+
+    /**
+     * this method show the user page in the Moderator view 
+     */
+    public static function visitUser($id)
+    {
+        if(UServer::getRequestMethod() == 'GET')
+        {
+            if(CModerator::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                USession::getInstance();
+                $modId = USession::getSessionElement('mod');
+                $mod = $pm::retriveObj(EModerator::getEntity(), $modId);
+                $modUsername = $mod->getUsername();
+
+                $user = $pm::retriveObj(EUser::getEntity(), $id);
+                if($user !== null)
+                {
+                    $userPic = $pm::retriveObj(EImage::getEntity(), $user->getIdImage());
+
+                    $userPosts = $pm::loadUserPage($id);
+
+                    $followerNumb = $pm::getFollowerNumb($id);
+                    $followedNumb = $pm::getFollowedNumb($id);
+
+                    $view = new VModerator();
+                    $view->visitUser($user, $userPic, $userPosts, $followerNumb, $followedNumb, $modUsername);
+                }else{
+                    header('Location: /Agora/Moderator/reportList');
+                }  
+            }else{
+                header('Location: /Agora/Moderator/login');
+            }
+        }else{
+            header('Location: /Agora/Moderator/reportList');
+        }
+    }
+
+    /**
+     * this method show the Post in the Moderator view
+     */
+    public static function visitPost($id)
+    {
+        if(UServer::getRequestMethod() == 'GET')
+        {
+            if(CModerator::isLogged())
+            {
+                $pm = FPersistentManager::getInstance();
+
+                USession::getInstance();
+                $modId = USession::getSessionElement('mod');
+                $mod = $pm::retriveObj(EModerator::getEntity(), $modId);
+                $modUsername = $mod->getUsername();
+
+                $post = $pm::retriveObj(EPost::getEntity(), $id);
+                if($post !== null)
+                {
+                    $userPic = $pm::retriveObj(EUser::getEntity(), $post->getUser()->getIdImage());
+
+                    $view = new VModerator();
+                    $view->visitPost($post, $userPic, $modUsername);
+                }else{
+                    header('Location: /Agora/Moderator/reportList');
+                }
+            }else{
+                header('Location: /Agora/Moderator/login');
+            }
+        }else{
+            header('Location: /Agora/Moderator/reportList');
+        }
+    }
 
 }

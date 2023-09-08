@@ -53,7 +53,7 @@
             <div class="left">
               <h3>Id Report: {$report->getId()}</h3>
               <h4>Type: {$report->getType()}</h4>
-              <h4>Post's creator: {$report->getPost()->getUser()->getUsername()}</h4>
+              <h4>Post's creator: <a href="/Agora/Moderator/visitUser/{$report->getPost()->getUser()->getId()}">{$report->getPost()->getUser()->getUsername()}</a></h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
@@ -65,7 +65,7 @@
             <div class="right">
               <div>
               <label>
-                <button class="btn btn-primary "><i class="uil uil-trash-alt">Delete</i></button>
+                <button class="btn btn-primary "><i class="uil uil-trash-alt">Ban</i></button>
               </label>
               </div>
               <div style="margin-top: 100%">
@@ -80,7 +80,7 @@
       {/if}
         <div class="admin" style="height: 60%; overflow-y:auto; margin-top: 1rem;">
           <h3 class="title">ID</h3>
-          <h3 class="title">Info Comments</h3>
+          <h3 class="title">Body Comments</h3>
           <h3 class="title">Action</h3>
         </div>
       {if count($reportedPost) === 0}
@@ -92,19 +92,16 @@
             <div class="left">
               <h3>Id Report: {$report->getId()} report</h3>
               <h4>Type: {$report->getType()}</h4>
-              <h4>Comment's creator: {$report->getComment()->getUser()->getUsername()}</h4>
+              <h4>Comment's creator: <a href="/Agora/Moderator/visitUser/{$report->getComment()->getUser()->getId()}"> {$report->getComment()->getUser()->getUsername()}</a></h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
-              <div class="body-report"> {$report->getDescription()}</div>
-              <label>
-                <button class="btn btn btn-primary" onclick="location.href='visualization-post.html'">See the post</button>
-              </label>
+              <div class="body-report">{$report->getComment()->getBody()}</div>
             </div>
             <div class="right">
               <div>
               <label>
-                <button class="btn btn-primary "><i class="uil uil-trash-alt">Delete</i></button>
+                <button class="btn btn-primary "><i class="uil uil-trash-alt">Ban</i></button>
               </label>
               </div>
               <div style="margin-top: 100%">

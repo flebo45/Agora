@@ -29,4 +29,12 @@ class FReport extends FEntityManager{
         return $result;
     }
 
+    public static function listReportsOnParam($param , $id){
+        $fem = FEntityManager::getInstance();
+
+        $result = $fem::objectListAttribute(EReport::getEntity(), $param, $id);
+
+        return $result;
+    }
+
 }

@@ -302,6 +302,22 @@ class FPersistentManager{
 
         return $result;
     }
+
+    /**
+     * delete all the Report of a related obj(post or comment)
+     */
+    public static function deleteRelatedReports($param, $id)
+    {
+        $reports = FReport::listReportsOnParam($param, $id);
+
+        if(count($reports) > 0)
+        {
+            foreach($reports as $r)
+            {
+                self::deleteReport($r);
+            }
+        }
+    }
     
 //-------------------------------------HOME-------------------------------------------
 

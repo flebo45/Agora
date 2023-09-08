@@ -125,12 +125,12 @@ class EPost{
         $this->category = $category;
     }
 
-    public function isRemoved(): bool
+    public function isBanned(): bool
     {
         return $this->removed;
     }
 
-    public function setRemoved(bool $removed): void
+    public function setBan(bool $removed): void
     {
         $this->removed = $removed;
     }
