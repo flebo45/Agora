@@ -2,6 +2,9 @@
 
 class CComment{
 
+    /**
+     * method to report a comment
+     */
     public static function report($id)
     {
         if(UServer::getRequestMethod() == 'POST')
