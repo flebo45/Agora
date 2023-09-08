@@ -186,7 +186,7 @@
                 </div>
 
 
-                  <form id="report" action="/Agora/Comment/report/{$comment->getId()}" method="get">
+                  <form id="report" action="/Agora/Comment/report/{$comment->getId()}" method="post">
                       <button class="btn btn-transparent" id="delete"><i class="uil uil-exclamation-triangle" style="color:red"></i></button>
                   </form>
               </div>

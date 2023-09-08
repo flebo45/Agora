@@ -229,15 +229,15 @@ public static function report($idPost){
             USession::getInstance();
             $idUser = USession::getSessionElement('user');
 
-            //create a new Report Obj and persist it
-            $report = new EReport($_POST['description'], $_POST['type'], $idUser);
-            $pm::uploadObj($report);
-
-            //set the Post in the Report
             $reportedPost = $pm::retriveObj(EPost::getEntity(), $idPost);
-            $report->setPost($reportedPost);
-            $pm::uploadObj($report);
-
+            if($reportedPost !== null)
+            {
+                //create a new Report Obj and persist it
+                $report = new EReport($_POST['description'], $_POST['type'], $idUser);
+                $pm::uploadObj($report);
+                $report->setPost($reportedPost);
+                $pm::uploadObj($report);
+            }
             header('Location: /Agora/User/home');
         }else{
             header('Location: /Agora/User/login');
