@@ -1165,41 +1165,45 @@ MEDIA QUERIES FOR BIG SCREENS
 -----------------------------------------------
  */
 
-@media  screen and (max-width: 1200px) {
+ @media  screen and (min-width: 1200px) {
+
     .container {
         width: 96%;
     }
 
     main .container {
-        grid-template-columns: 10% auto 30%;
-        gap: 1rem;
+        grid-template-columns: 15% auto 20% ;
+        gap: 1.5rem;
     }
 
     .left {
-        width: 10%;
-        z-index: 5;
+        width: 100%;
+        height: 100%;
     }
 
     main .container .left .profile {
-        width: 80%;
-        font-size: 14px;
+        width: 100%;
+        font-size: 16px;
     }
 
-    .sidebar h3 {
-        display: none;
+    main .container .left .profile .photo{
+        width: 100%;
+        height: 100%;
     }
 
-    .left .btn {
-        display: none;
-    }
+
 
     .customize-theme .card {
         width: 80%;
+        height: 100%;
     }
 
-    .lg-box .md-box {
-        width: 100%;
+    main .container .left {
+        position:fixed;
+        
+        z-index: 10;
     }
+
 }
 
 
@@ -1208,35 +1212,37 @@ MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
 -----------------------------------------------
 */
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-
-    .search-bar {
-        display: none
+    .container {
+        width: 96%;
     }
 
     main .container {
-        grid-template-columns: 0 auto 5rem;
-        gap: 0;
+        grid-template-columns: 15% auto 20% ;
+        gap: 1.5rem;
     }
 
-    body {
-        font-size: 60%;
-    }
-
-    img {
-        max-width: 100%;
-    }
-
-    main .container .left {
-        grid-column: 3/4;
-        position: fixed;
-        top: 3.5rem;
-        bottom: 0;
-        right: 0
-    }
-
-    .lg-box .md-box {
+    .left {
         width: 100%;
+        height: 100%;
     }
+
+    main .container .left .profile {
+        width: 100%;
+        font-size:14px;
+    }
+
+    main .container .left .profile .photo{
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+    .customize-theme .card {
+        width: 80%;
+        height: 100%;
+    }
+
 
 }
 
@@ -1246,38 +1252,89 @@ MEDIA QUERIES FOR SMALL SCREENS (PHONE)
 */
 @media screen and (max-width: 767px) {
 
-    .search-bar {
-        display: none
-    }
-
-    main .container {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
     .container {
-        width: 90%;
+        width: 96%;
+    }
+/* modify Home */
+
+    main .container {                     /*partition space*/
+        grid-template-columns: 10% auto ;
+        gap: 1rem;
     }
 
-    main .container .left {
-        grid-column: 3/4;
-        position: fixed;
-        top: 5rem;
-        bottom: 0;
-        right: 0;
-    }
-
-    main .container .middle .feeds {
-        width: 80%;
-    }
-
-    main .container .left .action-buttons{
-        font-size: 0;
-    }
-
-
-    .lg-box .md-box {
+    .sidebar {
         width: 100%;
+        height: 100%;                     /*Maximum space and no writing*/
+        font-size: 0px;
     }
+
+   main .container .left .profile {
+        display: none;                    /*Elimination of the user's descriptive space*/
+    }
+   main .container .left .sidebar{
+    z-index: 10;
+}
+
+    .right .categories{
+        display: none;                    /*Elimination of the categories bar*/
+    }
+
+    .right .top-writer{
+        display: none;                    /*Elimination of the top written*/
+    }
+
+    /*MODIFY SETTINGS */
+    
+    .bigContainer .container{
+        grid-template-columns: 10% 30% ;
+    }
+
+    .bigContainer .container .left .btn-primary{
+        display: none;
+    }
+
+    .bigContainer .container .box-setting .profile-photo {
+        height: 35%;
+        width: 35%;
+    }
+
+.bigContainer .container .box-setting input{
+    width: 300%; /* Larghezza del riquadro interno al 50% di quello esterno */
+  height: 60%; /* Altezza del riquadro interno al 50% di quello esterno */
+  left:10%; /* Sposta il riquadro interno verso il centro in orizzontale */
+}
+
+.custom-btn{
+    white-space: nowrap; 
+overflow: hidden;
+width: fit-content;
+}
+
+.conte{
+white-space: nowrap;
+justify-content: flex-start;
+
+}
+
+
+.conte .btn-primary{
+    position: relative;
+    top: -10px;
+}
+
+/*MODIFY CREATION POST*/
+
+
+.container_c .container{
+    grid-template-columns: 10%  ;
+}
+
+.container .creation .form-box{
+    margin-left: 0%;
+  width: 100%;
+  position: relative;
+  background: var(--color-white);
+  padding: 10px;
+}
 
 }

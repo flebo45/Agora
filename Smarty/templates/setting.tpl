@@ -42,6 +42,7 @@
 
 <!-- START OF SETTING -->
 <main>
+ <div class="bigContainer">
   <div class="container">
     <!-----------------------left-------------------->
     <div class="left">
@@ -89,7 +90,7 @@
       {if $errorImg == true}
         <div style="color:red; margin-left: 47%">Invalid input</div>
       {/if}
-      <div>
+      <div class="conte">
         <label class="custom-btn btn">
           <input type="file" name="imageFile" class="image-input" accept="image/*">
           change img
@@ -159,6 +160,7 @@
         </div>
       </form>
     </div>
+  </div>
   </div>
 </div>
 
