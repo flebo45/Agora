@@ -7,7 +7,7 @@
   <title>Mod-Report</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="Img/A.png">
+  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
@@ -31,7 +31,7 @@
                 </div>
       </form>
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/A.png" alt="">
+        <img src="/Agora/Smarty/immagini/2.png" alt="">
       </div>
     </div>
   </nav>
@@ -53,25 +53,25 @@
             <div class="left">
               <h3>Id Report: {$report->getId()}</h3>
               <h4>Type: {$report->getType()}</h4>
-              <h4>Post's creator: <a href="/Agora/Moderator/visitUser/{$report->getPost()->getUser()->getId()}">{$report->getPost()->getUser()->getUsername()}</a></h4>
+              <h4>Post's creator: <a href="/Agora/Moderator/visitUser/{$report->getPost()->getUser()->getId()}" style="text-decoration: none; color: red; font-size: 1rem; font-weight : bold;">{$report->getPost()->getUser()->getUsername()}</a></h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
               <div class="body-report"> {$report->getDescription()}</div>
               <label>
-                <button class="btn btn btn-primary" onclick="location.href='visualization-post.html'">See the post</button>
+                <button class="btn btn btn-primary" onclick="location.href='/Agora/Moderator/visitPost/{$report->getPost()->getId()}'">See the post</button>
               </label>
             </div>
             <div class="right">
               <div>
-              <label>
+              <form id='ban' action="/Agora/Moderator/ban/post/{$report->getPost()->getId()}" method="post">
                 <button class="btn btn-primary "><i class="uil uil-trash-alt">Ban</i></button>
-              </label>
+              </form>
               </div>
               <div style="margin-top: 100%">
-              <label>
+              <form id='ignore' action="/Agora/Moderator/ignore/{$report->getId()}" method="post">
                 <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
-              </label>
+              </form>
               </div>
             </div>
           </div>
@@ -90,9 +90,9 @@
         <div class="admin-report" style="margin-top: 1%">
           <div class="admin">
             <div class="left">
-              <h3>Id Report: {$report->getId()} report</h3>
+              <h3>Id Report: {$report->getId()}</h3>
               <h4>Type: {$report->getType()}</h4>
-              <h4>Comment's creator: <a href="/Agora/Moderator/visitUser/{$report->getComment()->getUser()->getId()}"> {$report->getComment()->getUser()->getUsername()}</a></h4>
+              <h4>Comment's creator: <a href="/Agora/Moderator/visitUser/{$report->getComment()->getUser()->getId()}" style="text-decoration: none; color: red; font-size: 1rem; font-weight : bold;"> {$report->getComment()->getUser()->getUsername()}</a></h4>
               <h6>Id who sent the report: {$report->getIdUser()}</h6>
             </div>
             <div class="middle">
@@ -100,14 +100,14 @@
             </div>
             <div class="right">
               <div>
-              <label>
+              <form id='ban' action="/Agora/Moderator/ban/comment/{$report->getComment()->getId()}" method="post">
                 <button class="btn btn-primary "><i class="uil uil-trash-alt">Ban</i></button>
-              </label>
+              </form>
               </div>
               <div style="margin-top: 100%">
-              <label>
+              <form id='ignore' action="/Agora/Moderator/ignore/{$report->getId()}" method="post">
                 <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
-              </label>
+              </form>
               </div>
             </div>
           </div>

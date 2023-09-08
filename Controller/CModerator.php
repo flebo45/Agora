@@ -153,9 +153,7 @@ class CModerator{
                         $pm::deleteRelatedReports($param, $id);
                     }
                 }
-                else{
-                    header('Location: /Agora/Moderator/reportList');
-                }
+                header('Location: /Agora/Moderator/reportList');
             }else{
                 header('Location: /Agora/Moderator/login');
             }
@@ -179,9 +177,8 @@ class CModerator{
                 if($report !== null)
                 {
                     $pm::deleteReport($report);
-                }else{
-                    header('Location: /Agora/Moderator/reportList');
                 }
+                header('Location: /Agora/Moderator/reportList');
             }else{
                 header('Location: /Agora/Moderator/login');
             }
@@ -248,7 +245,7 @@ class CModerator{
                 $post = $pm::retriveObj(EPost::getEntity(), $id);
                 if($post !== null)
                 {
-                    $userPic = $pm::retriveObj(EUser::getEntity(), $post->getUser()->getIdImage());
+                    $userPic = $pm::retriveObj(EImage::getEntity(), $post->getUser()->getIdImage());
 
                     $view = new VModerator();
                     $view->visitPost($post, $userPic, $modUsername);

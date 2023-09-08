@@ -25,18 +25,18 @@
         <div class="container">
             <h2>Agorà</h2>
             <h2>{$modUsername}</h2>
-            <form  action="/Agora/Moderator/logout" method="post">
+            <form  action="/Agora/Moderator/reportList" method="post">
                 <div>
-                    <button class="btn btn-primary" type="submit">Log out</button>
+                    <button class="btn btn-primary" type="submit">Go Back</button>
                 </div>
             </form>
             <div class="profile-photo">
-                <img src="/Agora/Smarty/immagini/A.png" alt="">
+                <img src="/Agora/Smarty/immagini/2.png" alt="">
             </div>
         </div>
     </nav>
 
-    <div class="container" >
+    <div class="container" style="margin-top: 6rem" >
 
         <!-----------------------right-------------------->
         <div class="right" style="margin-top: 4rem">
@@ -56,13 +56,13 @@
                         <p class="text-muted">{$user->getName()}</p>
                     </div>
                     <div>
-                        <a href="/Agora/User/followed/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followerNumb}</a>
+                        <a style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$follower}</a>
                         <p class="text-muted">
                             followers
                         </p>
                     </div>
                     <div>
-                        <a href="/Agora/User/followers/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followedNumb}</a>
+                        <a style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followed}</a>
                         <p class="text-muted">following</p>
                     </div>
                 </div>
@@ -118,9 +118,9 @@
 
         <div class="middle">
             <!----------------FEEDS-------------------------------->
-            <div class="feeds">
+            <div class="feeds" style='width:50%; margin-left:25rem'>
 
-                {foreach $postList as $post}
+                {foreach $arrayPostUser as $post}
                     <div class="feed">
                         <div class="head">
                             <div class="user">

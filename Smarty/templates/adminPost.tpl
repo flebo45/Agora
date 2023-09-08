@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-compatible" content ="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale-1.0">
-    <title>{$pageTitle}</title>
+    <title>reportedPost</title>
     <!-- icon scout cdn -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-    <link rel="icon" href="Img/A.png">
+    <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
     <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -24,9 +24,9 @@
 <nav>
     <div class="container">
         <h2>Agorà</h2>
-        <h2>Admin</h2>
+        <h2>{$modUsername}</h2>
         <div class="profile-photo">
-            <img src="/Agora/Img/A.png" alt="">
+            <img src="/Agora/Smarty/immagini/2.png" alt="">
         </div>
     </div>
 </nav>
@@ -40,12 +40,18 @@
             <div class="feed">
                 <div class="head">
                     <div class="user">
+                    {if $userPic->getSize() > 0}
+                        <div class="profile-photo">  
+                            <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+                        </div>
+                    {else}
                         <div class="profile-photo">
                             <img src="/Agora/Smarty/immagini/1.png" alt="">
                         </div>
+                    {/if}
                         <div class="ingo">
                             <div>
-                                <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
+                                <a  style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
                             </div>
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
                         </div>
@@ -53,7 +59,7 @@
                 </div>
                 <div class="caption ">
                     <!-- Smarty tag for username -->
-                    <p><b>{$post->getUser()->getUsername()}</b><span class="harsh-tag">
+                    <p><a href="/Agora/Moderator/visitUser/{$post->getUser()->getId()}"style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getUser()->getUsername()}</a><span class="harsh-tag">
             {$post->getDescription()}</span></p>
                 </div>
                 {if $post->getImages()->count() === 0}
@@ -70,13 +76,13 @@
         </div>
 
         <div>
-            <label>
-                <button class="btn btn-primary "><i class="uil uil-trash-alt">Delete</i></button>
-            </label>
+            <form id='ban' action="/Agora/Moderator/ban/post/{$post->getId()}" method="post">
+                <button class="btn btn-primary "><i class="uil uil-trash-alt">Ban</i></button>
+            </form>
         </div>
         <div style="margin-top:10px">
             <label >
-                <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
+                <button class="btn btn-primary " onclick='location.href="/Agora/Moderator/reportList"'><i class="uil">Go Back</i></button>
             </label>
         </div>
 
