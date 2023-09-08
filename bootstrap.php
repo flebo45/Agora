@@ -17,8 +17,9 @@ function getEntityManager() : \Doctrine\ORM\EntityManager
 
     if ($entityManager === null)
     {
-        $paths = array(__DIR__ . DIRECTORY_SEPARATOR .'Entity');
+        $paths = array(__DIR__ );
         $config = \Doctrine\ORM\Tools\Setup::createAnnotationMetadataConfiguration($paths);
+        $config->setAutoGenerateProxyClasses(true);
 
         # set up configuration parameters for doctrine.
         # Make sure you have installed the php7.0-sqlite package.
