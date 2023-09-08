@@ -52,7 +52,7 @@ class VModerator{
     }
 
 
-    public function vistPost($post,$userPic,$modUsername){
+    public function visitPost($post,$userPic,$modUsername){
         $this->smarty->assign('modUsername', $modUsername);
         $this->smarty->assign('post', $post);
         $this->smarty->assign('userPic', $userPic);

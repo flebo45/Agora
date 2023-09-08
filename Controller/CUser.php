@@ -79,11 +79,11 @@ class CUser{
                 header('Location: /Agora/User/login');
             }
             else{
-                $view->registrationError("username");
+                $view->registrationError();
             }
         }
         else{
-            $view->registrationError("email");
+            $view->registrationError();
         }
     }
 

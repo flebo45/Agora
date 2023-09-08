@@ -61,15 +61,15 @@ class CModerator{
                         USession::setSessionElement('mod', $user->getId());
                         header('Location: /Agora/Moderator/reportList');
                         }
-                    } else{
+                    }else{
+                        $view->loginError();
+                    }
+                }else{
                     $view->loginError();
                 }
-               
-            }else{
-                $view->loginError();   
             }
         }
-    }
+    
 
     
     /**
