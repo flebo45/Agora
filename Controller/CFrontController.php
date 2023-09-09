@@ -27,10 +27,6 @@ class CFrontController{
                         if ($num == 0) $controller::$method();
                         else if ($num == 1) $controller::$method($param[0]);
                         else if ($num == 2) $controller::$method($param[0], $param[1]);
-                        else if ($num == 3) $controller::$method($param[0], $param[1], $param[2]);
-                        else if ($num == 4) $controller::$method($param[0], $param[1], $param[2], $param[3]);
-                        else if ($num == 5) $controller::$method($param[0], $param[1], $param[2], $param[3], $param[4]);
-                        //else if ($num == 6) $controller::$function($param[0], $param[1], $param[2], $param[3], $param[4], $param[5]);
 
                 }else{
                     USession::getInstance();
