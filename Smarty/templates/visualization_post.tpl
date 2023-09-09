@@ -44,7 +44,7 @@
       </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/1.png" alt="">
+      <img src="/Agora/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>

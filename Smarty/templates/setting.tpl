@@ -25,7 +25,7 @@
 <nav>
   <div class="container">
     <h2 class="log">
-      Agora'
+      Agorà
     </h2>
     <div class="tex-bold">
       <h3>SETTIINGS <i class="uil uil-setting"></i></h3>
