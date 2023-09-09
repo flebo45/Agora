@@ -109,6 +109,9 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
+      {if $post->getUser()->isBanned()}
+        <div class="tex-bold feed" style="font-size:18px; color:red">This User is Banned!</div>
+      {else}
       <div class="feed">
       <div class="head">
         <div class="user">
@@ -314,6 +317,7 @@
       <!----------------------END OF DESCRIPTION--------------------->
 
     </div>
+    {/if}
   </div>
   </div>
 </main>

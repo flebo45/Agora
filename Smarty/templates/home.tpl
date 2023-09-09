@@ -143,6 +143,15 @@
                             </span>
                         </p>
                     </div>
+                    {if $post->getImages()->count() === 0}
+                        
+                        {else}
+                          <div class="photo">
+                            {foreach from=$post->getImages() item=i}
+                                <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" loading="lazy" alt="Img">
+                            {/foreach}
+                          </div>
+                        {/if}
                 </div>
                 {/foreach}
                 {/if}

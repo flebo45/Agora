@@ -117,13 +117,13 @@
                 <option></option>
                 <option value="Animals">Animals</option>
                 <option value="Arts">Arts</option>
-                <option value="Book">Book</option>
+                <option value="Books">Books</option>
                 <option value="Cars">Cars</option>
                 <option value="Cinema">Cinema</option>
                 <option value="Cooking">Cooking</option>
                 <option value="Gaming">Gaming</option>
                 <option value="Gardening">Gardening</option>
-                <option value="Home">home</option>
+                <option value="Home">Home</option>
                 <option value="News">News</option>
                 <option value="Photography">Photography</option>
                 <option value="School">School</option>

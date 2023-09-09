@@ -141,6 +141,15 @@ class CModerator{
                         $post->setBan(true);
                         $pm::uploadObj($post);
                         $pm::deleteRelatedReports($param, $id);
+                        /**$warning = $post->getUser()->getWarning();
+                        $updatedWarning = $warning + 1;
+                        $post->getUser()->setWarning($updatedWarning);
+                        $pm::uploadObj($post->getUser());
+                        if($post->getUser()->getWarning() == 3)
+                        {
+                            $post->getUser()->setBan(true);
+                            $pm::uploadObj($post->getUser());
+                        }*/
                     }
                 }
                 elseif($param == 'comment')

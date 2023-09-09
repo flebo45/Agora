@@ -103,7 +103,9 @@
     <div class="middle">
       <!----------------FEEDS-------------------------------->
       <div class="feeds">
-
+                {if $user->isBanned()}
+                  <div class="tex-bold feed" style="font-size:18px; color:red">This User is Banned!</div>
+                {else}
                 {foreach $postList as $post}
                 <div class="feed">
                   <div class="head">
@@ -152,6 +154,7 @@
 
                 </div>
                 {/foreach}
+              {/if}
                 <!----------------END OF FEED------------------------------>
             </div>
             <!----------------END OF FEEDS------------------------------>
@@ -163,7 +166,11 @@
 
     <!-----------------------right-------------------->
   <div class="right">
-      <div class="side-profile">
+  {if $user->isBanned()}
+  {else}
+    <div class="side-profile">
+      
+     
         <div class="heading">
         {if $userPic->getSize() > 0}
           <div class="profile-photo">  
@@ -247,9 +254,11 @@
           </div>
         </div>
       </div>
+      
       <!----------------------END OF DESCRIPTION--------------------->
   
       </div>
+    {/if}
   </div>
  </div>
 </main>
