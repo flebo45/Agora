@@ -47,6 +47,7 @@
 </nav>
 
 <main>
+<div class="container_vi">
   <div class="container">
     <!-----------------------left-------------------->
     <div class="left">
@@ -184,11 +185,6 @@
                     <b>{$comment->getBody()}</b>
                   </div>
                 </div>
-
-
-                  <form id="report" action="/Agora/Comment/report/{$comment->getId()}" method="post">
-                      <button class="btn btn-transparent" id="delete"><i class="uil uil-exclamation-triangle" style="color:red"></i></button>
-                  </form>
               </div>
             {/foreach}
 
@@ -238,6 +234,17 @@
             <p class="text-muted">following</p>
           </div>
         </div>
+        {if $user->getId() !== $post->getUser()->getId()}
+        <button class="btn-primary btn" onclick="toggle(this)">follow</button>
+        <script>
+          function toggle(e) {
+            let txt = e.innerText;
+            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
+          }
+        </script>
+        {else}
+        {/if}
+
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -287,6 +294,7 @@
       <!----------------------END OF DESCRIPTION--------------------->
 
     </div>
+  </div>
   </div>
 </main>
 

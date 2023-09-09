@@ -24,6 +24,7 @@
 
 
 <nav>
+<div class="container_crea">
   <div class="container">
     <h2 class="log">Agorà</h2>
     <div class="search-bar">
@@ -44,7 +45,7 @@
 </nav>
 <!---------------------------------MAIN------------------------------------>
 <main>
-<div class="container_c"
+<div class="container_crea">
   <div class="container">
     <!-----------------------left-------------------->
     <div class="left">
@@ -144,6 +145,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   </div>
   <!----------------- THEME CUSTOMIZATION---------------------------->

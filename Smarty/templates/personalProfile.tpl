@@ -46,6 +46,7 @@
     </nav>
 <!-----------------------MAIN-------------------->
 <main>
+<div class="container_pr">
     <div class="container">
         <!-----------------------left-------------------->
         <div class="left">
@@ -234,6 +235,7 @@
       </div>
 
       <!----------------------END OF DESCRIPTION--------------------->
+    </div>
     </div>
 </main>
 

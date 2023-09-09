@@ -1192,17 +1192,22 @@ MEDIA QUERIES FOR BIG SCREENS
     }
 
 
-
-    .customize-theme .card {
-        width: 80%;
-        height: 100%;
-    }
-
     main .container .left {
-        position:fixed;
-        
+
         z-index: 10;
     }
+
+          /*MODIFY REPORT*/
+
+.report .card{
+    width:80%;
+}
+
+.report .text-area {
+
+   margin-left: -60%;
+   margin-right: -60%;
+}
 
 }
 
@@ -1243,6 +1248,109 @@ MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
         height: 100%;
     }
 
+     /*MODIFY SETTINGS */
+    
+     .bigContainer .container{
+        grid-template-columns: 10% 30% ;
+    }
+
+    .bigContainer .container .left.left {
+        width: 100%;
+        height: 100%;
+    min-width: 140%;
+    }
+
+    .bigContainer .container .left .btn-primary{
+        display: none;
+    }
+
+    .bigContainer .container .box-setting .profile-photo {
+        height: 35%;
+        width: 35%;
+    }
+
+.bigContainer .container .box-setting input{
+    width: 300%; /* Larghezza del riquadro interno al 50% di quello esterno */
+  height: 60%; /* Altezza del riquadro interno al 50% di quello esterno */
+  left:10%; /* Sposta il riquadro interno verso il centro in orizzontale */
+}
+
+.custom-btn{
+    white-space: nowrap; 
+overflow: hidden;
+width: fit-content;
+}
+
+.conte{
+white-space: nowrap;
+justify-content: flex-start;
+
+}
+
+
+.conte .btn-primary{
+    position: relative;
+    top: -10px;
+}
+
+/*MODIFY CREATION POST*/
+
+
+
+.form-box:last-child{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: auto; 
+    height: auto;
+    }
+    
+    .container_crea .container{
+        grid-template-columns: 10% 82% ;
+    }
+
+    .container_crea .container .left{
+    min-width: 180%;
+    }
+    
+    .form-box .btn {
+    
+        margin-left: 80%;
+      }
+    
+      .form-box .custom-btn{
+        width:33%
+      }
+    
+      .text-area{
+        width: 80%; 
+      height: 60%;
+      }
+     
+      .text{
+        width: 80%; 
+        height: 60%;
+      }
+
+      /* MODIFY PROFILE*/
+      .container .right .side-profile .heading{
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      
+
+
+      /*MODIFY REPORT*/
+
+.report .card{
+    width:80%;
+}
+
+.report .text-area {
+    width: 60%; 
+    height: 60%; 
+   margin-left: -60%;
+   margin-right: -60%;
+}
 
 }
 
@@ -1271,8 +1379,18 @@ MEDIA QUERIES FOR SMALL SCREENS (PHONE)
    main .container .left .profile {
         display: none;                    /*Elimination of the user's descriptive space*/
     }
-   main .container .left .sidebar{
+
+   main .container .left {
     z-index: 10;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+
+}
+
+     .left .btn{
+        min-width:105%;
+        font-size: 11px;
 }
 
     .right .categories{
@@ -1325,16 +1443,146 @@ justify-content: flex-start;
 /*MODIFY CREATION POST*/
 
 
-.container_c .container{
-    grid-template-columns: 10%  ;
+
+.form-box:last-child{
+margin-left: 0%;
+width: auto; 
+height: auto;
 }
 
-.container .creation .form-box{
-    margin-left: 0%;
-  width: 100%;
-  position: relative;
-  background: var(--color-white);
-  padding: 10px;
+.container_crea .container{
+    grid-template-columns: 10% 82% ;
 }
+
+.form-box .btn {
+
+    margin-left: 74%;
+  }
+
+  .form-box .custom-btn{
+    width:33%
+  }
+
+  .text-area{
+    width: 80%; 
+  height: 60%;
+  }
+ 
+  .text{
+    width: 80%; 
+    height: 60%;
+  }
+  
+  /*MODIFY CUSTOMIZE*/
+
+  .customize-theme .card {
+    justify-content: center; 
+    width:70%;
+    height: 90%;
+  }
+
+  .customize-theme .choose-bg {
+    width: 60%; 
+    height: 10%;
+    gap: 1rem;
+  }
+
+  .customize-theme .choose-bg .bg-1 {
+    background:white;
+    color: black;
+    white-space: nowrap; /* Impedisce la divisione automatica delle parole */
+    overflow: hidden; /* Nasconde qualsiasi contenuto che fuoriesce dalla larghezza del bottone */
+    text-overflow: ellipsis; /* Aggiunge un puntini di sospensione (...) al testo che viene tagliato */
+}
+
+
+.customize-theme .choose-bg .bg-2 {
+    white-space: nowrap; /* Impedisce la divisione automatica delle parole */
+    overflow: hidden; /* Nasconde qualsiasi contenuto che fuoriesce dalla larghezza del bottone */
+    text-overflow: ellipsis; /* Aggiunge un puntini di sospensione (...) al testo che viene tagliato */
+}
+
+
+.customize-theme .choose-bg .bg-3 {
+    white-space: nowrap; /* Impedisce la divisione automatica delle parole */
+    overflow: hidden; /* Nasconde qualsiasi contenuto che fuoriesce dalla larghezza del bottone */
+    text-overflow: ellipsis; /* Aggiunge un puntini di sospensione (...) al testo che viene tagliato */
+}
+
+/* MODIFY PROFILE*/
+
+.container_pr .container{
+    grid-template-columns: 10% 82% ;
+    
+    }
+    
+    .container_pr .middle {
+        display: flex;
+        flex-direction: row; /* Imposta la direzione del layout su orizzontale */
+    }
+    
+    .container_pr .container .right .side-profile  {
+        order: 1; /* Imposta l'ordine del contenitore "left" in modo che venga visualizzato dopo "middle" */
+        /* Altri stili per il contenitore "left" */
+    }
+    
+    .container_pr .container .middle {
+        order: 2; /* Imposta l'ordine del contenitore "middle" in modo che venga visualizzato prima di "left" */
+        margin-left: 145%;
+        margin-right:-780%;
+       
+    
+    }
+    
+    .container_pr .container .middle .feeds .feed{
+        width:110%;
+        height: auto;
+    }
+
+
+/*MODIFY VISUALIZATION POST*/
+
+
+.container_vi .container{
+    grid-template-columns: 10% 82% ;
+    
+    }
+    
+    .container_vi .middle {
+        display: flex;
+        flex-direction: row; /* Imposta la direzione del layout su orizzontale */
+    }
+    
+    .container_vi .container .right .side-profile  {
+        order: 1; /* Imposta l'ordine del contenitore "left" in modo che venga visualizzato dopo "middle" */
+        /* Altri stili per il contenitore "left" */
+    }
+    
+    .container_vi .container .middle {
+        order: 2; /* Imposta l'ordine del contenitore "middle" in modo che venga visualizzato prima di "left" */
+        margin-left: 145%;
+        margin-right:-400%;
+    
+    }
+    
+    .container_vi .container .middle .feeds .feed{
+        width:200%;
+        height: auto;
+    }
+
+
+/*MODIFY REPORT*/
+
+.report .card{
+    width:80%;
+}
+
+.report .text-area {
+    width: 60%; 
+    height: 60%; 
+   margin-left: -60%;
+   margin-right: -60%;
+}
+
 
 }
