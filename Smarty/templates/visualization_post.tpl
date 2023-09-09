@@ -12,6 +12,7 @@
     <script src="/Agora/Smarty/js/test.js"></script>
   <!-- stylesheet -->
   {literal}
+    <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   {/literal}
   <script>
@@ -30,10 +31,12 @@
       Agorà
     </h2>
     <div class="search-bar">
-      <i class ="uil uil-search"></i>
-      <label>
-        <input type ="search" placeholder="search for post or users">
-      </label>
+    <form id='search' action="/Agora/Search/search" method="post">
+    <i class ="uil uil-search"></i>
+    <label>
+        <input type ="search" name="keyword" placeholder="search for post or users">
+    </label>
+    </form>
     </div>
     <form  action="/Agora/User/logout" method="post">
       <div>
@@ -62,7 +65,11 @@
         </div>
       {/if}
         <div class ="handle">
+        {if $user->isVip()}
+          <h4 class='vip'> {$user->getUsername()} <i class='uil uil-star'></i> </h4>
+        {else}
           <h4> {$user->getUsername()}</h4>
+        {/if}
           <p class="text-muted">
             @{$user->getName()}
           </p>
@@ -176,7 +183,11 @@
                       <img src="Img/A.png" alt="img">
                     </div>
                     <div class="ingo">
-                    <a href="/Agora/User/profile/{$comment->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$comment->getUser()->getUsername()} </a>
+                    {if $comment->getUser()->isVip()}
+                      <a href="/Agora/User/profile/{$comment->getUser()->getUsername()}"class="vip"> {$comment->getUser()->getUsername()}<i class='uil uil-star' style='font-size:medium'></i> </a>
+                    {else}
+                      <a href="/Agora/User/profile/{$comment->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$comment->getUser()->getUsername()}</a>
+                    {/if}
                       <small>{$comment->getTime()->format('Y-m-d H:i:s')}</small>
                     </div>
                   </div>
@@ -185,6 +196,9 @@
                     <b>{$comment->getBody()}</b>
                   </div>
                 </div>
+                <form id="report" action="/Agora/Comment/report/{$comment->getId()}" method="post">
+                      <button class="btn btn-transparent" id="delete"><i class="uil uil-exclamation-triangle" style="color:red"></i></button>
+                </form>
               </div>
             {/foreach}
 
@@ -220,7 +234,11 @@
           </div>
         {/if}
           <div class ="handle">
+          {if $post->getUser()->isVip()}
+            <a href="/Agora/User/profile/{$post->getUser()->getUsername()}" class='vip'> {$post->getuser()->getUsername()} <i class='uil uil-star' style='font-size:medium'></i> </a>
+          {else}
             <a href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()} </a>
+          {/if}
             <p class="text-muted">{$post->getUser()->getName()}</p>
           </div>
           <div>
@@ -234,16 +252,18 @@
             <p class="text-muted">following</p>
           </div>
         </div>
-        {if $user->getId() !== $post->getUser()->getId()}
-        <button class="btn-primary btn" onclick="toggle(this)">follow</button>
-        <script>
-          function toggle(e) {
-            let txt = e.innerText;
-            e.innerText = txt === 'Follow' ? 'Unfollow' : 'Follow';
-          }
-        </script>
-        {else}
+      {if $user->getId() !== $post->getUser()->getId()}
+        {if $followCheck == true}
+          <form id='unfollow' action="/Agora/User/unfollow/{$post->getUser()->getId()}" method="post">
+            <button class="btn-primary btn">Unfollow</button>
+          </form>
+        {elseif $followCheck == false}
+          <form id='follow' action="/Agora/User/follow/{$post->getUser()->getId()}" method="post">
+            <button class="btn-primary btn">Follow</button>
+          </form>
         {/if}
+      {else}
+      {/if}
 
         <!----------------------DESCRIPTION-------------------->
         <div class="title">

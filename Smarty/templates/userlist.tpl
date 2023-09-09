@@ -11,6 +11,7 @@
     <script src="/Agora/Smarty/js/test.js"></script>
     <!-- stylesheet -->
     {literal}
+        <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
         <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
     {/literal}
     <script>
@@ -107,10 +108,18 @@
                         {/if}
                         
                         {if $param == 'like'}
+                            {if $l->isVip()}
+                                <i class="uil uil-heart" style="color:red; margin-left:1rem"></i><a href="/Agora/User/profile/{$l->getUsername()}" class="vip">{$l->getUsername()}</a>
+                            {else}
                             <i class="uil uil-heart" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l->getUsername()}</a>
+                            {/if}
                             <p class="text-muted left-transition"> {$l->getName()}</p>
                         {else}
-                            <i class="uil uil-accessible-icon-alt" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l->getUsername()}</a>
+                            {if $l->isVip()}
+                                <i class='uil uil-star' class="vip"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="vip">{$l->getUsername()}</a>
+                            {else}
+                                <i class="uil uil-accessible-icon-alt" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l->getUsername()}</a>
+                            {/if}
                             <p class="text-muted left-transition"> {$l->getName()}</p>
                         {/if}
                         

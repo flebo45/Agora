@@ -130,15 +130,13 @@ class CUser{
                             header('Location: /Agora/User/home');
                         }
                     }
-                }
-                else{
-                    $error = true;
-                    $view->loginError($error);
+                }else{
+                
+                    $view->loginError();
                 }
                 
             }else{
-                $error = true;
-                $view->loginError($error);
+                $view->loginError();
             }
         }
     }

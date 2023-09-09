@@ -11,6 +11,7 @@
     <script src="/Agora/Smarty/js/test.js"></script>
     <!-- stylesheet -->
     {literal}
+        <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
         <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
     {/literal}
     <script>

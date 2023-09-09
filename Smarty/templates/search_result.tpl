@@ -8,8 +8,9 @@
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="Img/A.png">
-
+  <script src="/Agora/Smarty/js/test.js"></script>
   <!-- stylesheet -->
+  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   <script>
         function ready(){
@@ -27,10 +28,12 @@
   <div class="container">
     <a href="/Agora/User/home" class="log" style="text-decoration: none; color: inherit; font-size: 1.5rem; font-weight : bold" >Agorà</a>
     <div class="search-bar">
-      <i class ="uil uil-search"></i>
-      <label>
-        <input type ="search" placeholder="search for post or users">
-      </label>
+    <form id='search' action="/Agora/Search/search" method="post">
+    <i class ="uil uil-search"></i>
+    <label>
+        <input type ="search" name="keyword" placeholder="search for post or users">
+    </label>
+    </form>
     </div>
     <form  action="/Agora/User/logout" method="post">
       <div>
@@ -53,13 +56,14 @@
     <h3 class="text-muted">Result for : {$keyword}</h3>
   </div>
   <div class="result" style="margin-top: 2%">
+  <h3>Posts:</h3>
   {if count($searchedPost) === 0}
     <div class="result" style="margin-top: 2%">There are no post with this title, try something else</div>
     {else}
-  {foreach $searchedPost as $post}
-
     <div class="left">
-      <h3>Post</h3>
+    
+  {foreach $searchedPost as $post}
+      <div style="padding:1.5rem">
       <div class="profile">
         {if $postUserPic[$post->getId()]->getSize() > 0}
           <div class="profile-photo">
@@ -71,28 +75,36 @@
           </div>
         {/if}
         <div class ="handle">
-          <h4> {$post->getUser()->getUsername()} </h4>
+        {if $post->getUser()->isVip()}
+          <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" class="vip"> {$post->getUser()->getUsername()}</a> <i class='uil uil-star vip'></i>
+        {else}
+          <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getUser()->getUsername()}</a>
+        {/if}
           <p class="text-muted">
             @{$post->getuser()->getName()}
           </p>
         </div>
       </div>
       <div>
-      <h3>Title</h3>
+      <h5 class="text-muted">Title:</h5>
         <a href="/Agora/Post/visit/{$post->getId()}" class="search" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getTitle()}</a>
           </div>
-        <div>
-      </div>
+        
     </div>
+    
     {/foreach}
+    </div>
     {/if}
+    <h3>User: </h3>
     {if count($searchedUser) === 0}
       <div class="result" style="margin-top: 2%">There are no user with this username, try something else</div>
     {else}
+      <div class="right">
+      
     {foreach $searchedUser as $user}
-    <div class="right">
+    <div style="padding:1rem">  
       <div class="list-profile">
-          <h3>User</h3>
+          
         <div class="profile">
             {if $userPic[$user->getId()]->getSize() > 0}
               <div class="profile-photo">
@@ -104,16 +116,80 @@
               </div>
             {/if}
             <div class ="handle">
-              <a href="/Agora/User/profile/{$user->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$user->getUsername()} </a>
+            {if $post->getUser()->isVip()}
+              <a  href="/Agora/User/profile/{$user->getUsername()}" class="vip"> {$user->getUsername()}</a> <i class='uil uil-star vip'></i>
+          {else}
+              <a  href="/Agora/User/profile/{$user->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$user->getUsername()}</a>
+          {/if}
               <p class="text-muted">
                 @{$user->getName()}
               </p>
             </div>
           </div>
+      </div>  
       </div>
       {/foreach}
+      </div>
       {/if}
-    </div>
+  
 
   </div>
+
+  
+    <!----------------- THEME CUSTOMIZATION---------------------------->
+
+    <div class="customize-theme">
+        <div class="card">
+            <h2>Customize your view</h2>
+            <p class="text-muted">Manage your font size, color and background.</p>
+            <!-------------------------FONT SIZE----------------------------->
+            <div class="font-size">
+                <h2>Font size</h2>
+                <div>
+                    <h6>Aa</h6>
+                    <div class="choose-size">
+                        <span class="font-size-1"></span>
+                        <span class="font-size-2"></span>
+                        <span class="font-size-3 active"></span>
+                        <span class="font-size-4"></span>
+                        <span class="font-size-5"></span>
+                    </div>
+                    <h3>Aa</h3>
+                </div>
+            </div>
+
+
+            <!-----------------------PRIMARY COLORS------------------------>
+            <div class="color">
+                <h4>Color</h4>
+                <div class="choose-color">
+                    <span class="color-1 active"></span>
+                    <span class="color-2"></span>
+                    <span class="color-3"></span>
+                    <span class="color-4"></span>
+                    <span class="color-5"></span>
+                </div>
+            </div>
+
+            <!----------------------------BACKGROUND COLORS----------------------->
+            <div class="background">
+                <h4>Background</h4>
+                <div class="choose-bg">
+                    <div class="bg-1 active">
+                        <span></span>
+                        <h5>Light</h5>
+                    </div>
+                    <div class="bg-2">
+                        <span></span>
+                        <h5>Dim</h5>
+                    </div>
+                    <div class="bg-3">
+                        <span></span>
+                        <h5> Lights Out</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+

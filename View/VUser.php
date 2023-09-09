@@ -31,6 +31,8 @@ class VUser{
      */
     public function showLoginForm(){
         $this->smarty->assign('error', false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('login.tpl');
     }
 
@@ -71,12 +73,16 @@ class VUser{
      * Funzione che si occupa di gestire la visualizzazione degli errori in fase login
      * @throws SmartyException
      */
-    public function loginError($error) {
-        $this->smarty->assign('errorLog',$error);
+    public function loginError() {
+        $this->smarty->assign('error',true);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('login.tpl');
     }
     public function registrationError() {
-        $this->smarty->assign('error',true);
+        $this->smarty->assign('error',false);
+        $this->smarty->assign('ban',false);
+        $this->smarty->assign('regErr',true);
         $this->smarty->display('login.tpl');
     }
 
@@ -94,7 +100,9 @@ class VUser{
      * @throws SmartyException
      */
     public function loginBan() {
-        $this->smarty->assign('ban',"true");
+        $this->smarty->assign('error',false);
+        $this->smarty->assign('ban',true);
+        $this->smarty->assign('regErr',false);
         $this->smarty->display('login.tpl');
     }
 

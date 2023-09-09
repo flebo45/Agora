@@ -11,6 +11,7 @@
     <script src="/Agora/Smarty/js/test.js"></script>
     <!-- stylesheet -->
     {literal}
+    <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
     <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
     {/literal}
     <script>
@@ -62,7 +63,11 @@
                 </div>
             {/if}
                 <div class ="handle">
-                    <h4> {$user->getUsername()} {if $user->isVip()}<i class='uil uil-star'></i> {/if}</h4>
+                {if $user->isVip()}
+                    <h4 class='vip'> {$user->getUsername()} <i class='uil uil-star'></i> </h4>
+                {else}
+                    <h4> {$user->getUsername()}</h4>
+                {/if}
                     <p class="text-muted">@{$user->getName()}</p>
                 </div>
             </a>
@@ -107,36 +112,46 @@
                 <div class="feed">
                   <div class="head">
                     <div class="user">
+                    {if $followedPic[$post->getUser()->getId()]->getSize() > 0}
+                        <div class="profile-photo">  
+                            <img src="data:{$followedPic[$post->getUser()->getId()]->getType()};base64,{$followedPic[$post->getUser()->getId()]->getEncodedData()}" alt="Img">
+                        </div>
+                      {else}
                         <div class="profile-photo">
                             <img src="/Agora/Smarty/immagini/1.png" alt="">
                         </div>
+                      {/if}
                         <div class="ingo">
                             <div>
                                 <a href="/Agora/Post/visit/{$post->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getTitle()}</a>
                             </div>
                             <small>{$post->getTime()->format('Y-m-d H:i:s')}</small>
-                      </div>
+                        </div>
                     </div>
-                      <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post->getCategory()}</div>
+                      <div class='vip'>{$post->getCategory()}</div>
                   </div>
                     <div class="caption ">
                         <!-- Smarty tag for username -->
                         <p>
-                            <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"> {$post->getUser()->getUsername()}</a>
+                        {if $post->getUser()->isVip()}
+                            <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" class="vip"> {$post->getUser()->getUsername()}</a> <i class='uil uil-star vip'></i>
+                        {else}
+                            <a  href="/Agora/User/profile/{$post->getUser()->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post->getUser()->getUsername()}</a>
+                        {/if}
                             <span class="harsh-tag" style="max-width: 30rem;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;  ">
                                 {$post->getDescription()}
                             </span>
                         </p>
                     </div>
-
+                </div>
                 {/foreach}
                 {/if}
                 <!----------------END OF FEED------------------------------>
-            </div>
+           
             </div>
             <!----------------END OF FEEDS------------------------------>
         </div>
-    </div>
+  
 
         <!-----------------------END OF MIDDLE---------------------------->
 
@@ -346,9 +361,9 @@
 
                 <!----------------------START OF TOP WRITER--------------------->
                <div class="top-writer">
-                   <div class="heading">
-                   <h4>VIP Writer</h4>
-                   <i class="uil uil-award"> </i>
+                   <div class="heading vip">
+                    <h2>VIP Writer</h2>
+                    <i class="uil uil-star"> </i>
                    </div>
                    <div class="writer">
                         {foreach $arrVip as $vip} <!-- TOP WRITERS DEVE ESSE UN ARRAY DI 3 ELEMENTI-->
@@ -363,7 +378,7 @@
                             </div>
                         {/if}
                             <div>
-                            <a  href="/Agora/User/profile/{$vip->getUsername()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$vip->getUsername()}</a>
+                            <a  href="/Agora/User/profile/{$vip->getUsername()}" class='vip'>{$vip->getUsername()}</a>
                                 <p class="text-muted">Followers : {$vipFollower[$vip->getId()]}</p> 
                             </div>
                         </div>

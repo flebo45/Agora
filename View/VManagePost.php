@@ -33,7 +33,7 @@ class VManagePost{
     /**
      * @throws SmartyException
      */
-    public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb, $followedNumb, $followerNumb, $checkLike)
+    public function showPost($user, $userPic, $visitedUserPic, $post, $comments, $likeNumb, $followedNumb, $followerNumb, $checkLike,  $followCheck)
     {
         $this->smarty->assign('user', $user);
         $this->smarty->assign('userPic', $userPic);
@@ -44,6 +44,7 @@ class VManagePost{
         $this->smarty->assign('followerNumb', $followerNumb);
         $this->smarty->assign('followedNumb', $followedNumb);
         $this->smarty->assign('checkLike', $checkLike);
+        $this->smarty->assign('followCheck', $followCheck);
         $this->smarty->display('visualization_post.tpl');
     }
 

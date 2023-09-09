@@ -10,6 +10,7 @@
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
+  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="/Agora/Smarty/css/style.css">
   <script>
         function ready(){
@@ -36,6 +37,12 @@
       {if $error == true}
         <p style="color: red; margin-left: 11%">username or password incorrect</p>
         {/if}
+      {if $ban == true}
+        <p style="color: red; margin-left: 7%">the user you are trying to access is banned</p>
+        {/if}
+        {if $regErr == true}
+          <p style="color: red; margin-left: 7%">email or username is already taken</p>
+          {/if}
       <form id="login" class="input-group" action="/Agora/User/login" method="post">
         <label>
           <input type="text" class="input-field" placeholder="Enter Username" name="username" required>
@@ -57,16 +64,13 @@
           <input type="text" class="input-field" placeholder="Surname" name="surname" required>
         </label>
         <label>
-          <input type="number" class="input-field" placeholder="Age" name="age" required>
+          <input type="number" class="input-field" placeholder="Age" name="age" min='18' required>
         </label>
         <label>
           <input type="text" class="input-field" placeholder="Username" name="username" required>
         </label>
         <label>
           <input type="email" class="input-field" placeholder="Email" name="email" required>
-        </label>
-        <label>
-          <input type="tel" class="input-field" placeholder="Phone" name="phone" required>
         </label>
         <label>
           <input type="password" class="input-field" placeholder="Enter Password" name="password" id="password" required>

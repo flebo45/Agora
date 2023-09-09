@@ -160,6 +160,7 @@ public static function visit($idPost)
 
                 $numbLike = $pm::getLikeNumber($idPost);
 
+                $follow = $pm::retriveFollow($userId, $post->getUser()->getId());
                 $followerNumb = $pm::getFollowerNumb($post->getUser()->getId());
                 $followedNumb = $pm::getFollowedNumb($post->getUser()->getId());
 
@@ -170,9 +171,16 @@ public static function visit($idPost)
                 }else{
                     $checkLike = false;
                 }
+
+                if($follow !== null)
+                {
+                    $followCheck = true;
+                }else{
+                    $followCheck = false;
+                }
                 $view = new VManagePost();
                 
-                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb, $checkLike);
+                $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb, $checkLike,  $followCheck);
             }else{
                 header('Location: /Agora/User/home');
             }
@@ -198,6 +206,7 @@ public static function visit($idPost)
 
             $numbLike = $pm::getLikeNumber($idPost);
 
+            $follow = $pm::retriveFollow($userId, $post->getUser()->getId());
             $followerNumb = $pm::getFollowerNumb($post->getUser()->getId());
             $followedNumb = $pm::getFollowedNumb($post->getUser()->getId());
 
@@ -210,9 +219,17 @@ public static function visit($idPost)
                 }else{
                     $checkLike = false;
                 }
+
+                if($follow !== null)
+                {
+                    $followCheck = true;
+                }else{
+                    $followCheck = false;
+                }
+
             $view = new VManagePost();
                 
-            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb,  $checkLike);
+            $view->showPost($user, $userPic, $visitedUserPic, $post, $comments, $numbLike, $followedNumb, $followerNumb,  $checkLike,  $followCheck);
         }
     }
 }

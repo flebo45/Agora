@@ -10,6 +10,7 @@
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
   <script src="/Agora/Smarty/js/test.js"></script>
   <!-- stylesheet -->
+  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   <script>
         function ready(){

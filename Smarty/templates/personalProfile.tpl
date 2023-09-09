@@ -11,6 +11,7 @@
     <script src="/Agora/Smarty/js/test.js"></script>
   <!-- stylesheet -->
   {literal}
+  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
   {/literal}
   <script>
@@ -29,10 +30,12 @@
                 Agorà
             </h2>
             <div class="search-bar">
-                <i class ="uil uil-search"></i>
-                <label>
-                    <input type ="search" placeholder="search for post or users">
-                </label>
+            <form id='search' action="/Agora/Search/search" method="post">
+            <i class ="uil uil-search"></i>
+            <label>
+                <input type ="search" name="keyword" placeholder="search for post or users">
+            </label>
+        </form>
             </div>
             <form  action="/Agora/User/logout" method="post">
                 <div>
@@ -61,7 +64,11 @@
               </div>
             {/if}
                 <div class ="handle">
-                    <h4>{$user->getUsername()}</h4>
+                {if $user->isVip()}
+                  <h4 class='vip'> {$user->getUsername()} <i class='uil uil-star'></i> </h4>
+                {else}
+                  <h4> {$user->getUsername()}</h4>
+                {/if}
                     <p class="text-muted">{$user->getName()}
                     </p>
                 </div>
