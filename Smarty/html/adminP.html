@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-compatible" content ="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale-1.0">
+  <title>{$pageTitle}</title>
+  <!-- icon scout cdn -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="Img/A.png">
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <h2>Agorà</h2>
+      <h2>Admin</h2>
+      <div class="profile-photo">
+        <img src="/Agora/Img/A.png" alt="">
+      </div>
+    </div>
+  </nav>
+
+  <!----------------REPORT PAGE FOR ADMIN------------------------------->
+  <main>
+
+        <div class="admin">
+          <h3 class="title">ID</h3>
+          <h3 class="title">Info</h3>
+          <h3 class="title">Action</h3>
+        </div>
+        {foreach $reports as $report}
+        <div class="admin-report" style="margin-top: 1%">
+          <div class="admin">
+            <div class="left">
+              <h3>{$report->getId()} report</h3>
+              <h4>{$report->getType()}</h4>
+              <h4>{$report->getUsername()}</h4>
+              <h5>{$report->countReport()}/3</h5>
+              <h6>Id who sent the report: {$report->getIduser()}</h6>
+            </div>
+            <div class="middle">
+              <div class="body-report"> {$report->getBody()}</div>
+              <label>
+                <button class="btn btn btn-primary" onclick="location.href='visualization-post.html'">See the post</button>
+              </label>
+            </div>
+            <div class="right">
+              <div>
+              <label>
+                <button class="btn btn-primary "><i class="uil uil-trash-alt">Delete</i></button>
+              </label>
+              </div>
+              <div style="margin-top: 100%">
+              <label>
+                <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
+              </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/foreach}
+  </main>
+</body>
+</html>
