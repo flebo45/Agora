@@ -10,7 +10,7 @@
   <link rel="icon" href="/Agora/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" type="text/css" href="/Agora/Smarty/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/Smarty/css/style.css">
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
