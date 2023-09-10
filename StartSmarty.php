@@ -1,5 +1,5 @@
 <?php
-require('Smarty/Smarty.class.php');
+//require('Smarty/Smarty.class.php');
 
 class StartSmarty{
     static function configuration(){
