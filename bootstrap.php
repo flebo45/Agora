@@ -10,9 +10,14 @@ require_once(__DIR__ . '/config/config.php');
     __DIR__,
     __DIR__ . './Entity',
 );*/
+// Parse the JawsDB URL
+
+
 
 function getEntityManager() : \Doctrine\ORM\EntityManager
 {
+    $dbUrl = getenv('JAWSDB_URL') ?: getenv('JAWSDB_MARIA_URL');
+    $url = parse_url($dbUrl);
     $entityManager = null;
 
     if ($entityManager === null)
@@ -24,10 +29,11 @@ function getEntityManager() : \Doctrine\ORM\EntityManager
         # set up configuration parameters for doctrine.
         # Make sure you have installed the php7.0-sqlite package.
         $connectionParams = array(
-            'dbname' => DB_NAME,
-            'user' => DB_USER,
-            'password' => DB_PASS,
-            'host' => DB_HOST,
+            'dbname' => substr($url['path'], 1),
+            'user' => $url['user'],
+            'password' => $url['pass'],
+            'host' => $url['host'],
+            'port' => $url['port'],
             'driver' => 'pdo_mysql',
         );
 
