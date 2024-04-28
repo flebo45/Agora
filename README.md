@@ -24,7 +24,10 @@ This app would is intended as a project to lean how to design web applications, 
 
 ## Key Feature
 
-Agorà is a Social Network Web Application, in which users can share their experience, mood, hobby, thoughts and much more. Every user can create Post and enrich it with photos. But as everythings in the life, there is competition: Top 3 Users (users with the most follower) will be VIP Users.
+Agorà is a Social Network Web Application, in which users can share their experience, mood, hobby, thoughts and much more.
+The "Agora" in the Ancient Greek city was a central public space. It is the best representation of a city-state's response to accomodate the social and the political order of the polis.
+We took inspiration from this for our application.
+Every user can create Post and enrich it with photos. But as everythings in the life, there is competition: Top 3 Users (users with the most follower) will be VIP Users.
 
 ![Agora Profilepage](libs/Smarty/immagini/AgoraProfile.png)
 
