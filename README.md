@@ -16,7 +16,10 @@
 
 Agora is a Web Application project for the "Web Programming" exam for Univaq(IT).
 
-Agora is a Social Network that utilizes PHP, Doctrine ORM and Smarty. **This is the project without DoctrineORM**
+Agora is a Social Network that utilizes PHP, Doctrine ORM and Smarty.
+
+**..............This is the project version without DoctrineORM...........................**
+
 This app would is intended as a project to lean how to design web applications, using the principles of the **MVC Pattern** and show the potential of our team in the engineering field.
 
 ## Key Feature
