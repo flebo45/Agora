@@ -1,0 +1,1645 @@
+/*noinspection CssUnknownTarget*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+:root{
+    --primary-color-hue: 252;
+    --dark-color-lightness:17%;
+    --light-color-lightness:95%;
+    --white-color-lightness:100%;
+
+    --color-dark: hsl(252,30%,var(--dark-color-lightness));
+    --color-white:hsl(252,30%,var(--white-color-lightness));
+    --color-light: hsl(252,30%,var(--light-color-lightness));
+    --color-gray: hsl(var(--primary-color-hue),15%,65%);
+    --color-primary: hsl(var(--primary-color-hue),75%,60%);
+    --color-secondary: hsl(252,100%,90%);
+    --color-success: hsl(120,95%,65%);
+    --color-danger: hsl(0,95%,65%);
+    --color-black: hsl(252,30%,10%);
+
+    --border-radius: 2rem;
+    --card-border-radius:1rem;
+    --btn-padding:0.6 2rem;
+    --search-padding:0.6 1rem;
+    --card-padding:1rem;
+
+    --sticky-top-left:-5.4rem;
+    --sticky-top-right:-18rem ;
+}
+*,
+*::before, *::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box ;
+    text-decoration: none ;
+    list-style: none;
+    border: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-dark);
+    background: var(--color-light);
+    overflow-x: hidden;
+}
+
+
+/*LOG IN STYLE*/
+
+.box .form-box{
+    width:25rem;
+    height: 41rem;
+    position: relative;
+    margin: 3% auto;
+    background:  var(--color-white);
+    padding:5px;
+    overflow: hidden;
+}
+ .box .form-box h3{
+   margin-left:40%;
+}
+.box .button-box{
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px var(--color-light);
+    border-radius:30px ;
+}
+
+.toggle-btn{
+    padding:10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+#btn-log{
+    top:0;
+    left:0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border-radius: 30px;
+    transition: .5s;
+}
+
+.social-photo{
+    margin:30px;
+    text-align: center;
+}
+
+.social-photo img{
+    width: 30px;
+    margin: 0 12px;
+    box-shadow: 0 0 20px 0 #7f7f7f3d;
+    cursor: pointer;
+    border-radius: 15%;
+}
+
+.vip{
+    background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+.input-group{
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.submit-btn{
+    width:85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin:auto;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+
+#login{
+    left: 50px;
+}
+
+#register{
+    left: 450px;
+}
+
+
+/* GENERAL STYLE*/
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profile-photo{
+    width: 2.7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.first-photo{
+    width: 2.7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+img{
+    display: block;
+    width: 100%;
+}
+.btn{
+    display: inline-block;
+    padding :0.2rem;
+    font-weight:500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-size:0.9rem;
+}
+.btn:hover{
+    opacity: 0.8;
+}
+
+.btn-primary{
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-transparent{
+    background: transparent;
+    cursor: pointer;
+    transition: all 300ms ease;
+ }
+.tex-bold{
+    font-weight:500;
+}
+
+.text-muted{
+    color :var(--color-gray);
+}
+
+/*============NAVBAR==============*/
+
+nav{
+    width: 100%;
+    background: var(--color-white);
+    padding: 0.7rem 0;
+    position: fixed;
+    top:0;
+    z-index: 10;
+}
+
+nav .container{
+    display: flex;
+    align-items: center ;
+    justify-content: space-between;
+}
+.search-bar{
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    padding:var(--search-padding);
+}
+
+.search-bar input[type="search"]{
+    background: transparent;
+    width:30vw;
+    margin-left:1rem;
+    font-size:0.9rem;
+    color:var(--color-dark);
+}
+
+nav .search-bar input[type="search"]::placeholder {
+    color: var(--color-gray);
+}
+
+nav .create {
+
+    display: flex;
+    align-items:center ;
+    gap:2rem;
+}
+
+
+/*-----------------MAIN------------------*/
+
+main{
+    position:relative;
+    top:5.4rem;
+}
+
+main .container{
+    display: grid;
+    grid-template-columns:19vh auto 20vw  ;
+    column-gap:2rem;
+    position:relative;
+}
+
+/*---------------LEFT----------------*/
+
+main .container .left{
+    height:max-content;
+    position:sticky;
+    top:var(--sticky-top-left);
+}
+
+main .container .left .profile{
+    padding: var(--card-padding);
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    display: flex;
+    align-items: center;
+    column-gap:1rem;
+    width:100%;
+
+}
+
+/*-------------------SIDEBAR------------------*/
+
+.left .sidebar{
+    margin-top:1rem;
+    background: var(--color-white);
+    border-radius:var(--card-border-radius)
+}
+
+.left .sidebar .menu-items{
+    display:flex;
+    align-items:center;
+    height:4rem;
+    cursor:pointer;
+    transition: all 300ms ease;
+    position: relative;
+}
+
+.left .sidebar .theme-cust{
+    display:flex;
+    align-items:center;
+    height:4rem;
+    cursor:pointer;
+    transition: all 300ms ease;
+    position: relative;
+}
+
+.left .sidebar .theme-cust:hover{
+    background: var(--color-light);
+}
+
+.left .sidebar .menu-items:hover{
+    background: var(--color-light);
+}
+
+.left .sidebar i{
+    font-size: 1.4rem;
+    color:var(--color-gray);
+    margin-left: 0.1rem;
+    position:relative;
+}
+
+.left .sidebar i .notification-count{
+    background: var(--color-danger);
+    color:white;
+    font-size: 0.7rem;
+    width: fit-content;
+    border-radius: 0.8rem;
+    padding:0.1rem 0.4rem;
+    position:absolute;
+    top:-0.2rem;
+    right: -0.3rem;
+}
+.left .sidebar h3{
+    margin-left: 0.1rem;
+    font-size: 1rem;
+}
+
+.left .sidebar .active{
+    background: var(--color-light);
+}
+
+.left .sidebar .active i,
+.left .sidebar .active h3{
+    color:var(--color-primary);
+}
+
+.left .sidebar .active::before{
+    content: "";
+    display: block;
+    width: 0.25rem;
+    height: 100%;
+    position: absolute;
+    background:var(--color-primary);
+}
+
+.left .sidebar .menu-items:first-child.active{
+    border-top-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
+}
+
+.left .sidebar .menu-items:last-child.active{
+    border-bottom-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
+}
+
+.left .btn{
+    margin-top:1rem;
+    width: 100%;
+    text-align: center;
+    padding:1rem 0;
+}
+/*-------------------------FEEDS---------------------*/
+
+.middle .feeds .error {
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+}
+ .middle  .feeds .feed  .rainbow-text {
+        background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+.middle .feeds .feed{
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding:var(--card-padding);
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.middle .feed .head{
+    display: flex ;
+    justify-content: space-between;
+}
+
+.middle .feed .user {
+    display: flex;
+    gap: 1rem;
+}
+
+body { overflow-x: hidden }
+
+.middle .feed .photo img{
+    min-width: 60%;
+    width:calc(100%/var(--n));
+    margin-left: 20%;
+    margin-right: 20%;
+    pointer-events: none;
+    user-select: none;
+
+}
+.middle .feed .photo{
+    display: flex;
+    align-items: center;
+    --n:1;
+    overflow-y: hidden;
+    height: 30vw;
+    max-height: 130vh;
+    width: calc(var(--n)*100%);
+
+}
+
+.middle .feed .action-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    margin: 0.6rem;
+}
+
+.middle .liked-by{
+    display: flex;
+}
+
+.middle .liked-by span{
+    width: 1.4rem;
+    height: 1.4rem;
+    display: block;
+    border-radius: 50%;
+    overflow:hidden;
+    border:2px solid var(--color-white);
+    margin-left: -0.6rem;
+}
+
+.middle .liked-by span:first-child{
+    margin:0;
+}
+
+.middle .liked-by p{
+    margin-left: 0.5rem ;
+}
+
+/*-----------------------RIGHT----------------------------*/
+.main .container .right {
+    height: max-content;
+    position: sticky;
+    top: var(--sticky-top-right);
+    bottom: 0;
+}
+/*-----------Right home page-------------------*/
+
+.right .categories{
+    align-items: center;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    max-height: 40%;
+    overflow-y:auto ;
+}
+
+.right .categories .heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.right .categories i{
+    font-size: 2rem;
+}
+
+.right .categories .search-bar{
+    display: flex;
+}
+
+.right .categories .title {
+    display: flex;
+    margin-bottom: 1rem;
+    margin-top:1rem;
+    font-size:1.5rem;
+}
+
+.right .categories .category{
+    display: flex;
+    gap:1rem;
+    margin-bottom: 1rem;
+    align-items: start;
+}
+.right .categories .category:last-child{
+    margin:0;
+}
+
+.right .category-body .action{
+    display: flex;
+    gap:1rem;
+}
+
+/*-----------Right profile page-------------------*/
+
+.right .side-profile{
+    align-items: center;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+}
+
+.right .side-profile .heading{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.right .side-profile i{
+    font-size: 2rem;
+}
+
+.right .side-profile .title{
+    display: flex;
+    margin-bottom: 1rem;
+    margin-top:1rem;
+    font-size:1.5rem;
+}
+
+.right .side-profile .heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.right .side-profile .bio{
+    display: flex;
+    gap:1rem;
+    margin-bottom: 1rem;
+    align-items: start;
+}
+.right .side-profile .bio:last-child{
+    margin:0;
+}
+
+/*--------------------TOP WRITER-----------------------*/
+
+.right .top-writer{
+    margin-top: 1.5rem;
+    align-items: center;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+}
+
+.right .top-writer .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.right .top-writer .heading i{
+    font-size: 2rem;
+}
+
+.right .top-writer h4{
+    color:var(--color-black);
+    margin: 1rem;
+}
+
+.right .top-writer .writer{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-bottom: 0.7rem;
+}
+.right .writer .info{
+    display: flex;
+    gap:1rem;
+    margin-bottom:1rem;
+}
+
+/*-------------------top post by user------------------------*/
+.right .top-post{
+    margin-top: 1.5rem;
+    align-items: center;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+}
+
+.right .top-post .heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.right .top-post .heading i{
+    font-size: 2rem;
+}
+
+.right .top-post h4{
+    color:var(--color-black);
+    margin: 0.1rem;
+}
+
+.right .top-post .post{
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-bottom: 0.1rem;
+}
+.right .post .info{
+    display: flex;
+    gap:1rem;
+    margin-bottom:0.1rem;
+}
+
+/*--------------------------------------------
+EDIT CARD
+-----------------------------------------------
+*/
+
+.edit{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    font-size: 0.9rem;
+    display: none;
+
+
+}
+
+.edit .card {
+    background: var(--color-white);
+    padding: 1rem;
+    margin-left: 53%;
+    margin-top: 5%;
+    border-radius: var(--card-border-radius);
+    width: 10%;
+    box-shadow: 0 0 1rem var(--color-primary);
+    position: absolute;
+}
+
+
+
+/*--------------------------------------------
+DELETE CARD
+-----------------------------------------------
+*/
+
+
+.delete{
+    background: rgba(255,255,255,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    place-items: center;
+    font-size: 0.9rem;
+    display: none;
+}
+
+
+.delete .card{
+    background: var(--color-white);
+    padding:3rem;
+    border-radius: var(--card-border-radius);
+    width: 50%;
+    box-shadow: 0 0 1rem var(--color-primary);
+
+}
+
+/*--------------------------------------------
+REPORT CARD
+-----------------------------------------------
+*/
+
+.report{
+    background: rgba(255,255,255,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    place-items: center;
+    font-size: 0.9rem;
+    display: none;
+
+}
+
+.report .card{
+    background: var(--color-white);
+    padding:3rem;
+    border-radius: var(--card-border-radius);
+    width: 50%;
+    box-shadow: 0 0 1rem var(--color-primary);
+
+}
+
+.report .card .report-checkbox{
+    display: flex;
+    margin-left: 40%;
+    margin-top: 1%;
+}
+
+.report .text-area {
+    resize: none;
+    padding: 1em;
+    border-radius: 10px;
+    border-color: var(--color-primary);
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 9rem;
+}
+
+/*-----------------------THEME CUSTOMIZATION-----------------------*/
+
+.customize-theme{
+    background: rgba(255,255,255,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100;
+    text-align: center;
+    place-items: center;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.customize-theme .card{
+    background: var(--color-white);
+    padding:3rem;
+    border-radius: var(--card-border-radius);
+    width: 50%;
+    box-shadow: 0 0 1rem var(--color-primary);
+}
+
+/*---------------FONT SIZE----------------------*/
+
+.customize-theme .font-size{
+    margin-top: 5rem;
+}
+
+.customize-theme .font-size > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-light);
+    padding: var(--search-padding);
+    border-radius: var(--card-border-radius);
+}
+
+.customize-theme .choose-size{
+    background:var(--color-secondary);
+    height: 0.3rem;
+    width: 100%;
+    margin: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.customize-theme .choose-size span{
+    width: 1rem;
+    height: 1rem;
+    background: var(--color-secondary);
+    border-radius:50%;
+    cursor: pointer;
+}
+
+.customize-theme .choose-size span.active{
+    background: var(--color-primary);
+}
+/*---------------FONT SIZE----------------------*/
+.customize-theme .choose-color{
+    margin-top: 2.2rem;
+}
+
+.customize-theme .choose-color{
+    background: var(--color-light);
+    padding: var(--search-padding);
+    border-radius: var(--card-border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customize-theme .choose-color span{
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius:50%;
+    cursor: pointer;
+}
+
+.customize-theme .choose-color span:nth-child(1){
+    background:hsl(252,75%,60%);
+}
+.customize-theme .choose-color span:nth-child(2){
+    background:hsl(52,75%,60%);
+}
+.customize-theme .choose-color span:nth-child(3){
+    background:hsl(352,75%,60%);
+}
+.customize-theme .choose-color span:nth-child(4){
+    background:hsl(152,75%,60%);
+}
+.customize-theme .choose-color span:nth-child(5){
+    background:hsl(202,75%,60%);
+}
+
+.customize-theme .choose-color span.active{
+    border: 5px solid white;
+}
+
+/*----------------------BACKGROUND-------------------*/
+
+.customize-theme .background{
+    margin-top:2rem;
+}
+
+.customize-theme .choose-bg{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:2rem;
+}
+
+.customize-theme .choose-bg > div{
+    padding: var(--card-padding);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.customize-theme .choose-bg > div.active{
+    border:2px solid var(--color-primary);
+}
+
+.customize-theme .choose-bg .bg-1{
+    background: white;
+    color: black;
+}
+.customize-theme .choose-bg .bg-2{
+    background: hsl(252,30%,17%);
+    color: white;
+}
+
+.customize-theme .choose-bg .bg-3{
+    background: hsl(252,30%,10%);
+    color: white;
+}
+
+.customize-theme .choose-bg > div span{
+    width: 2rem;
+    height: 2rem;
+    border:2px solid var(--color-gray);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+
+/*----------------------CREATION POST-------------------*/
+
+
+.creation .form-box{
+    margin-left: 30%;
+    width:40rem;
+    position: relative;
+    background:  var(--color-white);
+    padding:5px;
+}
+.creation .form-box h3{
+    margin-left:40%;
+}
+
+.left-transition{
+    margin-left: 13%;
+}
+.text{
+    margin-left:2rem;
+    padding: 1em;
+    border-radius: 10px;
+    border:2px solid black;
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 2rem;
+    transition: all 0.2s;
+}
+
+.text:hover{
+    cursor: pointer;
+}
+
+.text:focus{
+    cursor: text;
+    color: black;
+    background-color: white;
+    border-color:black;
+}
+
+.text-area{
+    margin-left:2rem;
+    resize: none;
+    padding: 1em;
+    border-radius: 10px;
+    border:2px solid black;
+    outline:none;
+    font-weight: 500;
+    line-height: 1.4;
+    width: 35rem;
+    height: 9rem;
+    transition: all 0.2s;
+}
+
+.text-area:hover{
+    cursor: pointer;
+}
+
+.text-area:focus{
+    cursor: text;
+    color: black;
+    background-color: white;
+    border-color:black;
+}
+
+ .form-box #topic{
+    margin-top: 1rem;
+    margin-left: 5%;
+    width:13%;
+    padding: 5px 12px;
+    cursor: pointer;
+    display: block;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+.form-box .btn{
+    padding: 5px 12px;
+    margin-top: 1rem;
+    margin-left: 88%;
+}
+
+
+.form-box .image-input{
+    margin-left: 5%;
+    margin-top: 1rem;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+ .form-box .custom-btn {
+    margin-top: 1rem;
+    margin-left: 5%;
+    width:20%;
+    padding: 5px 12px;
+    cursor: pointer;
+    display: block;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.form-box:first-child{
+    border-bottom-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
+}
+
+
+.form-box:last-child{
+    border-bottom-left-radius: var(--card-border-radius) ;
+    overflow: hidden;
+}
+
+/*--------------------------------------------
+VISUALIZATION POST
+-----------------------------------------------
+ */
+.middle .comments .head-comment{
+    display:flex;
+    align-items: center;
+}
+.middle .comments {
+    align-items: center;
+    margin-top: 1%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+}
+
+.middle .comments .comment{
+    display: flex;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+}
+
+.middle .comments .comment .body-comment{
+    margin-left: 10%;
+
+}
+
+/*--------------------------------------------
+                SETTINGS
+-----------------------------------------------
+ */
+
+.setting .form-box{
+    margin-top: 10%;
+    margin-left: 20%;
+    height: 100%;
+    width:60rem;
+    position: relative;
+    background:  var(--color-white);
+    padding:5px;
+    overflow: hidden;
+}
+
+.box-setting .profile-photo{
+    margin-left: 47%;
+    position: relative;
+    width: 6rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+.box-setting .custom-btn{
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    margin-left: 45%;
+    width:10%;
+    padding: 10px 12px;
+    cursor: pointer;
+    display: block;
+    background: linear-gradient(to right,hsl(var(--primary-color-hue),75%,60%), hsl(252,100%,90%));
+    border:0;
+    outline: none;
+    border-radius: 30px;
+}
+
+
+.box-setting .info-profile h4{
+    position: relative;
+    margin-left: 4%;
+    margin-top: 1.5%;
+}
+
+.box-setting .info-profile{
+    margin-left: 30%;
+}
+
+.box-setting .btn{
+    display: inline-block;
+    padding :0.2rem;
+    font-weight:500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-size:0.9rem;
+}
+
+.box-setting .btn-primary{
+    margin-left: 3%;
+    display: inline-block;
+    margin-top: 1%;
+}
+.box-setting .custom-btn{
+    width: fit-content;
+}
+
+.box-setting .error-text {
+    color: var(--color-danger);
+    display: none;
+  }
+
+/*--------------------------------------------
+SEARCH PAGE
+-----------------------------------------------
+ */
+.result {
+    width: 70%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    margin: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+    display:flex;
+    justify-content: space-between;
+}
+.result .profile{
+    display: flex;
+}
+.result .left{
+    width: 50%;
+}
+.result .right{
+    width: 30%;
+}
+.search{
+    overflow-y: scroll;
+    height: 100px;
+    text-align: justify;
+}
+
+.list-profile{
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+
+.search-prof{
+    margin-top: 2%;
+
+}
+/*--------------------------------------------
+ADMIN PAGE
+-----------------------------------------------
+ */
+
+.admin{
+    width: 70%;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding:var(--card-padding);
+    margin:auto;
+    font-size:1rem;
+    line-height: 1.5;
+    display:flex;
+    justify-content: space-between;
+
+}
+
+.admin .middle .body-report{
+    overflow-y: scroll;
+    width: 200px;
+    height: 200px;
+    text-align: justify;
+}
+
+/*--------------------------------------------
+MEDIA QUERIES FOR BIG SCREENS
+-----------------------------------------------
+ */
+
+ @media  screen and (min-width: 1200px) {
+/*  sets the width of the item with the class "container" to 96% of the width of its parent container*/
+    .container {
+        width: 96%;
+    }
+
+/* divides the container into 3 columns with a space of 1.5 rem between them*/
+    main .container {
+        grid-template-columns: 15% auto 20% ;
+        gap: 1.5rem;
+    }
+
+/* set the maximum size relative to corresponding column*/
+    .left {
+        width: 100%;
+        height: 100%;
+    }
+
+/* set the maximum width and set the font size of the profile box at 16 px*/
+    main .container .left .profile {
+        width: 100%;
+        font-size: 16px;
+    }
+
+/*does not scroll the left column */
+    main .container .left {
+        position: -webkit-sticky;
+        top:75px;
+    }
+    
+
+          /*MODIFY REPORT*/
+
+/* set the width of the report card at 80%*/
+.report .card{
+    width:80%;
+}
+
+
+      /* MODIFY PROFILE*/
+      
+/*puts items on a column*/
+.container .right .side-profile .heading{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+
+
+}
+
+
+/*--------------------------------------------
+MEDIA QUERIES FOR MEDIUM SCREENS (TABLET)
+-----------------------------------------------
+*/
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+ /*  sets the width of the item with the class "container" to 96% of the width of its parent container*/
+    .container {
+        width: 96%;
+    }
+
+/* divides the container into 3 columns with a space of 1.5 rem between them*/
+    main .container {
+        grid-template-columns: 15% auto 20% ;
+        gap: 1.5rem;
+    }
+
+/* set the maximum size relative to corresponding column*/
+    .left {
+        width: 100%;
+        height: 100%;
+    }
+
+/* set the maximum width and set the font size of the profile box at 14 px*/
+    main .container .left .profile {
+        width: 100%;
+        font-size:14px;
+    }
+
+    main .container .left .profile .photo{
+        width: 100%;
+        height: 100%;
+    }
+
+/*does not scroll the left column */
+    main .container .left {
+        position: -webkit-sticky;
+        top:75px;
+    }
+    
+
+     /*MODIFY SETTINGS */
+/* divides the container into 3 columns*/
+     .bigContainer .container{
+        grid-template-columns: 10% 30% ;
+    }
+
+/*give a minimum width to the left column*/
+    .bigContainer .container .left.left {
+        width: 100%;
+        height: 100%;
+    min-width: 140%;
+    }
+
+    /*remove the create post button*/
+    .bigContainer .container .left .btn-primary{
+        display: none;
+    }
+
+    /* give the dimension of the profile photo*/
+    .bigContainer .container .box-setting .profile-photo {
+        height: 35%;
+        width: 35%;
+    }
+
+/*give the dimension of the box setting input and It will be moved to the left from its default placement of 10% of the width of its parent container.*/
+.bigContainer .container .box-setting input{
+    width: 300%; 
+  height: 60%; 
+  left:10%; 
+}
+
+/*change img-btn*/
+.custom-btn{
+    white-space: nowrap; /* Prevents automatic word division */
+overflow: hidden;/* Hides any content that comes out of the width of the button */
+width: fit-content;/*Sets the width of an element to automatically fit the content within it.*/
+}
+
+.conte{
+white-space: nowrap; /*Text within the element should not wrap when it reaches the end of its width*/
+justify-content: flex-start;
+}
+
+/*Move up the Save button*/
+.conte .btn-primary{
+    position: relative;
+    top: -10px;
+}
+
+/*MODIFY CREATION POST*/
+
+
+/*set the box of the creation post*/
+.form-box:last-child{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: auto; 
+    height: auto;
+    }
+
+/*divides into two column the container*/   
+    .container_crea .container{
+        grid-template-columns: 10% 82% ;
+    }
+
+/* give the min width to the left column*/
+    .container_crea .container .left{
+    min-width: 180%;
+    }
+    
+/*give the margin to the button*/
+    .form-box .btn {
+    
+        margin-left: 80%;
+      }
+
+/*give the width to the select-img button*/   
+      .form-box .custom-btn{
+        width:33%
+      }
+
+/*set the text area of the body*/     
+      .text-area{
+        width: 80%; 
+      height: 60%;
+      }
+ /*set the text area of the title*/       
+      .text{
+        width: 80%; 
+        height: 60%;
+      }
+
+      /* MODIFY PROFILE*/
+
+/*puts items on a column*/
+      .container .right .side-profile .heading{
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      
+
+
+      /*MODIFY REPORT*/
+
+.report .card{
+    width:80%;
+}
+
+/* set the margin of the text area of the report*/
+.report .text-area {
+
+    margin-left: -40%;
+    margin-right: -40%;
+ }
+
+   /*MODIFY CUSTOMIZE*/
+
+   .customize-theme .card {
+    justify-content: center; 
+    width:70%;
+    height: 90%;
+  }
+
+  .customize-theme .choose-bg {
+    gap: 1rem;
+  }
+
+  .customize-theme .choose-bg .bg-1 {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+.customize-theme .choose-bg .bg-2 {
+ 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+.customize-theme .choose-bg .bg-3 {
+
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+
+}
+
+/*--------------------------------------------
+MEDIA QUERIES FOR SMALL SCREENS (PHONE)
+-----------------------------------------------
+*/
+@media screen and (max-width: 767px) {
+
+    .container {
+        width: 96%;
+    }
+/* modify Home */
+
+    main .container {                     /*partition space*/
+        grid-template-columns: 10% auto ;
+        gap: 1rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: 100%;                     /*Maximum space and no writing*/
+        font-size: 0px;
+    }
+
+   main .container .left .profile {
+        display: none;                    /*Elimination of the user's descriptive space*/
+    }
+
+   main .container .left {
+    
+    position: -webkit-sticky;
+    position: sticky;                         /*does not scroll the left column */
+    top: 50px;
+
+}
+
+     .left .btn{
+        min-width:105%;
+        font-size: 11px;
+}
+
+    .right .categories{
+        display: none;                    /*Elimination of the categories bar*/
+    }
+
+    .right .top-writer{
+        display: none;                    /*Elimination of the top written*/
+    }
+
+    /*MODIFY SETTINGS */
+    
+    .bigContainer .container{
+        grid-template-columns: 10% 30% ;
+    }
+
+    .bigContainer .container .left .btn-primary{
+        display: none;
+    }
+
+    .bigContainer .container .box-setting .profile-photo {
+        height: 35%;
+        width: 35%;
+    }
+
+.bigContainer .container .box-setting input{
+    width: 300%; 
+  height: 60%; 
+  left:10%; 
+}
+
+.custom-btn{
+    white-space: nowrap; 
+overflow: hidden;
+width: fit-content;
+}
+
+.conte{
+white-space: nowrap;
+justify-content: flex-start;
+
+}
+
+
+.conte .btn-primary{
+    position: relative;
+    top: -10px;
+}
+
+/*MODIFY CREATION POST*/
+
+
+
+.form-box:last-child{
+margin-left: 0%;
+width: auto; 
+height: auto;
+}
+
+.container_crea .container{
+    grid-template-columns: 10% 82% ;
+}
+
+.form-box .btn {
+
+    margin-left: 74%;
+  }
+
+  .form-box .custom-btn{
+    width:33%
+  }
+
+  .text-area{
+    width: 80%; 
+  height: 60%;
+  }
+ 
+  .text{
+    width: 80%; 
+    height: 60%;
+  }
+  
+  /*MODIFY CUSTOMIZE*/
+
+  .customize-theme .card {
+    justify-content: center; 
+    width:70%;
+    height: 90%;
+  }
+
+  .customize-theme .choose-bg {
+    gap: 1rem;
+  }
+
+  .customize-theme .choose-bg .bg-1 {
+    background:white;
+    color: black;
+
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+.customize-theme .choose-bg .bg-2 {
+ 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+
+.customize-theme .choose-bg .bg-3 {
+
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+/* MODIFY PROFILE*/
+
+.container_pr .container{
+    grid-template-columns: 10% 82% ;
+    
+    }
+    
+    .container_pr .middle {
+        display: flex;
+        flex-direction: row; /* Set layout direction to horizontal */
+    }
+    
+    .container_pr .container .right .side-profile  {
+        order: 1;
+    }
+    
+    .container_pr .container .middle {
+        order: 2; 
+        margin-left: 145%;
+        margin-right:-780%;
+       
+    
+    }
+    
+    .container_pr .container .middle .feeds .feed{
+        width:110%;
+        height: auto;
+    }
+
+
+/*MODIFY VISUALIZATION POST*/
+
+
+.container_vi .container{
+    grid-template-columns: 10% 82% ;
+    
+    }
+    
+    .container_vi .middle {
+        display: flex;
+        flex-direction: row; /* Set layout direction to horizontal */
+    }
+    
+    .container_vi .container .right .side-profile  {
+        order: 1;
+       }
+    
+    .container_vi .container .middle {
+        order: 2; 
+        margin-left: 145%;
+        margin-right:-400%;
+    
+    }
+    
+    .container_vi .container .middle .feeds .feed{
+        width:200%;
+        height: auto;
+    }
+
+
+/*MODIFY REPORT*/
+
+.report .card{
+    width:80%;
+}
+
+.report .text-area {
+    width: 60%; 
+    height: 60%; 
+   margin-left: -40%;
+   margin-right: -40%;
+}
+
+
+}

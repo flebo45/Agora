@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$pageTitle}</title>
+  <!-- icon scout cdn -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="Img/A.png">
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+  <div class="container">
+    <h2 class="log">
+      {$siteName}
+    </h2>
+    <div class="search-bar">
+      <i class ="uil uil-search"></i>
+      <label>
+        <input type ="search" placeholder="search for post or users">
+      </label>
+    </div>
+    <div class="profile-photo">
+      <img src="Img/2.png" alt="">
+    </div>
+  </div>
+</nav>
+
+
+<main>
+  <div class="container">
+    <!-----------------------left-------------------->
+    <div class="left">
+      <a class="profile">
+        <div class="profile-photo">
+          <img src="Img/A.png" alt=" log in">
+        </div>
+        <div class ="handle">
+          <h4> {$profileName} </h4>
+          <p class="text-muted">
+            @{$profileUsername}
+          </p>
+        </div>
+      </a>
+      <!-----------------------SIDE BAR-------------------->
+      <div class="sidebar">
+        <a class="menu-items">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> <h3>{$homeLabel}</h3>
+        </a>
+        <a class="menu-items ">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> <h3> {$exploreLabel}</h3>
+        </a>
+        <a class="menu-items" id="notification">
+          <span> <i class="uil uil-bell"><small class="notification-count">{$notificationCount}</small></i></span> <h3> {$notificationLabel}</h3>
+          <!----------------NOTIFICATION POPUP------------------------>
+          <div class="notification-popup">
+            <div>
+              <div class="profile-photo">
+                <img src="Img/A.png" alt="photo">
+              </div>
+              <div class="notification-body">
+                <b> {$notificationUserName}</b> <-Action made by him
+                <small class="text-muted"> {$notificationTime}</small>
+              </div>
+            </div>
+          </div>
+        </a>
+        <!------------------------END OF NOTIFICATION POP UP------------------->
+        <label class="menu-items tex-bold">
+          <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"><i class="uil uil-user-circle"></i></button> Profile
+        </label>
+        <a class="menu-items " id="theme">
+          <span> <i class="uil uil-palette"></i></span> <h3> {$themeLabel}</h3>
+        </a>
+        <label class="menu-items tex-bold" >
+          <button class="btn-transparent" onclick="location.href='/Agora/User/settings'">  <i class="uil uil-setting"></i></button>Setting
+        </label>
+      </div>
+      </div>
+      <!--------------------END OF SIDE BAR----------------->
+      <label
+              class="btn btn-primary">{$createPostLabel}
+        <button class="btn-transparent" onclick="location.href='/Agora/ManagePost/createPost'"></button>
+      </label>
+    </div>
+
+
+    <!-----------------------END OF LEFT-------------------->
+
+
+    <!-----------------------middle-------------------->
+    <div class="middle">
+      <!----------------FEEDS-------------------------------->
+      <div class="feeds">
+        <div class="feed">
+          <div class="head">
+            <div class="user">
+              <div class="profile-photo">
+                <img src="Img/A.png" alt="img">
+              </div>
+              <div class="ingo">
+                <h3>{$feedTitle}</h3>
+                <small>{$feedTime}</small>
+              </div>
+            </div>
+            <span class="edit">
+              <i class="uil uil-ellipsis-h"></i>
+            </span>
+          </div>
+
+          <div class="caption ">
+            <p><b>{$username}</b>
+              <span class="harsh-tag">{$tag}
+                {$feedContenti}
+            </span></p>
+          </div>
+
+          <div class="photo">
+            {foreach $feedImages as $image}
+              <img src="{$image}" alt="img">
+            {/foreach}
+          </div>
+
+          <div class="action-buttons">
+            <div class="interaction-buttons">
+              <span><i class="uil uil-heart"></i> </span>
+            </div>
+          </div>
+
+          <div class="liked-by">
+            {foreach $likedByUsers as $likedUser}
+              <span><img src="{$likedUser}" alt=""></span>
+            {/foreach}
+            <p> {$likedByText} <b> {$likedByUsernames}</b> {$likedByAnd} <b> {$likeByCount} </b></p>
+          </div>
+
+          <div class="comments">
+            <div class="head-comment">
+              <div class=" action-buttons">
+                <span><i class="uil uil-comment-dots"></i></span>
+                </div>
+              <h3  class="tex-bold">{$commentsLabel}</h3>
+            </div>
+
+            {foreach $comments as $comment}
+              <div class="comment">
+                <div class="head">
+                  <div class="user">
+                    <div class="profile-photo">
+                      <img src="Img/A.png" alt="img">
+                    </div>
+                    <div class="ingo">
+                      <h3> {$comment.username} </h3>
+                      <small>{$comment.time}</small>
+                    </div>
+                  </div>
+
+                  <div class="body-comment">
+                    <b>{$comment.commentText}</b>
+                  </div>
+                </div>
+              </div>
+            {/foreach}
+
+            <div class="send-comment">
+              <form>
+              <label class="left-transition ">
+                <input type="text" placeholder="{$writeCommentPlaceholder}">
+              </label>
+                <label class="btn btn-primary left-transition">{$sendButtonLabel}
+                  <button type="submit" class="btn-transparent"></button>
+                </label>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!----------------END OF FEEDS------------------------------>
+    <!-----------------------END OF MIDDLE---------------------------->
+
+
+    <!-----------------------right-------------------->
+    <div class="right">
+      <div class="side-profile">
+        <div class="heading">
+          <div class="profile-photo">
+            <img src="Img/A.png" alt=" log in">
+          </div>
+          <div class ="handle">
+            <h4> {$profileName} </h4>
+            <p class="text-muted">
+              @{$profileUsername}
+            </p>
+          </div>
+          <div>
+            <h4> {$followersCount}</h4>
+            <p class="text-muted">{$followersLabel}</p>
+          </div>
+          <div>
+            <h4>{$followingCount}</h4>
+            <p class="text-muted">{$followingLabel}</p>
+          </div>
+        </div>
+
+
+        <!----------------------DESCRIPTION-------------------->
+        <div class="title">
+          <h6>{$aboutMeLabel}</h6>
+        </div>
+
+        <div class="bio">
+          <i class="uil uil-chat-bubble-user"></i>
+          <div class="bio-body">
+            <h5 class="text-bold">{$bioLabel}</h5>
+            <div class="text-muted">
+              <h5>{$bioText}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio">
+          <i class="uil uil-moneybag"></i>
+          <div class="bio-body">
+            <h5 class="tex-bold">{$workingLabel} </h5>
+            <div class="text-muted">
+              <h5>{$workingText}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio">
+          <i class="uil uil-graduation-cap"></i>
+          <div class="bio-body">
+            <h5 class="tex-bold">{$studiedAtLabel}</h5>
+            <div class="text-muted">
+              <h5>{$studiedAtText}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio">
+          <i class="uil uil-hourglass"></i>
+          <div class="bio-body">
+            <h5 class="tex-bold">{$hobbyLabel}</h5>
+            <div class="text-muted">
+              <h5>{$hobbyText}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="bio">
+          <i class="uil uil-plane-departure"></i>
+          <div class="bio-body">
+            <h5 class="tex-bold">{$livingInLabel}</h5>
+            <div class="text-muted">
+              <h5>{$livingInText}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--------------------------TOP POST---------------------------->
+      <div class="top-post">
+        <div class="heading">
+          <h5 class="text-muted left-transition">{$youCanAlsoReadLabel}</h5>
+          <i class="uil uil-award"> </i>
+        </div>
+
+        {foreach $topPosts as $post}
+          <div class="post">
+            <div class="info">
+              <div class="first-photo">
+                <img src="Img/A.png" alt="img">
+              </div>
+              <div>
+                <h5>{$post.title}</h5>
+                <p class="text-muted">{$post.likes}</p>
+              </div>
+            </div>
+          </div>
+        {/foreach}
+
+        
+      </div>
+      <!----------------------END OF DESCRIPTION--------------------->
+
+    </div>
+  </div>
+</main>
+
+<!----------------- THEME CUSTOMIZATION---------------------------->
+<div class="customize-theme">
+  <div class="card">
+    <h2>{$customizeViewLabel}</h2>
+    <p class="text-muted">{$manageFontColorBgLabel}</p>
+    <!-------------------------FONT SIZE----------------------------->
+    <div class="font-size">
+      <h2>{$fontSizeLabel}</h2>
+      <div>
+        <h6>Aa</h6>
+        <div class="choose-size">
+          <span class="font-size-1"></span>
+          <span class="font-size-2"></span>
+          <span class="font-size-3 active"></span>
+          <span class="font-size-4"></span>
+          <span class="font-size-5"></span>
+        </div>
+        <h3>Aa</h3>
+      </div>
+    </div>
+
+
+    <!-----------------------PRIMARY COLORS------------------------>
+    <div class="color">
+      <h4>{$colorLabel}</h4>
+      <div class="choose-color">
+        <span class="color-1 active"></span>
+        <span class="color-2"></span>
+        <span class="color-3"></span>
+        <span class="color-4"></span>
+        <span class="color-5"></span>
+      </div>
+    </div>
+
+    <!----------------------------BACKGROUND COLORS----------------------->
+    <div class="background">
+      <h4>{$backgroundLabel}</h4>
+      <div class="choose-bg">
+        <div class="bg-1 active">
+          <span></span>
+          <h5>{$lightBgLabel}</h5>
+        </div>
+        <div class="bg-2">
+          <span></span>
+          <h5>{$dimBgLabel}</h5>
+        </div>
+        <div class="bg-3">
+          <span></span>
+          <h5>{$lightOutBgLabel}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../js/Sidebar.js"></script>
+</body>
+</html>

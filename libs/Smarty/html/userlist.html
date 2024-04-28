@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{assign var='userlogged' value=$userlogged|default:'nouser'}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content ="IE=edge">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <title>home</title>
+    <!-- icon scout cdn -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+    <link rel="icon" href="/Agora/Smarty/immagini/A.png">
+
+    <!-- stylesheet -->
+    {literal}
+    <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+    {/literal}
+</head>
+<body>
+<nav>
+    <div class="container">
+        <h2 class="log">
+            Agorà
+        </h2>
+        <div class="search-bar">
+            <i class ="uil uil-search"></i>
+            <label>
+                <input type ="search" placeholder="search for post or users">
+            </label>
+        </div>
+        <form  action="/Agora/User/logout" method="post">
+            <div>
+                <button class="btn btn-primary" type="submit">Log out</button>
+            </div>
+        </form>
+        <div class="profile-photo">
+            <img src="/Agora/Smarty/immagini/1.png" alt="">
+        </div>
+    </div>
+</nav>
+
+
+<main>
+    <div class="container">
+        <!-----------------------left-------------------->
+        <div class="left">
+
+            <div class="sidebar">
+                <label class="menu-items tex-bold">
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/home'"> <i class="uil uil-home"></i></button> Home
+                </label>
+                <label class="menu-items tex-bold">
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/explore'"> <i class="uil uil-compass"></i></button> Explore
+                </label>
+
+                <label class="menu-items tex-bold">
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/personalProfile'"> <i class="uil uil-user-circle"></i></button>Profile
+
+                </label>
+                <label class="tex-bold theme-cust"  id="theme">
+                    <span> <i class="uil uil-palette"></i></span>Theme
+                </label>
+                <label class="menu-items tex-bold " >
+                    <button class="btn-transparent" onclick="location.href='/Agora/User/settings/0'"><i class="uil uil-setting"></i> </button>Setting
+                </label>
+            </div>
+            <!--------------------END OF SIDE BAR----------------->
+        </div>
+
+
+    <div class="middle">
+        <div class="feeds">
+            {foreach $userLike as like}
+            <div class ="feed">
+                {if $userPic[$like->getId()]->getSize() > 0}
+                <div class="profile-photo">
+                    <img src="data:{$userPic[$like->getId()]->getType()};base64,{$userPic[$like->getId()]->getEncodedData()}" alt="Img">
+                </div>
+                {else}
+                <div class="profile-photo">
+                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                </div>
+                {/if}
+                <div>
+                <i class="uil uil-heart" style="color:red;"></i> {$like->getUsername()}
+                <p class="text-muted"> {$like->getName()}</p>
+                </div>
+            </div>
+
+            {/foreach}
+        </div>
+    </div>
+    </div>
+</main>

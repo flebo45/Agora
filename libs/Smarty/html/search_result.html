@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-compatible" content ="IE=edge">
+  <meta name="viewport" content="width-device-width, initial-scale-1.0">
+  <title>{$pageTitle}</title>
+  <!-- icon scout cdn -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="Img/A.png">
+
+  <!-- stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+
+<nav>
+  <div class="container">
+    <h2 class="log">{$siteName}</h2>
+    <div class="search-bar">
+      <i class ="uil uil-search"></i>
+      <label>
+        <input type ="search" placeholder="search for post or users">
+      </label>
+    </div>
+    <div class="profile-photo">
+      <img src="Img/A.png" alt="">
+    </div>
+  </div>
+</nav>
+
+
+<!------------------------------------------------------
+                  RESULT FOR SEARCH
+----------------------------------------------------->
+<main>
+
+  <div class="result">
+    <h3 class="text-muted">Result for : {$searchQuery}</h3>
+  </div>
+  <div class="result" style="margin-top: 2%">
+    <div class="left">
+      <h3>Post</h3>
+        <div class="profile">
+          <div class="profile-photo">
+            <img src="Img/A.png" alt=" log in">
+          </div>
+          <div class ="handle">
+            <h4> {$postAuthorName} </h4>
+            <p class="text-muted">
+              @{$postAuthorName}
+            </p>
+          </div>
+        </div>
+      <div>
+      <h3>Title</h3>
+        <h5 class="search"> {$postTitle}</h5>
+        {$postContent}
+      </div>
+        <div>
+      </div>
+      <label>
+        <button class="btn btn-primary" type="button" onclick="location.href='visualization-post.html'">Go to the post</button>
+      </label>
+    </div>
+
+
+    <div class="right">
+      <div class="list-profile">
+        <div>
+        <h3>User</h3>
+        <div class="profile">
+          <div class="profile-photo">
+            <img src="Img/A.png" alt=" log in">
+          </div>
+          <div class ="handle">
+            <h4> {$userProfileName} </h4>
+            <p class="text-muted">
+              @{$userProfileHandle}
+            </p>
+          </div>
+        </div>
+        <label>
+          <button class="btn btn-primary" type="button" onclick="location.href='profile.html'">Go to the user</button>
+        </label>
+        </div>
+          <div class="search-prof">
+            <div class="profile">
+              <div class="profile-photo">
+                <img src="Img/A.png" alt=" log in">
+              </div>
+              <div class ="handle">
+                <h4> {$userProfileName} </h4>
+                <p class="text-muted">
+                  @{$userProfileHandle}
+                </p>
+              </div>
+            </div>
+            <label>
+              <button class="btn btn-primary" type="button" onclick="location.href='profile.html'">Go to the user</button>
+            </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
