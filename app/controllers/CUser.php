@@ -33,7 +33,7 @@ class CUser{
     public static function isBanned()
     {
         $userId = USession::getSessionElement('user');
-        $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+        $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
         if($user->isBanned()){
             $view = new VUser();
             USession::unsetSession();
@@ -203,7 +203,7 @@ class CUser{
     public static function setUserInfo(){
         if(CUser::isLogged()){
             $userId = USession::getInstance()->getSessionElement('user');
-            $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+            $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
 
             $user->setBio(UHTTPMethods::post('Bio'));
             $user->setWorking(UHTTPMethods::post('Working'));                                               
@@ -221,7 +221,7 @@ class CUser{
     public static function setUsername(){
         if(CUser::isLogged()){
             $userId = USession::getInstance()->getSessionElement('user');
-            $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+            $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
 
             if($user->getUsername() == UHTTPMethods::post('username')){
                 header('Location: /Agora/User/personalProfile');
@@ -246,7 +246,7 @@ class CUser{
     public static function setPassword(){
         if(CUser::isLogged()){
             $userId = USession::getInstance()->getSessionElement('user');
-            $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);$newPass = UHTTPMethods::post('password');
+            $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);$newPass = UHTTPMethods::post('password');
             $user->setPassword($newPass);
             FPersistentManager::getInstance()->updateUserPassword($user);
 
@@ -260,7 +260,7 @@ class CUser{
     public static function setProPic(){
         if(CUser::isLogged()){
             $userId = USession::getInstance()->getSessionElement('user');
-            $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+            $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
             
             if(UHTTPMethods::files('imageFile','size') > 0){
                 $uploadedImage = UHTTPMethods::files('imageFile');
@@ -371,7 +371,7 @@ class CUser{
             //new Follow Object
             $follow = new EUserFollow($userId, $followedId);
             FPersistentManager::getInstance()->uploadObj($follow);
-            $visitedUser = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $followedId);
+            $visitedUser = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $followedId);
             header('Location: /Agora/User/profile/' . $visitedUser->getUsername());
         }       
     }
@@ -385,7 +385,7 @@ class CUser{
             $userId = USession::getInstance()->getSessionElement('user');
 
             FPersistentManager::getInstance()->deleteFollow($userId, $followedId);
-            $visitedUser = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $followedId);
+            $visitedUser = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $followedId);
             header('Location: /Agora/User/profile/' . $visitedUser->getUsername());
         } 
     }

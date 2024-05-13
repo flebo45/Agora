@@ -9,7 +9,7 @@ class CComment{
     public static function createComment($idPost){
         if(CUser::isLogged()){
             $userId = USession::getInstance()->getSessionElement('user');
-            $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+            $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
 
             $comment = new EComment(UHTTPMethods::post('body'), $user, $idPost);
             FPersistentManager::getInstance()->uploadObj($comment);

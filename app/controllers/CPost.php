@@ -25,7 +25,7 @@ public static function createPost(){
         $view = new VManagePost();
 
         $userId = USession::getInstance()->getSessionElement('user');
-        $user = FPersistentManager::getInstance()->retriveObj(FUser::getClass(), $userId);
+        $user = FPersistentManager::getInstance()->retriveObj(EUser::getEntity(), $userId);
 
         //create new Post Obj and upload it in the db 
         $post = new EPost(UHTTPMethods::post('title'), UHTTPMethods::post('description'), UHTTPMethods::post('category')); 
@@ -124,7 +124,7 @@ public static function settingLike($idPost){
     if(CUser::isLogged()){
         $idUser = USession::getInstance()->getSessionElement('user');
 
-        $post = FPersistentManager::getInstance()->retriveObj(FPost::getClass(), $idPost);
+        $post = FPersistentManager::getInstance()->retriveObj(EPost::getEntity(), $idPost);
         if(count($post) > 0){
             //create new Like Obj and persist it
             $like = new ELike($idUser, $idPost);
