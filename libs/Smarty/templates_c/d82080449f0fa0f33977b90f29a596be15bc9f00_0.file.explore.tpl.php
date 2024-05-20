@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-27 18:49:04
+/* Smarty version 3.1.33, created on 2024-05-20 15:55:40
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\explore.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662d2c8056c4e6_22618870',
+  'unifunc' => 'content_664b565c4a9403_50807946',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd82080449f0fa0f33977b90f29a596be15bc9f00' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\explore.tpl',
-      1 => 1713037574,
+      1 => 1716212865,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662d2c8056c4e6_22618870 (Smarty_Internal_Template $_smarty_tpl) {
+function content_664b565c4a9403_50807946 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,14 +30,14 @@ function content_662d2c8056c4e6_22618870 (Smarty_Internal_Template $_smarty_tpl)
   <title>Agorà</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/test.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
 >
   <!-- stylesheet -->
   
-    <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-    <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+    <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+    <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
   
   <?php echo '<script'; ?>
 >
@@ -70,7 +70,7 @@ function content_662d2c8056c4e6_22618870 (Smarty_Internal_Template $_smarty_tpl)
       </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/2.png" alt="">
+      <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -88,7 +88,7 @@ function content_662d2c8056c4e6_22618870 (Smarty_Internal_Template $_smarty_tpl)
         </div>
       <?php } else { ?>
         <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/1.png" alt="">
+            <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
         </div>
       <?php }?>
         <div class ="handle">
@@ -155,7 +155,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                 </div>
               <?php } else { ?>
                 <div class="profile-photo">
-                    <img src="/Agora/Smarty/immagini/1.png" alt="">
+                    <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
                 </div>
               <?php }?>
                 <div class="ingo">
@@ -437,7 +437,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['vip']->value) {
                </div>
            <?php } else { ?>
                <div class="profile-photo">
-                   <img src="/Agora/Smarty/immagini/1.png" alt="">
+                   <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
                </div>
            <?php }?>
                <div>
@@ -514,13 +514,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
   </div>
 </div>
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/categories.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/categories.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/storage.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/storage.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

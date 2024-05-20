@@ -2,7 +2,7 @@
 
 // include the composer autoloader for autoloading packages
 require_once(__DIR__ . '/vendor/autoload.php');
-require_once(__DIR__ . '/app/config/config.php');
+require_once(__DIR__ . '/appORM/config/config.php');
 
 // set up an autoloader for loading classes that aren't in /vendor
 // $classDirs is an array of all folders to load from
