@@ -1,0 +1,14 @@
+{
+  "require": {
+    "doctrine/orm": "^2.16",
+    "symfony/yaml": "^6.3",
+    "symfony/cache": "^6.3",
+    "doctrine/annotations": "^2.0",
+    "doctrine/collections": "^2.1"
+  },
+  "config": {
+    "platform": {
+      "php": "8.1"
+    }
+  }
+}
