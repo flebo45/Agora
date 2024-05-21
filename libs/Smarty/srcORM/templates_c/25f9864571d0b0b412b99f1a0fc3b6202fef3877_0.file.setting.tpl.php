@@ -1,4 +1,27 @@
-<!doctype html>
+<?php
+/* Smarty version 3.1.33, created on 2024-05-21 11:58:55
+  from 'C:\xampp\htdocs\Agora\libs\Smarty\srcORM\templates\setting.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_664c705fab9af6_54332892',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '25f9864571d0b0b412b99f1a0fc3b6202fef3877' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\srcORM\\templates\\setting.tpl',
+      1 => 1716285531,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_664c705fab9af6_54332892 (Smarty_Internal_Template $_smarty_tpl) {
+?><!doctype html>
 <html lang="eng">
 <head>
   <meta charset="UTF-8">
@@ -8,18 +31,22 @@
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
-  <script src="/Agora/libs/Smarty/js/test.js"></script>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
+>
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
-  <script>
+  <?php echo '<script'; ?>
+>
         function ready(){
             if (!navigator.cookieEnabled) {
                 alert('Attenzione! Attivare i cookie per proseguire correttamente la navigazione');
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
-    </script>
+    <?php echo '</script'; ?>
+>
 </head>
 <body>
 <nav>
@@ -79,18 +106,20 @@
 
     <div class="box-setting">
     <form enctype="multipart/form-data" action="/Agora/User/setProPic" method="post" >
-    {if $userPic->getSize() > 0}
+    <?php if ($_smarty_tpl->tpl_vars['userPic']->value->getSize() > 0) {?>
       <div class="profile-photo">  
-          <img src="data:{$userPic->getType()};base64,{$userPic->getEncodedData()}" alt="Img">
+          <img src="data:<?php echo $_smarty_tpl->tpl_vars['userPic']->value->getType();?>
+;base64,<?php echo $_smarty_tpl->tpl_vars['userPic']->value->getEncodedData();?>
+" alt="Img">
       </div>
-    {else}
+    <?php } else { ?>
       <div class="profile-photo">
           <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
       </div>
-    {/if}
-      {if $errorImg == true}
+    <?php }?>
+      <?php if ($_smarty_tpl->tpl_vars['errorImg']->value == true) {?>
         <div style="color:red; margin-left: 47%">Invalid input</div>
-      {/if}
+      <?php }?>
       <div class="conte">
         <label class="custom-btn btn">
           <input type="file" name="imageFile" class="image-input" accept="image/*">
@@ -106,19 +135,23 @@
       <div class="info-profile">
         <h4 class="tex-bold" >Biography</h4>
         <label>
-          <input type="text" class="text" name="Bio" value="{$user->getBio()|escape:'html'}">
+          <input type="text" class="text" name="Bio" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getBio(), ENT_QUOTES, 'UTF-8', true);?>
+">
         </label>
         <h4 class="tex-bold" >Work at</h4>
         <label>
-          <input type="text" class="text" name="Working" value="{$user->getWorking()|escape:'html'}">
+          <input type="text" class="text" name="Working" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getWorking(), ENT_QUOTES, 'UTF-8', true);?>
+">
         </label>
         <h4 class="tex-bold" >Studied at</h4>
         <label>
-          <input type="text" class="text" name="StudiedAt" value="{$user->getStudiedAt()|escape:'html'}">
+          <input type="text" class="text" name="StudiedAt" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getStudiedAt(), ENT_QUOTES, 'UTF-8', true);?>
+">
         </label>
         <h4 class="tex-bold" >Hobby</h4>
         <label>
-          <input type="text" class="text" name="Hobby" value="{$user->getHobby()|escape:'html'}">
+          <input type="text" class="text" name="Hobby" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getHobby(), ENT_QUOTES, 'UTF-8', true);?>
+">
         </label>
         <div>
 
@@ -132,11 +165,12 @@
         </form>
         <form enctype="multipart/form-data" action="/Agora/User/setUsername" method="post" >
         <h4 class="tex-bold" >UserName</h4>
-          {if $error == true}
+          <?php if ($_smarty_tpl->tpl_vars['error']->value == true) {?>
           <div style="color: red ; margin-left: 4%">Username already taken</div>
-          {/if}
+          <?php }?>
         <label>
-          <input type="text" class="text" maxlength="15" minlength="3" name="username" value={$user->getUsername()|escape:'html'} >
+          <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+ >
         </label>
         <label class=" btn btn-primary">Save
           <button type="submit" class="btn-transparent"></button>
@@ -222,7 +256,12 @@
     </div>
   </div>
 </main>
-<script src="/Agora/libs/Smarty/js/checkPassword.js"></script>
-<script src="/Agora/libs/Smarty/js/sidebar2.js"></script>
+<?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/checkPassword.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+>
 </body>
-</html>
+</html><?php }
+}

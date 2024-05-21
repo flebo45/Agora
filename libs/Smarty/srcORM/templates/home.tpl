@@ -59,7 +59,7 @@
                 </div>
             {else}
                 <div class="profile-photo">
-                    <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
+                    <img src="/Agora/libs/Smarty/immagini/1.png" alt="Img">
                 </div>
             {/if}
                 <div class ="handle">

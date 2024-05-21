@@ -106,19 +106,19 @@
       <div class="info-profile">
         <h4 class="tex-bold" >Biography</h4>
         <label>
-          <input type="text" class="text" name="Bio" value="{$user->getBio()}">
+          <input type="text" class="text" name="Bio" value="{$user->getBio()|escape:'html'}">
         </label>
         <h4 class="tex-bold" >Work at</h4>
         <label>
-          <input type="text" class="text" name="Working" value="{$user->getWorking()}">
+          <input type="text" class="text" name="Working" value="{$user->getWorking()|escape:'html'}">
         </label>
         <h4 class="tex-bold" >Studied at</h4>
         <label>
-          <input type="text" class="text" name="StudiedAt" value="{$user->getStudiedAt()}">
+          <input type="text" class="text" name="StudiedAt" value="{$user->getStudiedAt()|escape:'html'}">
         </label>
         <h4 class="tex-bold" >Hobby</h4>
         <label>
-          <input type="text" class="text" name="Hobby" value={$user->getHobby()}>
+          <input type="text" class="text" name="Hobby" value={$user->getHobby()|escape:'html'}>
         </label>
         <div>
 
@@ -136,7 +136,7 @@
           <div style="color: red ; margin-left: 4%">Username already taken</div>
           {/if}
         <label>
-          <input type="text" class="text" maxlength="15" minlength="3" name="username" value={$user->getUsername()} >
+          <input type="text" class="text" maxlength="15" minlength="3" name="username" value={$user->getUsername()|escape:'html'} >
         </label>
         <label class=" btn btn-primary">Save
           <button type="submit" class="btn-transparent"></button>
