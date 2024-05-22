@@ -149,15 +149,16 @@ class FPost{
         //settare gli utenti
         //ritornare la lista di post
         $queryResult = FEntityManagerSQL::getInstance()->getSearchedItem(self::getTable(), $field, $keyword);
+        $arrayPostsNotBanned = array();
         foreach($queryResult as $key =>$row){
-            if($row['removed'] == true){
-                unset($queryResult[$key]);
+            if(!$row['removed']){
+                $arrayPostsNotBanned[] = $queryResult[$key];
             }
         }
         if($field == 'title'){
-            $posts = self::getPostWithUser($queryResult);
+            $posts = self::getPostWithUser($arrayPostsNotBanned);
         }else{
-            $posts = self::getPostComplete($queryResult);
+            $posts = self::getPostComplete($arrayPostsNotBanned);
         }
         
         return $posts;

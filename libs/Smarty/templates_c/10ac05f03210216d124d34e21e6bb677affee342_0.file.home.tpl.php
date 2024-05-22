@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-05-20 15:41:25
+/* Smarty version 3.1.33, created on 2024-05-22 09:15:16
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_664b530565a2b6_55285721',
+  'unifunc' => 'content_664d9b84e14b71_64791207',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10ac05f03210216d124d34e21e6bb677affee342' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\home.tpl',
-      1 => 1716212479,
+      1 => 1716285682,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_664b530565a2b6_55285721 (Smarty_Internal_Template $_smarty_tpl) {
+function content_664d9b84e14b71_64791207 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +88,7 @@ function content_664b530565a2b6_55285721 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
             <?php } else { ?>
                 <div class="profile-photo">
-                    <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
+                    <img src="/Agora/libs/Smarty/immagini/1.png" alt="Img">
                 </div>
             <?php }?>
                 <div class ="handle">
