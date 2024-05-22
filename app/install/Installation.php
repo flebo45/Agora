@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__ . '/../config/config.php');
+require_once(__DIR__ . '/../../config/config.php');
 /**
  * calass for checking if the db exist and if not create it
  */
