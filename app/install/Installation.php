@@ -17,7 +17,11 @@ class Installation{
                 $sql = "CREATE DATABASE " . DB_NAME;
                 $conn->exec($sql);
                 $conn->exec("USE " . DB_NAME);
-                $sql = file_get_contents(SQL_FILE_PATH);
+                $sqlFile = __DIR__ . '/agora.sql';
+                if (!file_exists($sqlFile)) {
+                    throw new Exception("SQL file not found: " . $sqlFile);
+                }
+                $sql = file_get_contents($sqlFile);
                 $conn->exec($sql);
             }
             $conn = null;

@@ -5,10 +5,9 @@ define('USE_DOCTRINE', false);
 
 //Database Connection
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'provafinale');
+define('DB_NAME', 'vuoto');
 define('DB_USER', 'root');
 define('DB_PASS', 'pippo');
-define('SQL_FILE_PATH', 'agora.sql');
 
 //Web APP parameter for custom app
 define('MAX_VIP', 3);
