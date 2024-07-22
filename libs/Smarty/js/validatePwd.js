@@ -1,15 +1,11 @@
-const passwordInput = document.getElementById('password');
-const passwordMatchError = document.getElementById('passwordMatchError');
-const registerForm = document.getElementById('register');
+const $passwordInput = $("#password");
+const $passwordMatchError = $("#passwordMatchError");
+const $registerForm = $("#register");
 
-passwordInput.addEventListener('input', checkPasswordValidity);
+$passwordInput.on("input", checkPasswordValidity);
 
-function checkPasswordValidity() {
-  // ... (password validation code) ...
-}
-
-registerForm.addEventListener('submit', function(event) {
-  const password = passwordInput.value;
+$registerForm.on("submit", function (event) {
+  const password = $passwordInput.val();
 
   const hasNumber = /\d/.test(password);
   const hasUppercase = /[A-Z]/.test(password);
@@ -18,8 +14,10 @@ registerForm.addEventListener('submit', function(event) {
 
   if (!hasNumber || !hasUppercase || !hasSpecialChar || !isLengthValid) {
     event.preventDefault(); // Prevent the form from submitting
-    passwordMatchError.style.color = 'red';
-    passwordMatchError.textContent = 'Password must be at least 8 characters long, containing at least 1 number, 1 uppercase letter, and 1 special character.';
-    passwordMatchError.style.display = 'block';
+    $passwordMatchError.css("color", "red");
+    $passwordMatchError.text(
+      "Password must be at least 8 characters long, containing at least 1 number, 1 uppercase letter, and 1 special character."
+    );
+    $passwordMatchError.show();
   }
 });

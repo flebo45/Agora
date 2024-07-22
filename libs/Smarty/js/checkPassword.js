@@ -1,19 +1,20 @@
-const passwordInput = document.getElementById('password');
-const confirmPasswordInput = document.getElementById('confirmPassword');
-const passwordMatchError = document.getElementById('passwordMatchError');
+const $passwordInput = $("#password");
+const $confirmPasswordInput = $("#confirmPassword");
+const $passwordMatchError = $("#passwordMatchError");
 
-passwordInput.addEventListener('input', checkPasswordsMatch);
-confirmPasswordInput.addEventListener('input', checkPasswordsMatch);
-
+// Function to check if passwords match
 function checkPasswordsMatch() {
-  const password = passwordInput.value;
-  const confirmPassword = confirmPasswordInput.value;
+  const password = $passwordInput.val();
+  const confirmPassword = $confirmPasswordInput.val();
 
   if (password === confirmPassword) {
-    passwordMatchError.style.display = 'none';
-    confirmPasswordInput.style.border = '1px solid #ccc';
+    $passwordMatchError.hide();
+    $confirmPasswordInput.css("border", "1px solid #ccc");
   } else {
-    passwordMatchError.style.display = 'block';
-    confirmPasswordInput.style.border = '1px solid red';
+    $passwordMatchError.show();
+    $confirmPasswordInput.css("border", "1px solid red");
   }
 }
+
+$passwordInput.on("input", checkPasswordsMatch);
+$confirmPasswordInput.on("input", checkPasswordsMatch);

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-27 18:49:09
+/* Smarty version 3.1.33, created on 2024-07-21 12:35:33
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\setting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662d2c8545b941_97417162',
+  'unifunc' => 'content_669ce4752e2f92_99308552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '90269464dbfeede0837f3f1bd948600e0e159f6f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\setting.tpl',
-      1 => 1712935890,
+      1 => 1721556144,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669ce4752e2f92_99308552 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="eng">
 <head>
@@ -29,14 +29,26 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Settings</title>
   <!-- icon scout cdn -->
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/test.js"><?php echo '</script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
 >
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -63,7 +75,7 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/2.png" alt="">
+      <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -114,7 +126,7 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
       </div>
     <?php } else { ?>
       <div class="profile-photo">
-          <img src="/Agora/Smarty/immagini/1.png" alt="">
+          <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
       </div>
     <?php }?>
       <?php if ($_smarty_tpl->tpl_vars['errorImg']->value == true) {?>
@@ -135,22 +147,22 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
       <div class="info-profile">
         <h4 class="tex-bold" >Biography</h4>
         <label>
-          <input type="text" class="text" name="Bio" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getBio();?>
+          <input type="text" class="text" name="Bio" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getBio(), ENT_QUOTES, 'UTF-8', true);?>
 ">
         </label>
         <h4 class="tex-bold" >Work at</h4>
         <label>
-          <input type="text" class="text" name="Working" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getWorking();?>
+          <input type="text" class="text" name="Working" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getWorking(), ENT_QUOTES, 'UTF-8', true);?>
 ">
         </label>
         <h4 class="tex-bold" >Studied at</h4>
         <label>
-          <input type="text" class="text" name="StudiedAt" value="<?php echo $_smarty_tpl->tpl_vars['user']->value->getStudiedAt();?>
+          <input type="text" class="text" name="StudiedAt" value="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getStudiedAt(), ENT_QUOTES, 'UTF-8', true);?>
 ">
         </label>
         <h4 class="tex-bold" >Hobby</h4>
         <label>
-          <input type="text" class="text" name="Hobby" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getHobby();?>
+          <input type="text" class="text" name="Hobby" value=<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getHobby(), ENT_QUOTES, 'UTF-8', true);?>
 >
         </label>
         <div>
@@ -169,7 +181,7 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
           <div style="color: red ; margin-left: 4%">Username already taken</div>
           <?php }?>
         <label>
-          <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
+          <input type="text" class="text" maxlength="15" minlength="3" name="username" value=<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['user']->value->getUsername(), ENT_QUOTES, 'UTF-8', true);?>
  >
         </label>
         <label class=" btn btn-primary">Save
@@ -257,10 +269,10 @@ function content_662d2c8545b941_97417162 (Smarty_Internal_Template $_smarty_tpl)
   </div>
 </main>
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/checkPassword.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/checkPassword.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

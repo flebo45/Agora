@@ -6,9 +6,15 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <title>Agorà</title>
     <!-- icon scout cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
     <script src="/Agora/libs/Smarty/js/test.js"></script>
+    <script>
+        const userId = {$user->getId()};
+    </script>
+    <script src="/Agora/libs/Smarty/js/websocket.js"></script>
+    
     <!-- stylesheet -->
     {literal}
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
@@ -455,6 +461,6 @@
     </div>
 <script src="/Agora/libs/Smarty/js/sidebar2.js"></script>
 <script src="/Agora/libs/Smarty/js/categories.js"></script>
-<script src="/Agora/libs/Smarty/js/storage.js"></script>
+
 </body>
 </html>

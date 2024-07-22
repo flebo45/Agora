@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-28 11:25:11
+/* Smarty version 3.1.33, created on 2024-07-18 17:57:03
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662e15f7962888_35689195',
+  'unifunc' => 'content_66993b4f8e2d88_93686472',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e2d6af9494a67fc11f3d9cd61b576804030eb16d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\profile.tpl',
-      1 => 1713037680,
+      1 => 1721318071,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662e15f7962888_35689195 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66993b4f8e2d88_93686472 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,15 +30,27 @@ function content_662e15f7962888_35689195 (Smarty_Internal_Template $_smarty_tpl)
   <title>Agorà-<?php echo $_smarty_tpl->tpl_vars['user']->value->getUsername();?>
 </title>
   <!-- icon scout cdn -->
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/test.js"><?php echo '</script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
 >
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+  <?php echo '<script'; ?>
+ src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"><?php echo '</script'; ?>
+>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
+>
+  
   <!-- stylesheet -->
   
-  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   
   <?php echo '<script'; ?>
 >
@@ -69,7 +81,7 @@ function content_662e15f7962888_35689195 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
       </form>
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/2.png" alt="">
+        <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
       </div>
     </div>
   </nav>
@@ -88,7 +100,7 @@ function content_662e15f7962888_35689195 (Smarty_Internal_Template $_smarty_tpl)
               </div>
             <?php } else { ?>
               <div class="profile-photo">
-                  <img src="/Agora/Smarty/immagini/1.png" alt="">
+                  <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
               </div>
             <?php }?>
                 <div class ="handle">
@@ -148,7 +160,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
                   <div class="head">
                     <div class="user">
                       <div class="profile-photo">
-                          <img src="/Agora/Smarty/immagini/1.png" alt="">
+                          <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
                       </div>
                       <div class="ingo">
                         <div>
@@ -204,7 +216,7 @@ $_smarty_tpl->tpl_vars['i']->value = 0;
 if ($_smarty_tpl->tpl_vars['i']->value < 3) {
 for ($_foo=true;$_smarty_tpl->tpl_vars['i']->value < 3; $_smarty_tpl->tpl_vars['i']->value++) {
 ?>
-                        <span><img src="/Agora/Smarty/immagini/A.png" alt=""></span>
+                        <span><img src="/Agora/libs/Smarty/immagini/A.png" alt=""></span>
                         <?php }
 }
 ?>
@@ -245,7 +257,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           </div>
         <?php } else { ?>
           <div class="profile-photo">
-              <img src="/Agora/Smarty/immagini/1.png" alt="">
+              <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
           </div>
         <?php }?>
           <div class ="handle">
@@ -258,7 +270,10 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           <?php }?>
             <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
 </p>
+            <h5>Status: <span id='user-status'></span></h5>
+          
           </div>
+          
           <div>
               <a href="/Agora/User/followed/<?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
 " style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"><?php echo $_smarty_tpl->tpl_vars['followerNumb']->value;?>
@@ -285,6 +300,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
             <button class="btn-primary btn">Follow</button>
           </form>
         <?php }?>
+        <button type="button" class="btn-primary btn" id="btnMap">Live Map</button>
+        <div id="map-overlay" style="display: none">
+          <h2 id="err-map" style="display: none;">User is Offline or his poition is unavaible</h2>
+          <div id="map"></div>
+        </div>
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -399,7 +419,18 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </div>
 </div>
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['personalUser']->value->getId();?>
+;
+        const visitedUserId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/wsCheckStatus.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

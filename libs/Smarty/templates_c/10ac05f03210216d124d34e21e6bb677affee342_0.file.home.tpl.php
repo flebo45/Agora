@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-05-22 09:15:16
+/* Smarty version 3.1.33, created on 2024-07-21 12:35:12
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\home.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_664d9b84e14b71_64791207',
+  'unifunc' => 'content_669ce460d2ced9_33708953',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '10ac05f03210216d124d34e21e6bb677affee342' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\home.tpl',
-      1 => 1716285682,
+      1 => 1721556110,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_664d9b84e14b71_64791207 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669ce460d2ced9_33708953 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,11 +29,24 @@ function content_664d9b84e14b71_64791207 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <title>Agorà</title>
     <!-- icon scout cdn -->
+    <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
     <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
     <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
 >
+    <?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+    <?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
+>
+    
     <!-- stylesheet -->
     
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
@@ -531,9 +544,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/categories.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- src="/Agora/libs/Smarty/js/storage.js"><?php echo '</script'; ?>
->
+
 </body>
 </html><?php }
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-05-20 15:55:47
+/* Smarty version 3.1.33, created on 2024-07-20 16:25:23
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\personalProfile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_664b56631feb98_97822095',
+  'unifunc' => 'content_669bc8d3c05f08_46231802',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ce486a968d4db5e5bc490b62ef78c26d259d2825' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\personalProfile.tpl',
-      1 => 1716212983,
+      1 => 1721485510,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_664b56631feb98_97822095 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669bc8d3c05f08_46231802 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,15 +29,26 @@ function content_664b56631feb98_97822095 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
   <title>Profile</title>
   <!-- icon scout cdn -->
+  <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
-    <?php echo '<script'; ?>
+  <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
 >
+  <?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  
   <!-- stylesheet -->
   
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   
   <?php echo '<script'; ?>
 >
@@ -269,6 +280,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                   <p class="text-muted">following</p>
               </div>
           </div>
+    <button type="button" class="menu btn-primary btn" id="btn-state-menu">
+      Visibilità stato
+    </button>
+    <ul class="sub-menu" id="sub-menu">
+      <li>
+        <div id="Offline" class="menu-item">
+          <h4>Offline</h4>
+          <h5>Your state visibility goes Offline</h5>
+        </div>
+      </li>
+      <li>
+        <div id="Online" class="menu-item">
+          <h4>Online</h4>
+          <h5>Your state visibility goes Online</h5>
+        </div>
+      </li>
+    </ul>
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -382,8 +410,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
- src="/Agora/libs/Smarty/js/storage.js"><?php echo '</script'; ?>
+    <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/wsPersonalProf.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

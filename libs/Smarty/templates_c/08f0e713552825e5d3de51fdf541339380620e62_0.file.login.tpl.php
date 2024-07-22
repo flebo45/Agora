@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-05-22 13:55:53
+/* Smarty version 3.1.33, created on 2024-07-21 12:35:12
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_664ddd49e62997_45679003',
+  'unifunc' => 'content_669ce460486715_32242081',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08f0e713552825e5d3de51fdf541339380620e62' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\login.tpl',
-      1 => 1716212914,
+      1 => 1721556122,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_664ddd49e62997_45679003 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669ce460486715_32242081 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +29,9 @@ function content_664ddd49e62997_45679003 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Login</title>
   <!-- icon scout cdn -->
+  <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
 

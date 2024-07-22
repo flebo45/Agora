@@ -6,13 +6,21 @@
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
   <title>Agorà-{$user->getUsername()}</title>
   <!-- icon scout cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <script src="/Agora/libs/Smarty/js/test.js"></script>
+  
   <!-- stylesheet -->
   {literal}
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   {/literal}
   <script>
         function ready(){
@@ -188,7 +196,10 @@
             <h4> {$user->getUsername()}</h4>
           {/if}
             <p class="text-muted">{$user->getName()}</p>
+            <h5>Status: <span id='user-status'></span></h5>
+          
           </div>
+          
           <div>
               <a href="/Agora/User/followed/{$user->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$followerNumb}</a>
                   <p class="text-muted">
@@ -209,6 +220,11 @@
             <button class="btn-primary btn">Follow</button>
           </form>
         {/if}
+        <button type="button" class="btn-primary btn" id="btnMap">Live Map</button>
+        <div id="map-overlay" style="display: none">
+          <h2 id="err-map" style="display: none;">User is Offline or his poition is unavaible</h2>
+          <div id="map"></div>
+        </div>
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -319,5 +335,10 @@
 </div>
 </div>
   <script src="/Agora/libs/Smarty/js/sidebar2.js"></script>
+  <script>
+        const userId = {$personalUser->getId()};
+        const visitedUserId = {$user->getId()};
+  </script>
+  <script src="/Agora/libs/Smarty/js/wsCheckStatus.js"></script>
 </body>
 </html>

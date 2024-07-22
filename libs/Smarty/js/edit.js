@@ -1,18 +1,16 @@
+const $deleteButton = $("#delete");
+const $deleteModal = $(".delete");
 
-//MODAL FOR DELETE
+const openDeleteModal = () => {
+  $deleteModal.css("display", "grid");
+};
 
-const delete1 = document.querySelector('#delete');
-const deleteModal1 = document.querySelector('.delete');
+const closeDeleteModal = (e) => {
+  if ($(e.target).hasClass("delete")) {
+    $deleteModal.css("display", "none");
+  }
+};
 
-const openDeleteModal =() => {
-    deleteModal1.style.display = 'grid'
-}
-
-const closeDeleteModal=(e)=>{
-    if(e.target.classList.contains('delete')){
-        deleteModal1.style.display =  'none';
-    }
-}
-//CLOSE MODAL
-deleteModal1.addEventListener('click', closeDeleteModal);
-delete1.addEventListener('click', openDeleteModal);
+// Event bindings
+$deleteModal.on("click", closeDeleteModal);
+$deleteButton.on("click", openDeleteModal);

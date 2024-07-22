@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-28 11:23:57
+/* Smarty version 3.1.33, created on 2024-07-21 12:35:47
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\search_result.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662e15ad156594_57846651',
+  'unifunc' => 'content_669ce4832ffe44_11268269',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6c6b363c0e3fe068319219ba21c10aa875c847e6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\search_result.tpl',
-      1 => 1713025977,
+      1 => 1721556133,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662e15ad156594_57846651 (Smarty_Internal_Template $_smarty_tpl) {
+function content_669ce4832ffe44_11268269 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,14 +29,19 @@ function content_662e15ad156594_57846651 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width-device-width, initial-scale-1.0">
   <title>Agorà</title>
   <!-- icon scout cdn -->
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="Img/A.png">
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/test.js"><?php echo '</script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
 >
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -68,7 +73,7 @@ function content_662e15ad156594_57846651 (Smarty_Internal_Template $_smarty_tpl)
       </div>
     </form>
     <div class="profile-photo">
-      <img src="Img/A.png" alt="">
+      <img src="/Agora/libs/Smarty/immagini/A.png" alt="">
     </div>
   </div>
 </nav>
@@ -105,7 +110,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
           </div>
         <?php } else { ?>
           <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/1.png" alt="">
+            <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
           </div>
         <?php }?>
         <div class ="handle">
@@ -162,7 +167,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['user']->value) {
               </div>
             <?php } else { ?>
               <div class="profile-photo">
-                <img src="/Agora/Smarty/immagini/1.png" alt="">
+                <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
               </div>
             <?php }?>
             <div class ="handle">
@@ -250,6 +255,17 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </div>
     </div>
 </main>
+<?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
+>
 
+</body>
+</html>
 <?php }
 }

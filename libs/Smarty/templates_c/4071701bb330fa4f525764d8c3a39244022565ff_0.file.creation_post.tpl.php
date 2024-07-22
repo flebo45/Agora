@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-27 19:00:22
+/* Smarty version 3.1.33, created on 2024-07-11 17:21:18
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\creation_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662d2f264d2868_49366503',
+  'unifunc' => 'content_668ff86eb29db3_14398892',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4071701bb330fa4f525764d8c3a39244022565ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\creation_post.tpl',
-      1 => 1712935947,
+      1 => 1720710725,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662d2f264d2868_49366503 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668ff86eb29db3_14398892 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +30,22 @@ function content_662d2f264d2868_49366503 (Smarty_Internal_Template $_smarty_tpl)
   <title>creation post</title>
   <!-- icon scout cdn -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/test.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
+        const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
 >
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -67,7 +76,7 @@ function content_662d2f264d2868_49366503 (Smarty_Internal_Template $_smarty_tpl)
                 </div>
     </form>
     <div class="profile-photo">
-      <img src="/Agora/Smarty/immagini/2.png" alt="">
+      <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
     </div>
   </div>
 </nav>
@@ -86,7 +95,7 @@ function content_662d2f264d2868_49366503 (Smarty_Internal_Template $_smarty_tpl)
         </div>
       <?php } else { ?>
         <div class="profile-photo">
-            <img src="/Agora/Smarty/immagini/1.png" alt="">
+            <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
         </div>
       <?php }?>
         <div class ="handle">
@@ -236,10 +245,10 @@ function content_662d2f264d2868_49366503 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 </div>
   <?php echo '<script'; ?>
- src="/Agora/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/sidebar2.js"><?php echo '</script'; ?>
 >
 <?php echo '<script'; ?>
- src="/Agora/Smarty/js/report.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/report.js"><?php echo '</script'; ?>
 >
 </body>
 </html><?php }

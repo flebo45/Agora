@@ -1,0 +1,67 @@
+#map-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 40%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#map {
+  width: 95%; /* Almost full width of the overlay */
+  height: 95%; /* Almost full height of the overlay */
+}
+
+#btnMap {
+  padding: 1px;
+}
+
+.sub-menu {
+  position: relative;
+  top: 10px;
+  left: 0;
+  border-bottom: none;
+  list-style: none;
+  display: none;
+}
+
+.sub-menu div {
+  display: block;
+  padding: 5px 20px;
+  text-decoration: none;
+  width: 100;
+  font-size: 12px;
+  position: relative;
+  background-color: rgb(214, 214, 214);
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.sub-menu div {
+  color: black;
+}
+.sub-menu div:hover {
+  background: rgb(78, 40, 216);
+  color: white;
+}
+
+.menu-item {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.menu-item.disabled {
+  color: red;
+  cursor: default;
+}
+
+.menu-item .tick {
+  float: right;
+  color: green;
+}

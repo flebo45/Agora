@@ -65,4 +65,6 @@
             <button class="btn btn-primary "><i class="uil uil-eye-slash">Ignore</i></button>
         </label>
     </div>
-</div>e">
+</div>
+</body>
+</html>

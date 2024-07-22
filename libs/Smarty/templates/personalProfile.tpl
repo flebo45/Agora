@@ -6,13 +6,19 @@
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
   <title>Profile</title>
   <!-- icon scout cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
-    <script src="/Agora/libs/Smarty/js/test.js"></script>
+  <script src="/Agora/libs/Smarty/js/test.js"></script>
+  <script>
+        const userId = {$user->getId()};
+  </script>
+  
   <!-- stylesheet -->
   {literal}
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   {/literal}
   <script>
         function ready(){
@@ -195,6 +201,23 @@
                   <p class="text-muted">following</p>
               </div>
           </div>
+    <button type="button" class="menu btn-primary btn" id="btn-state-menu">
+      Visibilità stato
+    </button>
+    <ul class="sub-menu" id="sub-menu">
+      <li>
+        <div id="Offline" class="menu-item">
+          <h4>Offline</h4>
+          <h5>Your state visibility goes Offline</h5>
+        </div>
+      </li>
+      <li>
+        <div id="Online" class="menu-item">
+          <h4>Online</h4>
+          <h5>Your state visibility goes Online</h5>
+        </div>
+      </li>
+    </ul>
         <!----------------------DESCRIPTION-------------------->
         <div class="title">
           <h6>About me</h6>
@@ -302,6 +325,6 @@
 </div>
 </div>
     <script src="/Agora/libs/Smarty/js/sidebar2.js"></script>
-<script src="/Agora/libs/Smarty/js/storage.js"></script>
+    <script src="/Agora/libs/Smarty/js/wsPersonalProf.js"></script>
 </body>
 </html>

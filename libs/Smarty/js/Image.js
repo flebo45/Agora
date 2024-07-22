@@ -1,19 +1,21 @@
 function handleImageUpload() {
-    const imageInput = document.getElementById('imageInput');
-    const imagePreview = document.getElementById('imagePreview');
+  const $imageInput = $("#imageInput");
+  const $imagePreview = $("#imagePreview");
 
-    const selectedFiles = imageInput.files; // Array di file selezionati
+  const selectedFiles = $imageInput[0].files; // Array of selected files
 
-    for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i];
+  for (let i = 0; i < selectedFiles.length; i++) {
+    const file = selectedFiles[i];
 
-        // Creare un elemento <img> per l'anteprima dell'immagine
-        const imgElement = document.createElement('img');
-        imgElement.src = URL.createObjectURL(file);
-        imgElement.alt = 'Image ' + (i + 1);
-        imgElement.classList.add('uploaded-image');
+    // Create an <img> element for image preview
+    const imgElement = $("<img>");
+    imgElement.attr("src", URL.createObjectURL(file));
+    imgElement.attr("alt", "Image " + (i + 1));
+    imgElement.addClass("uploaded-image");
 
-        // Aggiungere l'anteprima dell'immagine all'elemento imagePreview
-        imagePreview.appendChild(imgElement);
-    }
+    // Add image preview to the imagePreview element
+    $imagePreview.append(imgElement);
+  }
 }
+
+$("#imageInput").on("change", handleImageUpload);

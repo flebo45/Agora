@@ -1,23 +1,20 @@
-
-//CATEGORIES
-const categories = document.querySelector('.categories');
-const category = categories.querySelectorAll('.category');
-const categorySearch = document.querySelector('#category-search');
-
+// CATEGORIES
+const $categories = $(".categories");
+const $category = $categories.find(".category");
+const $categorySearch = $("#category-search");
 
 // CATEGORY SEARCH
 const searchCategory = () => {
-    const val = categorySearch.value.toLowerCase();
-    console.log(val);
-    category.forEach(type => {
-        let name = type.querySelector('h5').textContent.toLowerCase();
-        if (name.indexOf(val) !== -1) {
-            type.style.display = 'flex';
-        } else {
-            type.style.display = 'none';
-        }
-    })
-}
+  const val = $categorySearch.val().toLowerCase();
+  console.log(val);
+  $category.each(function () {
+    let name = $(this).find("h5").text().toLowerCase();
+    if (name.indexOf(val) !== -1) {
+      $(this).css("display", "flex");
+    } else {
+      $(this).css("display", "none");
+    }
+  });
+};
 
-categorySearch.addEventListener('keyup' , searchCategory );
-
+$categorySearch.on("keyup", searchCategory);
