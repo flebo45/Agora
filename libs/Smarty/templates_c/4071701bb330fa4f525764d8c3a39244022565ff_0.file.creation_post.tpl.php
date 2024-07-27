@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-07-11 17:21:18
+/* Smarty version 3.1.33, created on 2024-07-27 12:48:01
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\creation_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_668ff86eb29db3_14398892',
+  'unifunc' => 'content_66a4d061ea1b70_78408729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4071701bb330fa4f525764d8c3a39244022565ff' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\creation_post.tpl',
-      1 => 1720710725,
+      1 => 1722077064,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668ff86eb29db3_14398892 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a4d061ea1b70_78408729 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +29,10 @@ function content_668ff86eb29db3_14398892 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>creation post</title>
   <!-- icon scout cdn -->
+  <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
@@ -46,6 +50,7 @@ function content_668ff86eb29db3_14398892 (Smarty_Internal_Template $_smarty_tpl)
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -124,6 +129,10 @@ function content_668ff86eb29db3_14398892 (Smarty_Internal_Template $_smarty_tpl)
         <label class="menu-items tex-bold " >
             <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
         </label>
+      </div>
+      <div id="online-handle" class="handle profile" style="margin-top: 1rem;">
+        <h4>Online users</h4>
+        <p>Online: <i class="fa-solid fa-circle" style="color: green;"></i><span id="online-count">0</span></p>
       </div>
   </div>
   <!--------------------END OF SIDE BAR----------------->

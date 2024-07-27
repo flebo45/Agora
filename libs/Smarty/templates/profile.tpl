@@ -113,38 +113,41 @@
       <div class="feeds">
                 {if $user->isBanned()}
                   <div class="tex-bold feed" style="font-size:18px; color:red">This User is Banned!</div>
-                {else}
-                {foreach $postList as $post}
-                <div class="feed">
-                  <div class="head">
-                    <div class="user">
-                      <div class="profile-photo">
-                          <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
-                      </div>
-                      <div class="ingo">
-                        <div>
-                          <a href="/Agora/Post/visit/{$post[0]->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post[0]->getTitle()}</a>
+                {elseif empty($postList)}
+                    <div class="error tex-bold">There are no posts</div>
+                  {else}
+                    {foreach $postList as $post}
+                      <div class="feed">
+                      <div class="head">
+                        <div class="user">
+                          <div class="profile-photo">
+                              <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
+                          </div>
+                          <div class="ingo">
+                            <div>
+                              <a href="/Agora/Post/visit/{$post[0]->getId()}" style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold">{$post[0]->getTitle()}</a>
+                            </div>
+                            <small>{$post[0]->getTime()->format('Y-m-d H:i:s')}</small>
+                          </div>
                         </div>
-                        <small>{$post[0]->getTime()->format('Y-m-d H:i:s')}</small>
+                        <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post[0]->getCategory()}</div>
                       </div>
-                    </div>
-                    <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;">{$post[0]->getCategory()}</div>
-                  </div>
-                    <div class="caption ">
-                        <!-- Smarty tag for username -->
-                        <p><b>{$post[0]->getUser()->getUsername()}</b><span class="harsh-tag">
-                        {$post[0]->getDescription()}</span></p>
-                    </div>
-                    {if count($post[0]->getImages()) === 0}
-                        
-                      {else}
-                        <div class="photo">
-                          {foreach from=$post[0]->getImages() item=i}
-                              <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
-                          
-                          {/foreach}
+                        <div class="caption ">
+                            <!-- Smarty tag for username -->
+                            <p><b>{$post[0]->getUser()->getUsername()}</b><span class="harsh-tag">
+                            {$post[0]->getDescription()}</span></p>
                         </div>
-                      {/if}
+                        {if count($post[0]->getImages()) === 0}
+                            
+                          {else}
+                            <div class="photo">
+                              {foreach from=$post[0]->getImages() item=i}
+                                  <img src="data:{$i->getType()};base64,{$i->getEncodedData()}" alt="Img">
+                            
+                    {/foreach}
+                        </div>
+                  {/if}
+
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">
@@ -196,7 +199,9 @@
             <h4> {$user->getUsername()}</h4>
           {/if}
             <p class="text-muted">{$user->getName()}</p>
-            <h5>Status: <span id='user-status'></span></h5>
+            <div id="online-handle">
+              <h4>User Status: <p id="user-status" class="offline"><i class="fas fa-circle"></i> Offline</p></h4>
+            </div>
           
           </div>
           

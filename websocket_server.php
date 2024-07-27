@@ -37,7 +37,7 @@ class Chat implements MessageComponentInterface {
                 }
             }
 
-            //after the user updating, we sand the change of the user status over all the clients, that will be updated in real-time
+            //after the user updating, we send the change of the user status over all the clients, that will be updated in real-time
             foreach ($this->clients as $client) {
                 if ($from !== $client) {
                     $client->send(json_encode([
@@ -47,6 +47,7 @@ class Chat implements MessageComponentInterface {
                         'latitude' => $data['latitude'],
                         'longitude' => $data['longitude']
                     ]));
+                    $client->send(json_encode(['type' => 'total', 'number' => count($this->users)]));
                 }
             }
             var_dump($this->users);
@@ -66,6 +67,8 @@ class Chat implements MessageComponentInterface {
                     'status' => 'offline'
                 ]));
             }
+        }elseif($data['type'] === 'total') {
+            $from->send(json_encode(['type' => 'total', 'number' => count($this->users)]));
         }
         
 

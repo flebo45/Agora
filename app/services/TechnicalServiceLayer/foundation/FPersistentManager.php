@@ -841,5 +841,77 @@ public static function validateImage($file){
 
     return [true, null];
 }
-    
+
+//----------------------------------------AJAX------------------------------------------------------------------------
+    /**
+     * method to process data to send at the ajax request
+     * take all the posts, comments and users from the database
+     * create three arrays: 1. post array: 1st value is a date of the post creation, 2nd value is the number of the post in that date
+     *                      2. comment array: 1st value is a date of the comments creation, 2nd value is the number of the commnets in that date
+     *                      3. user array: 1st value is the number of user of the same age, 2nd value is the age
+     * @return array
+     */
+    public static function retriveAjaxData(){
+        $posts = FEntityManagerSQL::getInstance()->selectAll(FPost::getTable());
+        $comments = FEntityManagerSQL::getInstance()->selectAll(FComment::getTable());
+        $users = FEntityManagerSQL::getInstance()->retriveObj(FPerson::getTable(), 'discr', 'user');
+
+        $postData = [];
+        $commentData = [];
+        $userData = [];
+
+        if(!empty($posts)){
+            $postCountsByDate = [];
+            foreach ($posts as $post) {
+                // Extract the date part (Y:m:d) from the creation_time attribute
+                $dateOnly = date('Y:m:d', strtotime($post['creation_time']));
+
+                if(isset($postCountsByDate[$dateOnly])){
+                    $postCountsByDate[$dateOnly]++;
+                }else{
+                    $postCountsByDate[$dateOnly] = 1;
+                }
+            }
+            foreach($postCountsByDate as $date => $count){
+                $postData[] = [$date, $count];
+            }
+        }
+
+        if(!empty($comments)){
+            $commentContsByDate = [];
+            foreach($comments as $comment){
+                // Extract the date part (Y:m:d) from the creation_time attribute
+                $dateOnly = date('Y:m:d', strtotime($comment['creation_time']));
+
+                if(isset($commentContsByDate[$dateOnly])){
+                    $commentContsByDate[$dateOnly]++;
+                }else{
+                    $commentContsByDate[$dateOnly] = 1;
+                }
+            }
+            foreach($commentContsByDate as $date => $count){
+                $commentData[] = [$date, $count];
+            }
+        }
+
+        if(!empty($users)){
+            $userCountsByAge = [];
+            foreach($users as $user){
+
+                $age = $user['year'];
+                
+                if(isset($userCountsByAge[$age])){
+                    $userCountsByAge[$age]++;
+                }
+                else {
+                    $userCountsByAge[$age] = 1;
+                }
+            }
+            foreach($userCountsByAge as $age => $count){
+                $userData[] = [$count, $age];
+            }
+        }
+
+        return [$postData, $commentData, $userData];
+    }
 }

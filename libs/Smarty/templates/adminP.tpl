@@ -6,12 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale-1.0">
   <title>Mod-Report</title>
   <!-- icon scout cdn -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"></script>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -31,6 +35,7 @@
                     <button class="btn btn-primary" type="submit">Log out</button>
                 </div>
       </form>
+      <button type="button" class="btn btn-primary" id="btn-analytics">Show Analytics</button>
       <div class="profile-photo">
         <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
       </div>
@@ -39,6 +44,11 @@
 
   <!----------------REPORT PAGE FOR ADMIN------------------------------->
   <main>
+  <div id="chart" style="display: none; margin-top: 1rem;">
+    <div id="chartContainer" style="height: 400px; width: 500px;"></div>
+    <div id="chartContainerPie" style="height: 400px; width: 500px;"></div>
+  </div>
+  
 
         <div class="admin" style="height: 60%; overflow-y:auto; margin-top: 1rem;">
           <h3 class="title">ID</h3>
@@ -116,5 +126,7 @@
         {/foreach}
       {/if}
   </main>
+
+  <script src="/Agora/libs/Smarty/js/ajax.js"></script>
 </body>
 </html>

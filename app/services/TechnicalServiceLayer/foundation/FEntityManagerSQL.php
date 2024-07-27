@@ -312,4 +312,27 @@ class FEntityManagerSQL{
             return array();
         }
     }
+
+    public static function selectAll($table) {
+        try{
+            $query = "SELECT * FROM " . $table .";";
+            $stmt = self::$db->prepare($query);
+            $stmt->execute();
+            $rowNum = $stmt->rowCount();
+            if($rowNum > 0){
+                $result = array();
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()){
+                    $result[] = $row;
+                }
+                self::closeConnection();
+                return $result;
+            }else{
+                return array();
+            }
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return array();
+        }
+    }
 }

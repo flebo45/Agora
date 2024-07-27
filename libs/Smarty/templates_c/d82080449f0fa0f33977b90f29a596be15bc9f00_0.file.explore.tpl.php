@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-07-21 12:35:17
+/* Smarty version 3.1.33, created on 2024-07-27 12:48:12
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\explore.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_669ce465575646_28759330',
+  'unifunc' => 'content_66a4d06cc7e268_17499766',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd82080449f0fa0f33977b90f29a596be15bc9f00' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\explore.tpl',
-      1 => 1721557165,
+      1 => 1722077177,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669ce465575646_28759330 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a4d06cc7e268_17499766 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +32,7 @@ function content_669ce465575646_28759330 (Smarty_Internal_Template $_smarty_tpl)
   <?php echo '<script'; ?>
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
 >
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
@@ -50,6 +51,7 @@ function content_669ce465575646_28759330 (Smarty_Internal_Template $_smarty_tpl)
   
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+    <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   
   <?php echo '<script'; ?>
 >
@@ -140,6 +142,11 @@ function content_669ce465575646_28759330 (Smarty_Internal_Template $_smarty_tpl)
               class="btn btn-primary">Create post
         <button class="btn-transparent" onclick="location.href='/Agora/Post/postForm'"></button>
       </label>
+
+      <div id="online-handle" class="handle profile" style="margin-top: 1rem;">
+        <h4>Online users</h4>
+        <p>Online: <i class="fa-solid fa-circle" style="color: green;"></i><span id="online-count">0</span></p>
+      </div>
     </div>
 
 

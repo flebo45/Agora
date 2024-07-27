@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-05-20 15:56:15
+/* Smarty version 3.1.33, created on 2024-07-27 12:50:01
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\visualization_post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_664b567f244030_76737168',
+  'unifunc' => 'content_66a4d0d9450928_74733902',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b413f66dd7d1fdbc7794172b2ea95f486a55fa01' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\visualization_post.tpl',
-      1 => 1716213319,
+      1 => 1722077388,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_664b567f244030_76737168 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a4d0d9450928_74733902 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <?php $_smarty_tpl->_assignInScope('userlogged', (($tmp = @$_smarty_tpl->tpl_vars['userlogged']->value)===null||$tmp==='' ? 'nouser' : $tmp));?>
 <html lang="en">
@@ -30,15 +30,29 @@ function content_664b567f244030_76737168 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
   <title>home</title>
   <!-- icon scout cdn -->
+  <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
     <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+>
+    const userId = <?php echo $_smarty_tpl->tpl_vars['user']->value->getId();?>
+;
+  <?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
 >
   <!-- stylesheet -->
   
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
     <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+    <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   
   <?php echo '<script'; ?>
 >
@@ -143,6 +157,11 @@ function content_664b567f244030_76737168 (Smarty_Internal_Template $_smarty_tpl)
   <label class="btn btn-primary">create post
       <button class="btn-transparent" onclick="location.href='/Agora/Post/postForm'"></button>
   </label>
+
+  <div id="online-handle" class="handle profile" style="margin-top: 1rem;">
+    <h4>Online users</h4>
+    <p>Online: <i class="fa-solid fa-circle" style="color: green;"></i><span id="online-count">0</span></p>
+  </div>
 </div>
 
 

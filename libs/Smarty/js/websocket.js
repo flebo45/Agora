@@ -25,35 +25,28 @@ function checkStateCookie() {
 
 //error handler for the navigator.geolocation.getCurrentPosition, that handle all the problems related to get the user position
 function errorHandler(e) {
-  if (e === 1) {
-    //PERMISSION_DENIED
-    alert(
-      "If you do not allow access to the location you will not be able to view the location of other users"
-    );
-    ws.send(
-      JSON.stringify({
-        type: "status",
-        status: "online",
-        userId: userId,
-        latitude: null,
-        longitude: null,
-      })
-    );
-  } else if (e === 2 || e === 3) {
-    //POSITION_UNAVAILABLE || TIEMOUT
-    alert(
-      "Position unavaible: you will not able to view the location of other users"
-    );
-    ws.send(
-      JSON.stringify({
-        type: "status",
-        status: "online",
-        userId: userId,
-        latitude: null,
-        longitude: null,
-      })
-    );
-  }
+  const errorMessage =
+    e === 1
+      ? "If you do not allow access to the location you will not be able to view the location of other users"
+      : "Position unavailable: you will not be able to view the location of other users";
+  alert(errorMessage);
+
+  ws.send(
+    JSON.stringify({
+      type: "status",
+      status: "online",
+      userId: userId,
+      latitude: null,
+      longitude: null,
+    })
+  );
+}
+
+// Function to get the current position using Promises
+function getCurrentPosition() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
 }
 
 //function to connect to the websocket, and handle the logic for sending the info to the server
@@ -64,59 +57,60 @@ function connect() {
   ws = new WebSocket(wsUrl);
 
   //when the client connect to the ws
-  ws.onopen = function () {
+  ws.onopen = async function () {
     console.log("Connected to WebSocket server");
 
+    // Check the state cookie
+    const state = checkStateCookie();
+
+    let status;
+
     //check the state cookie
-    if (checkStateCookie() === null) {
+    if (state === null) {
       //COOKIE IS NOT SETTED
       setStateCookie("Online");
-
-      //take user position and send it over the ws
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "online",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
-    } else if (checkStateCookie() === "Offline") {
+      status = "online";
+    } else if (state === "Offline") {
       //USER STATE VISIBILITY IS OFFLINE
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "offline",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
+      status = "offline";
     } else {
       //USER STATE VISIBUILITY IS ONLINE
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "online",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
+      status = "online";
+    }
+
+    // Use Promises to ensure order
+    try {
+      const position = await getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+
+      // Send the user's status first
+      ws.send(
+        JSON.stringify({
+          type: "status",
+          status: status,
+          userId: userId,
+          latitude: latitude,
+          longitude: longitude,
+        })
+      );
+      ws.send(
+        JSON.stringify({
+          type: "total",
+        })
+      );
+    } catch (error) {
+      errorHandler(error);
     }
   };
 
-  ws.onmessage = function (event) {};
+  ws.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+
+    if (data.type === "total") {
+      //console.log(data.number);
+      $("#online-count").text(data.number);
+    }
+  };
 
   ws.onclose = function () {
     console.log("Disconnected from WebSocket server");

@@ -23,6 +23,19 @@
   padding: 1px;
 }
 
+.fa-circle {
+  color: green;
+  margin-right: 5px;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
+}
+
 .sub-menu {
   position: relative;
   top: 10px;
@@ -64,4 +77,26 @@
 .menu-item .tick {
   float: right;
   color: green;
+}
+
+#chart {
+  display: flex; /* Set the container to flexbox */
+  justify-content: center; /* Center items horizontally */
+  gap: 20px; /* Optional: adds space between the two divs */
+}
+
+#chartContainer,
+#chartContainerPie {
+  /* You can adjust styles here if needed */
+  border: 1px solid #ccc; /* Optional: for visual separation */
+}
+
+#online-handle {
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  align-items: flex-start; /* Align children to the left */
+}
+
+#online-handle h4 {
+  margin-bottom: 0.5rem; /* Adjust space between elements */
 }

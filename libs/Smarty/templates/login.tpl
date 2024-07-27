@@ -64,7 +64,7 @@
           <input type="text" class="input-field" placeholder="Surname" name="surname" required>
         </label>
         <label>
-          <input type="number" class="input-field" placeholder="Age" name="age" min='18' required>
+          <input type="number" class="input-field" placeholder="Age" name="age" min='18' max="99" required>
         </label>
         <label>
           <input type="text" class="input-field" placeholder="Username" name="username" required>

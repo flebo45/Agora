@@ -90,10 +90,11 @@ public static function visit($idPost){
  */
 public static function like($idPost){
     if(CUser::isLogged()){
+        $idUser = USession::getInstance()->getSessionElement('user');
         $usersAndPropic = FPersistentManager::getInstance()->getLikesPage($idPost);
 
         $view = new VManagePost();
-        $view->showUsersList($usersAndPropic, 'like');
+        $view->showUsersList($usersAndPropic, $idUser, 'like');
     }
 }
 

@@ -88,11 +88,12 @@ class CPost{
     */
     public static function like($idPost){
         if(CUser::isLogged()){
+            $idUser = USession::getInstance()->getSessionElement('user');
             $post = FPersistentManager::getInstance()->retriveObj(EPost::getEntity(), $idPost);
             if($post !== null){
                 $usersAndPropic = FPersistentManager::getInstance()->getLikesPage($post);
                 $view = new VManagePost();
-                $view->showUsersList($usersAndPropic, 'like');
+                $view->showUsersList($usersAndPropic, $idUser, 'like');
             }
         }
     }

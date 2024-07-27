@@ -333,10 +333,11 @@ class CUser{
     public static function followers($idUser)
     {
         if(CUser::isLogged()){
+            $idUserCurrent = USession::getInstance()->getSessionElement('user');
             $usersListAndPropic = FPersistentManager::getInstance()->getFollowedList($idUser);
                 
             $view = new VManagePost();
-            $view->showUsersList($usersListAndPropic, 'followers');
+            $view->showUsersList($usersListAndPropic, $idUserCurrent, 'followers');
         }       
     }
 
@@ -347,10 +348,11 @@ class CUser{
     public static function followed($idUser)
     {
         if(CUser::isLogged()){
+            $idUserCurrent = USession::getInstance()->getSessionElement('user');
             $usersListAndPropic = FPersistentManager::getInstance()->getFollowerList($idUser);
                 
             $view = new VManagePost();
-            $view->showUsersList($usersListAndPropic, 'followed');
+            $view->showUsersList($usersListAndPropic, $idUserCurrent, 'followed');
         }
     }
 

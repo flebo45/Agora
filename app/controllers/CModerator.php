@@ -243,4 +243,22 @@ class CModerator{
             }
         }
     }
+
+    /**
+     * this method handle the only one Ajax request in the application
+     * ask data from the database and pass it to the javascript
+     * 
+     */
+    public static function ajaxDataRequest() {
+        if(CModerator::isLogged()){
+            $data = FPersistentManager::getInstance()->retriveAjaxData();
+
+            $responseData = ['posts' => $data[0], 'comments' => $data[1], 'users' => $data[2]];
+            $jsonResponse = json_encode($responseData);
+
+            //JSON Response
+            header('Content-Type: application/json');
+            echo $jsonResponse;
+        }
+    }
 }

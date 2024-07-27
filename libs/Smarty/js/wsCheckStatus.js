@@ -26,46 +26,34 @@ function checkStateCookie() {
 
 //error handler for the navigator.geolocation.getCurrentPosition, that handle all the problems related to get the user position
 function errorHandler(e) {
-  if (e === 1) {
-    //PERMISSION_DENIED
-    alert(
-      "If you do not allow access to the location you will not be able to view the location of other users"
-    );
-    ws.send(
-      JSON.stringify({
-        type: "status",
-        status: "online",
-        userId: userId,
-        latitude: null,
-        longitude: null,
-      })
-    );
-  } else if (e === 2 || e === 3) {
-    //POSITION_UNAVAILABLE || TIEMOUT
-    alert(
-      "Position unavaible: you will not able to view the location of other users"
-    );
-    ws.send(
-      JSON.stringify({
-        type: "status",
-        status: "online",
-        userId: userId,
-        latitude: null,
-        longitude: null,
-      })
-    );
-  }
+  const errorMessage =
+    e === 1
+      ? "If you do not allow access to the location you will not be able to view the location of other users"
+      : "Position unavailable: you will not be able to view the location of other users";
+  alert(errorMessage);
+
+  ws.send(
+    JSON.stringify({
+      type: "status",
+      status: "online",
+      userId: userId,
+      latitude: null,
+      longitude: null,
+    })
+  );
 }
 
 //function that takes the user position (latitude and longitude) and return the address object (OPEN STREET MAP)
 function getAddress(latitude, longitude) {
   let url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`;
 
-  return fetch(url)
-    .then((response) => response.json())
+  return $.ajax({
+    url: url,
+    dataType: "json",
+  })
     .then((data) => data.address)
     .catch((error) => {
-      console.log("Error: ", error);
+      console.error("Error: ", error);
       return null;
     });
 }
@@ -80,50 +68,23 @@ function connect() {
   //when the client connect to the ws
   ws.onopen = function () {
     console.log("Connected to WebSocket server");
-    if (checkStateCookie() === null) {
-      //COOKIE IS NOT SETTED
-      setStateCookie("Online");
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "online",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
-    } else if (checkStateCookie() === "Offline") {
-      //USER STATE VISIBILITY IS OFFLINE
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "offline",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
-    } else {
-      //USER STATE VISIBUILITY IS ONLINE
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const { latitude, longitude } = position.coords;
-        ws.send(
-          JSON.stringify({
-            type: "status",
-            status: "online",
-            userId: userId,
-            latitude: latitude,
-            longitude: longitude,
-          })
-        );
-      }, errorHandler);
-    }
+    const state = checkStateCookie();
+    const stateToSend = state === "Offline" ? "offline" : "online";
+    if (state === null) setStateCookie("Online");
+
+    // Use navigator.geolocation with jQuery promise
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const { latitude, longitude } = position.coords;
+      ws.send(
+        JSON.stringify({
+          type: "status",
+          status: stateToSend,
+          userId: userId,
+          latitude: latitude,
+          longitude: longitude,
+        })
+      );
+    }, errorHandler);
 
     //send a packet for checking if the visited user is online or offline
     ws.send(JSON.stringify({ type: "check", userId: visitedUserId }));
@@ -132,85 +93,61 @@ function connect() {
   //handle the message from the server
   ws.onmessage = function (event) {
     const data = JSON.parse(event.data);
-    let element = document.getElementById("user-status");
+    const $element = $("#user-status");
 
-    //if the packet is of type == "status", check the user status and update the html for showing it
-    if (data.type === "status") {
-      if (data.userId === visitedUserId) {
-        if (data.status === "online") {
-          element.innerText = "Online";
-          element.classList.add("online");
-          element.classList.remove("offline");
-          $("#err-map").hide();
-          $("#map").show();
+    const updateMap = (latitude, longitude, address) => {
+      const map = L.map("map").setView([latitude, longitude], 13);
 
-          //take in the position of the user create the map (OPEN STREET MAP)
-          getAddress(data.latitude, data.longitude).then((address) => {
-            let map = L.map("map").setView([data.latitude, data.longitude], 13);
+      // Add the OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
 
-            // Add the OpenStreetMap tiles
-            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-              attribution:
-                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-            }).addTo(map);
+      // Add a marker to the map onto the user's current location
+      const marker = L.marker([latitude, longitude])
+        .addTo(map)
+        .bindPopup(
+          address
+            ? `City: ${
+                address.town || address.city || address.village
+              }.<br> State: ${address.state}, ${address.county}`
+            : "Address Not Found."
+        )
+        .openPopup();
+    };
 
-            // Add a marker to the map onto the user current location
-            const marker = L.marker([data.latitude, data.longitude])
-              .addTo(map)
-              .bindPopup(
-                address
-                  ? `City: ${
-                      address.town || address.city || address.village
-                    }.<br> State: ${address.state}, ${address.county}`
-                  : "Address Not Found."
-              )
-              .openPopup();
-          });
-        } else {
-          element.classList.remove("online");
-          element.innerText = "Offline";
-          element.classList.add("offline");
-          $("#err-map").show();
-          $("#map").hide();
-        }
-      }
-      //if the packet is of type == "check", handle the response from the server when the client ask if the visited user is online or offline when he loads the page
-    } else if (data.type === "check") {
-      let element = document.getElementById("user-status");
-      if (data.status === "online") {
-        element.innerText = "Online";
-        element.classList.add("online");
-        element.classList.remove("offline");
-        $("#err-map").hide();
-        $("#map").show();
+    // If the packet is of type == "status", check the user status and update the HTML for showing it
+    if (data.type === "status" && data.userId === visitedUserId) {
+      const isOnline = data.status === "online";
+      $element
+        .text(isOnline ? "Online" : "Offline")
+        .toggleClass("online", isOnline)
+        .toggleClass("offline", !isOnline);
+      $("#err-map").toggle(!isOnline);
+      $("#map").toggle(isOnline);
 
+      if (isOnline) {
         getAddress(data.latitude, data.longitude).then((address) => {
-          let map = L.map("map").setView([data.latitude, data.longitude], 13);
-
-          // Add the OpenStreetMap tiles
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          }).addTo(map);
-
-          // Add a marker to the map
-          const marker = L.marker([data.latitude, data.longitude])
-            .addTo(map)
-            .bindPopup(
-              address
-                ? `City: ${
-                    address.town || address.city || address.village
-                  }.<br> State: ${address.state}, ${address.county}`
-                : "Address Not Found."
-            )
-            .openPopup();
+          updateMap(data.latitude, data.longitude, address);
         });
-      } else {
-        element.innerText = "Offline";
-        element.classList.remove("online");
-        element.classList.add("offline");
-        $("#err-map").show();
-        $("#map").hide();
+      }
+    }
+
+    // If the packet is of type == "check", handle the response from the server when the client asks if the visited user is online or offline when he loads the page
+    else if (data.type === "check") {
+      const isOnline = data.status === "online";
+      $element
+        .text(isOnline ? "Online" : "Offline")
+        .toggleClass("online", isOnline)
+        .toggleClass("offline", !isOnline);
+      $("#err-map").toggle(!isOnline);
+      $("#map").toggle(isOnline);
+
+      if (isOnline) {
+        getAddress(data.latitude, data.longitude).then((address) => {
+          updateMap(data.latitude, data.longitude, address);
+        });
       }
     }
   };

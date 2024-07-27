@@ -210,6 +210,10 @@ class FEntityManager{
         }
     }
 
+    /**
+     * delete an object from the db
+     * @return boolean
+     */
     public static function deleteObj($obj){
         try{
             self::$entityManager->getConnection()->beginTransaction();
@@ -221,6 +225,22 @@ class FEntityManager{
             self::$entityManager->getConnection();
             echo "ERROR: " . $e->getMessage();
             return false;
+        }
+    }
+
+    /**
+     * return an array of all elemnts of a table
+     * @return array
+     */
+    public static function selectAll($table){
+        try{
+            $dql = "SELECT e FROM " . $table . " e";
+            $query = self::$entityManager->createQuery($dql);
+            $result = $query->getResult();
+            return $result;
+        }catch(Exception $e){
+            echo "ERROR " . $e->getMessage();
+            return [];
         }
     }
 }

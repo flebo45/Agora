@@ -7,6 +7,7 @@
   <title>creation post</title>
   <!-- icon scout cdn -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <script src="/Agora/libs/Smarty/js/test.js"></script>
@@ -17,6 +18,7 @@
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   <script>
         function ready(){
             if (!navigator.cookieEnabled) {
@@ -89,6 +91,10 @@
         <label class="menu-items tex-bold " >
             <button class="btn-transparent" onclick="location.href='/Agora/User/settings'"><i class="uil uil-setting"></i> </button>Setting
         </label>
+      </div>
+      <div id="online-handle" class="handle profile" style="margin-top: 1rem;">
+        <h4>Online users</h4>
+        <p>Online: <i class="fa-solid fa-circle" style="color: green;"></i><span id="online-count">0</span></p>
       </div>
   </div>
   <!--------------------END OF SIDE BAR----------------->

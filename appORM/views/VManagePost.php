@@ -62,10 +62,10 @@ class VManagePost{
     /**
      * @throws SmartyException
      */
-    public function showUsersList($usersListAndPropic, $param)
+    public function showUsersList($usersListAndPropic, $userId, $param)
     {
         $this->smarty->assign('userList', $usersListAndPropic);
-
+        $this->smarty->assign('userId', $userId);
         $this->smarty->assign('param', $param);
         $this->smarty->display('userlist.tpl');
     }

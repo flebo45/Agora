@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-07-18 17:57:03
+/* Smarty version 3.1.33, created on 2024-07-27 16:43:51
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\profile.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_66993b4f8e2d88_93686472',
+  'unifunc' => 'content_66a507a72b6272_16291813',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e2d6af9494a67fc11f3d9cd61b576804030eb16d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\profile.tpl',
-      1 => 1721318071,
+      1 => 1722091428,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66993b4f8e2d88_93686472 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a507a72b6272_16291813 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,57 +150,60 @@ function content_66993b4f8e2d88_93686472 (Smarty_Internal_Template $_smarty_tpl)
       <div class="feeds">
                 <?php if ($_smarty_tpl->tpl_vars['user']->value->isBanned()) {?>
                   <div class="tex-bold feed" style="font-size:18px; color:red">This User is Banned!</div>
-                <?php } else { ?>
-                <?php
+                <?php } elseif (empty($_smarty_tpl->tpl_vars['postList']->value)) {?>
+                    <div class="error tex-bold">There are no posts</div>
+                  <?php } else { ?>
+                    <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['postList']->value, 'post');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['post']->value) {
 ?>
-                <div class="feed">
-                  <div class="head">
-                    <div class="user">
-                      <div class="profile-photo">
-                          <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
-                      </div>
-                      <div class="ingo">
-                        <div>
-                          <a href="/Agora/Post/visit/<?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getId();?>
+                      <div class="feed">
+                      <div class="head">
+                        <div class="user">
+                          <div class="profile-photo">
+                              <img src="/Agora/libs/Smarty/immagini/1.png" alt="">
+                          </div>
+                          <div class="ingo">
+                            <div>
+                              <a href="/Agora/Post/visit/<?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getId();?>
 " style="text-decoration: none; color: inherit; font-size: 1rem; font-weight : bold"><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getTitle();?>
 </a>
-                        </div>
-                        <small><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getTime()->format('Y-m-d H:i:s');?>
+                            </div>
+                            <small><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getTime()->format('Y-m-d H:i:s');?>
 </small>
-                      </div>
-                    </div>
-                    <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;"><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getCategory();?>
+                          </div>
+                        </div>
+                        <div style="background: linear-gradient(45deg, violet, indigo, blue, green, yellow, orange, red);-webkit-background-clip: text;background-clip: text;color: transparent;font-weight: bold;"><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getCategory();?>
 </div>
-                  </div>
-                    <div class="caption ">
-                        <!-- Smarty tag for username -->
-                        <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getUser()->getUsername();?>
+                      </div>
+                        <div class="caption ">
+                            <!-- Smarty tag for username -->
+                            <p><b><?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getUser()->getUsername();?>
 </b><span class="harsh-tag">
-                        <?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getDescription();?>
+                            <?php echo $_smarty_tpl->tpl_vars['post']->value[0]->getDescription();?>
 </span></p>
-                    </div>
-                    <?php if (count($_smarty_tpl->tpl_vars['post']->value[0]->getImages()) === 0) {?>
-                        
-                      <?php } else { ?>
-                        <div class="photo">
-                          <?php
+                        </div>
+                        <?php if (count($_smarty_tpl->tpl_vars['post']->value[0]->getImages()) === 0) {?>
+                            
+                          <?php } else { ?>
+                            <div class="photo">
+                              <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['post']->value[0]->getImages(), 'i');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['i']->value) {
 ?>
-                              <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
+                                  <img src="data:<?php echo $_smarty_tpl->tpl_vars['i']->value->getType();?>
 ;base64,<?php echo $_smarty_tpl->tpl_vars['i']->value->getEncodedData();?>
 " alt="Img">
-                          
-                          <?php
+                            
+                    <?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
-                      <?php }?>
+                  <?php }?>
+
 
                     <div class="action-buttons">
                         <div class="interaction-buttons">
@@ -270,7 +273,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           <?php }?>
             <p class="text-muted"><?php echo $_smarty_tpl->tpl_vars['user']->value->getName();?>
 </p>
-            <h5>Status: <span id='user-status'></span></h5>
+            <div id="online-handle">
+              <h4>User Status: <p id="user-status" class="offline"><i class="fas fa-circle"></i> Offline</p></h4>
+            </div>
           
           </div>
           

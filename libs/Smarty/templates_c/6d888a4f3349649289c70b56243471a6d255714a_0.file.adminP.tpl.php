@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-04-28 11:30:01
+/* Smarty version 3.1.33, created on 2024-07-26 17:28:13
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\adminP.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_662e17196d3212_42269215',
+  'unifunc' => 'content_66a3c08d6502b5_52414180',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6d888a4f3349649289c70b56243471a6d255714a' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\adminP.tpl',
-      1 => 1713091273,
+      1 => 1722007682,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662e17196d3212_42269215 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a3c08d6502b5_52414180 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +29,22 @@ function content_662e17196d3212_42269215 (Smarty_Internal_Template $_smarty_tpl)
   <meta name="viewport" content="width=device-width, initial-scale-1.0">
   <title>Mod-Report</title>
   <!-- icon scout cdn -->
+  <?php echo '<script'; ?>
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="https://cdn.canvasjs.com/jquery.canvasjs.min.js"><?php echo '</script'; ?>
+>
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
-  <link rel="icon" href="/Agora/Smarty/immagini/A.png">
+  <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
 
   <!-- stylesheet -->
-  <link rel="stylesheet" href="/Agora/Smarty/css/normalize.css">
-  <link rel="stylesheet" href="/Agora/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -57,14 +67,20 @@ function content_662e17196d3212_42269215 (Smarty_Internal_Template $_smarty_tpl)
                     <button class="btn btn-primary" type="submit">Log out</button>
                 </div>
       </form>
+      <button type="button" class="btn btn-primary" id="btn-analytics">Show Analytics</button>
       <div class="profile-photo">
-        <img src="/Agora/Smarty/immagini/2.png" alt="">
+        <img src="/Agora/libs/Smarty/immagini/2.png" alt="">
       </div>
     </div>
   </nav>
 
   <!----------------REPORT PAGE FOR ADMIN------------------------------->
   <main>
+  <div id="chart" style="display: none; margin-top: 1rem;">
+    <div id="chartContainer" style="height: 400px; width: 500px;"></div>
+    <div id="chartContainerPie" style="height: 400px; width: 500px;"></div>
+  </div>
+  
 
         <div class="admin" style="height: 60%; overflow-y:auto; margin-top: 1rem;">
           <h3 class="title">ID</h3>
@@ -174,6 +190,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['report']->value) {
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
       <?php }?>
   </main>
+
+  <?php echo '<script'; ?>
+ src="/Agora/libs/Smarty/js/ajax.js"><?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

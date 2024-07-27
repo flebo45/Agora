@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-07-21 12:35:33
+/* Smarty version 3.1.33, created on 2024-07-27 12:48:10
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\setting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_669ce4752e2f92_99308552',
+  'unifunc' => 'content_66a4d06a7b8db3_25423812',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '90269464dbfeede0837f3f1bd948600e0e159f6f' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\setting.tpl',
-      1 => 1721556144,
+      1 => 1722077269,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_669ce4752e2f92_99308552 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a4d06a7b8db3_25423812 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="eng">
 <head>
@@ -33,6 +33,7 @@ function content_669ce4752e2f92_99308552 (Smarty_Internal_Template $_smarty_tpl)
  src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><?php echo '</script'; ?>
 >
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.6/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="icon" href="/Agora/libs/Smarty/immagini/A.png">
   <?php echo '<script'; ?>
  src="/Agora/libs/Smarty/js/test.js"><?php echo '</script'; ?>
@@ -49,6 +50,7 @@ function content_669ce4752e2f92_99308552 (Smarty_Internal_Template $_smarty_tpl)
   <!-- stylesheet -->
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
   <link rel="stylesheet" href="/Agora/libs/Smarty/css/style.css">
+  <link rel="stylesheet" href="/Agora/libs/Smarty/css/map.css">
   <?php echo '<script'; ?>
 >
         function ready(){
@@ -110,6 +112,11 @@ function content_669ce4752e2f92_99308552 (Smarty_Internal_Template $_smarty_tpl)
       <label class="btn btn-primary">create post
         <button class="btn-transparent" onclick="location.href='/Agora/Post/createPost'"></button>
       </label>
+
+      <div id="online-handle" class="handle profile" style="margin-top: 1rem;">
+        <h4>Online users</h4>
+        <p>Online: <i class="fa-solid fa-circle" style="color: green;"></i><span id="online-count">0</span></p>
+      </div>
     </div>
 
 
