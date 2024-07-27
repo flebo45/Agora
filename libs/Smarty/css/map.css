@@ -24,7 +24,6 @@
 }
 
 .fa-circle {
-  color: green;
   margin-right: 5px;
 }
 
@@ -34,6 +33,10 @@
 
 .offline {
   color: red;
+}
+
+#user-status {
+  margin-left: 1rem;
 }
 
 .sub-menu {

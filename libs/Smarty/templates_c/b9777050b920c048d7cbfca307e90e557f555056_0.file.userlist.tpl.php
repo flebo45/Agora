@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2024-07-27 13:11:25
+/* Smarty version 3.1.33, created on 2024-07-27 18:15:41
   from 'C:\xampp\htdocs\Agora\libs\Smarty\templates\userlist.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_66a4d5dd03c527_27460234',
+  'unifunc' => 'content_66a51d2d8bf1f5_31416429',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b9777050b920c048d7cbfca307e90e557f555056' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Agora\\libs\\Smarty\\templates\\userlist.tpl',
-      1 => 1722078318,
+      1 => 1722096911,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_66a4d5dd03c527_27460234 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66a51d2d8bf1f5_31416429 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +45,7 @@ function content_66a4d5dd03c527_27460234 (Smarty_Internal_Template $_smarty_tpl)
     <?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- src="/Agora/libs/Smarty/js/websocket.js"><?php echo '</script'; ?>
+ src="/Agora/libs/Smarty/js/wsUserList.js"><?php echo '</script'; ?>
 >
     <!-- stylesheet -->
     
@@ -61,6 +61,25 @@ function content_66a4d5dd03c527_27460234 (Smarty_Internal_Template $_smarty_tpl)
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
+    <?php echo '</script'; ?>
+>
+
+    <?php echo '<script'; ?>
+>
+    let idArray = [];
+        <?php if (count($_smarty_tpl->tpl_vars['userList']->value) > 0) {?>
+            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['userList']->value, 'l');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['l']->value) {
+?>
+                idArray.push(<?php echo $_smarty_tpl->tpl_vars['l']->value[0]->getId();?>
+);
+            <?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+        <?php }?>
     <?php echo '</script'; ?>
 >
 </head>
@@ -145,7 +164,8 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['l']->value) {
 ?>
                     
-                    <div style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
+                    <div id="<?php echo $_smarty_tpl->tpl_vars['l']->value[0]->getId();?>
+" class="user-div" style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
                         <?php if ($_smarty_tpl->tpl_vars['l']->value[1]->getSize() > 0) {?>
                             <div class="profile-photo">
                                 <img src="data:<?php echo $_smarty_tpl->tpl_vars['l']->value[1]->getType();?>
@@ -182,6 +202,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['l']->value) {
                             <?php }?>
                             <p class="text-muted left-transition"> <?php echo $_smarty_tpl->tpl_vars['l']->value[0]->getName();?>
 </p>
+                            <p id="user-status" class="offline"><i class="fas fa-circle offline"></i> Offline</p>
                         <?php }?>
                         
                     </div>

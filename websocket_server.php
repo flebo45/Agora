@@ -7,6 +7,7 @@ use Ratchet\ConnectionInterface;
 class Chat implements MessageComponentInterface {
     protected $clients;
     protected $users;
+    protected $ids;
 
     public function __construct() {
         //all the user connected to the web socket
@@ -14,6 +15,9 @@ class Chat implements MessageComponentInterface {
 
         //all the user that have "Online status"
         $this->users = [];
+
+        //all users id
+        $this->ids = [];
     }
 
     public function onOpen(ConnectionInterface $conn) {
@@ -29,11 +33,13 @@ class Chat implements MessageComponentInterface {
             //if the user is online, the array users is populated
             if($data['status'] === 'online'){
                 $this->users[$data['userId']] = [$data['userId'], $data['latitude'], $data['longitude']];
+                $this->ids[$data['userId']] = $data['userId'];
             }elseif($data['status'] === 'offline'){
 
                 //if the user is offline, the user is unest from the array
-                if(isset($this->users[$data['userId']])){
+                if(isset($this->users[$data['userId']]) && isset($this->ids[$data['userId']])){
                     unset($this->users[$data['userId']]);
+                    unset($this->ids[$data['userId']]);
                 }
             }
 
@@ -47,7 +53,7 @@ class Chat implements MessageComponentInterface {
                         'latitude' => $data['latitude'],
                         'longitude' => $data['longitude']
                     ]));
-                    $client->send(json_encode(['type' => 'total', 'number' => count($this->users)]));
+                    $client->send(json_encode(['type' => 'total', 'number' => count($this->users), 'idArr' => $this->ids]));
                 }
             }
             var_dump($this->users);
@@ -68,7 +74,7 @@ class Chat implements MessageComponentInterface {
                 ]));
             }
         }elseif($data['type'] === 'total') {
-            $from->send(json_encode(['type' => 'total', 'number' => count($this->users)]));
+            $from->send(json_encode(['type' => 'total', 'number' => count($this->users), 'idArr' => $this->ids]));
         }
         
 

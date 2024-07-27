@@ -14,7 +14,7 @@
     <script>
         const userId = {$userId};
     </script>
-    <script src="/Agora/libs/Smarty/js/websocket.js"></script>
+    <script src="/Agora/libs/Smarty/js/wsUserList.js"></script>
     <!-- stylesheet -->
     {literal}
         <link rel="stylesheet" href="/Agora/libs/Smarty/css/normalize.css">
@@ -28,6 +28,15 @@
             }
         }
         document.addEventListener("DOMContentLoaded", ready);
+    </script>
+
+    <script>
+    let idArray = [];
+        {if count($userList) > 0}
+            {foreach $userList as $l}
+                idArray.push({$l[0]->getId()});
+            {/foreach}
+        {/if}
     </script>
 </head>
 <body>
@@ -107,7 +116,7 @@
                 {/if}
                 {foreach $userList as $l}
                     
-                    <div style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
+                    <div id="{$l[0]->getId()}" class="user-div" style="display: flex; align-items: center; font-size:18px; margin-top:1rem">
                         {if $l[1]->getSize() > 0}
                             <div class="profile-photo">
                                 <img src="data:{$l[1]->getType()};base64,{$l[1]->getEncodedData()}" alt="Img">
@@ -132,6 +141,7 @@
                                 <i class="uil uil-chat-bubble-user" style="color:red; margin-left:1rem"></i> <a href="/Agora/User/profile/{$l[0]->getUsername()}" class="tex-bold" style="text-decoration: none; color: inherit">{$l[0]->getUsername()}</a>
                             {/if}
                             <p class="text-muted left-transition"> {$l[0]->getName()}</p>
+                            <p id="user-status" class="offline"><i class="fas fa-circle offline"></i> Offline</p>
                         {/if}
                         
                     </div>
