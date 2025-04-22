@@ -10,6 +10,7 @@
 1. [Key Feature](#key-feature)
 1. [Requirements](#requirements)
 1. [Installation Guide](#installation-guide)
+1. [Usage](#usage)
 1. [Our Development Team](#our-development-team)
 
 ## About
@@ -86,6 +87,20 @@ public function newDefaultAnnotationDriver($paths = [], $useSimpleAnnotationRead
 
 1. _For Linux Users Only_ To make the application work on your terminal you must enable write, read and execute permissions on all the files present in the application. I recommend using `chmod -R a+rwe path-to-Agora-directory` command to eneable all the permission.Check that all files inside the folders have all permissions enabled. If they don't have them you can use the previous command directly on the affected folders. Check especially if the folder (and files) found in `libs/Smarty/templates_c` have the right permission. Once you set all the permissions everything should work.
 
-### Our Development team
+## Usage
+
+### Doctrine and SQL
+
+This application contains two instances of the "Agora" app: one that uses ORM technologies and one that uses standard SQL. In the `config` folder you can find the guide on how to switch between apps.
+
+### Moderator View
+
+This app also has the "Moderator View". In the root folder you will find a file called `admin.php`: this file allows you to add a moderator in the application (of course you can change the parameters as you like, and you have to run the script). Once you have added a moderator, to access the moderator view, you have to access the page `localhost/Agora/Moderator/login` and enter the credentials you have set.
+
+### WebSocket
+
+Among the technologies used there are also those related to WebSockets. These add extra features to the application, such as seeing how many users are online or the real-time location of an online user and much more. To enable these features you need to run the `websocket_server.php` script and leave it in the background. Since the application is installed locally, to take advantage of these features, one way is to run Agora on two different browsers with two different users and test the various features.
+
+## Our Development team
 
 - [flebo45](https://github.com/flebo45)

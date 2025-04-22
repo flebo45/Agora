@@ -5,7 +5,7 @@ define('USE_DOCTRINE', false);
 
 //Database Connection
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'provatesi');
+define('DB_NAME', 'provafinale');
 define('DB_USER', 'root');
 define('DB_PASS', 'pippo');
 
